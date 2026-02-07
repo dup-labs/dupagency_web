@@ -1,0 +1,27 @@
+.cards_container {
+    background-image: url('./assets/beachImage.jpg');
+    /* background-color: rgba(0,0,0,.5); */
+    background-size: 100% 100%;
+
+}
+.card {
+  /* position: absolute; */
+  inset: 0;
+  background-image: url('./assets/beachImage.jpg');
+  background-size: 300% 100%;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.left   { 
+  background-position:   0% 0%; 
+  border-radius: 20px 0 0 20px;
+}
+.center { 
+  background-position:  50% 0%; 
+  border-radius: 0 0 0 0;
+}
+.right  { 
+  background-position: 100% 0%; 
+  border-radius: 0 20px 20px 0;
+}

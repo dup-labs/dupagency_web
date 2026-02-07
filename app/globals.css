@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #1A1A1A;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1A1A1A;
+    --foreground: #ffffff;
+  }
+} */
+
+@layer utilities {
+  .text-brand-gradient {
+    background-image: linear-gradient(90deg, #9AD7C7, #9AA7D7, #8F7FD7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .text-brand-gradient-negative {
+    background-image: linear-gradient(90deg, #B792A8 0%, #AD61C2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid-lines {
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.04),
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 140px
+    );
+  }
+  .bg-grid-lines-negative {
+    background-color: #1A1A1A;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 140px
+    );
+  }
+
+  .bg-button-gradient-1 {
+     background-image: linear-gradient(45deg, #AFD7D0, #B792A8);
+  }
+  
+  .bg-button-gradient-2 {
+     background-image: linear-gradient(45deg, #897BBC, #B2B9BF);
+  }
+  
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-chillax), Arial, Helvetica, sans-serif;
+}

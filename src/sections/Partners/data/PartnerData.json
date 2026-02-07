@@ -1,0 +1,98 @@
+[
+    {
+        "name": "Dux Human Health",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/dux.jpg",
+        "clientAt": "2020",
+        "type":["Implantação", "Suporte"],
+        "link": "https://www.duxhumanhealth.com"
+    },
+    {
+        "name": "Lego",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação", "Suporte"],
+        "link": "https://www.lego.com.br"
+    },
+    {
+        "name": "SharkNinja",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação", "Suporte"],
+        "link": "https://www.sharkninja.com.br"
+    },
+    {
+        "name": "MGA Brinquedos",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação", "Suporte"],
+        "link": "https://www.mgastorebrasil.com.br"
+    },
+    {
+        "name": "Spicy",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Suporte"],
+        "link": "https://www.spicy.com.br"
+    },
+    {
+        "name": "Vitafor",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Suporte"],
+        "link": "https://www.vitafor.com.br"
+    },
+    {
+        "name": "Oneup",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação","Suporte"],
+        "link": "https://www.oneup.com.br"
+    },
+    {
+        "name": "Saad",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Suporte"],
+        "link": "https://www.saad.com.br"
+    },
+    {
+        "name": "Stroke",
+        "tech": ["Vtex CMS"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Suporte"],
+        "link": "https://www.stroke.com.br"
+    },
+    {
+        "name": "Bennemann",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação","Suporte"],
+        "link": "https://www.bennemann.com.br"
+    },
+    {
+        "name": "Maxfesta",
+        "tech": ["Vtex.io"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação","Suporte"],
+        "link": "https://www.maxfesta.com.br"
+    },
+    {
+        "name": "Positive Market",
+        "tech": ["Vtex CMS"],
+        "image": "/assets/projects/lego.jpg",
+        "clientAt": "2022",
+        "type":["Implantação","Suporte"],
+        "link": "https://www.positivemarket.com.br"
+    }
+]
