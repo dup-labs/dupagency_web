@@ -1,26 +1,118 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Fontes locais (Fontshare) ───────────────────────────────────────────── */
+/* Arquivos em public/fonts/ — baixe em fontshare.com (woff2 variável)      */
+
+@font-face {
+  font-family: 'Chillax';
+  src: url('/fonts/Chillax-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Synonym';
+  src: url('/fonts/Synonym-Variable.woff2') format('woff2-variations');
+  font-weight: 100 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* ── Tailwind v4 @theme — mapeia tokens → utilitários ───────────────────── */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fontes */
+  --font-chillax: "Chillax", "Inter", sans-serif;
+  --font-synonym: "Synonym", "Inter", sans-serif;
+
+  /* Cores */
+  --color-black:          #0D0D0D;
+  --color-white:          #FFFFFF;
+  --color-purple-mid:     #897BBC;
+  --color-purple-mid-50:  #E4E3E8;
+  --color-purple-mid-100: #CBC8D6;
+  --color-purple-mid-400: #897BBC;
+  --color-purple-dark:    #53448A;
+  --color-teal-light:     #86C8D4;
+  --color-teal-mint:      #AFD7D0;
+  --color-blue-soft:      #7FABED;
+  --color-pink-rose:      #B792A8;
+  --color-neutral-50:     #F9F9F9;
+  --color-neutral-100:    #E1E1E1;
+  --color-neutral-200:    #C8C7C7;
+  --color-neutral-400:    #999999;
+  --color-neutral-600:    #676767;
+  --color-neutral-800:    #3D3D3D;
+  --color-neutral-900:    #0D0D0D;
+
+  /* Tamanhos de texto */
+  --font-size-display-2xl: 4rem;
+  --font-size-display-xl:  3rem;
+  --font-size-display-lg:  2.25rem;
+  --font-size-heading-01:  1.5rem;
+  --font-size-heading-02:  1.125rem;
+  --font-size-body-lg:     1rem;
+  --font-size-body-md:     0.875rem;
+  --font-size-label-ui:    0.75rem;
+  --font-size-caption:     0.6875rem;
+  --font-size-micro:       0.625rem;
+
+  /* Line-heights */
+  --line-height-display: 1.05;
+  --line-height-heading: 1.25;
+  --line-height-body:    1.60;
+  --line-height-label:   1.20;
+
+  /* Letter-spacing */
+  --tracking-caption: 0.06em;
+  --tracking-micro:   0.10em;
+
+  /* Spacing */
+  --spacing-1:  0.25rem;
+  --spacing-2:  0.5rem;
+  --spacing-3:  0.75rem;
+  --spacing-4:  1rem;
+  --spacing-6:  1.5rem;
+  --spacing-8:  2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* Border radius */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-pill: 9999px;
+
+  /* Sombras */
+  --shadow-card: 0 4px 16px rgba(13,13,13,0.10), 0 2px 6px rgba(13,13,13,0.06);
+  --shadow-brand: 0 4px 24px rgba(137,123,188,0.25);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ────────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* scroll-behavior: smooth removido — conflita com GSAP ScrollTrigger */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (hover: hover) {
+  body { cursor: none; }
+  a, button, [role="button"], [tabindex] { cursor: none; }
 }
