@@ -15,9 +15,9 @@ export default function CustomCursor() {
   useEffect(() => {
     if (window.matchMedia('(hover: none)').matches) return
 
-    const dot  = dotRef.current
-    const ring = ringRef.current
-    if (!dot || !ring) return
+    if (!dotRef.current || !ringRef.current) return
+    const dot: HTMLDivElement  = dotRef.current
+    const ring: HTMLDivElement = ringRef.current
 
     let mouseX = -100, mouseY = -100
     let ringX  = -100, ringY  = -100
