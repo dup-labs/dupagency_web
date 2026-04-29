@@ -161,7 +161,7 @@ export default function Parceiros() {
 
           <div
             ref={imageRef}
-            className="absolute pointer-events-none top-0 left-0"
+            className="hidden md:block absolute pointer-events-none top-0 left-0"
             style={{
               width: IMG_W,
               height: IMG_H,
