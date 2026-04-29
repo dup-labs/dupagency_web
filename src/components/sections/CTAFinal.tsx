@@ -104,7 +104,7 @@ export default function CTAFinal() {
       <div ref={contentRef} className="relative flex flex-col items-center text-center">
         <h2
           className="font-chillax font-bold uppercase text-white"
-          style={{ fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: 'var(--leading-display)' }}
+          style={{ fontSize: 'clamp(26px, 5vw, 64px)', lineHeight: 'var(--leading-display)' }}
         >
           A agenda é limitada.
           <br />
