@@ -234,7 +234,7 @@ function ManifestoDesktop() {
           </div>
 
           {/* Botões logo abaixo do texto */}
-          <div className="flex items-center gap-5" style={{ marginTop: '10px' }}>
+          {/* <div className="flex items-center gap-5" style={{ marginTop: '10px' }}>
             <button
               onClick={togglePlay}
               aria-label={isPlaying ? 'Pausar manifesto' : 'Reproduzir manifesto'}
@@ -249,7 +249,7 @@ function ManifestoDesktop() {
             >
               SKIP →
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Imagens — desktop: coluna direita; mobile: abaixo do texto */}
