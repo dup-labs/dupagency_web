@@ -66,7 +66,10 @@ export function useActiveSection() {
     let rafId: number
 
     function update() {
-      const mid = window.innerHeight * 0.5
+      // Linha de troca a 15% do topo: a seção ativa só muda quando a anterior
+      // está quase saindo de vista pelo topo. Evita o bg trocar com a seção
+      // anterior ainda dominante na tela.
+      const mid = window.innerHeight * 0.15
       let found: SectionId | null = null
       let closestDist = Infinity
 

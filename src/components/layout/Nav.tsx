@@ -61,7 +61,7 @@ export default function Nav() {
       >
         <div
           ref={listRef}
-          className="relative flex flex-col px-8 md:px-12"
+          className="relative flex flex-col px-4 md:px-12"
           style={{ paddingTop: 80 }}
         >
           {links.map((link, i) => (

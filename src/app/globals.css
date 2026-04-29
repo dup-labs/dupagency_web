@@ -116,3 +116,84 @@ body {
   body { cursor: none; }
   a, button, [role="button"], [tabindex] { cursor: none; }
 }
+
+/* ── Card "como trabalhamos" — glass + noise ────────────────────────────── */
+
+.card-work {
+  background-color: black;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 28px;
+  width: 100%;
+}
+
+/* Borda gradiente via wrapper: fundo com gradiente + padding 1px = anel
+   da borda. O card preto sólido por dentro cobre tudo menos esse 1px. */
+.card-work-frame {
+  background: linear-gradient(165.59deg, #AFD7D0 14.645%, #897BBC 85.355%);
+  border-radius: 16px;
+  padding: 2px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.card-work::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+}
+
+.card-work__title {
+  background: linear-gradient(174.06deg, #afd7d0 14.645%, #897bbc 85.355%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-family: 'Chillax', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 100%;
+  flex-shrink: 0
+}
+
+.card-work__body {
+  font-family: 'Synonym', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #0d0d0d;
+  flex-shrink: 0;
+  color: white;
+}
+
+/* Responsivo mobile: largura 70vw, fontes menores */
+@media (max-width: 767px) {
+  .card-work-frame {
+    max-width: 70vw;
+  }
+  .card-work {
+    padding: 15px;
+  }
+  .card-work__title {
+    font-size: 13px;
+    line-height: 22px;
+  }
+  .card-work__body {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}

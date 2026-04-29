@@ -33,22 +33,15 @@ const CLIENT_LOGOS = [
   { name: 'DUX Human Health', src: '/images/clients/dux.png' },
   { name: 'LEGO',             src: '/images/clients/lego.png' },
   { name: 'ONE|UP',           src: '/images/clients/oneup.png' },
-  { name: 'Vitafor',       src: '/images/clients/Vitafor.png' },
+  { name: 'Vitafor',       src: '/images/clients/vitafor.png' },
   { name: 'SharkNinja',       src: '/images/clients/sharkninja.png' },
 ]
 
 // Use **texto** para palavras com gradiente colorido
 const MANIFESTO_LINES = [
-  'TRABALHAMOS COM O QUE ACREDITAMOS.',
-  'CRIAR, PENSAR, RESOLVER... **ISSO É PRAZER.**',
-  'VIVER EM **QUALQUER LUGAR** DO MUNDO ,\n ABSORVER **NOVAS IDEIAS**, CULTURAS...',
-  'ESCOLHER ONDE COLOCAMOS NOSSO TEMPO \n E ENERGIA... **CRIANDO**',
-  'FIZEMOS ESCOLHAS',
-  '**MINIMALISMO**: NA VIDA, EM CASA, NA EMPRESA...',
-  '**AGENDA LIMITADA**, PARCERIAS QUE FAZEM SENTIDO.\n TROCA, **EVOLUÇÃO**, CRESCIMENTO. PARA TODOS.',
-  'PORQUE, NO FIM, SÃO **AS PESSOAS** QUE CONSTROEM TUDO',
-  'ENQUANTO VOCÊ PENSA NO PRÓXIMO PASSO DO NEGÓCIO \n GARANTIMOS QUE **TECNOLOGIA** NÃO SEJA O MOTIVO \n PARA NÃO CHEGAR LÁ.',
-  'É ASSIM QUE A GENTE TRABALHA.\nE É EXATAMENTE **POR ISSO QUE FUNCIONA**.',
+  '**parceiro técnico** para\ne-commerces que levam a **sério.**',
+  'suporte contínuo, sênior executando,\n**qualidade** que não depende de escala.',
+  '**sem turnover**. **sem surpresa.**',
 ]
 
 function renderLine(text: string) {
@@ -87,32 +80,38 @@ function ManifestoMobile() {
   }, [])
 
   return (
-    <div className="px-6 py-8 flex flex-col gap-7.5">
-      {MANIFESTO_LINES.map((line, i) => (
-        <div
-          key={i}
-          ref={(el) => { lineRefs.current[i] = el }}
-        >
-          <p
-            className="font-chillax font-bold text-black"
-            style={{
-              fontSize: 'clamp(22px, 6vw, 34px)',
-              lineHeight: 'var(--leading-heading)',
-              opacity: active === i ? 1 : 0.08,
-              transition: 'opacity 0.45s ease',
-            }}
+    <div className="relative px-6 py-8 flex flex-col gap-7.5">
+      <GridLines />
+      <div
+        className="relative flex flex-col justify-center gap-7.5"
+        style={{ height: '20vh', marginTop: '10vh', marginBottom: '5vh' }}
+      >
+        {MANIFESTO_LINES.map((line, i) => (
+          <div
+            key={i}
+            ref={(el) => { lineRefs.current[i] = el }}
           >
-            {line.split('\n').map((l, j, arr) => (
-              <span key={j}>
-                {renderLine(l)}
-                {j < arr.length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-        </div>
-      ))}
+            <p
+              className="font-chillax font-bold text-black uppercase"
+              style={{
+                fontSize: 'clamp(14px, 4vw, 22px)',
+                lineHeight: 'var(--leading-heading)',
+                opacity: active === i ? 1 : 0.08,
+                transition: 'opacity 0.45s ease',
+              }}
+            >
+              {line.split('\n').map((l, j, arr) => (
+                <span key={j}>
+                  {renderLine(l)}
+                  {j < arr.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          </div>
+        ))}
+      </div>
 
-      <div className="grid grid-cols-2 gap-2 mt-4">
+      <div className="relative grid grid-cols-2 gap-2 mt-4">
         {IMAGE_PLACEHOLDERS.map(({ bg }, i) => (
           <div key={i} className="rounded-lg" style={{ minHeight: '40vw', background: bg, aspectRatio: '1/1' }} />
         ))}
@@ -202,20 +201,21 @@ function ManifestoDesktop() {
   return (
     <div ref={containerRef} className="relative" style={{ height: `${MANIFESTO_LINES.length * 100}vh` }}>
       <div className="sticky top-0 h-screen flex flex-col md:flex-row items-center px-8 gap-4 md:gap-0">
+        <GridLines />
 
         {/* Coluna esquerda: texto + botões */}
-        <div className="w-full md:w-[55%] pr-0 md:pr-12 flex flex-col shrink-0">
+        <div className="relative w-full md:w-[55%] pr-0 md:pr-12 flex flex-col shrink-0">
           <div
             ref={textBoxRef}
-            className="relative overflow-hidden"
+            className="relative overflow-hidden flex items-center"
             style={{ height: 'clamp(200px, 60vh, 72vh)' }}
           >
-            <div ref={wrapperRef} className="absolute w-full">
+            <div ref={wrapperRef} className="w-full">
               {MANIFESTO_LINES.map((line, i) => (
                 <p
                   key={i}
                   ref={(el) => { lineRefs.current[i] = el }}
-                  className="font-chillax font-bold text-black"
+                  className="font-chillax font-bold text-black uppercase"
                   style={{
                     fontSize: 'clamp(16px, 2.2vw, 30px)',
                     lineHeight: 'var(--leading-heading)',
@@ -253,7 +253,7 @@ function ManifestoDesktop() {
         </div>
 
         {/* Imagens — desktop: coluna direita; mobile: abaixo do texto */}
-        <div className="grid grid-cols-2 gap-2 w-full md:w-[45%]" style={{ height: 'clamp(300px, 72vh, 80vh)' }}>
+        <div className="relative grid grid-cols-2 gap-2 w-full md:w-[45%]" style={{ height: 'clamp(300px, 72vh, 80vh)' }}>
           {IMAGE_PLACEHOLDERS.map(({ bg }, i) => (
             <div key={i} className="rounded-lg" style={{ background: bg }} />
           ))}
@@ -279,7 +279,7 @@ function ManifestoScroll() {
 export default function Hero() {
   return (
     <section id="hero" className="relative z-10">
-      <div className="relative min-h-screen flex flex-col items-center justify-start px-8 pt-48">
+      <div className="relative min-h-screen flex flex-col items-center justify-start px-8 pt-72">
         <GridLines />
 
         <div className="relative flex flex-col items-center text-center">
@@ -300,7 +300,7 @@ export default function Hero() {
             className="mt-8 font-synonym text-body-lg text-neutral-600 max-w-lg text-center"
             style={{ lineHeight: 'var(--leading-body)' }}
           >
-            Para quem quer evoluir o e-commerce sem se sobrecarregar com ruídos
+            Para quem quer evoluir o e-commerce vtex, shopify ou nuvemshop sem se sobrecarregar com ruídos
             na tecnologia. A operação fica com a gente, você cuida do negócio.
           </p>
         </div>

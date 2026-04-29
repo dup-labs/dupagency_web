@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 interface Cliente {
   nome: string
@@ -8,21 +8,26 @@ interface Cliente {
   tipo: string
   slug: string
   href: string
+  image: string
+  bg?: string
 }
 
+// `image` aponta pra /public/images/clients/{slug}.png — solte os arquivos lá.
+// `bg` é opcional: cor de fundo do card de hover (fallback: var(--neutral-900)).
 const CLIENTES: Cliente[] = [
-  { nome: 'Bennemann',        periodo: 'desde 2021', tipo: 'Projeto + Evolução', slug: 'bennemann', href: 'https://www.bennemann.com.br' },
-  { nome: 'dux human health', periodo: 'desde 2020',  tipo: 'Projeto + Evolução', slug: 'dux',       href: 'https://www.duxhumanhealth.com' },
-  { nome: 'LEGO',             periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'lego',      href: 'https://www.lego.com.br' },
-  { nome: 'SharkNinja',       periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'sharkninja',href: 'https://www.sharkninja.com.br' },
-  { nome: 'Spicy',            periodo: 'desde 2022', tipo: 'Evolução',           slug: 'spicy',     href: 'https://www.spicy.com.br' },
-  { nome: 'SodaStream',       periodo: 'desde 2022', tipo: 'Evolução',           slug: 'sodastream',href: 'https://www.sodastream.com.br' },
-  { nome: 'Authen',           periodo: 'desde 2024', tipo: 'Projeto + Evolução', slug: 'authen',    href: 'https://www.authen.com.br' },
-  { nome: 'FOM',              periodo: 'desde 2026', tipo: 'Evolução',           slug: 'fom',       href: 'https://www.fom.com.br' },
-  { nome: 'Vitafor',          periodo: 'desde 2024', tipo: 'Evolução',           slug: 'vitafor',   href: 'https://www.vitafor.com.br' },
-  { nome: 'OneUp',            periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'oneup',     href: 'https://www.oneup.com.br' },
-  { nome: 'Max Festa',        periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'maxfesta',  href: 'https://www.maxfesta.com.br' },
-  { nome: 'EatClean',         periodo: 'desde 2023', tipo: 'Projeto + Evolução', slug: 'eatclean',  href: 'https://www.eatclean.com.br' },
+  { nome: 'Bennemann',        periodo: 'desde 2021', tipo: 'Projeto + Evolução', slug: 'bennemann', href: 'https://www.bennemann.com.br',      image: '/images/partners/bennemann.svg', bg: '#204239' },
+  { nome: 'dux human health', periodo: 'desde 2020', tipo: 'Projeto + Evolução', slug: 'dux',       href: 'https://www.duxhumanhealth.com',    image: '/images/partners/duxhumanhealth.svg',       bg: '#151521' },
+  { nome: 'LEGO',             periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'lego',      href: 'https://www.lego.com.br',           image: '/images/partners/lego.svg',      bg: '#ffcf00' },
+  { nome: 'SharkNinja',       periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'sharkninja',href: 'https://www.sharkninjabrasil.com.br/',     image: '/images/partners/sharkninja.svg',bg: '#ffffff' },
+  { nome: 'Spicy',            periodo: 'desde 2022', tipo: 'Evolução',           slug: 'spicy',     href: 'https://www.spicy.com.br',          image: '/images/partners/spicy.svg',     bg: '#76232f' },
+  { nome: 'SodaStream',       periodo: 'desde 2022', tipo: 'Evolução',           slug: 'sodastream',href: 'https://www.sodastream.com.br',     image: '/images/partners/sodastream.svg',bg: '#75a7ad' },
+  { nome: 'Mga',       periodo: 'desde 2022', tipo: 'Evolução',           slug: 'mga',href: 'https://www.mgastorebrasil.com.br',     image: '/images/partners/mga.webp',bg: '#75a7ad' },
+  { nome: 'Authen',           periodo: 'desde 2024', tipo: 'Projeto + Evolução', slug: 'authen',    href: 'https://www.authen.com.br',         image: '/images/partners/authen.png',    bg: '#ffffff' },
+  { nome: 'FOM',              periodo: 'desde 2026', tipo: 'Evolução',           slug: 'fom',       href: 'https://www.fom.com.br',            image: '/images/partners/fom.svg',       bg: '#fba382' },
+  { nome: 'Vitafor',          periodo: 'desde 2025', tipo: 'Evolução',           slug: 'vitafor',   href: 'https://www.vitafor.com.br',        image: '/images/partners/vitafor.svg',   bg: '#370101' },
+  { nome: 'OneUp',            periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'oneup',     href: 'https://www.oneup.com.br',          image: '/images/partners/oneup.webp',     bg: '#000000' },
+  { nome: 'Max Festa',        periodo: 'desde 2022', tipo: 'Projeto + Evolução', slug: 'maxfesta',  href: 'https://www.maxfesta.com.br',       image: '/images/partners/maxfesta.png',  bg: '#F23160' },
+  { nome: 'EatClean',         periodo: 'desde 2023', tipo: 'Projeto + Evolução', slug: 'eatclean',  href: 'https://www.eatclean.com.br',       image: '/images/partners/eatclean.svg',  bg: '#00291C' },
 ]
 
 const total = CLIENTES.length
@@ -31,17 +36,50 @@ function getOpacity(index: number): number {
   return 1 - (index / (total - 1)) * 0.6
 }
 
+const IMG_W = 200
+const IMG_H = 130
+
 export default function Parceiros() {
   const [hovered, setHovered] = useState<string | null>(null)
-  const [imageY, setImageY] = useState(0)
-  const listRef = useRef<HTMLUListElement>(null)
+  const listRef   = useRef<HTMLUListElement>(null)
+  const imageRef  = useRef<HTMLDivElement>(null)
+  const target    = useRef({ x: 0, y: 0 })
+  const current   = useRef({ x: 0, y: 0 })
+  const initialized = useRef(false)
 
-  function handleMouseEnter(slug: string, e: React.MouseEvent<HTMLAnchorElement>) {
-    setHovered(slug)
-    const listTop = listRef.current?.getBoundingClientRect().top ?? 0
-    const itemTop = e.currentTarget.getBoundingClientRect().top
-    setImageY(itemTop - listTop)
+  useEffect(() => {
+    let raf = 0
+    const tick = () => {
+      current.current.x += (target.current.x - current.current.x) * 0.18
+      current.current.y += (target.current.y - current.current.y) * 0.18
+      if (imageRef.current) {
+        imageRef.current.style.transform =
+          `translate3d(${current.current.x}px, ${current.current.y}px, 0) rotate(-6deg)`
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  function handleMouseMove(e: React.MouseEvent<HTMLUListElement>) {
+    const rect = listRef.current?.getBoundingClientRect()
+    if (!rect) return
+    target.current.x = e.clientX - rect.left + 20
+    target.current.y = e.clientY - rect.top  + 20
+    if (!initialized.current) {
+      current.current.x = target.current.x
+      current.current.y = target.current.y
+      initialized.current = true
+    }
   }
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('cursor:shrink', { detail: !!hovered }))
+    return () => {
+      window.dispatchEvent(new CustomEvent('cursor:shrink', { detail: false }))
+    }
+  }, [hovered])
 
   return (
     <section
@@ -69,7 +107,11 @@ export default function Parceiros() {
         </div>
 
         <div className="relative">
-          <ul ref={listRef}>
+          <ul
+            ref={listRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setHovered(null)}
+          >
             {CLIENTES.map((cliente, i) => (
               <a
                 key={cliente.slug}
@@ -83,10 +125,9 @@ export default function Parceiros() {
                   display: 'flex',
                   textDecoration: 'none',
                 }}
-                onMouseEnter={(e) => handleMouseEnter(cliente.slug, e)}
-                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => setHovered(cliente.slug)}
               >
-                <span className="font-synonym text-label-ui text-neutral-600 shrink-0 w-20 text-right text-grad-01 whitespace-nowrap">
+                <span className="font-synonym text-label-ui text-neutral-600 shrink-0 w-24 text-right text-grad-01 whitespace-nowrap">
                   {cliente.periodo}
                 </span>
                 <span
@@ -104,45 +145,48 @@ export default function Parceiros() {
 
                 {/* Imagem inline — mobile only */}
                 <div
-                  className="block md:hidden shrink-0 rounded-lg overflow-hidden"
-                  style={{ width: 80, height: 50, background: 'var(--neutral-900)' }}
+                  className="block md:hidden shrink-0 rounded-lg overflow-hidden relative flex justify-center items-center"
+                  style={{ width: 80, height: 50, background: cliente.bg ?? 'var(--neutral-300)' }}
                 >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="font-chillax text-neutral-800 uppercase" style={{ fontSize: '9px' }}>
-                      {cliente.nome}
-                    </span>
-                  </div>
+                  <img
+                    src={cliente.image}
+                    alt={cliente.nome}
+                    className="w[90%] h-[90%] object-contain object-center"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                  />
                 </div>
               </a>
             ))}
           </ul>
 
           <div
-            className="absolute pointer-events-none"
+            ref={imageRef}
+            className="absolute pointer-events-none top-0 left-0"
             style={{
-              right: '18%',
-              top: imageY,
-              width: 200,
-              height: 130,
+              width: IMG_W,
+              height: IMG_H,
               opacity: hovered ? 1 : 0,
-              transform: 'translateY(-30%) rotate(-6deg)',
-              transition: 'opacity 0.25s ease, top 0.15s ease',
+              transition: 'opacity 0.25s ease',
+              willChange: 'transform',
               zIndex: 20,
             }}
           >
             {CLIENTES.map((cliente) => (
               <div
                 key={cliente.slug}
-                className="absolute inset-0 rounded-xl overflow-hidden"
+                className="absolute inset-0 rounded-xl overflow-hidden flex justify-center items-center"
                 style={{
                   opacity: hovered === cliente.slug ? 1 : 0,
                   transition: 'opacity 0.2s ease',
-                  background: 'var(--neutral-900)',
+                  background: cliente.bg ?? 'var(--neutral-900)',
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="font-chillax text-neutral-800 text-sm">{cliente.nome}</span>
-                </div>
+                <img
+                  src={cliente.image}
+                  alt={cliente.nome}
+                  className="w-1/2"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                />
               </div>
             ))}
           </div>

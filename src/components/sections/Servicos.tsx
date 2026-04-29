@@ -60,7 +60,7 @@ const SERVICES = [
     Icon: IconProjeto,
     titulo: 'Projeto de\nImplantação',
     texto:
-      'Construção do zero, migração de plataforma ou reestruturação completa. Arquitetura pensada, escopo fechado, sênior tocando do início ao fim. Sem surpresa no meio do caminho. Projetos a partir de R$ 60.000.',
+      'Construção do zero, migração de plataforma ou reestruturação completa. Arquitetura pensada, escopo fechado, sênior tocando do início ao fim. Sem surpresa no meio do caminho.',
   },
   {
     id: 'evolucao',

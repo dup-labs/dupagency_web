@@ -115,12 +115,14 @@ export default function CTAFinal() {
         </h2>
 
         <p className="mt-8 font-synonym text-body-md text-white opacity-50 text-center" style={{ lineHeight: 'var(--leading-body)' }}>
-          Responda 5 perguntas rápidas,
-          <br />e se fizer sentido marcamos um papo sobre como podemos somar!
+          Agende um papo com a gente e vamos juntos
+          <br />traçar uma parceria de sucesso
         </p>
 
         <a
-          href="#"
+          href="https://calendly.com/dupagency/novos-projetos-agenda-de-30-minutos?back=1"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-10 inline-flex items-center gap-3 border border-white rounded-pill px-8 py-4 font-synonym text-label-ui tracking-micro text-white hover:bg-white hover:text-black transition-colors duration-300"
         >
           <PhosphorIcon icon={ChecksIcon} size={16} weight="regular" />

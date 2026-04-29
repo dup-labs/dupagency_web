@@ -40,9 +40,8 @@ export default function PorQueFunciona() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=200%',
-          pin: true,
+          start: 'top 80%',
+          end: 'bottom 60%',
           scrub: 1,
         },
       })

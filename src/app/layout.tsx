@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import BackgroundLayer from '@/components/layout/BackgroundLayer'
 import Nav from '@/components/layout/Nav'
+import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
         <BackgroundLayer>
           <CustomCursor />
           <Nav />
+          <ScrollspyNav />
           <main className="relative z-10">{children}</main>
         </BackgroundLayer>
       </body>

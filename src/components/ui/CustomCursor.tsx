@@ -24,24 +24,42 @@ export default function CustomCursor() {
     let rafId: number
     let isHovering = false
     let isClicking = false
+    let isShrinking = false
 
     function onMouseMove(e: MouseEvent) {
       mouseX = e.clientX
       mouseY = e.clientY
     }
 
+    function applyRingSize() {
+      if (isShrinking) {
+        ring.style.width   = '24px'
+        ring.style.height  = '24px'
+        ring.style.opacity = '1'
+      } else if (isHovering) {
+        ring.style.width   = '72px'
+        ring.style.height  = '72px'
+        ring.style.opacity = '1'
+      } else {
+        ring.style.width   = '48px'
+        ring.style.height  = '48px'
+        ring.style.opacity = String(ringOpacity)
+      }
+    }
+
     function onMouseEnterInteractive() {
       isHovering = true
-      ring.style.width   = '72px'
-      ring.style.height  = '72px'
-      ring.style.opacity = '1'
+      applyRingSize()
     }
 
     function onMouseLeaveInteractive() {
       isHovering = false
-      ring.style.width   = '48px'
-      ring.style.height  = '48px'
-      ring.style.opacity = String(ringOpacity)
+      applyRingSize()
+    }
+
+    function onCursorShrink(e: Event) {
+      isShrinking = !!(e as CustomEvent).detail
+      applyRingSize()
     }
 
     function onMouseDown() {
@@ -78,6 +96,7 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup',   onMouseUp)
+    window.addEventListener('cursor:shrink', onCursorShrink)
     addInteractiveListeners()
 
     // Re-scan para elementos montados depois (ex: nav overlay)
@@ -90,6 +109,7 @@ export default function CustomCursor() {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mousedown', onMouseDown)
       window.removeEventListener('mouseup',   onMouseUp)
+      window.removeEventListener('cursor:shrink', onCursorShrink)
       cancelAnimationFrame(rafId)
       observer.disconnect()
     }
