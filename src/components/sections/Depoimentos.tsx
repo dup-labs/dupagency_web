@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import GridLines from '@/components/ui/GridLines'
 
 type CardContent =
   | { type: 'text'; message: string }
@@ -168,11 +167,12 @@ export default function Depoimentos() {
       ref={sectionRef}
       className="relative z-10 md:min-h-screen overflow-hidden depoimentos-grid-bg"
     >
-      {/* GridLines (visíveis) — alinhadas com as outras seções via i/13.
-          O .depoimentos-grid-bg fica também por trás como background-image
-          pra dar variação ao backdrop-filter dos cards (que precisa de
-          algo varidado pra produzir efeito de blur visível). */}
-      <GridLines />
+      {/* Grid lines vêm via .depoimentos-grid-bg (background-image gradient
+          na própria section). Esse approach já fornece a variação de cor
+          que o backdrop-filter dos cards precisa pra produzir o blur
+          visível — sem precisar de divs adicionais que duplicariam linhas
+          (gradient põe linhas em `tile - 1px`, divs poriam em `tile`,
+          ficando 1px de distância visualmente coladas). */}
 
       {/* Headline — desktop: absolute centralizado durante o pin.
           Mobile: estático no topo, antes dos cards. */}

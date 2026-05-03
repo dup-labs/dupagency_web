@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useBackgroundContext } from '@/components/layout/BackgroundLayer'
-import GridLines from '@/components/ui/GridLines'
 
 interface FaqItem {
   q: string
@@ -162,16 +161,12 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative z-10 "
+      className="relative z-10 pt-12"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-
-      {/* GridLines + sentinel ficam no nível da section (sem padding) pra
-          alinhar com as grid-lines das outras seções. */}
-      <GridLines />
 
       {/* Sentinel `faq-dark` fixo na metade de baixo do FAQ. Quando essa
           metade cruza a linha de detecção do useActiveSection (15% do topo
