@@ -9,6 +9,8 @@ export type SectionId =
   | 'como-trabalhamos'
   | 'servicos'
   | 'depoimentos'
+  | 'faq-dark'
+  | 'faq'
   | 'cta-final'
 
 export type NavTheme = 'dark' | 'light'
@@ -43,6 +45,18 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
     background: 'var(--white)',
     navTheme: 'dark',
   },
+  // ATENÇÃO: 'faq-dark' precisa vir ANTES de 'faq' aqui — o useActiveSection
+  // itera nesta ordem e usa o primeiro id cuja box contém a linha de detecção.
+  // Quando o sentinel da metade inferior do FAQ cruza essa linha, ele vence o
+  // próprio FAQ e o BG transiciona pra preto antes do CTAFinal/Footer.
+  'faq-dark': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  faq: {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
   'cta-final': {
     background: 'var(--black)',
     navTheme: 'light',
@@ -51,59 +65,69 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
 
 const SECTION_IDS = Object.keys(SECTION_CONFIGS) as SectionId[]
 
-function getSectionRect(el: HTMLElement): DOMRect {
-  const parent = el.parentElement
-  if (parent?.hasAttribute('data-gsap-pin-spacer')) {
-    return parent.getBoundingClientRect()
-  }
-  return el.getBoundingClientRect()
-}
-
 export function useActiveSection() {
   const [activeSection, setActiveSection] = useState<SectionId>('hero')
 
   useEffect(() => {
-    let rafId: number
+    // Linha de detecção a 15% do topo da viewport — mesma posição do impl
+    // anterior (rectreading), só que via rootMargin do IntersectionObserver:
+    // top -15% recorta os primeiros 15% do viewport, bottom -85% recorta os
+    // últimos 85%. Resta uma "linha" a 15% — qualquer seção que cruze essa
+    // linha vira ativa.
+    const intersecting = new Set<SectionId>()
 
-    function update() {
-      // Linha de troca a 15% do topo: a seção ativa só muda quando a anterior
-      // está quase saindo de vista pelo topo. Evita o bg trocar com a seção
-      // anterior ainda dominante na tela.
-      const mid = window.innerHeight * 0.15
-      let found: SectionId | null = null
-      let closestDist = Infinity
+    function pickActive() {
+      // Itera na ordem de SECTION_IDS e pega o primeiro intersectando.
+      // Para FAQ: 'faq-dark' vem antes de 'faq', então quando o sentinel
+      // dark cobre a linha, ele vence — exatamente o comportamento desejado.
+      for (const id of SECTION_IDS) {
+        if (intersecting.has(id)) {
+          setActiveSection((prev) => (prev !== id ? id : prev))
+          return
+        }
+      }
+    }
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const id = e.target.id as SectionId
+          if (e.isIntersecting) intersecting.add(id)
+          else intersecting.delete(id)
+        }
+        pickActive()
+      },
+      { rootMargin: '-15% 0px -85% 0px', threshold: 0 },
+    )
+
+    // Observa cada seção. Se a seção tem pin do GSAP, o pai vira spacer e
+    // determina o footprint real — observamos o spacer nesse caso.
+    function observeAll() {
+      observer.disconnect()
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id)
         if (!el) continue
-
-        const rect = getSectionRect(el)
-
-        if (rect.top <= mid && rect.bottom >= mid) {
-          found = id
-          break
-        }
-
-        const dist = Math.abs((rect.top + rect.bottom) / 2 - mid)
-        if (dist < closestDist) {
-          closestDist = dist
-          found = id
-        }
+        const parent = el.parentElement
+        const target =
+          parent?.hasAttribute('data-gsap-pin-spacer') ? parent : el
+        observer.observe(target)
       }
-
-      if (found) setActiveSection((prev) => (prev !== found ? found : prev))
     }
 
-    function onScroll() {
+    observeAll()
+
+    // GSAP cria pin-spacers depois do mount. Re-observa quando ScrollTrigger
+    // dispara refresh (que reorganiza spacers).
+    let rafId = 0
+    function onRefresh() {
       cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(update)
+      rafId = requestAnimationFrame(observeAll)
     }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    update()
+    window.addEventListener('scrolltrigger:refresh', onRefresh)
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      observer.disconnect()
+      window.removeEventListener('scrolltrigger:refresh', onRefresh)
       cancelAnimationFrame(rafId)
     }
   }, [])

@@ -50,26 +50,16 @@ function ConversaRotator() {
   )
 }
 
+// CTAFinal tem fundo escuro — linhas claras. 1 div com gradient.
 function GridLines() {
+  const gradient =
+    'linear-gradient(to right, transparent calc(100% - 1px), rgba(255,255,255,0.06) calc(100% - 1px), rgba(255,255,255,0.06) 100%)'
   return (
-    <div className="absolute inset-0 pointer-events-none" aria-hidden>
-      {/* Desktop: 12 linhas */}
-      {Array.from({ length: 12 }).map((_, i) => (
-        <div
-          key={`d-${i}`}
-          className="hidden md:block absolute top-0 bottom-0 w-px"
-          style={{ left: `${((i + 1) / 13) * 100}%`, background: 'rgba(255,255,255,0.06)' }}
-        />
-      ))}
-      {/* Mobile: 6 linhas */}
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={`m-${i}`}
-          className="block md:hidden absolute top-0 bottom-0 w-px"
-          style={{ left: `${((i + 1) / 7) * 100}%`, background: 'rgba(255,255,255,0.06)' }}
-        />
-      ))}
-    </div>
+    <div
+      className="grid-lines absolute inset-0 pointer-events-none"
+      aria-hidden
+      style={{ backgroundImage: gradient }}
+    />
   )
 }
 
@@ -97,7 +87,7 @@ export default function CTAFinal() {
     <section
       id="cta-final"
       ref={sectionRef}
-      className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 md:px-8 py-24"
+      className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 md:px-8 py-12"
     >
       <GridLines />
 

@@ -1,31 +1,49 @@
 'use client'
 
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { PlayPauseIcon } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
 
+// GlitchGrid é só usado dentro do manifesto (abaixo do fold). Lazy-load
+// pra não pesar o chunk principal e atrasar a pintura do hero headline (LCP).
+const GlitchGrid = dynamic(() => import('@/components/ui/GlitchGrid'), {
+  ssr: false,
+})
+
+// 8 fotos (4 Dup + 4 Lari) circulam pelos 4 slots do GlitchGrid sem repetir
+// simultaneamente. Cada foto carrega uma `key` que identifica o dono
+// (dup/lari) — o hover-text correspondente é puxado de ABOUT_TEXTS.
+const ABOUT_PHOTOS = [
+  { src: '/images/about-us/dup-front.webp',  key: 'dup'  },
+  { src: '/images/about-us/dup-mid.webp',    key: 'dup'  },
+  { src: '/images/about-us/dup-size.webp',   key: 'dup'  },
+  { src: '/images/about-us/dup-floor.webp',  key: 'dup'  },
+  { src: '/images/about-us/lari-front.webp', key: 'lari' },
+  { src: '/images/about-us/lari-mid.webp',   key: 'lari' },
+  { src: '/images/about-us/lari-side.webp',  key: 'lari' },
+  { src: '/images/about-us/lari-floor.webp', key: 'lari' },
+]
+
+const ABOUT_TEXTS: Record<string, string> = {
+  dup: 'Regras e disciplina — horário de treino, de dormir, de acordar — são o que libera a cabeça pra criar. Designer de formação, entrou na tecnologia pra expandir o leque e encontrou no e-commerce um mercado de aprendizado infinito. Conhece o ecossistema de ponta a ponta. É ele quem garante que o combinado é cumprido, sempre. **Dup**',
+  lari: 'Entrou no e-commerce aos 17 anos e nunca mais saiu. Nas horas vagas é leitora voraz — livros, booktube, tudo que alimenta a curiosidade. Esse prazer de aprender transborda pro trabalho: estuda tecnologia como hobby. Dev sênior e responsável por toda a estrutura técnica da dup. Se tá funcionando, tem a mão dela. **Lari**',
+}
+
+// GridLines local — versão estática (sem context) pra usar antes do
+// BackgroundLayer hidratar. Só desenha linhas com cor escura (Hero usa
+// fundo branco). 1 div com gradient — leve no DOM.
 function GridLines() {
+  const gradient =
+    'linear-gradient(to right, transparent calc(100% - 1px), rgba(0,0,0,0.05) calc(100% - 1px), rgba(0,0,0,0.05) 100%)'
   return (
-    <div className="absolute inset-0 pointer-events-none" aria-hidden>
-      {/* Desktop: 12 linhas */}
-      {Array.from({ length: 12 }).map((_, i) => (
-        <div
-          key={`d-${i}`}
-          className="hidden md:block absolute top-0 bottom-0 w-px"
-          style={{ left: `${((i + 1) / 13) * 100}%`, background: 'rgba(0,0,0,0.05)' }}
-        />
-      ))}
-      {/* Mobile: 6 linhas */}
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={`m-${i}`}
-          className="block md:hidden absolute top-0 bottom-0 w-px"
-          style={{ left: `${((i + 1) / 7) * 100}%`, background: 'rgba(0,0,0,0.05)' }}
-        />
-      ))}
-    </div>
+    <div
+      className="grid-lines absolute inset-0 pointer-events-none"
+      aria-hidden
+      style={{ backgroundImage: gradient }}
+    />
   )
 }
 
@@ -51,13 +69,6 @@ function renderLine(text: string) {
       : part
   )
 }
-
-const IMAGE_PLACEHOLDERS = [
-  { bg: '#fafafa' },
-  { bg: '#fcfcfc' },
-  { bg: '#f9f9f9' },
-  { bg: '#f3f3f3' },
-]
 
 function ManifestoMobile() {
   const lineRefs   = useRef<(HTMLDivElement | null)[]>([])
@@ -111,10 +122,8 @@ function ManifestoMobile() {
         ))}
       </div>
 
-      <div className="relative grid grid-cols-2 gap-2 mt-4">
-        {IMAGE_PLACEHOLDERS.map(({ bg }, i) => (
-          <div key={i} className="rounded-lg" style={{ minHeight: '40vw', background: bg, aspectRatio: '1/1' }} />
-        ))}
+      <div className="relative mt-4" style={{ aspectRatio: '1/1' }}>
+        <GlitchGrid photos={ABOUT_PHOTOS} texts={ABOUT_TEXTS} />
       </div>
     </div>
   )
@@ -253,10 +262,11 @@ function ManifestoDesktop() {
         </div>
 
         {/* Imagens — desktop: coluna direita; mobile: abaixo do texto */}
-        <div className="relative grid grid-cols-2 gap-2 w-full md:w-[45%]" style={{ height: 'clamp(300px, 72vh, 80vh)' }}>
-          {IMAGE_PLACEHOLDERS.map(({ bg }, i) => (
-            <div key={i} className="rounded-lg" style={{ background: bg }} />
-          ))}
+        <div
+          className="relative w-full md:w-[45%]"
+          style={{ height: 'clamp(300px, 72vh, 80vh)' }}
+        >
+          <GlitchGrid photos={ABOUT_PHOTOS} texts={ABOUT_TEXTS} />
         </div>
       </div>
     </div>

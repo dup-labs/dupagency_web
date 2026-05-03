@@ -135,8 +135,9 @@
   );
 
   /* ── TIPOGRAFIA ─────────────────────────────────────────── */
-  --font-display: "Chillax", "Inter", sans-serif;
-  --font-body:    "Synonym", "Inter", sans-serif;
+  /* Fontes carregadas via next/font/local — ver src/app/fonts.ts */
+  --font-display: var(--font-chillax-loaded), "Inter", sans-serif;
+  --font-body:    var(--font-synonym-loaded), "Inter", sans-serif;
 
   --text-display-2xl: 4rem;      /* 64px */
   --text-display-xl:  3rem;      /* 48px */

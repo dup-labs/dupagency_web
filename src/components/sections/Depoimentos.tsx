@@ -1,101 +1,86 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from '@/lib/gsap'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
+import GridLines from '@/components/ui/GridLines'
 
-// ─── tipos de conteúdo ────────────────────────────────────────────────────────
 type CardContent =
-  | { type: 'text';  message: string }
+  | { type: 'text'; message: string }
   | { type: 'audio'; src: string }
   | { type: 'video'; src: string }
 
 interface CardDef {
-  slug:    string
+  slug: string
   content: CardContent
-  nome:    string
-  cargo:   string
+  nome: string
+  cargo: string
   empresa: string
-  // posição final CSS dentro do container sticky (left/top em % ou px)
-  final: { left: string; top: string }
-  // deslocamento de onde o card parte, relativo à posição final
-  from:  { x: number; y: number }
+  tempo: string
+  // Posições absolutas do card desktop (pin-scene). Cobre top/bottom +
+  // left/right do parent. Inspirado no projeto dupagency_new/Testimonials.
+  posClasses: string
 }
-
-// ─── configuração dos cards ───────────────────────────────────────────────────
-// Ajuste `final` (onde o card fica) e `from` (de onde ele vem) à vontade.
-// `from.x` negativo = vem da esquerda; positivo = vem da direita.
-// `from.y` positivo = vem de baixo (recomendado).
 
 const CARDS: CardDef[] = [
   {
-    slug:    'lorem',
+    slug: 'card-0',
     content: {
-      type:    'text',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis, mauris ut congue iaculis, dolor arcu vestibulum dui, vitae ullamcorper neque felis vitae libero. Donec interdum lorem id nulla imperdiet, sed luctus nisi vehicula. Aliquam pellentesque, felis at consectetur pretium, ipsum eros iaculis ante, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis, mauris ut congue iaculis, dolor arcu vestibulum dui, vitae ullamcorper neque felis vitae libero. Donec interdum lorem id nulla imperdiet, sed luctus nisi vehicula. Aliquam pellentesque, felis at consectetur pretium, ipsum eros iaculis ante,',
+      type: 'text',
+      message:
+        'Ótimos parceiros. Desenvolvimento, acompanhamento, evolução e suporte da loja online. Atendimento rápido e qualificado, sempre trazendo a visão técnica e de performance com dicas e orientações que trazem segurança para a tomada de decisões. Pontos fundamentais na parceria e para o bom desempenho do e-commerce.',
     },
-    nome:    'João Mendes',
-    cargo:   'Head de E-commerce',
+    nome: 'Eduardo Bennemann',
+    cargo: 'Diretor E-commerce',
     empresa: 'Bennemann',
-    final: { left: '4%',  top: '10%' },
-    from:  { x: -320,     y: 500      },
+    tempo: '5 anos de parceria',
+    posClasses: 'top-[50px] left-[10px]',
   },
   {
-    slug:    'ipsum',
+    slug: 'card-1',
     content: {
-      type:    'text',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis, mauris ut congue iaculis, dolor arcu vestibulum dui, vitae ullamcorper neque felis vitae libero. Donec interdum lorem id nulla imperdiet, sed luctus nisi vehicula. Aliquam pellentesque, felis at consectetur pretium, ipsum eros iaculis ante,',
+      type: 'text',
+      message:
+        'O trabalho é de excelência. São extremamente ágeis, entendem rapidamente a criticidade de cada demanda e, acima de tudo, pensam sempre na experiência do cliente final. \n É uma parceria de alto nível, baseada em confiança e entrega consistente.',
     },
-    nome:    'Lorem Ipsum',
-    cargo:   'Diretora de Marketing',
-    empresa: 'Dux',
-    final: { left: '68%', top: '8%'  },
-    from:  { x: 320,      y: 480      },
+    nome: 'Rodrigo Schenkman',
+    cargo: 'CEO',
+    empresa: 'One Up',
+    tempo: '4 anos de parceria',
+    posClasses: 'top-[150px] right-[40px]',
   },
   {
-    slug:    'dolor',
+    slug: 'card-2',
     content: {
-      type:    'text',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis, mauris ut congue iaculis, dolor arcu vestibulum dui, vitae ullamcorper neque felis vitae libero. Donec interdum lorem id nulla imperdiet, sed luctus nisi vehicula. Aliquam pellentesque.',
+      type: 'text',
+      message:
+        'Minha experiência com a Dup Agency é de parceria total. Cada entrega, projeto e melhorias foram sempre entregues com agilidade e excelência. Quando entrei na FOM, fiz questão de trazê-los  para me apoiar no novo projeto, para trazer inovação e crescimento da performance. \n Muito obrigada por toda a dedicação de vocês!',
     },
-    nome:    'Lorem Ipsum',
-    cargo:   'CEO',
-    empresa: 'OneUp',
-    final: { left: '4%',  top: '56%' },
-    from:  { x: -320,     y: 440      },
-  },
-  {
-    slug:    'sit',
-    content: {
-      type:    'text',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis, mauris ut congue iaculis, dolor arcu vestibulum dui, vitae ullamcorper neque felis vitae libero. Donec interdum lorem id nulla imperdiet, sed luctus nisi vehicula. Aliquam pellentesque, felis at consectetur pretium, ipsum eros iaculis ante',
-    },
-    nome:    'Lorem Ipsum',
-    cargo:   'E-commerce Manager',
-    empresa: 'SharkNinja',
-    final: { left: '68%', top: '54%' },
-    from:  { x: 320,      y: 420      },
-  },
+    nome: 'Vivian',
+    cargo: 'Especialista de e-commerce',
+    empresa: 'Positive Market / FOM',
+    tempo: '4 anos de parceria',
+    posClasses: 'bottom-[170px] left-[80px]',
+  }
 ]
 
-// progress no timeline (0-1) em que cada card começa a se mover
-const CARD_STARTS = [0.05, 0.15, 0.25, 0.35]
-const CARD_DUR    = 0.45  // duração de cada card (fração do timeline)
-
-// ─── sub-componentes de conteúdo ──────────────────────────────────────────────
 function CardMessage({ content }: { content: CardContent }) {
   if (content.type === 'text') {
     return (
       <p
         className="font-synonym text-black"
-        style={{ fontSize: '13px', lineHeight: 'var(--leading-body)', opacity: 0.72 }}
+        style={{
+          fontSize: '13px',
+          lineHeight: 'var(--leading-body)',
+          opacity: 0.78,
+        }}
       >
-        "{content.message}"
+        &ldquo;{content.message}&rdquo;
       </p>
     )
   }
   if (content.type === 'audio') {
     return (
-      <audio controls src={content.src} className="w-full" style={{ height: 36 }}>
+      <audio controls src={content.src} className="w-full h-12 mb-2">
         Seu browser não suporta áudio.
       </audio>
     )
@@ -110,137 +95,189 @@ function CardMessage({ content }: { content: CardContent }) {
       />
     )
   }
+  return null
 }
 
-// ─── componente principal ─────────────────────────────────────────────────────
 export default function Depoimentos() {
-  const outerRef = useRef<HTMLElement>(null)
-  const innerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    if (!outerRef.current || !innerRef.current) return
+    if (!sectionRef.current) return
+    if (window.matchMedia('(max-width: 767px)').matches) return
 
     const ctx = gsap.context(() => {
-      // posição inicial de cada card
-      CARDS.forEach((card, i) => {
-        gsap.set(cardRefs.current[i], { x: card.from.x, y: card.from.y, opacity: 0 })
-      })
+      const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[]
+      if (cards.length === 0) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger:            outerRef.current,
-          start:              'top top',
-          end:                'bottom bottom',
-          scrub:              1.5,
-          invalidateOnRefresh: true,
+      const tl = gsap.timeline()
+      tl.fromTo(
+        cards,
+        { y: 1400 },
+        {
+          y: 0,
+          ease: 'power3.out',
+          stagger: { each: 0.12, from: 'random' },
         },
-      })
+      )
 
-      CARDS.forEach((_, i) => {
-        const s = CARD_STARTS[i]
-        tl.to(cardRefs.current[i], {
-          x:        0,
-          y:        0,
-          opacity:  1,
-          duration: CARD_DUR,
-          ease:     'power2.out',
-        }, s)
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: '+=2400',
+        scrub: 1,
+        animation: tl,
+        pin: true,
+        invalidateOnRefresh: true,
       })
-    }, innerRef)
+    }, sectionRef)
 
     return () => ctx.revert()
+  }, [])
+
+  // Mobile: fade-in via IntersectionObserver (GSAP ScrollTrigger inconsistente
+  // no mobile — ver memory project_mobile_gsap). Cada card sobe de baixo com
+  // pequeno stagger conforme entra na viewport.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (!window.matchMedia('(max-width: 767px)').matches) return
+
+    const cards = mobileCardRefs.current.filter(Boolean) as HTMLDivElement[]
+    if (cards.length === 0) return
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            io.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+    )
+
+    cards.forEach((c) => io.observe(c))
+    return () => io.disconnect()
   }, [])
 
   return (
     <section
       id="depoimentos"
-      ref={outerRef}
-      className="relative z-10"
-      style={{ height: '300vh' }}
+      ref={sectionRef}
+      className="relative z-10 md:min-h-screen overflow-hidden depoimentos-grid-bg"
     >
+      {/* GridLines (visíveis) — alinhadas com as outras seções via i/13.
+          O .depoimentos-grid-bg fica também por trás como background-image
+          pra dar variação ao backdrop-filter dos cards (que precisa de
+          algo varidado pra produzir efeito de blur visível). */}
+      <GridLines />
+
+      {/* Headline — desktop: absolute centralizado durante o pin.
+          Mobile: estático no topo, antes dos cards. */}
       <div
-        ref={innerRef}
-        className="sticky top-0 h-screen overflow-hidden"
+        className="md:absolute md:inset-0 flex flex-col items-center justify-center text-center px-6 md:pointer-events-none pt-24 pb-8 md:pt-0 md:pb-0"
+        style={{ zIndex: 10 }}
       >
-        {/* Título centralizado — sempre visível, na frente dos cards */}
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none"
-          style={{ zIndex: 10 }}
+        <h2
+          className="font-chillax font-bold text-black uppercase"
+          style={{
+            fontSize: 'clamp(28px, 3.6vw, 52px)',
+            lineHeight: 'var(--leading-display)',
+          }}
         >
-          <h2
-            className="font-chillax font-bold text-black uppercase"
-            style={{ fontSize: 'clamp(28px, 3.6vw, 52px)', lineHeight: 'var(--leading-display)' }}
-          >
-            o que diz quem
-            <br />
-            <span className="text-grad-01">confia em nós</span>
-          </h2>
-          <p
-            className="mt-4 font-synonym text-neutral-600 max-w-xs"
-            style={{ fontSize: '13px', lineHeight: 'var(--leading-body)' }}
-          >
-            Perguntamos a nossos parceiros o que os faz continuar
-            confiando em nosso trabalho, aqui estão algumas respostas
-          </p>
-        </div>
+          o que diz quem
+          <br />
+          <span className="text-grad-01">confia em nós</span>
+        </h2>
+        <p
+          className="mt-4 font-synonym text-neutral-600 max-w-xs"
+          style={{ fontSize: '13px', lineHeight: 'var(--leading-body)' }}
+        >
+          Perguntamos a nossos parceiros o que os faz continuar confiando
+          em nosso trabalho, aqui estão algumas respostas
+        </p>
+      </div>
 
-        {/* Cards — desktop */}
-        <div className="hidden md:block absolute inset-0" style={{ zIndex: 5 }}>
-          {CARDS.map((card, i) => (
-            <div
-              key={card.slug}
-              ref={(el) => { cardRefs.current[i] = el }}
-              className="absolute flex flex-col gap-3 p-5 rounded-2xl"
+      {/* Cards desktop — animados via ScrollTrigger pinned. zIndex 20 pra
+          ficar acima da headline (10) e do GridLines (0). */}
+      <div
+        className="hidden md:block absolute inset-0"
+        style={{ zIndex: 20 }}
+      >
+        {CARDS.map((card, i) => (
+          <div
+            key={card.slug}
+            ref={(el) => {
+              cardRefs.current[i] = el
+            }}
+            className={`absolute w-56 lg:w-80 ${card.posClasses}`}
+          >
+            <article
+              className="card-testimonial"
               style={{
-                top:             card.final.top,
-                left:            card.final.left,
-                width:           'min(280px, 26vw)',
-                background:      'rgba(255,255,255,0.88)',
-                backdropFilter:  'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                boxShadow:       '0 4px 32px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)',
-                border:          '1px solid rgba(0,0,0,0.07)',
-                willChange:      'transform, opacity',
+                backdropFilter: 'blur(14px)',
+                WebkitBackdropFilter: 'blur(14px)',
               }}
             >
               <CardMessage content={card.content} />
-              <div className="flex flex-col gap-0">
-                <span className="font-chillax font-bold text-black uppercase" style={{ fontSize: '12px' }}>
+              <div className="w-full flex flex-col gap-0">
+                <span
+                  className="font-chillax font-bold text-black uppercase"
+                  style={{ fontSize: '12px' }}
+                >
                   {card.nome}
                 </span>
-                <span className="font-synonym text-neutral-600" style={{ fontSize: '11px' }}>
+                <span
+                  className="font-synonym text-neutral-600"
+                  style={{ fontSize: '11px' }}
+                >
                   {card.cargo} — {card.empresa}
                 </span>
+                <small
+                  className="font-synonym text-neutral-400"
+                  style={{ fontSize: '10px' }}
+                >{card.tempo}</small>
               </div>
-            </div>
-          ))}
-        </div>
+            </article>
+          </div>
+        ))}
+      </div>
 
-        {/* Cards — mobile: coluna simples, sem animação de scroll */}
-        <div className="flex md:hidden flex-col gap-3 px-5 pt-48 pb-10 overflow-y-auto h-full">
-          {CARDS.map((card) => (
-            <div
-              key={card.slug}
-              className="flex flex-col gap-3 p-5 rounded-2xl"
-              style={{
-                background: 'rgba(255,255,255,0.9)',
-                boxShadow:  '0 4px 20px rgba(0,0,0,0.06)',
-                border:     '1px solid rgba(0,0,0,0.06)',
-              }}
-            >
+      {/* Cards mobile — coluna simples com fade-in (IntersectionObserver). */}
+      <div
+        className="flex md:hidden flex-col gap-4 px-5 pb-12 relative"
+        style={{ zIndex: 20 }}
+      >
+        {CARDS.map((card, i) => (
+          <div
+            key={card.slug}
+            ref={(el) => {
+              mobileCardRefs.current[i] = el
+            }}
+            className="card-testimonial-mobile-reveal"
+            style={{ transitionDelay: `${i * 80}ms` }}
+          >
+            <article className="card-testimonial">
               <CardMessage content={card.content} />
-              <div className="flex flex-col gap-0">
-                <span className="font-chillax font-bold text-black uppercase" style={{ fontSize: '12px' }}>
+              <div className="w-full flex flex-col gap-0">
+                <span
+                  className="font-chillax font-bold text-black uppercase"
+                  style={{ fontSize: '12px' }}
+                >
                   {card.nome}
                 </span>
-                <span className="font-synonym text-neutral-600" style={{ fontSize: '11px' }}>
+                <span
+                  className="font-synonym text-neutral-600"
+                  style={{ fontSize: '11px' }}
+                >
                   {card.cargo} — {card.empresa}
                 </span>
               </div>
-            </div>
-          ))}
-        </div>
+            </article>
+          </div>
+        ))}
       </div>
     </section>
   )

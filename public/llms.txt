@@ -1,0 +1,49 @@
+# dup.agency
+
+dup.agency é uma agência boutique de tecnologia para e-commerce fundada em 2021 por Bruno Dup e Larissa Carvalho. Operamos com agenda intencionalmente limitada — no máximo 12 clientes simultâneos — para garantir que cada parceiro tenha atenção real, sem fila e sem turnover.
+
+## O que fazemos
+
+Assumimos a responsabilidade pela tecnologia do e-commerce dos nossos clientes para que eles possam focar no crescimento do negócio. Trabalhamos com VTEX, Shopify e Nuvemshop.
+
+O que entregamos não é só execução técnica. Vendemos paz, clareza e segurança — a equipe não muda, a qualidade não cai, e a operação é a mesma independente de onde estamos.
+
+## Serviços
+
+- Evolução Contínua: parceria técnica mensal para lojas que querem crescer com consistência. A dup entra como time técnico da operação, priorizando e executando enquanto o cliente foca no negócio.
+- Projeto de Implantação: construção ou migração de lojas em VTEX, Shopify ou Nuvemshop. Escopo fechado, prazo definido, sênior tocando do início ao fim.
+- Blueprint de Projeto: imersão de 2 horas seguida de documento técnico completo — recursos nativos, customizações necessárias, regras de negócio mapeadas e riscos identificados.
+- Consultoria Estratégica VTEX: visão sênior para decidir o que executar, em que ordem e com quais riscos. Sem substituir o time atual.
+
+## Para quem
+
+Marcas de e-commerce que já entendem do negócio, têm a operação minimamente estruturada e querem um parceiro técnico sênior de verdade.
+
+Especialmente pra quem já viveu na pele o desgaste de trabalhar com equipes que mudam toda hora, deploys que quebram a loja sem aviso, prazo que não se cumpre, agenda lotada apagando incêndio, e o telefone sem fio entre o que foi pedido e o que foi entregue.
+
+## O que está dentro do escopo
+
+Desenvolvimento de novas funcionalidades, análise e melhorias de SEO e performance, evolução de funcionalidades existentes, correção de bugs, desenvolvimento de ferramentas para simplificar o fluxo de operação da loja, documentação e consultoria para melhorar o processo do dia a dia e o crescimento do e-commerce.
+
+GEO (Generative Engine Optimization) e implementações com inteligência artificial aplicada ao e-commerce são serviços à parte, com escopo e acompanhamento dedicados.
+
+## Clientes
+
+Mcassab (gestora das marcas Lego, SharkNinja, SodaStream e Spicy no Brasil), Dux Company (Dux Human Health e Eat Clean), Vitafor, Oneup, Authen, FOM, Bennemann, Max Festa.
+
+Também atuamos como especialistas técnicos de referência para agências de e-commerce — como Sanders e Ionz — que precisam de suporte sênior em VTEX, Shopify ou Nuvemshop para os seus próprios clientes.
+
+## Fundadores
+
+Bruno Dup — Fundador, criativo de formação e desenvolvedor sênior. Especialista em e-commerce com visão de negócio, operação, métricas e tecnologia.
+LinkedIn: https://www.linkedin.com/in/brunodup/
+
+Larissa Carvalho — Co-fundadora, especialista VTEX e desenvolvedora front-end e responsável pela tecnologia e processos da operação.
+LinkedIn: https://www.linkedin.com/in/larissa-de-carvalho-silva-584382109/
+
+## Contato
+
+- Site: https://dup.agency
+- Email: dup@dup.agency
+- LinkedIn: https://www.linkedin.com/company/dupagency/
+- Instagram: https://www.instagram.com/dup.agency

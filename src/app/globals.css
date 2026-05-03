@@ -2,30 +2,16 @@
 @import "./tokens.css";
 
 /* ── Fontes locais (Fontshare) ───────────────────────────────────────────── */
-/* Arquivos em public/fonts/ — baixe em fontshare.com (woff2 variável)      */
-
-@font-face {
-  font-family: 'Chillax';
-  src: url('/fonts/Chillax-Variable.woff2') format('woff2-variations');
-  font-weight: 200 700;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Synonym';
-  src: url('/fonts/Synonym-Variable.woff2') format('woff2-variations');
-  font-weight: 100 700;
-  font-display: swap;
-  font-style: normal;
-}
+/* Carregadas via next/font/local em src/app/fonts.ts. As variáveis
+   --font-chillax-loaded e --font-synonym-loaded ficam disponíveis no html
+   pelo wrapper className em layout.tsx. */
 
 /* ── Tailwind v4 @theme — mapeia tokens → utilitários ───────────────────── */
 
 @theme inline {
   /* Fontes */
-  --font-chillax: "Chillax", "Inter", sans-serif;
-  --font-synonym: "Synonym", "Inter", sans-serif;
+  --font-chillax: var(--font-chillax-loaded), "Inter", sans-serif;
+  --font-synonym: var(--font-synonym-loaded), "Inter", sans-serif;
 
   /* Cores */
   --color-black:          #0D0D0D;
@@ -117,6 +103,19 @@ body {
   a, button, [role="button"], [tabindex] { cursor: none; }
 }
 
+/* ── GridLines — fundo com linhas verticais via gradient repetido ──────── */
+/* O gradient é setado inline em GridLines.tsx (cor depende do tema). Aqui
+   só ajustamos o background-size: 1/13 desktop, 1/7 mobile. */
+.grid-lines {
+  background-size: calc(100% / 13) 100%;
+  background-repeat: repeat-x;
+}
+@media (max-width: 767px) {
+  .grid-lines {
+    background-size: calc(100% / 7) 100%;
+  }
+}
+
 /* ── Card "como trabalhamos" — glass + noise ────────────────────────────── */
 
 .card-work {
@@ -161,7 +160,7 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  font-family: 'Chillax', sans-serif;
+  font-family: var(--font-chillax-loaded), "Inter", sans-serif;
   font-weight: 600;
   font-size: 28px;
   line-height: 28px;
@@ -171,7 +170,7 @@ body {
 }
 
 .card-work__body {
-  font-family: 'Synonym', sans-serif;
+  font-family: var(--font-synonym-loaded), "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
@@ -196,4 +195,288 @@ body {
     font-size: 13px;
     line-height: 20px;
   }
+}
+
+/* ── Card "depoimentos" — glass branco translúcido com borda cinza clara
+   (referência: dupagency_new/Testimonials, adaptado pro fundo branco). */
+
+.card-testimonial {
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  overflow: hidden;
+  /* backdrop-filter aplicado inline via style={} no Depoimentos.tsx — em
+     algum cenário do Tailwind v4 + Next 16 a regra na classe estava sendo
+     ignorada (só -webkit-backdrop-filter pegava). Inline tem maior
+     especificidade e funciona consistentemente. */
+}
+
+@media (max-width: 767px) {
+  .card-testimonial {
+    padding: 18px;
+  }
+}
+
+/* Mobile reveal — cards de depoimento sobem com fade quando entram
+   na viewport (IntersectionObserver toggla `.is-visible`). */
+.card-testimonial-mobile-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.card-testimonial-mobile-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Depoimentos — background com grid-lines proporcional ──────────────────
+   Usa background-image em vez do componente <GridLines /> (divs absolutos)
+   pra que o backdrop-filter dos cards tenha algo varidado pra samplar.
+   Spacing percentual (100% / 13) alinha com o GridLines das outras seções. */
+
+.depoimentos-grid-bg {
+  background-color: var(--white);
+  background-image: linear-gradient(
+    to right,
+    transparent calc(100% - 1px),
+    rgba(0, 0, 0, 0.05) calc(100% - 1px),
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  background-size: calc(100% / 13) 100%;
+  background-repeat: repeat-x;
+}
+
+@media (max-width: 767px) {
+  .depoimentos-grid-bg {
+    background-size: calc(100% / 7) 100%;
+  }
+}
+
+/* ── GlitchGrid — grid 2x2 de fotos com efeito RGB split na transição ─── */
+
+.glitch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  isolation: isolate;
+  /* `--bg` é setado inline pelo componente; usado pelos pseudos abaixo
+     pra aplicar o RGB split com a foto atual. */
+}
+
+.glitch-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 350ms ease;
+  /* Opacity sutil — fotos ficam discretas no layout */
+  opacity: 0.5;
+}
+
+.glitch-layer--prev {
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.glitch-layer--current {
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* Durante o glitch, o `prev` continua visível enquanto o `current` faz fade */
+.glitch-slot.is-glitching .glitch-layer--current {
+  opacity: 0;
+}
+
+/* RGB split: dois pseudo-elementos com a foto atual, deslocados e tintados.
+   `mix-blend-mode: screen` faz vermelho + azul somar pra branco onde sobrepõem,
+   gerando o efeito clássico de aberração cromática. */
+.glitch-slot::before,
+.glitch-slot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+  mix-blend-mode: screen;
+}
+
+.glitch-slot.is-glitching::before {
+  opacity: 0.45;
+  /* Tinta vermelha mais discreta — saturate menor + brightness neutra */
+  filter: sepia(1) saturate(4) hue-rotate(-50deg);
+  animation: glitch-shift-r 300ms steps(4) both;
+}
+
+.glitch-slot.is-glitching::after {
+  opacity: 0.45;
+  /* Tinta azul-ciano discreta */
+  filter: sepia(1) saturate(4) hue-rotate(170deg);
+  animation: glitch-shift-b 300ms steps(4) both;
+}
+
+.glitch-slot.is-glitching {
+  animation: glitch-shake 300ms steps(4);
+}
+
+@keyframes glitch-shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-1px); }
+  50%  { transform: translateX(1px); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes glitch-shift-r {
+  0%   { transform: translateX(-1px); }
+  50%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes glitch-shift-b {
+  0%   { transform: translateX(1px); }
+  50%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+/* Hover overlay — glassmorphism branco com texto preto centralizado.
+   backdrop-filter aplicado inline no JSX (style={}) pra evitar conflito de
+   cascade do Tailwind v4 (mesmo workaround dos testimonials). */
+.glitch-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.glitch-slot:hover .glitch-hover {
+  opacity: 1;
+}
+
+.glitch-hover__text {
+  color: #000;
+  font-family: var(--font-synonym-loaded), "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  text-align: center;
+}
+
+/* Nome (parseado de **palavra** no texto) — em negrito, com espaçamento
+   maior do parágrafo. O `<br />` antes garante que sempre cai na linha
+   de baixo. */
+.glitch-hover__name {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+/* Hover overlay só aparece em devices com hover real (desktop com mouse).
+   Em touch devices, o texto é mostrado via bottom sheet ao toque. */
+@media (hover: none) {
+  .glitch-hover {
+    display: none;
+  }
+}
+
+/* ── GlitchGrid — bottom sheet mobile ──────────────────────────────────── */
+
+.glitch-sheet__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(13, 13, 13, 0.4);
+  animation: glitch-sheet-fade-in 200ms ease;
+}
+
+.glitch-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background: rgba(255, 255, 255, 0.6);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 20px 24px 36px;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+  animation: glitch-sheet-slide-up 350ms cubic-bezier(0.32, 0.72, 0, 1);
+  /* `pan-y` permite drag vertical sem o browser sequestrar o gesto */
+  touch-action: pan-y;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.glitch-sheet__handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 2px;
+  margin: 0 auto 18px;
+}
+
+.glitch-sheet__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  cursor: pointer;
+  font-family: var(--font-synonym-loaded), "Inter", sans-serif;
+}
+
+.glitch-sheet__text {
+  font-family: var(--font-synonym-loaded), "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  padding: 0 8px;
+}
+
+@keyframes glitch-sheet-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glitch-sheet-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
 }

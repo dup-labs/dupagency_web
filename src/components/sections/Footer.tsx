@@ -36,7 +36,7 @@ export default function Footer() {
           </a>
         ))}
       </div>
-      <p className="font-synonym text-label-ui text-neutral-800">
+      <p className="font-synonym text-label-ui text-neutral-400">
         dup.agency — 2026
       </p>
     </footer>
