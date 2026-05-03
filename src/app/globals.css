@@ -103,19 +103,6 @@ body {
   a, button, [role="button"], [tabindex] { cursor: none; }
 }
 
-/* ── GridLines — fundo com linhas verticais via gradient repetido ──────── */
-/* O gradient é setado inline em GridLines.tsx (cor depende do tema). Aqui
-   só ajustamos o background-size: 1/13 desktop, 1/7 mobile. */
-.grid-lines {
-  background-size: calc(100% / 13) 100%;
-  background-repeat: repeat-x;
-}
-@media (max-width: 767px) {
-  .grid-lines {
-    background-size: calc(100% / 7) 100%;
-  }
-}
-
 /* ── Card "como trabalhamos" — glass + noise ────────────────────────────── */
 
 .card-work {

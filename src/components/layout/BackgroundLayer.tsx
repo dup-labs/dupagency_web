@@ -27,18 +27,8 @@ export default function BackgroundLayer({
     // Recalcula todos os ScrollTriggers depois que todos os filhos montam e
     // o layout está estável. Sem isso, seções com pin:true calculam posições
     // erradas porque os spacers ainda não existem quando as outras montam.
-    // Disparamos no `load` (mais determinístico que setTimeout) e emitimos
-    // 'scrolltrigger:refresh' pra reobservar spacers em useActiveSection.
-    function refresh() {
-      ScrollTrigger.refresh()
-      window.dispatchEvent(new Event('scrolltrigger:refresh'))
-    }
-    if (document.readyState === 'complete') {
-      refresh()
-    } else {
-      window.addEventListener('load', refresh, { once: true })
-      return () => window.removeEventListener('load', refresh)
-    }
+    const id = setTimeout(() => ScrollTrigger.refresh(), 600)
+    return () => clearTimeout(id)
   }, [])
 
   return (

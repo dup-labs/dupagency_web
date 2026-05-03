@@ -1,17 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { PlayPauseIcon } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
-
-// GlitchGrid é só usado dentro do manifesto (abaixo do fold). Lazy-load
-// pra não pesar o chunk principal e atrasar a pintura do hero headline (LCP).
-const GlitchGrid = dynamic(() => import('@/components/ui/GlitchGrid'), {
-  ssr: false,
-})
+import GlitchGrid from '@/components/ui/GlitchGrid'
 
 // 8 fotos (4 Dup + 4 Lari) circulam pelos 4 slots do GlitchGrid sem repetir
 // simultaneamente. Cada foto carrega uma `key` que identifica o dono
@@ -32,18 +26,26 @@ const ABOUT_TEXTS: Record<string, string> = {
   lari: 'Entrou no e-commerce aos 17 anos e nunca mais saiu. Nas horas vagas é leitora voraz — livros, booktube, tudo que alimenta a curiosidade. Esse prazer de aprender transborda pro trabalho: estuda tecnologia como hobby. Dev sênior e responsável por toda a estrutura técnica da dup. Se tá funcionando, tem a mão dela. **Lari**',
 }
 
-// GridLines local — versão estática (sem context) pra usar antes do
-// BackgroundLayer hidratar. Só desenha linhas com cor escura (Hero usa
-// fundo branco). 1 div com gradient — leve no DOM.
 function GridLines() {
-  const gradient =
-    'linear-gradient(to right, transparent calc(100% - 1px), rgba(0,0,0,0.05) calc(100% - 1px), rgba(0,0,0,0.05) 100%)'
   return (
-    <div
-      className="grid-lines absolute inset-0 pointer-events-none"
-      aria-hidden
-      style={{ backgroundImage: gradient }}
-    />
+    <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      {/* Desktop: 12 linhas */}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <div
+          key={`d-${i}`}
+          className="hidden md:block absolute top-0 bottom-0 w-px"
+          style={{ left: `${((i + 1) / 13) * 100}%`, background: 'rgba(0,0,0,0.05)' }}
+        />
+      ))}
+      {/* Mobile: 6 linhas */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={`m-${i}`}
+          className="block md:hidden absolute top-0 bottom-0 w-px"
+          style={{ left: `${((i + 1) / 7) * 100}%`, background: 'rgba(0,0,0,0.05)' }}
+        />
+      ))}
+    </div>
   )
 }
 

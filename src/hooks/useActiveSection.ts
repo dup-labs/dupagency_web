@@ -65,69 +65,59 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
 
 const SECTION_IDS = Object.keys(SECTION_CONFIGS) as SectionId[]
 
+function getSectionRect(el: HTMLElement): DOMRect {
+  const parent = el.parentElement
+  if (parent?.hasAttribute('data-gsap-pin-spacer')) {
+    return parent.getBoundingClientRect()
+  }
+  return el.getBoundingClientRect()
+}
+
 export function useActiveSection() {
   const [activeSection, setActiveSection] = useState<SectionId>('hero')
 
   useEffect(() => {
-    // Linha de detecção a 15% do topo da viewport — mesma posição do impl
-    // anterior (rectreading), só que via rootMargin do IntersectionObserver:
-    // top -15% recorta os primeiros 15% do viewport, bottom -85% recorta os
-    // últimos 85%. Resta uma "linha" a 15% — qualquer seção que cruze essa
-    // linha vira ativa.
-    const intersecting = new Set<SectionId>()
+    let rafId: number
 
-    function pickActive() {
-      // Itera na ordem de SECTION_IDS e pega o primeiro intersectando.
-      // Para FAQ: 'faq-dark' vem antes de 'faq', então quando o sentinel
-      // dark cobre a linha, ele vence — exatamente o comportamento desejado.
-      for (const id of SECTION_IDS) {
-        if (intersecting.has(id)) {
-          setActiveSection((prev) => (prev !== id ? id : prev))
-          return
-        }
-      }
-    }
+    function update() {
+      // Linha de troca a 15% do topo: a seção ativa só muda quando a anterior
+      // está quase saindo de vista pelo topo. Evita o bg trocar com a seção
+      // anterior ainda dominante na tela.
+      const mid = window.innerHeight * 0.15
+      let found: SectionId | null = null
+      let closestDist = Infinity
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          const id = e.target.id as SectionId
-          if (e.isIntersecting) intersecting.add(id)
-          else intersecting.delete(id)
-        }
-        pickActive()
-      },
-      { rootMargin: '-15% 0px -85% 0px', threshold: 0 },
-    )
-
-    // Observa cada seção. Se a seção tem pin do GSAP, o pai vira spacer e
-    // determina o footprint real — observamos o spacer nesse caso.
-    function observeAll() {
-      observer.disconnect()
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id)
         if (!el) continue
-        const parent = el.parentElement
-        const target =
-          parent?.hasAttribute('data-gsap-pin-spacer') ? parent : el
-        observer.observe(target)
+
+        const rect = getSectionRect(el)
+
+        if (rect.top <= mid && rect.bottom >= mid) {
+          found = id
+          break
+        }
+
+        const dist = Math.abs((rect.top + rect.bottom) / 2 - mid)
+        if (dist < closestDist) {
+          closestDist = dist
+          found = id
+        }
       }
+
+      if (found) setActiveSection((prev) => (prev !== found ? found : prev))
     }
 
-    observeAll()
-
-    // GSAP cria pin-spacers depois do mount. Re-observa quando ScrollTrigger
-    // dispara refresh (que reorganiza spacers).
-    let rafId = 0
-    function onRefresh() {
+    function onScroll() {
       cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(observeAll)
+      rafId = requestAnimationFrame(update)
     }
-    window.addEventListener('scrolltrigger:refresh', onRefresh)
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    update()
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('scrolltrigger:refresh', onRefresh)
+      window.removeEventListener('scroll', onScroll)
       cancelAnimationFrame(rafId)
     }
   }, [])

@@ -1,18 +1,18 @@
 import dynamic from 'next/dynamic'
 import Hero from '@/components/sections/Hero'
 import Parceiros from '@/components/sections/Parceiros'
+import PorQueFunciona from '@/components/sections/PorQueFunciona'
+import ComoTrabalhamos from '@/components/sections/ComoTrabalhamos'
+import Servicos from '@/components/sections/Servicos'
+import Depoimentos from '@/components/sections/Depoimentos'
+import CTAFinal from '@/components/sections/CTAFinal'
 
-// Acima do fold: import direto (Hero + Parceiros vão pro chunk principal).
-// Abaixo do fold: code-split via next/dynamic com SSR ativo (preserva SEO,
-// reduz JS inicial). Sem `loading` placeholder porque o BackgroundLayer já
-// cobre o viewport com a cor da seção — não há flash visível.
-const PorQueFunciona  = dynamic(() => import('@/components/sections/PorQueFunciona'))
-const ComoTrabalhamos = dynamic(() => import('@/components/sections/ComoTrabalhamos'))
-const Servicos        = dynamic(() => import('@/components/sections/Servicos'))
-const Depoimentos     = dynamic(() => import('@/components/sections/Depoimentos'))
-const FAQ             = dynamic(() => import('@/components/sections/FAQ'))
-const CTAFinal        = dynamic(() => import('@/components/sections/CTAFinal'))
-const Footer          = dynamic(() => import('@/components/sections/Footer'))
+// Imports diretos pra todas as seções com ScrollTrigger pin/scrub. Lazy-load
+// causava o ScrollTrigger registrar tarde — quando o user já tinha rolado
+// pela seção, o progresso era calculado já avançado e a animação rodava no
+// vácuo. Mantemos dynamic só em FAQ e Footer (sem pin, sem prejuízo).
+const FAQ    = dynamic(() => import('@/components/sections/FAQ'))
+const Footer = dynamic(() => import('@/components/sections/Footer'))
 
 export default function Home() {
   return (
