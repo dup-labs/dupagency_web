@@ -59,7 +59,7 @@ const CLIENT_LOGOS = [
 
 // Use **texto** para palavras com gradiente colorido
 const MANIFESTO_LINES = [
-  '**parceiro técnico** para\ne-commerces que levam a **sério.**',
+  '**parceiro técnico** para\ne-commerces que levam tecnologia a **sério.**',
   'suporte contínuo, sênior executando,\n**qualidade** que não depende de escala.',
   '**sem turnover**. **sem surpresa.**',
 ]

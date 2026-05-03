@@ -120,7 +120,7 @@ export default function CTAFinal() {
         </p>
 
         <a
-          href="https://calendly.com/dupagency/novos-projetos-agenda-de-30-minutos?back=1"
+          href="https://calendly.com/dupagency/primeira-conversa"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-10 inline-flex items-center gap-3 border border-white rounded-pill px-8 py-4 font-synonym text-label-ui tracking-micro text-white hover:bg-white hover:text-black transition-colors duration-300"

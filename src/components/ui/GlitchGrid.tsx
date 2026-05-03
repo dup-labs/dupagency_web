@@ -260,7 +260,10 @@ export default function GlitchGrid({
   const [openSheetIdx, setOpenSheetIdx] = useState<number | null>(null)
 
   // Pausa o swap do slot que está com sheet aberto pra texto não mudar
-  // enquanto o usuário está lendo.
+  // enquanto o usuário está lendo. O flag também é setado SINCRONAMENTE
+  // em handleSlotClick — sem isso, há um gap de ~1-5ms entre o click e
+  // o useEffect commit, durante o qual um swap timer pode disparar e
+  // trocar a foto/texto do slot bem na hora que o sheet abre.
   useEffect(() => {
     if (openSheetIdx !== null) {
       hoveredRef.current[openSheetIdx] = true
@@ -274,6 +277,10 @@ export default function GlitchGrid({
     if (typeof window === 'undefined') return
     // Só abre sheet em touch devices (sem hover real)
     if (window.matchMedia('(hover: none)').matches) {
+      // Trava o swap IMEDIATAMENTE, antes de qualquer re-render. Cobre
+      // a race com timers de swap que possam disparar entre o click e
+      // o useEffect que sincroniza o flag.
+      hoveredRef.current[i] = true
       setOpenSheetIdx(i)
     }
   }
