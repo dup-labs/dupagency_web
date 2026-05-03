@@ -85,10 +85,17 @@ function isEdge(index: number) {
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
 
-function ServiceCard({ Icon, titulo, texto, blurred }: (typeof SERVICES)[number] & { blurred?: boolean }) {
+function ServiceCard({
+  Icon,
+  titulo,
+  texto,
+  blurred,
+  ariaHidden,
+}: (typeof SERVICES)[number] & { blurred?: boolean; ariaHidden?: boolean }) {
   return (
     <div
       className="flex flex-col bg-neutral-900 rounded-xl"
+      aria-hidden={ariaHidden ? 'true' : undefined}
       style={{
         width: CARD_W,
         minHeight: '320px',
@@ -136,8 +143,20 @@ function Row({
   edgeBlur?: boolean
   className?: string
 }) {
+  // Cada serviço aparece REPEATS vezes (carrossel infinito visual). Só a
+  // primeira cópia é exposta pra screen readers / SEO; as demais ficam
+  // aria-hidden pra não duplicar conteúdo.
+  const uniqueCount = cards.length / REPEATS
+
   return (
-    <div className={`overflow-hidden ${className}`} style={{ width: '100%', flexShrink: 0 }}>
+    <div
+      className={`overflow-hidden ${className}`}
+      style={{ width: '100%', flexShrink: 0 }}
+      // Linha inteiramente borrada é puramente decorativa — esconde tudo
+      // dentro de uma vez via ancestry.
+      aria-hidden={allBlurred ? 'true' : undefined}
+      role={allBlurred ? 'presentation' : undefined}
+    >
       <div
         ref={rowRef}
         className="flex will-change-transform"
@@ -147,9 +166,21 @@ function Row({
           opacity: allBlurred ? 0.7 : 1,
         }}
       >
-        {cards.map((s, i) => (
-          <ServiceCard key={`${s.id}-${i}`} {...s} blurred={edgeBlur ? isEdge(i) : false} />
-        ))}
+        {cards.map((s, i) => {
+          const isClone = i >= uniqueCount
+          const cardBlurred = edgeBlur ? isEdge(i) : false
+          // Em rows não-allBlurred (legíveis): esconde clones e cards
+          // individuais com blur. Quando allBlurred, o wrapper já cuida.
+          const cardAriaHidden = !allBlurred && (isClone || cardBlurred)
+          return (
+            <ServiceCard
+              key={`${s.id}-${i}`}
+              {...s}
+              blurred={cardBlurred}
+              ariaHidden={cardAriaHidden}
+            />
+          )
+        })}
       </div>
     </div>
   )

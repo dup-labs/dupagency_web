@@ -7,7 +7,7 @@ import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dup.agency'),
+  metadataBase: new URL('https://dup.agency/'),
   title: {
     default: 'dup.agency — tech para e-commerce, evolução sem sustos',
     template: '%s | dup.agency',
@@ -32,10 +32,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://dup.agency',
+    url: 'https://dup.agency/',
     siteName: 'dup.agency',
-    title: 'dup.agency — tech para e-commerce, evolução sem sustos',
-    description: 'A estratégia é sua. A tech do seu e-commerce é com a gente.',
+    title: 'dup.agency — tech para e-commerce',
+    description: 'Agência boutique especializada em VTEX, Shopify e Nuvemshop. Parceiro técnico sênior que assume a tecnologia do seu e-commerce sem turnover e sem queda de qualidade.',
     images: [
       {
         url: '/og-image.png',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: 'A estratégia é sua. A tech do seu e-commerce é com a gente.',
     images: ['/og-image.png'],
   },
-  alternates: { canonical: 'https://dup.agency' },
+  alternates: { canonical: 'https://dup.agency/' },
   robots: { index: true, follow: true },
   // Ícones via convenção do App Router: src/app/icon.png (gera favicon) e
   // src/app/apple-icon.png (gera apple-touch-icon). Next.js injeta as <link>
@@ -78,7 +78,7 @@ const jsonLd = {
       '@type': 'Organization',
       '@id': 'https://dup.agency/#organization',
       name: 'dup.agency',
-      url: 'https://dup.agency',
+      url: 'https://dup.agency/',
       logo: 'https://dup.agency/logo.svg',
       foundingDate: '2021',
       description:

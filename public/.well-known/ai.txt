@@ -1,0 +1,9 @@
+# AI Usage Policy
+# dup.agency
+
+User-agent: *
+Allow: /
+
+Contact: dup@dup.agency
+Attribution: Required
+Site: https://dup.agency
