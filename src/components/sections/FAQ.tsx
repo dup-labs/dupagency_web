@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useBackgroundContext } from '@/components/layout/BackgroundLayer'
 import GridLines from '@/components/ui/GridLines'
 
@@ -159,32 +159,6 @@ export default function FAQ() {
   const isDark = navTheme === 'light'
   const titleColor = isDark ? '#ffffff' : '#000000'
 
-  // Direção do scroll: descendo = FAQ branco (faq ativo), subindo = FAQ preto
-  // (faq-dark ativo). O sentinel cobre o FAQ inteiro quando subimos e some
-  // quando descemos. O useActiveSection lê o rect do sentinel a cada scroll
-  // tick, então quando o `top` do sentinel muda, a próxima detecção já pega
-  // a posição nova e troca o activeSection — text colors seguem via
-  // useBackgroundContext.
-  const [direction, setDirection] = useState<'down' | 'up'>('down')
-
-  useEffect(() => {
-    let lastY = window.scrollY
-    function onScroll() {
-      const y = window.scrollY
-      const dy = y - lastY
-      // Threshold pequeno pra ignorar jitter de trackpad/mouse-wheel.
-      if (dy > 2) setDirection('down')
-      else if (dy < -2) setDirection('up')
-      lastY = y
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  // up → sentinel cobre a seção inteira (faq-dark vence faq na detecção).
-  // down → sentinel fora da seção, faq fica ativo.
-  const sentinelTop = direction === 'up' ? '0%' : '100%'
-
   return (
     <section
       id="faq"
@@ -196,15 +170,19 @@ export default function FAQ() {
       />
 
       {/* GridLines + sentinel ficam no nível da section (sem padding) pra
-          alinhar com as grid-lines das outras seções. O padding 9rem do
-          conteúdo vai no wrapper interno abaixo. */}
+          alinhar com as grid-lines das outras seções. */}
       <GridLines />
 
+      {/* Sentinel `faq-dark` fixo na metade de baixo do FAQ. Quando essa
+          metade cruza a linha de detecção do useActiveSection (15% do topo
+          da viewport), o background vira preto e os textos do FAQ invertem
+          — preparando a transição pro CTAFinal. Subindo, ao sair dessa
+          metade, volta pra branco. Sem lógica de direção. */}
       <div
         id="faq-dark"
         aria-hidden="true"
         className="absolute pointer-events-none"
-        style={{ left: 0, right: 0, top: sentinelTop, bottom: 0 }}
+        style={{ left: 0, right: 0, top: '50%', bottom: 0 }}
       />
 
       <div className="relative max-w-5xl mx-auto w-full px-5 md:px-12">
