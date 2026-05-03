@@ -53,17 +53,9 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: 'https://dup.agency' },
   robots: { index: true, follow: true },
-  icons: {
-    icon: [
-      { url: '/images/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-    ],
-    apple: { url: '/images/apple-touch-icon.png', sizes: '180x180' },
-    other: [
-      { rel: 'icon', url: '/images/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { rel: 'icon', url: '/images/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-  },
+  // Ícones via convenção do App Router: src/app/icon.png (gera favicon) e
+  // src/app/apple-icon.png (gera apple-touch-icon). Next.js injeta as <link>
+  // tags automaticamente — sem precisar declarar aqui.
 }
 
 export const viewport: Viewport = {
