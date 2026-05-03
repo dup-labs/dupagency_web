@@ -12,7 +12,7 @@ import { type Icon } from '@phosphor-icons/react'
 
 const SOCIAL: { icon: Icon; href: string; label: string }[] = [
   { icon: InstagramLogoIcon, href: 'https://www.instagram.com/dup.agency', label: 'Instagram' },
-  { icon: SpotifyLogoIcon,   href: 'Ouça esta playlist: dup.agency [lo-fi] https://open.spotify.com/playlist/6QH8ouatvWzVQUp52uCZQL?si=fA6XtpCfQ_CMLkLt2QedQg&pi=dNgsB0zUQYizS', label: 'Spotify' },
+  { icon: SpotifyLogoIcon,   href: 'https://open.spotify.com/playlist/6QH8ouatvWzVQUp52uCZQL?si=fA6XtpCfQ_CMLkLt2QedQg&pi=dNgsB0zUQYizS', label: 'Spotify' },
   // { icon: YoutubeLogoIcon,   href: '#', label: 'YouTube' },
   { icon: WhatsappLogoIcon,  href: 'https://wa.me/5511973558096', label: 'WhatsApp' },
   { icon: LinkedinLogoIcon,  href: 'https://www.linkedin.com/company/dupagency/', label: 'LinkedIn' },
