@@ -10,6 +10,8 @@ const SECTIONS = [
   { id: 'por-que-funciona', label: 'Por que' },
   { id: 'como-trabalhamos', label: 'Processo' },
   { id: 'servicos',         label: 'Serviços' },
+  { id: 'depoimentos',      label: 'Depoimentos' },
+  { id: 'faq',              label: 'FAQ' },
   { id: 'cta-final',        label: 'Contato' },
 ]
 

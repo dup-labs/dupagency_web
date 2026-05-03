@@ -4,11 +4,13 @@ import { useState, useRef } from 'react'
 import { useBackgroundContext } from './BackgroundLayer'
 
 const links = [
-  { label: 'MANIFESTO', href: '#manifesto',         slug: 'manifesto' },
-  { label: 'PARCEIROS', href: '#parceiros',         slug: 'parceiros' },
-  { label: 'PROCESSO',  href: '#como-trabalhamos',  slug: 'processo'  },
-  { label: 'SERVIÇOS',  href: '#servicos',          slug: 'servicos'  },
-  { label: 'CONTATO',   href: '#cta-final',         slug: 'contato'   },
+  { label: 'MANIFESTO',            href: '#manifesto',         slug: 'manifesto'   },
+  { label: 'PARCEIROS',            href: '#parceiros',         slug: 'parceiros'   },
+  { label: 'PROCESSO',             href: '#como-trabalhamos',  slug: 'processo'    },
+  { label: 'SERVIÇOS',             href: '#servicos',          slug: 'servicos'    },
+  { label: 'DEPOIMENTOS',          href: '#depoimentos',       slug: 'depoimentos' },
+  { label: 'PERGUNTAS FREQUENTES', href: '#faq',               slug: 'faq'         },
+  { label: 'CONTATO',              href: '#cta-final',         slug: 'contato'     },
 ]
 
 export default function Nav() {
@@ -36,19 +38,21 @@ export default function Nav() {
           <span className="font-medium tracking-tight">.agency</span>
         </a>
 
+        {/* Botão de menu — só mobile/tablet (<lg). No desktop a navegação
+            é o ScrollspyNav lateral. */}
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-          className="font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
+          className="lg:hidden font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
           style={{ fontSize: '12px' }}
         >
           {open ? '[ fechar ]' : '[ menu ]'}
         </button>
       </nav>
 
-      {/* Overlay full-screen */}
+      {/* Overlay full-screen — só mobile/tablet (acompanha o botão de menu) */}
       <div
-        className="fixed inset-0 z-40 flex flex-col justify-start transition-all duration-400 ease-out"
+        className="lg:hidden fixed inset-0 z-40 flex flex-col justify-start transition-all duration-400 ease-out"
         style={{
           ...(open ? {
             backdropFilter:       'blur(12px)',
@@ -73,7 +77,7 @@ export default function Nav() {
               onMouseLeave={() => setHovered(null)}
               className="flex items-center font-chillax font-bold text-white uppercase py-2"
               style={{
-                fontSize:       'clamp(64px, 6vw, 160px)',
+                fontSize:       'clamp(28px, 5vw, 56px)',
                 borderBottom:   '1px solid rgba(255,255,255,0.10)',
                 opacity:        open ? 1 : 0,
                 transform:      open ? 'translateY(0)' : 'translateY(20px)',

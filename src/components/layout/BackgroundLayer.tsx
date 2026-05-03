@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect } from 'react'
-import { useActiveSection, NavTheme, SECTION_CONFIGS } from '@/hooks/useActiveSection'
+import { useActiveSection, NavTheme } from '@/hooks/useActiveSection'
 import { ScrollTrigger } from '@/lib/gsap'
 
 interface BackgroundContextValue {
@@ -31,26 +31,35 @@ export default function BackgroundLayer({
     return () => clearTimeout(id)
   }, [])
 
+  // 'por-que-funciona' é a única seção com background gradient — o resto
+  // são cores sólidas (branco / preto). Renderizamos como duas camadas:
+  //
+  // 1. Solid layer com backgroundColor que transiciona via CSS. Transições
+  //    entre seções de mesma cor (ex: cta-final → faq-dark, ambas pretas)
+  //    não disparam transition nenhuma — sem flicker. Transições entre
+  //    cores diferentes interpolam direto (sem o body bleed-through que o
+  //    cross-fade anterior causava).
+  // 2. Gradient layer que faz fade in/out quando 'por-que-funciona' ativa.
+  const isGradient = activeSection === 'por-que-funciona'
+
   return (
     <BackgroundContext.Provider value={{ navTheme: config.navTheme }}>
-      {/*
-        Cada seção tem seu próprio div de fundo. Transicionamos opacity (não
-        background), o que permite cross-fade entre cor sólida ↔ gradiente.
-      */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {(Object.entries(SECTION_CONFIGS) as [string, typeof SECTION_CONFIGS[keyof typeof SECTION_CONFIGS]][]).map(
-          ([id, cfg]) => (
-            <div
-              key={id}
-              className="absolute inset-0"
-              style={{
-                background: cfg.background,
-                opacity: activeSection === id ? 1 : 0,
-                transition: 'opacity 600ms ease',
-              }}
-            />
-          ),
-        )}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: isGradient ? 'rgba(0,0,0,0)' : config.background,
+            transition: 'background-color 600ms ease',
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'var(--grad-site-04)',
+            opacity: isGradient ? 1 : 0,
+            transition: 'opacity 600ms ease',
+          }}
+        />
       </div>
       {children}
     </BackgroundContext.Provider>
