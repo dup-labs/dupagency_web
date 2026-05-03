@@ -291,13 +291,13 @@ function ManifestoScroll() {
 export default function Hero() {
   return (
     <section id="hero" className="relative z-10">
-      <div className="relative min-h-screen flex flex-col items-center justify-start px-8 pt-72">
+      <div className="relative min-h-screen flex flex-col items-center justify-start px-6 md:px-8 pt-32 md:pt-72 pb-12 md:pb-0">
         <GridLines />
 
         <div className="relative flex flex-col items-center text-center">
           <h1
             className="font-chillax font-bold uppercase select-none text-black"
-            style={{ fontSize: 'clamp(40px, 6vw, 64px)', lineHeight: 'var(--leading-display)' }}
+            style={{ fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 'var(--leading-display)' }}
           >
             <span className="text-grad-01">Clareza</span>
             {' e '}
@@ -309,7 +309,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="mt-8 font-synonym text-body-lg text-neutral-600 max-w-lg text-center"
+            className="mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
             style={{ lineHeight: 'var(--leading-body)' }}
           >
             Para quem quer evoluir o e-commerce vtex, shopify ou nuvemshop sem se sobrecarregar com ruídos
@@ -317,7 +317,9 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="absolute bottom-15 left-0 right-0 flex flex-col items-center px-8">
+        {/* Mobile: empurra pra base via mt-auto (flex column natural).
+            Desktop: absolute bottom-15 (visual original). */}
+        <div className="mt-auto pt-12 w-full md:absolute md:bottom-15 md:left-0 md:right-0 md:mt-0 md:pt-0 flex flex-col items-center px-6 md:px-8">
           <p className="text-center font-synonym text-label-ui text-neutral-600 tracking-caption mb-8">
             Alguns clientes que confiam em nosso trabalho
           </p>

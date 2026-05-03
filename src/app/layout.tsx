@@ -61,7 +61,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0d0d0d',
+  // Definido pra light + dark explicitamente. Safari iOS senão pode aplicar
+  // tinting dinâmico baseado no conteúdo da página (puxa cores do gradiente
+  // do hero pro URL bar inferior).
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#0d0d0d' },
+    { media: '(prefers-color-scheme: dark)',  color: '#0d0d0d' },
+  ],
+  colorScheme: 'light',
 }
 
 const jsonLd = {
@@ -160,6 +167,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${chillax.variable} ${synonym.variable}`}>
       <head>
+        {/* Reforço do theme-color pra Safari iOS — explícito pelos dois
+            schemes pra cobrir tinting dinâmico do URL bar. */}
+        <meta name="theme-color" content="#0d0d0d" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
