@@ -5,6 +5,7 @@ import BackgroundLayer from '@/components/layout/BackgroundLayer'
 import Nav from '@/components/layout/Nav'
 import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
+import { GTMScript, GTMNoScript } from '@/components/analytics/gtm'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dup.agency/'),
@@ -171,12 +172,18 @@ export default function RootLayout({
             schemes pra cobrir tinting dinâmico do URL bar. */}
         <meta name="theme-color" content="#0d0d0d" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* DNS prefetch pros origins de analytics — GTM carrega via
+            lazyOnload, então isso adianta só a resolução DNS sem custo. */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <GTMScript />
       </head>
       <body className="min-h-screen">
+        <GTMNoScript />
         <BackgroundLayer>
           <CustomCursor />
           <Nav />
