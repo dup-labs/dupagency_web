@@ -56,7 +56,49 @@ export interface GeoAuditResult {
 
 // ---------- fetch HTML ----------
 
-async function fetchHtml(url: string): Promise<string> {
+async function getBrowser() {
+  if (process.env.NODE_ENV === 'development') {
+    const puppeteer = await import('puppeteer-core')
+    return puppeteer.default.launch({
+      headless: true,
+      executablePath:
+        process.env.CHROME_EXECUTABLE_PATH ??
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    })
+  }
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const chromium = require('@sparticuz/chromium') as {
+    args: string[]
+    executablePath: () => Promise<string>
+  }
+  const puppeteer = await import('puppeteer-core')
+  return puppeteer.default.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: true,
+  })
+}
+
+async function fetchHtmlPuppeteer(url: string): Promise<string> {
+  let browser
+  try {
+    browser = await getBrowser()
+    const page = await browser.newPage()
+    await page.setUserAgent(
+      'Mozilla/5.0 (compatible; DupGeoAudit/1.0; +https://dup.agency)',
+    )
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 20_000 })
+    // Aguarda o body ter conteúdo real (JS renderizado)
+    await page.waitForSelector('body', { timeout: 5_000 }).catch(() => {})
+    const html = await page.content()
+    return html.slice(0, 25_000)
+  } finally {
+    await browser?.close()
+  }
+}
+
+async function fetchHtmlSimple(url: string): Promise<string> {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 15_000)
   try {
@@ -75,6 +117,15 @@ async function fetchHtml(url: string): Promise<string> {
     return ''
   } finally {
     clearTimeout(timeout)
+  }
+}
+
+async function fetchHtml(url: string): Promise<string> {
+  try {
+    return await fetchHtmlPuppeteer(url)
+  } catch {
+    // fallback para fetch simples se Puppeteer falhar
+    return await fetchHtmlSimple(url)
   }
 }
 
