@@ -353,7 +353,7 @@ Regras:
 
 // ---------- email ----------
 
-function buildEmailHtml(result: GeoAuditResult, resultUrl: string): string {
+export function buildEmailHtml(result: GeoAuditResult, resultUrl: string): string {
   const scoreColor =
     result.overall_score >= 70 ? '#51A899' :
     result.overall_score >= 50 ? '#897BBC' : '#D4A017'
