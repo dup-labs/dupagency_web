@@ -62,7 +62,7 @@ export function buildEmailHtml(result: GeoAuditResult, resultUrl: string): strin
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e8e8e8">
 
         <!-- cabeçalho com gradiente -->
-        <tr><td style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);padding:32px 40px">
+        <tr><td style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);padding:32px 40px 47px">
           <p style="margin:0 0 12px;font-size:13px;color:rgba(255,255,255,0.90);letter-spacing:0.04em">dup<span style="font-weight:700">.agency</span> &nbsp;*&nbsp; GEO AUDIT</p>
           <h1 style="margin:0;font-size:26px;font-weight:700;color:#ffffff;line-height:1.3">Seu resultado está pronto.</h1>
         </td></tr>
