@@ -198,14 +198,15 @@ export default function CheckerUpsell() {
                 width: '100%',
                 padding: '14px 20px',
                 borderRadius: 'var(--radius-pill)',
-                border: '1px solid rgba(255,255,255,0.50)',
-                background: 'rgba(255,255,255,0.15)',
+                border: '1px solid var(--white)',
+                background: 'transparent',
                 color: 'var(--white)',
                 fontFamily: 'var(--font-body)',
-                fontSize: 'var(--text-body-md)',
-                fontWeight: 600,
+                fontSize: 'var(--font-size-label-ui)',
+                fontWeight: 400,
                 cursor: 'pointer',
-                letterSpacing: '0.02em',
+                letterSpacing: 'var(--tracking-micro)',
+                textTransform: 'uppercase',
               }}
             >
               Quero o GEO Checker completo →
