@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { useBackgroundContext } from '@/components/layout/BackgroundLayer'
 
 const SECTIONS = [
@@ -19,8 +20,11 @@ const ROW_H  = 32
 const SLOT_W = 16
 
 export default function ScrollspyNav() {
+  const pathname = usePathname()
   const { navTheme } = useBackgroundContext()
   const isLight = navTheme === 'light'
+
+  if (pathname.startsWith('/ferramentas')) return null
 
   const [activeId,  setActiveId]  = useState<string>(SECTIONS[0].id)
   const [hoveredId, setHoveredId] = useState<string | null>(null)

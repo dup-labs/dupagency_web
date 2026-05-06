@@ -12,6 +12,14 @@ export type SectionId =
   | 'faq-dark'
   | 'faq'
   | 'cta-final'
+  // geo-audit
+  | 'geo-hero'
+  | 'geo-what-is-geo'
+  | 'geo-services'
+  | 'geo-how-it-works'
+  | 'geo-checker-upsell'
+  | 'geo-faq'
+  | 'geo-final-cta'
 
 export type NavTheme = 'dark' | 'light'
 
@@ -61,6 +69,35 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
     background: 'var(--black)',
     navTheme: 'light',
   },
+  // geo-audit
+  'geo-hero': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-what-is-geo': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-services': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-how-it-works': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-checker-upsell': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-faq': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'geo-final-cta': {
+    background: 'var(--grad-site-01)',
+    navTheme: 'light',
+  },
 }
 
 const SECTION_IDS = Object.keys(SECTION_CONFIGS) as SectionId[]
@@ -80,10 +117,9 @@ export function useActiveSection() {
     let rafId: number
 
     function update() {
-      // Linha de troca a 15% do topo: a seção ativa só muda quando a anterior
-      // está quase saindo de vista pelo topo. Evita o bg trocar com a seção
-      // anterior ainda dominante na tela.
-      const mid = window.innerHeight * 0.15
+      // Linha de troca a 50% do topo: fundo muda quando a nova seção ocupa
+      // metade da tela, evitando texto legível no fundo errado.
+      const mid = window.innerHeight * 0.5
       let found: SectionId | null = null
       let closestDist = Infinity
 
@@ -102,6 +138,22 @@ export function useActiveSection() {
         if (dist < closestDist) {
           closestDist = dist
           found = id
+        }
+      }
+
+      // Seções no final da página nunca atingem a linha de 15% porque o scroll
+      // acaba antes. Quando chegamos ao fundo, ativamos a última seção visível.
+      const atScrollBottom =
+        window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - 80
+      if (atScrollBottom) {
+        for (const id of [...SECTION_IDS].reverse()) {
+          const el = document.getElementById(id)
+          if (!el) continue
+          const rect = getSectionRect(el)
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            found = id
+            break
+          }
         }
       }
 

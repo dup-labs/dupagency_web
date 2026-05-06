@@ -31,20 +31,14 @@ export default function BackgroundLayer({
     return () => clearTimeout(id)
   }, [])
 
-  // 'por-que-funciona' é a única seção com background gradient — o resto
-  // são cores sólidas (branco / preto). Renderizamos como duas camadas:
-  //
-  // 1. Solid layer com backgroundColor que transiciona via CSS. Transições
-  //    entre seções de mesma cor (ex: cta-final → faq-dark, ambas pretas)
-  //    não disparam transition nenhuma — sem flicker. Transições entre
-  //    cores diferentes interpolam direto (sem o body bleed-through que o
-  //    cross-fade anterior causava).
-  // 2. Gradient layer que faz fade in/out quando 'por-que-funciona' ativa.
-  const isGradient = activeSection === 'por-que-funciona'
+  const isPorQueFunciona = activeSection === 'por-que-funciona'
+  const isGeoFinalCta    = activeSection === 'geo-final-cta'
+  const isGradient       = isPorQueFunciona || isGeoFinalCta
 
   return (
     <BackgroundContext.Provider value={{ navTheme: config.navTheme }}>
       <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* Solid layer — transparente quando gradient section está ativa */}
         <div
           className="absolute inset-0"
           style={{
@@ -52,12 +46,22 @@ export default function BackgroundLayer({
             transition: 'background-color 600ms ease',
           }}
         />
+        {/* Gradient layer — home: por-que-funciona */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'var(--grad-site-04)',
-            opacity: isGradient ? 1 : 0,
-            transition: 'opacity 600ms ease',
+            background:  'var(--grad-site-04)',
+            opacity:     isPorQueFunciona ? 1 : 0,
+            transition:  'opacity 600ms ease',
+          }}
+        />
+        {/* Gradient layer — geo-audit: geo-final-cta */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:  'var(--grad-site-01)',
+            opacity:     isGeoFinalCta ? 1 : 0,
+            transition:  'opacity 600ms ease',
           }}
         />
       </div>
