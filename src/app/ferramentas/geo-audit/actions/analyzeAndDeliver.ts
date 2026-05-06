@@ -106,31 +106,34 @@ async function extractDomMetrics(url: string): Promise<DomMetrics> {
     browser = await getBrowser()
     const page = await browser.newPage()
 
+    // User agent real de Chrome — evita bot detection do VTEX IO e similares
     await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     )
-    await page.setViewport({ width: 1280, height: 800 })
+    await page.setViewport({ width: 1440, height: 900 })
 
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25_000 })
+    // Remove flags de automação antes de navegar (anti-bot)
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => false })
+    })
 
-    // Aguarda a rede estabilizar E o React/Helmet setar o title
-    // VTEX IO usa react-helmet que seta o title após hidratação
-    await Promise.race([
-      // Opção 1: networkidle (sem requests por 500ms)
-      page.waitForNetworkIdle({ idleTime: 500, timeout: 15_000 }).catch(() => {}),
-      // Opção 2: title preenchido com conteúdo real
-      page.waitForFunction(
-        () => document.title.length > 5 &&
-              !['Loading', 'Carregando', '...'].some(s => document.title.includes(s)),
-        { timeout: 15_000, polling: 200 },
-      ).catch(() => {}),
-    ])
+    // 'load' = aguarda todos os recursos (JS incluído), não só o DOM
+    await page.goto(url, { waitUntil: 'load', timeout: 30_000 })
 
-    // Extra: aguarda H1 aparecer no DOM (confirma hidratação React)
-    await page.waitForSelector('h1', { timeout: 5_000 }).catch(() => {})
+    // Aguarda React/VTEX IO hidratar: title com conteúdo real + pelo menos 1 h1
+    // VTEX IO usa react-helmet-async que seta o title depois da hidratação
+    await page.waitForFunction(
+      () => {
+        const title = document.title ?? ''
+        const hasTitle = title.length > 3 && !['loading', 'carregando', '...', 'vtex'].some(s => title.toLowerCase().includes(s))
+        const hasH1   = document.querySelectorAll('h1').length > 0
+        return hasTitle && hasH1
+      },
+      { timeout: 15_000, polling: 300 },
+    ).catch(() => {})
 
-    // Pausa mínima para scripts assíncronos finalizarem (ex: GTM, analytics que modificam DOM)
-    await new Promise((r) => setTimeout(r, 1000))
+    // Margem extra para scripts assíncronos (GTM, analytics, lazy hydration)
+    await new Promise((r) => setTimeout(r, 1500))
 
     // Extrai diretamente do DOM renderizado
     const metrics: DomMetrics = await page.evaluate(() => {
