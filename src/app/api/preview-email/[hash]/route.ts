@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
-import { buildEmailHtml } from '@/app/ferramentas/geo-audit/actions/analyzeAndDeliver'
-import type { GeoAuditResult } from '@/app/ferramentas/geo-audit/actions/analyzeAndDeliver'
+import { buildEmailHtml, type GeoAuditResult } from '@/app/ferramentas/geo-audit/lib/emailTemplate'
 
 export const dynamic = 'force-dynamic'
 

@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import type { GeoAuditResult } from '../../actions/analyzeAndDeliver'
+import type { GeoAuditResult } from '../../lib/emailTemplate'
 import Footer from '@/components/sections/Footer'
 import CheckerUpsell from '../../components/CheckerUpsell'
 import type { Metadata } from 'next'
