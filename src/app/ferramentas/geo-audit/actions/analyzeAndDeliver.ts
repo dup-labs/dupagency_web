@@ -358,52 +358,87 @@ function buildEmailHtml(result: GeoAuditResult, resultUrl: string): string {
     result.overall_score >= 70 ? '#51A899' :
     result.overall_score >= 50 ? '#897BBC' : '#D4A017'
 
+  const circ   = 2 * Math.PI * 50
+  const offset = circ * (1 - result.overall_score / 100)
+
   const topActions = result.action_plan.filter((a) => a.priority === 'alta').slice(0, 3)
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f5f5f5;font-family:'Helvetica Neue',Arial,sans-serif">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:32px 16px">
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:40px 16px">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
-        <tr><td style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);padding:32px 40px">
-          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.80)">GEO AUDIT · DUP.AGENCY</p>
-          <h1 style="margin:12px 0 0;font-size:26px;font-weight:700;color:#ffffff;line-height:1.3">Seu resultado está pronto!</h1>
-        </td></tr>
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e8e8e8">
+
+        <!-- barra gradiente topo -->
+        <tr><td height="4" style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);font-size:0;line-height:0"> </td></tr>
+
+        <!-- cabeçalho -->
         <tr><td style="padding:32px 40px 24px">
-          <p style="margin:0 0 8px;font-size:13px;color:#999;text-transform:uppercase;letter-spacing:0.08em">Score geral de</p>
-          <p style="margin:0 0 4px;font-size:14px;color:#666">${result.domain}</p>
-          <p style="margin:0 0 24px;font-size:64px;font-weight:700;line-height:1;color:${scoreColor}">${result.overall_score}<span style="font-size:24px;color:#ccc">/100</span></p>
+          <p style="margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#bbb">GEO AUDIT · DUP.AGENCY</p>
+          <h1 style="margin:0;font-size:22px;font-weight:700;color:#0d0d0d;line-height:1.3">Seu resultado está pronto.</h1>
+        </td></tr>
+
+        <!-- score hero -->
+        <tr><td style="padding:0 40px 28px">
+          <table cellpadding="0" cellspacing="0"><tr>
+            <td style="padding-right:24px;vertical-align:middle">
+              <svg width="120" height="120" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="64" cy="64" r="50" fill="none" stroke="#e1e1e1" stroke-width="10"/>
+                <circle cx="64" cy="64" r="50" fill="none" stroke="${scoreColor}" stroke-width="10"
+                  stroke-linecap="round" stroke-dasharray="${circ.toFixed(2)}"
+                  stroke-dashoffset="${offset.toFixed(2)}" transform="rotate(-90 64 64)"/>
+                <text x="64" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="${scoreColor}">${result.overall_score}</text>
+                <text x="64" y="76" text-anchor="middle" font-size="11" fill="#bbb">/100</text>
+              </svg>
+            </td>
+            <td style="vertical-align:middle">
+              <p style="margin:0 0 4px;font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.08em">Score geral</p>
+              <p style="margin:0 0 3px;font-size:14px;font-weight:700;color:#0d0d0d;text-transform:uppercase;letter-spacing:0.05em">${result.domain}</p>
+              <p style="margin:0;font-size:12px;color:#676767">${result.company_name}</p>
+            </td>
+          </tr></table>
+        </td></tr>
+
+        <!-- cards SEO / GEO -->
+        <tr><td style="padding:0 40px 28px">
           <table width="100%" cellpadding="0" cellspacing="0"><tr>
             <td width="50%" style="padding-right:8px">
-              <div style="background:#f8f8f8;border-radius:10px;padding:16px;text-align:center">
-                <p style="margin:0 0 4px;font-size:12px;color:#999;text-transform:uppercase;letter-spacing:0.06em">SEO Técnico</p>
-                <p style="margin:0;font-size:28px;font-weight:700;color:#897BBC">${result.seo_score}</p>
+              <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px 12px;text-align:center">
+                <p style="margin:0 0 6px;font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.08em">SEO Técnico</p>
+                <p style="margin:0;font-size:30px;font-weight:700;color:#897BBC">${result.seo_score}</p>
               </div>
             </td>
             <td width="50%" style="padding-left:8px">
-              <div style="background:#f8f8f8;border-radius:10px;padding:16px;text-align:center">
-                <p style="margin:0 0 4px;font-size:12px;color:#999;text-transform:uppercase;letter-spacing:0.06em">GEO Readiness</p>
-                <p style="margin:0;font-size:28px;font-weight:700;color:#51A899">${result.geo_score}</p>
+              <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px 12px;text-align:center">
+                <p style="margin:0 0 6px;font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.08em">GEO Readiness</p>
+                <p style="margin:0;font-size:30px;font-weight:700;color:#51A899">${result.geo_score}</p>
               </div>
             </td>
           </tr></table>
         </td></tr>
+
+        <!-- prioridades altas -->
         ${topActions.length > 0 ? `
-        <tr><td style="padding:0 40px 24px">
-          <p style="margin:0 0 16px;font-size:13px;font-weight:600;color:#0d0d0d;text-transform:uppercase;letter-spacing:0.08em">Prioridades altas</p>
-          ${topActions.map((a) => `<div style="margin-bottom:12px;padding:12px 14px;background:#fff5f5;border-radius:8px;border-left:3px solid #C04040">
-            <span style="font-size:11px;font-weight:600;color:#A83333;text-transform:uppercase;letter-spacing:0.06em">${a.category}</span>
-            <p style="margin:4px 0 0;font-size:13px;color:#3d3d3d;line-height:1.5">${a.action}</p>
+        <tr><td style="padding:0 40px 28px;border-top:1px solid #f0f0f0">
+          <p style="margin:24px 0 16px;font-size:11px;font-weight:700;color:#0d0d0d;text-transform:uppercase;letter-spacing:0.10em">Prioridades altas</p>
+          ${topActions.map((a) => `<div style="margin-bottom:10px;padding:12px 16px;background:#fafafa;border-radius:8px;border-left:3px solid #C04040">
+            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#A83333;text-transform:uppercase;letter-spacing:0.08em">${a.category}</p>
+            <p style="margin:0;font-size:13px;color:#3d3d3d;line-height:1.5">${a.action}</p>
           </div>`).join('')}
         </td></tr>` : ''}
-        <tr><td style="padding:0 40px 32px;text-align:center">
-          <a href="${resultUrl}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);color:#ffffff;font-size:15px;font-weight:600;text-decoration:none;border-radius:100px">Ver resultado completo →</a>
+
+        <!-- botão -->
+        <tr><td style="padding:4px 40px 36px;text-align:center">
+          <a href="${resultUrl}" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);color:#ffffff;font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:100px">Ver resultado completo →</a>
         </td></tr>
+
+        <!-- rodapé -->
         <tr><td style="padding:20px 40px;border-top:1px solid #f0f0f0;text-align:center">
-          <p style="margin:0;font-size:12px;color:#999">dup.agency · boutique de tecnologia para e-commerce</p>
+          <p style="margin:0;font-size:11px;color:#bbb">dup.agency · boutique de tecnologia para e-commerce</p>
         </td></tr>
+
       </table>
     </td></tr>
   </table>
