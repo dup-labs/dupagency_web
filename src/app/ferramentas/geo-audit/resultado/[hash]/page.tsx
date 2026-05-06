@@ -350,7 +350,7 @@ function ActionPlanSection({ result }: { result: GeoAuditResult }) {
                   <span className="font-synonym" style={{ fontSize: 'var(--text-label-ui)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: p.color }}>Prioridade {p.label}</span>
                 </div>
                 {items.map((rec, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '16px', alignItems: 'start', padding: '16px 28px', borderTop: '1px solid var(--neutral-100)' }}>
+                  <div key={i} className="action-row" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '16px', alignItems: 'start', padding: '16px 28px', borderTop: '1px solid var(--neutral-100)' }}>
                     <span className="action-pill font-synonym" style={{ fontSize: 'var(--text-label-ui)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--neutral-400)', background: 'var(--neutral-100)', borderRadius: 'var(--radius-pill)', padding: '3px 10px', whiteSpace: 'nowrap', marginTop: '1px', display: 'inline-block' }}>{rec.category}</span>
                     <span className="font-synonym" style={{ fontSize: 'var(--text-body-md)', lineHeight: 'var(--leading-body)', color: 'var(--neutral-800)' }}>{rec.action}</span>
                   </div>
@@ -398,36 +398,25 @@ export default async function ResultadoHashPage({
       <style>{`
         html { scroll-behavior: smooth; }
 
-        /* Nav com blur — igual à página /ferramentas/geo-audit */
-        nav:has(a[href="#manifesto"]) {
-          background: rgba(255,255,255,0.85) !important;
-          backdrop-filter: blur(16px) !important;
-          -webkit-backdrop-filter: blur(16px) !important;
-          border-bottom: 1px solid rgba(0,0,0,0.06) !important;
-        }
-
         /* Mobile: grid de métricas SEO empilha */
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
           .seo-row {
             grid-template-columns: 1fr auto !important;
             grid-template-rows: auto auto !important;
           }
-          .seo-row-label {
-            grid-column: 1;
-            grid-row: 1;
-          }
-          .seo-row-badge {
-            grid-column: 2;
-            grid-row: 1;
-          }
-          .seo-row-value {
-            grid-column: 1 / -1;
-            grid-row: 2;
-            color: var(--neutral-600) !important;
+          .seo-row-label { grid-column: 1; grid-row: 1; }
+          .seo-row-badge { grid-column: 2; grid-row: 1; }
+          .seo-row-value { grid-column: 1 / -1; grid-row: 2; }
+
+          /* Plano de ação: pill + texto em coluna */
+          .action-row {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
           }
           .action-pill {
             white-space: normal !important;
-            max-width: 120px;
+            width: fit-content !important;
           }
         }
       `}</style>

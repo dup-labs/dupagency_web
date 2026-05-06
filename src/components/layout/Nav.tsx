@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { useBackgroundContext } from './BackgroundLayer'
 
 const links = [
@@ -15,13 +16,22 @@ const links = [
 
 export default function Nav() {
   const { navTheme } = useBackgroundContext()
+  const pathname     = usePathname()
   const [open, setOpen]       = useState(false)
   const [hovered, setHovered] = useState<string | null>(null)
   const [imageY, setImageY]   = useState(0)
   const listRef               = useRef<HTMLDivElement>(null)
 
+  const isHome    = pathname === '/'
   const isDark    = navTheme === 'dark'
   const textColor = open || !isDark ? 'text-white' : 'text-black'
+
+  const glassStyle: React.CSSProperties = isHome ? {} : {
+    background:            'rgba(255,255,255,0.85)',
+    backdropFilter:        'blur(16px)',
+    WebkitBackdropFilter:  'blur(16px)',
+    borderBottom:          '1px solid rgba(0,0,0,0.06)',
+  }
 
   function handleMouseEnter(slug: string, e: React.MouseEvent<HTMLAnchorElement>) {
     setHovered(slug)
@@ -32,7 +42,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 h-16 transition-colors duration-300 ${textColor}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 h-16 transition-colors duration-300 ${textColor}`} style={glassStyle}>
         <a href="#hero" className="flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
           <span className="font-light tracking-tight">dup</span>
           <span className="font-medium tracking-tight">.agency</span>
