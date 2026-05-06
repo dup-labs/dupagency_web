@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { useBackgroundContext } from './BackgroundLayer'
 
@@ -23,15 +23,25 @@ export default function Nav() {
   const listRef               = useRef<HTMLDivElement>(null)
 
   const isHome    = pathname === '/'
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    if (isHome) return
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isHome])
+
   const isDark    = navTheme === 'dark'
   const textColor = open || !isDark ? 'text-white' : 'text-black'
 
-  const glassStyle: React.CSSProperties = isHome ? {} : {
+  const glassStyle: React.CSSProperties = (!isHome && scrolled) ? {
     background:            'rgba(255,255,255,0.85)',
     backdropFilter:        'blur(16px)',
     WebkitBackdropFilter:  'blur(16px)',
     borderBottom:          '1px solid rgba(0,0,0,0.06)',
-  }
+  } : {}
 
   function handleMouseEnter(slug: string, e: React.MouseEvent<HTMLAnchorElement>) {
     setHovered(slug)
