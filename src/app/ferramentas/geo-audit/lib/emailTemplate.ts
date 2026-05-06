@@ -61,13 +61,10 @@ export function buildEmailHtml(result: GeoAuditResult, resultUrl: string): strin
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e8e8e8">
 
-        <!-- barra gradiente topo -->
-        <tr><td height="4" style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);font-size:0;line-height:0"> </td></tr>
-
-        <!-- cabeçalho -->
-        <tr><td style="padding:32px 40px 24px">
-          <p style="margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#bbb">GEO AUDIT · DUP.AGENCY</p>
-          <h1 style="margin:0;font-size:22px;font-weight:700;color:#0d0d0d;line-height:1.3">Seu resultado está pronto.</h1>
+        <!-- cabeçalho com gradiente -->
+        <tr><td style="background:linear-gradient(135deg,#AFD7D0 0%,#897BBC 100%);padding:32px 40px">
+          <p style="margin:0 0 12px;font-size:13px;color:rgba(255,255,255,0.90);letter-spacing:0.04em">dup<span style="font-weight:700">.agency</span> &nbsp;*&nbsp; GEO AUDIT</p>
+          <h1 style="margin:0;font-size:26px;font-weight:700;color:#ffffff;line-height:1.3">Seu resultado está pronto.</h1>
         </td></tr>
 
         <!-- score hero -->
@@ -91,22 +88,28 @@ export function buildEmailHtml(result: GeoAuditResult, resultUrl: string): strin
           </tr></table>
         </td></tr>
 
-        <!-- cards SEO / GEO -->
+        <!-- barras SEO / GEO -->
         <tr><td style="padding:0 40px 28px">
-          <table width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td width="50%" style="padding-right:8px">
-              <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px 12px;text-align:center">
-                <p style="margin:0 0 6px;font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.08em">SEO Técnico</p>
-                <p style="margin:0;font-size:30px;font-weight:700;color:#897BBC">${result.seo_score}</p>
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr><td style="padding-bottom:16px">
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td><p style="margin:0;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:0.08em">SEO Técnico</p></td>
+                <td align="right"><p style="margin:0;font-size:13px;font-weight:700;color:#897BBC">${result.seo_score}<span style="font-size:11px;font-weight:400;color:#bbb">/100</span></p></td>
+              </tr></table>
+              <div style="margin-top:8px;background:#e8e8e8;border-radius:4px;height:6px;overflow:hidden">
+                <div style="background:#897BBC;height:6px;width:${result.seo_score}%;border-radius:4px;max-width:100%"></div>
               </div>
-            </td>
-            <td width="50%" style="padding-left:8px">
-              <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px 12px;text-align:center">
-                <p style="margin:0 0 6px;font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.08em">GEO Readiness</p>
-                <p style="margin:0;font-size:30px;font-weight:700;color:#51A899">${result.geo_score}</p>
+            </td></tr>
+            <tr><td>
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td><p style="margin:0;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:0.08em">GEO Readiness</p></td>
+                <td align="right"><p style="margin:0;font-size:13px;font-weight:700;color:#51A899">${result.geo_score}<span style="font-size:11px;font-weight:400;color:#bbb">/100</span></p></td>
+              </tr></table>
+              <div style="margin-top:8px;background:#e8e8e8;border-radius:4px;height:6px;overflow:hidden">
+                <div style="background:#51A899;height:6px;width:${result.geo_score}%;border-radius:4px;max-width:100%"></div>
               </div>
-            </td>
-          </tr></table>
+            </td></tr>
+          </table>
         </td></tr>
 
         <!-- prioridades altas -->
