@@ -2,6 +2,7 @@ import { notFound, redirect } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import type { GeoAuditResult } from '../../actions/analyzeAndDeliver'
 import Footer from '@/components/sections/Footer'
+import CheckerUpsell from '../../components/CheckerUpsell'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -132,7 +133,7 @@ function ResultHero({ result }: { result: GeoAuditResult }) {
                 >
                   {result.domain}
                 </p>
-                <p className="font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-600)' }}>
+                <p className="font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-600)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {result.company_name}
                 </p>
               </div>
@@ -263,10 +264,10 @@ function SeoMetrics({ result }: { result: GeoAuditResult }) {
                 <span className="font-synonym" style={{ fontSize: 'var(--text-label-ui)', fontWeight: 600, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.90)', textTransform: 'uppercase' }}>{group.label}</span>
               </div>
               {group.rows.map((row, ri) => (
-                <div key={ri} style={{ display: 'grid', gridTemplateColumns: '160px 1fr auto', gap: '16px', alignItems: 'start', padding: '14px 28px', borderTop: '1px solid var(--neutral-100)' }}>
-                  <span className="font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-400)', paddingTop: '1px' }}>{row.label}</span>
-                  <span className="font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-800)', lineHeight: 'var(--leading-body)', wordBreak: 'break-all' }}>{row.value}</span>
-                  <span className="font-synonym" style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', whiteSpace: 'nowrap', padding: '3px 10px', borderRadius: 'var(--radius-pill)', background: row.badge.ok ? 'rgba(81,168,153,0.12)' : 'rgba(192,64,64,0.10)', color: row.badge.ok ? '#51A899' : '#A83333' }}>{row.badge.text}</span>
+                <div key={ri} className="seo-row" style={{ display: 'grid', gridTemplateColumns: '160px 1fr auto', gap: '8px 16px', alignItems: 'start', padding: '14px 28px', borderTop: '1px solid var(--neutral-100)' }}>
+                  <span className="seo-row-label font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-400)', paddingTop: '1px' }}>{row.label}</span>
+                  <span className="seo-row-value font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-800)', lineHeight: 'var(--leading-body)', wordBreak: 'break-word' }}>{row.value}</span>
+                  <span className="seo-row-badge font-synonym" style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', whiteSpace: 'nowrap', padding: '3px 10px', borderRadius: 'var(--radius-pill)', background: row.badge.ok ? 'rgba(81,168,153,0.12)' : 'rgba(192,64,64,0.10)', color: row.badge.ok ? '#51A899' : '#A83333' }}>{row.badge.text}</span>
                 </div>
               ))}
               {gi < groups.length - 1 && <div style={{ height: '8px', background: 'var(--neutral-50)', borderTop: '1px solid var(--neutral-100)' }} />}
@@ -350,7 +351,7 @@ function ActionPlanSection({ result }: { result: GeoAuditResult }) {
                 </div>
                 {items.map((rec, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '16px', alignItems: 'start', padding: '16px 28px', borderTop: '1px solid var(--neutral-100)' }}>
-                    <span className="font-synonym" style={{ fontSize: 'var(--text-label-ui)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--neutral-400)', background: 'var(--neutral-100)', borderRadius: 'var(--radius-pill)', padding: '3px 10px', whiteSpace: 'nowrap', marginTop: '1px' }}>{rec.category}</span>
+                    <span className="action-pill font-synonym" style={{ fontSize: 'var(--text-label-ui)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--neutral-400)', background: 'var(--neutral-100)', borderRadius: 'var(--radius-pill)', padding: '3px 10px', whiteSpace: 'nowrap', marginTop: '1px', display: 'inline-block' }}>{rec.category}</span>
                     <span className="font-synonym" style={{ fontSize: 'var(--text-body-md)', lineHeight: 'var(--leading-body)', color: 'var(--neutral-800)' }}>{rec.action}</span>
                   </div>
                 ))}
@@ -396,11 +397,38 @@ export default async function ResultadoHashPage({
     <>
       <style>{`
         html { scroll-behavior: smooth; }
-        nav:has(a[href="/ferramentas/geo-audit"]) {
+
+        /* Nav com blur — igual à página /ferramentas/geo-audit */
+        nav:has(a[href="#manifesto"]) {
           background: rgba(255,255,255,0.85) !important;
           backdrop-filter: blur(16px) !important;
           -webkit-backdrop-filter: blur(16px) !important;
           border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+        }
+
+        /* Mobile: grid de métricas SEO empilha */
+        @media (max-width: 600px) {
+          .seo-row {
+            grid-template-columns: 1fr auto !important;
+            grid-template-rows: auto auto !important;
+          }
+          .seo-row-label {
+            grid-column: 1;
+            grid-row: 1;
+          }
+          .seo-row-badge {
+            grid-column: 2;
+            grid-row: 1;
+          }
+          .seo-row-value {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            color: var(--neutral-600) !important;
+          }
+          .action-pill {
+            white-space: normal !important;
+            max-width: 120px;
+          }
         }
       `}</style>
 
@@ -409,6 +437,7 @@ export default async function ResultadoHashPage({
       <SeoMetrics result={result} />
       <GeoSection result={result} />
       <ActionPlanSection result={result} />
+      <CheckerUpsell />
       <Footer />
     </>
   )
