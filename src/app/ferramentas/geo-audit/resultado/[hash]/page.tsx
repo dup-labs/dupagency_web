@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase'
 import type { GeoAuditResult } from '../../lib/emailTemplate'
 import Footer from '@/components/sections/Footer'
 import CheckerUpsell from '../../components/CheckerUpsell'
+import CtaPopup from '@/components/ui/CtaPopup'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -428,6 +429,7 @@ export default async function ResultadoHashPage({
       <ActionPlanSection result={result} />
       <CheckerUpsell />
       <Footer />
+      <CtaPopup />
     </>
   )
 }

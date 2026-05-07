@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import CtaPopup from '@/components/ui/CtaPopup'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -112,14 +113,7 @@ interface ResultViewProps {
 }
 
 export default function ResultView({ domain, results, onReset }: ResultViewProps) {
-  const [filter, setFilter]       = useState<FilterType>('all')
-  const [showBanner, setShowBanner] = useState(false)
-
-  useEffect(() => {
-    if (sessionStorage.getItem('rc-cta-dismissed')) return
-    const t = setTimeout(() => setShowBanner(true), 3000)
-    return () => clearTimeout(t)
-  }, [])
+  const [filter, setFilter] = useState<FilterType>('all')
 
   const counts: Record<SummaryKey, number> = {
     ok:       results.filter((r) => categorize(r) === 'ok').length,
@@ -158,15 +152,10 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
     loop:     '✅ Nenhum loop detectado — ótimo!',
   }
 
-  function dismissBanner() {
-    sessionStorage.setItem('rc-cta-dismissed', '1')
-    setShowBanner(false)
-  }
-
   return (
     <div style={{
       paddingTop:    'calc(64px + 48px)',
-      paddingBottom: showBanner ? '120px' : '80px',
+      paddingBottom: '80px',
       paddingLeft:   '24px',
       paddingRight:  '24px',
       background:    'var(--white)',
@@ -399,30 +388,7 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
 
       </div>
 
-      {/* CTA Banner */}
-      {showBanner && (
-        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(13,13,13,0.96)', backdropFilter: 'blur(12px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-          <p className="font-synonym" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', margin: 0 }}>
-            Quer que a dup.agency corrija esses problemas?
-          </p>
-          <a
-            href="https://wa.me/5511973558096"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-synonym"
-            style={{ display: 'inline-block', padding: '9px 20px', borderRadius: 'var(--radius-pill)', background: 'var(--grad-site-01)', color: 'var(--white)', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', whiteSpace: 'nowrap' }}
-          >
-            Falar no WhatsApp →
-          </a>
-          <button
-            onClick={dismissBanner}
-            aria-label="Fechar"
-            style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '20px', cursor: 'pointer', padding: '2px 8px', lineHeight: 1 }}
-          >
-            ×
-          </button>
-        </div>
-      )}
+      <CtaPopup />
     </div>
   )
 }
