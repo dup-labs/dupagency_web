@@ -32,16 +32,17 @@ export default function CtaPopup() {
 
       <div
         style={{
-          position:     'fixed',
-          bottom:       '28px',
-          right:        '28px',
-          zIndex:       200,
-          width:        '268px',
-          borderRadius: '20px',
-          background:   '#c8c8c8',
-          overflow:     'hidden',
-          boxShadow:    '0 12px 40px rgba(0,0,0,0.22)',
-          animation:    'cta-slide-in 0.35s ease forwards',
+          position:       'fixed',
+          bottom:         '28px',
+          right:          '28px',
+          zIndex:         200,
+          width:          '209px',
+          borderRadius:   '20px',
+          background:     'rgba(255,255,255,0.38)',
+          overflow:       'hidden',
+          boxShadow:      '0 12px 40px rgba(0,0,0,0.22)',
+          backdropFilter: 'blur(21px)',
+          animation:      'cta-slide-in 0.35s ease forwards',
         }}
       >
         {/* dismiss */}
@@ -65,15 +66,16 @@ export default function CtaPopup() {
         </button>
 
         {/* texto */}
-        <div style={{ padding: '28px 24px 22px' }}>
+        <div style={{ padding: '24px 15px' }}>
           <p
             className="font-chillax"
             style={{
               margin:     0,
-              fontSize:   '22px',
+              fontSize:   '12px',
               lineHeight: 1.3,
               color:      '#0d0d0d',
               fontWeight: 400,
+              textAlign:  'center',
             }}
           >
             Quer que a dup<strong>.agency</strong>,{' '}
@@ -91,7 +93,7 @@ export default function CtaPopup() {
             alignItems:      'center',
             justifyContent:  'center',
             gap:             '10px',
-            padding:         '18px 24px',
+            padding:         '11px 24px 15px',
             background:      '#0d0d0d',
             color:           '#ffffff',
             textDecoration:  'none',
