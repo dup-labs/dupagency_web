@@ -32,7 +32,7 @@ export default function BackgroundLayer({
   }, [])
 
   const isPorQueFunciona = activeSection === 'por-que-funciona'
-  const isGeoFinalCta    = activeSection === 'geo-final-cta'
+  const isGeoFinalCta    = activeSection === 'geo-final-cta' || activeSection === 'rc-final-cta'
   const isGradient       = isPorQueFunciona || isGeoFinalCta
 
   return (

@@ -20,6 +20,13 @@ export type SectionId =
   | 'geo-checker-upsell'
   | 'geo-faq'
   | 'geo-final-cta'
+  // redirect-checker
+  | 'rc-hero'
+  | 'rc-what-is'
+  | 'rc-services'
+  | 'rc-how-it-works'
+  | 'rc-faq'
+  | 'rc-final-cta'
 
 export type NavTheme = 'dark' | 'light'
 
@@ -95,6 +102,31 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
     navTheme: 'dark',
   },
   'geo-final-cta': {
+    background: 'var(--grad-site-01)',
+    navTheme: 'light',
+  },
+  // redirect-checker
+  'rc-hero': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'rc-what-is': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'rc-services': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'rc-how-it-works': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'rc-faq': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'rc-final-cta': {
     background: 'var(--grad-site-01)',
     navTheme: 'light',
   },
