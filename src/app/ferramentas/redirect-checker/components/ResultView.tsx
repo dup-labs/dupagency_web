@@ -55,6 +55,7 @@ function statusBadge(status: number, isLoop: boolean, isTimeout: boolean) {
   return                         { label: `${status}`,   bg: 'rgba(59,138,90,0.12)',  color: '#2A7A50' }
 }
 
+/* exportCsv — desativado temporariamente (não lançar ainda)
 function exportCsv(results: UrlResult[], domain: string) {
   const now       = new Date().toLocaleString('pt-BR')
   const ok        = results.filter((r) => categorize(r) === 'ok').length
@@ -85,6 +86,7 @@ function exportCsv(results: UrlResult[], domain: string) {
   a.click()
   URL.revokeObjectURL(a.href)
 }
+*/
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -156,36 +158,50 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
     <div style={{
       paddingTop:    'calc(64px + 48px)',
       paddingBottom: '80px',
-      paddingLeft:   '24px',
-      paddingRight:  '24px',
+      paddingLeft:   '16px',
+      paddingRight:  '16px',
       background:    'var(--white)',
       minHeight:     '100vh',
     }}>
+      <style>{`
+        @media (max-width: 640px) {
+          .rv-header        { flex-direction: column !important; }
+          .rv-header-btns   { width: 100% !important; }
+          .rv-header-btns button, .rv-header-btns a { flex: 1 !important; text-align: center !important; }
+          .rv-cards         { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+          .rv-card          { padding: 14px 8px !important; }
+          .rv-card-value    { font-size: 22px !important; }
+          .rv-card-sub      { display: none !important; }
+          .rv-action-row    { grid-template-columns: 1fr !important; gap: 6px !important; }
+          .rv-action-sev    { padding-top: 0 !important; }
+        }
+      `}</style>
+
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '40px' }}>
+        <div className="rv-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '32px' }}>
           <div>
             <p className="font-synonym" style={{ fontSize: 'var(--text-label-ui)', color: 'var(--neutral-400)', marginBottom: '8px', display: 'flex', gap: '6px', alignItems: 'center' }}>
               <a href="/ferramentas/redirect-checker" style={{ color: 'var(--neutral-400)', textDecoration: 'none' }}>Redirect Checker</a>
               <span>›</span>
               <span style={{ color: 'var(--neutral-600)' }}>Resultado</span>
             </p>
-            <h2 className="font-chillax font-bold" style={{ fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--black)', marginBottom: '4px', lineHeight: 1.2 }}>
+            <h2 className="font-chillax font-bold uppercase" style={{ fontSize: 'clamp(22px, 3vw, 36px)', color: 'var(--black)', marginBottom: '4px', lineHeight: 1.2 }}>
               {domain}
             </h2>
             <p className="font-synonym" style={{ fontSize: 'var(--text-body-md)', color: 'var(--neutral-600)' }}>
               {results.length} URLs verificadas
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <button
+          <div className="rv-header-btns" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+            {/* <button
               onClick={() => exportCsv(results, domain)}
               className="font-synonym"
               style={{ padding: '10px 20px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--neutral-200)', background: 'var(--white)', fontSize: '12px', letterSpacing: '0.06em', textTransform: 'uppercase', cursor: 'pointer', color: 'var(--neutral-600)' }}
             >
               Exportar CSV
-            </button>
+            </button> */}
             {onReset ? (
               <button
                 onClick={onReset}
@@ -206,50 +222,51 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
           </div>
         </div>
 
-        {/* Summary cards — 5 cols */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '12px', marginBottom: '32px' }}>
+        {/* Summary cards — 5 cols desktop / 3 cols mobile */}
+        <div className="rv-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '12px', marginBottom: '24px' }}>
           {SUMMARY_CARDS.map(({ key, emoji, label, sub }) => {
             const active = filter === key
             return (
               <div
                 key={key}
+                className="rv-card"
                 onClick={() => setFilter((prev) => (prev === key ? 'all' : key))}
                 style={{
-                  background:  active ? 'rgba(137,123,188,0.06)' : 'var(--neutral-50)',
-                  border:      `1px solid ${active ? 'var(--purple-mid)' : 'var(--neutral-100)'}`,
+                  background:   active ? 'rgba(137,123,188,0.06)' : 'var(--neutral-50)',
+                  border:       `1px solid ${active ? 'var(--purple-mid)' : 'var(--neutral-100)'}`,
                   borderRadius: 'var(--radius-xl)',
-                  padding:     '20px 12px',
-                  textAlign:   'center',
-                  cursor:      'pointer',
-                  transition:  'border-color 0.2s, background 0.2s',
+                  padding:      '20px 12px',
+                  textAlign:    'center',
+                  cursor:       'pointer',
+                  transition:   'border-color 0.2s, background 0.2s',
                 }}
               >
-                <div style={{ fontSize: '22px', marginBottom: '8px' }}>{emoji}</div>
-                <div className="font-chillax font-bold" style={{ fontSize: '28px', color: 'var(--black)', lineHeight: 1 }}>{counts[key]}</div>
-                <div className="font-synonym" style={{ fontSize: '12px', color: 'var(--neutral-800)', marginTop: '5px', fontWeight: 600 }}>{label}</div>
-                <div className="font-synonym" style={{ fontSize: '10px', color: 'var(--neutral-400)', marginTop: '3px' }}>{sub}</div>
+                <div style={{ fontSize: '20px', marginBottom: '6px' }}>{emoji}</div>
+                <div className="rv-card-value font-chillax font-bold" style={{ fontSize: '28px', color: 'var(--black)', lineHeight: 1 }}>{counts[key]}</div>
+                <div className="font-synonym" style={{ fontSize: '11px', color: 'var(--neutral-800)', marginTop: '5px', fontWeight: 600 }}>{label}</div>
+                <div className="rv-card-sub font-synonym" style={{ fontSize: '10px', color: 'var(--neutral-400)', marginTop: '3px' }}>{sub}</div>
               </div>
             )
           })}
 
           {/* Crawl Budget card */}
-          <div style={{ background: crawlBg, border: `1px solid ${crawlColor}33`, borderRadius: 'var(--radius-xl)', padding: '20px 12px', textAlign: 'center' }}>
-            <div style={{ fontSize: '22px', marginBottom: '8px' }}>🕷️</div>
-            <div className="font-chillax font-bold" style={{ fontSize: '28px', color: crawlColor, lineHeight: 1 }}>{crawlBudgetPct}%</div>
-            <div className="font-synonym" style={{ fontSize: '12px', color: 'var(--neutral-800)', marginTop: '5px', fontWeight: 600 }}>Crawl Budget</div>
-            <div className="font-synonym" style={{ fontSize: '10px', color: 'var(--neutral-400)', marginTop: '3px' }}>afetado</div>
+          <div className="rv-card" style={{ background: crawlBg, border: `1px solid ${crawlColor}33`, borderRadius: 'var(--radius-xl)', padding: '20px 12px', textAlign: 'center' }}>
+            <div style={{ fontSize: '20px', marginBottom: '6px' }}>🕷️</div>
+            <div className="rv-card-value font-chillax font-bold" style={{ fontSize: '28px', color: crawlColor, lineHeight: 1 }}>{crawlBudgetPct}%</div>
+            <div className="font-synonym" style={{ fontSize: '11px', color: 'var(--neutral-800)', marginTop: '5px', fontWeight: 600 }}>Crawl Budget</div>
+            <div className="rv-card-sub font-synonym" style={{ fontSize: '10px', color: 'var(--neutral-400)', marginTop: '3px' }}>afetado</div>
           </div>
         </div>
 
         {/* Priority actions */}
-        <div style={{ marginBottom: '32px', border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
+        <div style={{ marginBottom: '24px', border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
           <div style={{ background: 'var(--grad-site-01)', padding: '11px 20px' }}>
             <span className="font-synonym" style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--white)' }}>
               Ações prioritárias
             </span>
           </div>
           {actions.length === 0 ? (
-            <div style={{ padding: '20px 20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <span style={{ fontSize: '18px' }}>🎉</span>
               <p className="font-synonym" style={{ fontSize: '13px', color: 'var(--neutral-600)', margin: 0 }}>
                 Nenhum problema crítico detectado. Seu sitemap está saudável!
@@ -260,27 +277,28 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
               {actions.map((item, i) => (
                 <div
                   key={item.category}
+                  className="rv-action-row"
                   style={{
-                    display:      'grid',
+                    display:             'grid',
                     gridTemplateColumns: '100px 1fr',
-                    alignItems:   'start',
-                    gap:          '16px',
-                    padding:      '14px 20px',
-                    background:   item.bgColor,
-                    borderBottom: i < actions.length - 1 ? '1px solid var(--neutral-100)' : 'none',
+                    alignItems:          'start',
+                    gap:                 '12px',
+                    padding:             '14px 16px',
+                    background:          item.bgColor,
+                    borderBottom:        i < actions.length - 1 ? '1px solid var(--neutral-100)' : 'none',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px', paddingTop: '2px' }}>
+                  <div className="rv-action-sev" style={{ display: 'flex', alignItems: 'center', gap: '7px', paddingTop: '2px' }}>
                     <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: item.color, flexShrink: 0, display: 'inline-block' }} />
                     <span className="font-synonym" style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: item.color }}>
                       {item.severity}
                     </span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'start', gap: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'start', gap: '8px', flexWrap: 'wrap' }}>
                     <span className="font-synonym" style={{ display: 'inline-block', flexShrink: 0, padding: '2px 10px', borderRadius: '99px', background: 'var(--neutral-100)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--neutral-600)', marginTop: '2px' }}>
                       {item.category}
                     </span>
-                    <p className="font-synonym" style={{ fontSize: '13px', color: 'var(--neutral-800)', margin: 0, lineHeight: 1.5 }}>
+                    <p className="font-synonym" style={{ fontSize: '13px', color: 'var(--neutral-800)', margin: 0, lineHeight: 1.5, minWidth: 0 }}>
                       {item.action}
                     </p>
                   </div>

@@ -59,6 +59,19 @@ const CARDS: CardDef[] = [
     empresa: 'Positive Market / FOM',
     tempo: '4 anos de parceria',
     posClasses: 'bottom-[170px] left-[80px]',
+  },
+  {
+    slug: 'card-3',
+    content: {
+      type: 'text',
+      message:
+        'Quase todo mundo fala de parceria, mas com vocês isso realmente acontece no dia a dia! Eu amo trabalhar com o time.. São ágeis, prestativos e sempre disponíveis quando a gente precisa. Dá uma tranquilidade enorme saber que posso confiar 100% no que vocês entregam. Isso faz muita diferença na rotina e no crescimento do nosso e-commerce.',
+    },
+    nome: 'Helena Guimarães',
+    cargo: 'Coordenadora de E-commerce',
+    empresa: 'Authen',
+    tempo: '4 anos de parceria',
+    posClasses: 'bottom-[670px] left-[350px]',
   }
 ]
 

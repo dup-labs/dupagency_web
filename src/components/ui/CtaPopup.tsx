@@ -3,21 +3,13 @@
 import { useState, useEffect } from 'react'
 import { Checks } from '@phosphor-icons/react'
 
-const STORAGE_KEY = 'dup-cta-popup-dismissed'
-
 export default function CtaPopup() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (sessionStorage.getItem(STORAGE_KEY)) return
     const t = setTimeout(() => setVisible(true), 3000)
     return () => clearTimeout(t)
   }, [])
-
-  function dismiss() {
-    sessionStorage.setItem(STORAGE_KEY, '1')
-    setVisible(false)
-  }
 
   if (!visible) return null
 
@@ -45,26 +37,6 @@ export default function CtaPopup() {
           animation:      'cta-slide-in 0.35s ease forwards',
         }}
       >
-        {/* dismiss */}
-        <button
-          onClick={dismiss}
-          aria-label="Fechar"
-          style={{
-            position:   'absolute',
-            top:        '12px',
-            right:      '14px',
-            background: 'none',
-            border:     'none',
-            cursor:     'pointer',
-            color:      'rgba(0,0,0,0.35)',
-            fontSize:   '20px',
-            lineHeight: 1,
-            padding:    '2px 4px',
-          }}
-        >
-          ×
-        </button>
-
         {/* texto */}
         <div style={{ padding: '24px 15px' }}>
           <p
@@ -104,7 +76,7 @@ export default function CtaPopup() {
           <span
             className="font-synonym"
             style={{
-              fontSize:      '12px',
+              fontSize:      '11px',
               fontWeight:    500,
               letterSpacing: '0.10em',
               textTransform: 'uppercase',
