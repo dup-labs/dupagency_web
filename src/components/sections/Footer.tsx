@@ -30,6 +30,8 @@ export default function Footer() {
             key={label}
             href={href}
             aria-label={label}
+            id={`footer-social-${label.toLowerCase()}`}
+            data-social={label}
             className="opacity-40 hover:opacity-100 transition-opacity duration-200"
           >
             <PhosphorIcon icon={icon} size={20} weight="regular" />

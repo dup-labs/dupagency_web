@@ -237,6 +237,8 @@ export default function Parceiros() {
                   href={cliente.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  id={`parceiro-${cliente.slug}`}
+                  data-parceiro={cliente.nome}
                   className="flex items-center gap-4 py-4"
                   style={{
                     borderBottom: '0.5px solid var(--neutral-800)',

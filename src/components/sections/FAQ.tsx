@@ -101,6 +101,8 @@ function FaqRow({ item, isDark }: { item: FaqItem; isDark: boolean }) {
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-start justify-between gap-4 py-3 text-left"
         aria-expanded={open}
+        id={`faq-${item.q.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`}
+        data-faq-pergunta={item.q}
       >
         <span
           className="font-synonym flex-1 uppercase"
