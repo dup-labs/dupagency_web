@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { submitAudit } from '../actions/submitAudit'
 
@@ -36,7 +36,7 @@ const ERRO_MESSAGES: Record<string, string> = {
   'analise-falhou': 'Não conseguimos analisar o site. Verifique a URL e tente novamente.',
 }
 
-export default function AuditForm({ variant }: Props) {
+function AuditFormInner({ variant }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [url, setUrl] = useState('')
@@ -140,5 +140,13 @@ export default function AuditForm({ variant }: Props) {
         {loading ? 'Enviando...' : 'Analisar agora →'}
       </button>
     </form>
+  )
+}
+
+export default function AuditForm({ variant }: Props) {
+  return (
+    <Suspense>
+      <AuditFormInner variant={variant} />
+    </Suspense>
   )
 }
