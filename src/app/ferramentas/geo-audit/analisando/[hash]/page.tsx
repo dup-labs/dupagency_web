@@ -26,7 +26,7 @@ export default function AnalisandoPage({
 
   useEffect(() => {
     const msgTimer = setInterval(() => {
-      setMsgIndex((i) => (i + 1) % MESSAGES.length)
+      setMsgIndex((i) => Math.min(i + 1, MESSAGES.length - 1))
     }, 2800)
 
     const dotsTimer = setInterval(() => {
