@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import CtaPopup from '@/components/ui/CtaPopup'
+import RedirectUpsell from './RedirectUpsell'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -403,6 +404,8 @@ export default function ResultView({ domain, results, onReset }: ResultViewProps
             </table>
           </div>
         </div>
+
+        <RedirectUpsell />
 
       </div>
 

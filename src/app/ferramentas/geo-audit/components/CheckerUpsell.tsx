@@ -192,9 +192,14 @@ export default function CheckerUpsell() {
               ))}
             </div>
 
-            <button
-              type="button"
+            <a
+              href="https://wa.me/5511973558096"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="cta-whatsapp-geo-checker"
+              data-cta="whatsapp"
               style={{
+                display: 'block',
                 width: '100%',
                 padding: '14px 20px',
                 borderRadius: 'var(--radius-pill)',
@@ -207,10 +212,13 @@ export default function CheckerUpsell() {
                 cursor: 'pointer',
                 letterSpacing: 'var(--tracking-micro)',
                 textTransform: 'uppercase',
+                textDecoration: 'none',
+                textAlign: 'center',
+                boxSizing: 'border-box',
               }}
             >
               Quero o GEO Checker completo →
-            </button>
+            </a>
           </div>
         </div>
       </div>

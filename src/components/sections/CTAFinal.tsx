@@ -124,7 +124,7 @@ export default function CTAFinal() {
           target="_blank"
           rel="noopener noreferrer"
           id="cta-agenda"
-          data-cta="agenda"
+          data-cta="schedule"
           className="mt-10 inline-flex items-center gap-3 border border-white rounded-pill px-8 py-4 font-synonym text-label-ui tracking-micro text-white hover:bg-white hover:text-black transition-colors duration-300"
         >
           <PhosphorIcon icon={ChecksIcon} size={16} weight="regular" />

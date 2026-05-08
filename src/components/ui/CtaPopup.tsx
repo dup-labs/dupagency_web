@@ -60,6 +60,8 @@ export default function CtaPopup() {
           href="https://wa.me/5511973558096"
           target="_blank"
           rel="noopener noreferrer"
+          id="cta-popup-whatsapp"
+          data-cta="whatsapp"
           style={{
             display:         'flex',
             alignItems:      'center',
