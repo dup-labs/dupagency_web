@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ['puppeteer-core', '@sparticuz/chromium'],
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 640, 828, 1200, 1920],

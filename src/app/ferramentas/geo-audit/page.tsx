@@ -9,6 +9,8 @@ import Faq from './components/Faq'
 import FinalCta from './components/FinalCta'
 import Footer from '@/components/sections/Footer'
 
+export const maxDuration = 300
+
 export const metadata: Metadata = {
   title: 'GEO Audit Gratuito — Seu site está preparado para as IAs?',
   description:
