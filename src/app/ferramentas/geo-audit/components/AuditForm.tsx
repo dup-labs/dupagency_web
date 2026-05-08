@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { submitAudit } from '../actions/submitAudit'
 
 interface Props {
@@ -32,12 +32,22 @@ const INPUT_STYLE_CTA = {
   outline: 'none',
 }
 
+const ERRO_MESSAGES: Record<string, string> = {
+  'analise-falhou': 'Não conseguimos analisar o site. Verifique a URL e tente novamente.',
+}
+
 export default function AuditForm({ variant }: Props) {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [url, setUrl] = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const erro = searchParams.get('erro')
+    if (erro) setError(ERRO_MESSAGES[erro] ?? 'Ocorreu um erro. Tente novamente.')
+  }, [searchParams])
 
   const isCta = variant === 'cta'
   const inputStyle = isCta ? INPUT_STYLE_CTA : INPUT_STYLE_HERO

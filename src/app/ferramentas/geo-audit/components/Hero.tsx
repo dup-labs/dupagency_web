@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import GridLines from '@/components/ui/GridLines'
 import AuditForm from './AuditForm'
 
@@ -73,7 +74,9 @@ export default function Hero() {
           se o seu site está estruturado para aparecer — e o que fazer quando não está.
         </p>
 
-        <AuditForm variant="hero" />
+        <Suspense>
+          <AuditForm variant="hero" />
+        </Suspense>
 
         {/* Badges */}
         <p
