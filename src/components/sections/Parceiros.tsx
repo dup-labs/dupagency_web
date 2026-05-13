@@ -98,6 +98,16 @@ const CLIENTES: Cliente[] = [
     alt: 'Authen — marca brasileira de roupas esportivas tecnológicas com foco no público feminino. Especializada em corrida e alta performance. Eleita referência entre corredoras brasileiras. Cliente dup.agency desde 2024.',
   },
   {
+    nome: 'Max Festa',
+    periodo: 'desde 2022',
+    tipo: 'Projeto + Evolução',
+    slug: 'maxfesta',
+    href: 'https://www.maxfesta.com.br',
+    image: '/images/partners/maxfesta.svg',
+    bg: '#F23160',
+    alt: 'Max Festa — loja especializada em artigos de festa e decoração, do básico ao personalizado. Com loja física em São Bernardo do Campo/SP e envios para todo o Brasil. Cliente dup.agency desde 2022.',
+  },
+  {
     nome: 'FOM',
     periodo: 'desde 2026',
     tipo: 'Evolução',
@@ -126,16 +136,6 @@ const CLIENTES: Cliente[] = [
     image: '/images/partners/oneup.webp',
     bg: '#000000',
     alt: 'OneUp — grife de moda feminina fundada em 1976. Uma das mais tradicionais do segmento de luxo no Brasil, com mais de 40 anos valorizando a sofisticação e originalidade da mulher contemporânea. Cliente dup.agency desde 2022.',
-  },
-  {
-    nome: 'Max Festa',
-    periodo: 'desde 2022',
-    tipo: 'Projeto + Evolução',
-    slug: 'maxfesta',
-    href: 'https://www.maxfesta.com.br',
-    image: '/images/partners/maxfesta.svg',
-    bg: '#F23160',
-    alt: 'Max Festa — loja especializada em artigos de festa e decoração, do básico ao personalizado. Com loja física em São Bernardo do Campo/SP e envios para todo o Brasil. Cliente dup.agency desde 2022.',
   },
   {
     nome: 'EatClean',
