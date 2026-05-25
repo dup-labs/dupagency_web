@@ -72,6 +72,32 @@ const CARDS: CardDef[] = [
     empresa: 'Authen',
     tempo: '4 anos de parceria',
     posClasses: 'bottom-[670px] left-[350px]',
+  },
+  {
+    slug: 'card-4',
+    content: {
+      type: 'text',
+      message:
+        'Ter uma equipe parceira faz toda a diferença no e-commerce, e foi exatamente isso que encontramos com a Dup. Sempre muito ágeis e comprometidos em buscar soluções que realmente impactam a performance da loja. O suporte próximo, a visão estratégica e a qualidade das entregas nos trazem muita confiança para evoluir continuamente nosso projeto online.',
+    },
+    nome: 'Camila Bertozzi',
+    cargo: 'Proprietária',
+    empresa: 'MaxFesta',
+    tempo: '5 anos de parceria',
+    posClasses: 'bottom-[720px] left-[1050px]',
+  },
+  {
+    slug: 'card-5',
+    content: {
+      type: 'text',
+      message:
+        'Sempre muito disponíveis e parceiros no dia a dia, trazendo recomendações técnicas que sustentam as melhores decisões para os projetos desenvolvidos. Além disso, conduz todo o processo com muita transparência e comprometimentos, sendo um fornecedor que buscamos manter sempre próximo do nosso pool de parceiros.',
+    },
+    nome: 'Daniela Aiko',
+    cargo: 'Diretora de Atendimento',
+    empresa: 'Agência Íonz',
+    tempo: '4 anos de parceria',
+    posClasses: 'bottom-[270px] left-[750px]',
   }
 ]
 
