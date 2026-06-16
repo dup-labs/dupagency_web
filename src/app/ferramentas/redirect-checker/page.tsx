@@ -10,7 +10,7 @@ import FinalCta from './components/FinalCta'
 export const metadata: Metadata = {
   title: 'Redirect & Health Checker Gratuito — Analise o sitemap do seu e-commerce',
   description:
-    'Verifique todas as URLs do seu sitemap.xml de graça. Detecta redirects, erros 404, loops e páginas lentas. Ideal para e-commerces VTEX, Shopify e Nuvemshop.',
+    'Verifique todas as URLs do seu sitemap.xml de graça. Detecta redirects, erros 404, loops e páginas lentas. Ideal para e-commerces VTEX e Nuvemshop.',
   openGraph: {
     title: 'Redirect & Health Checker — Analise o sitemap do seu e-commerce',
     description:

@@ -312,7 +312,7 @@ export default function Hero() {
             className="mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
             style={{ lineHeight: 'var(--leading-body)' }}
           >
-            Para quem quer evoluir o e-commerce vtex, shopify ou nuvemshop sem se sobrecarregar com ruídos
+            Para quem quer evoluir o e-commerce vtex ou nuvemshop sem se sobrecarregar com ruídos
             na tecnologia. A operação fica com a gente, você cuida do negócio.
           </p>
         </div>

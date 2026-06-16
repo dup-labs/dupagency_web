@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   keywords: [
     'agência VTEX',
     'parceiro técnico e-commerce',
-    'desenvolvimento Shopify',
     'Nuvemshop sênior',
     'consultoria e-commerce',
     'agência boutique e-commerce',
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     url: 'https://dup.agency/',
     siteName: 'dup.agency',
     title: 'dup.agency — tech para e-commerce',
-    description: 'Agência boutique especializada em VTEX, Shopify e Nuvemshop. Parceiro técnico sênior que assume a tecnologia do seu e-commerce sem turnover e sem queda de qualidade.',
+    description: 'Agência boutique especializada em VTEX e Nuvemshop. Parceiro técnico sênior que assume a tecnologia do seu e-commerce sem turnover e sem queda de qualidade.',
     images: [
       {
         url: '/og-image.png',
@@ -83,7 +82,7 @@ const jsonLd = {
       logo: 'https://dup.agency/logo.svg',
       foundingDate: '2021',
       description:
-        'Agência boutique de tecnologia para e-commerce. Especialistas em VTEX, Shopify e Nuvemshop — assumindo a responsabilidade pela tech do cliente, sem turnover, com a mesma qualidade sempre.',
+        'Agência boutique de tecnologia para e-commerce. Especialistas em VTEX e Nuvemshop — assumindo a responsabilidade pela tech do cliente, sem turnover, com a mesma qualidade sempre.',
       sameAs: [
         'https://www.linkedin.com/company/dupagency/',
         'https://www.instagram.com/dup.agency',
@@ -123,7 +122,7 @@ const jsonLd = {
       areaServed: 'BR',
       priceRange: '$$$$',
       serviceType: 'Desenvolvimento e consultoria para e-commerce',
-      knowsAbout: ['VTEX', 'Shopify', 'Nuvemshop', 'e-commerce', 'desenvolvimento web'],
+      knowsAbout: ['VTEX', 'Nuvemshop', 'e-commerce', 'desenvolvimento web'],
     },
     {
       '@type': 'Service',

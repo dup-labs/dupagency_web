@@ -365,7 +365,7 @@ Evolução Contínua
 ## Contexto da Agência
 
 - **dup.agency** — boutique de tecnologia e-commerce, dois seniores: Dup (dev) e Lari (tech lead)
-- Especialização: VTEX, Nuvemshop, Shopify
+- Especialização: VTEX, Nuvemshop
 - Modelo: parceria contínua, agenda limitada, sem turnover
 - Sem funcionários, nunca terão
 - Nomadismo digital — vivem em países diferentes em rotação

@@ -4,14 +4,14 @@ dup.agency é uma agência boutique de tecnologia para e-commerce fundada em 202
 
 ## O que fazemos
 
-Assumimos a responsabilidade pela tecnologia do e-commerce dos nossos clientes para que eles possam focar no crescimento do negócio. Trabalhamos com VTEX, Shopify e Nuvemshop.
+Assumimos a responsabilidade pela tecnologia do e-commerce dos nossos clientes para que eles possam focar no crescimento do negócio. Trabalhamos com VTEX, e Nuvemshop.
 
 O que entregamos não é só execução técnica. Vendemos paz, clareza e segurança — a equipe não muda, a qualidade não cai, e a operação é a mesma independente de onde estamos.
 
 ## Serviços
 
 - Evolução Contínua: parceria técnica mensal para lojas que querem crescer com consistência. A dup entra como time técnico da operação, priorizando e executando enquanto o cliente foca no negócio.
-- Projeto de Implantação: construção ou migração de lojas em VTEX, Shopify ou Nuvemshop. Escopo fechado, prazo definido, sênior tocando do início ao fim.
+- Projeto de Implantação: construção ou migração de lojas em VTEX, ou Nuvemshop. Escopo fechado, prazo definido, sênior tocando do início ao fim.
 - Blueprint de Projeto: imersão de 2 horas seguida de documento técnico completo — recursos nativos, customizações necessárias, regras de negócio mapeadas e riscos identificados.
 - Consultoria Estratégica VTEX: visão sênior para decidir o que executar, em que ordem e com quais riscos. Sem substituir o time atual.
 
@@ -31,7 +31,7 @@ GEO (Generative Engine Optimization) e implementações com inteligência artifi
 
 Mcassab (gestora das marcas Lego, SharkNinja, SodaStream e Spicy no Brasil), Dux Company (Dux Human Health e Eat Clean), Vitafor, Oneup, Authen, FOM, Bennemann, Max Festa.
 
-Também atuamos como especialistas técnicos de referência para agências de e-commerce — como Sanders e Ionz — que precisam de suporte sênior em VTEX, Shopify ou Nuvemshop para os seus próprios clientes.
+Também atuamos como especialistas técnicos de referência para agências de e-commerce — como Sanders e Ionz — que precisam de suporte sênior em VTEX, ou Nuvemshop para os seus próprios clientes.
 
 ## Fundadores
 

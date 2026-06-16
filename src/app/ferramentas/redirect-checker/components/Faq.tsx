@@ -18,7 +18,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Para quais plataformas funciona?',
-    a: 'Funciona para qualquer plataforma — VTEX, Shopify, Nuvemshop, WooCommerce ou qualquer outro CMS que gere um sitemap.xml público.',
+    a: 'Funciona para qualquer plataforma — VTEX, Nuvemshop, WooCommerce ou qualquer outro CMS que gere um sitemap.xml público.',
   },
   {
     q: 'O que faço depois de receber o relatório?',

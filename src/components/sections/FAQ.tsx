@@ -63,7 +63,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Vocês trabalham com quais plataformas?',
-    a: 'Trabalhamos com VTEX, Shopify e Nuvemshop. A escolha da plataforma depende do momento, do volume e da estratégia da marca — e faz parte do que avaliamos junto com o cliente quando necessário.',
+    a: 'Trabalhamos com VTEX e Nuvemshop. A escolha da plataforma depende do momento, do volume e da estratégia da marca — e faz parte do que avaliamos junto com o cliente quando necessário.',
   },
 ]
 

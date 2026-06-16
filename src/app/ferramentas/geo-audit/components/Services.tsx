@@ -1,7 +1,7 @@
 const SERVICES = [
   {
     title: 'Reestruturação técnica',
-    body: 'VTEX IO, Shopify e Nuvemshop — schema markup, performance, estrutura de headings e dados estruturados implementados do jeito certo.',
+    body: 'VTEX IO e Nuvemshop — schema markup, performance, estrutura de headings e dados estruturados implementados do jeito certo.',
   },
   {
     title: 'Conteúdo que converte e é citado',
