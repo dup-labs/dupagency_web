@@ -1,23 +1,28 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
+import { Link, usePathname, getPathname } from '@/i18n/navigation'
+import { routing, localeLabel } from '@/i18n/routing'
 import { useBackgroundContext } from './BackgroundLayer'
 import { ScrollTrigger } from '@/lib/gsap'
 
+// Links de seção da home. `key` → home.nav.<key> (label); `hash` → âncora na
+// home; `slug` → usado na lógica de hover. O href final recebe o prefixo do
+// locale ativo em runtime (localePrefix: 'always').
 const links = [
-  { label: 'MANIFESTO',            href: '/#manifesto',         slug: 'manifesto'   },
-  { label: 'PARCEIROS',            href: '/#parceiros',         slug: 'parceiros'   },
-  { label: 'PROCESSO',             href: '/#como-trabalhamos',  slug: 'processo'    },
-  { label: 'SERVIÇOS',             href: '/#servicos',          slug: 'servicos'    },
-  { label: 'DEPOIMENTOS',          href: '/#depoimentos',       slug: 'depoimentos' },
-  { label: 'PERGUNTAS FREQUENTES', href: '/#faq',               slug: 'faq'         },
-  { label: 'CONTATO',              href: '/#cta-final',         slug: 'contato'     },
+  { key: 'manifesto',   hash: '#manifesto',        slug: 'manifesto'   },
+  { key: 'parceiros',   hash: '#parceiros',        slug: 'parceiros'   },
+  { key: 'processo',    hash: '#como-trabalhamos', slug: 'processo'    },
+  { key: 'servicos',    hash: '#servicos',         slug: 'servicos'    },
+  { key: 'depoimentos', hash: '#depoimentos',      slug: 'depoimentos' },
+  { key: 'faq',         hash: '#faq',              slug: 'faq'         },
+  { key: 'contato',     hash: '#cta-final',        slug: 'contato'     },
 ]
 
 const tools = [
-  { label: 'GEO Audit',                  href: '/ferramentas/geo-audit'       },
-  { label: 'Redirecionamentos para SEO', href: '/ferramentas/redirect-checker' },
+  { key: 'geoAudit', path: '/ferramentas/geo-audit'        },
+  { key: 'redirect', path: '/ferramentas/redirect-checker' },
 ]
 
 // ícone fornecido pelo Bruno — download/save Phosphor
@@ -45,8 +50,40 @@ function ToolsChevron({ open }: { open: boolean }) {
   )
 }
 
+// Troca de idioma preservando a página atual. usePathname (next-intl) já vem
+// sem o prefixo de locale; o <Link locale> reconstrói com o idioma escolhido.
+function LangSwitcher({ className = '', large = false }: { className?: string; large?: boolean }) {
+  const pathname = usePathname()
+  const active   = useLocale()
+  const fontSize = large ? '20px' : '12px'
+  return (
+    <div className={`flex items-center gap-2 ${className}`}>
+      {routing.locales.map((l, i) => (
+        <span key={l} className="flex items-center gap-2">
+          {i > 0 && <span style={{ opacity: 0.3, fontSize }}>/</span>}
+          <Link
+            href={pathname}
+            locale={l}
+            className="font-synonym tracking-widest transition-opacity duration-200 hover:opacity-100"
+            style={{
+              fontSize,
+              opacity:        l === active ? 1 : 0.45,
+              textDecoration: 'none',
+              color:          'inherit',
+            }}
+          >
+            {localeLabel[l]}
+          </Link>
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default function Nav() {
   const { navTheme } = useBackgroundContext()
+  const t            = useTranslations('home.nav')
+  const locale       = useLocale()
   const pathname     = usePathname()
 
   const [open, setOpen]               = useState(false)
@@ -56,8 +93,15 @@ export default function Nav() {
   const [toolsDropdown, setToolsDropdown] = useState(false)
   const listRef                       = useRef<HTMLDivElement>(null)
 
+  // pathname (next-intl) já vem sem o prefixo de idioma — '/' é a home.
   const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
+
+  // Helpers de href com o prefixo do locale ativo.
+  // getPathname respeita o localePrefix: pt sem prefixo, en/es com.
+  const homeHref = getPathname({ href: '/', locale })
+  const sectionHref = (hash: string) => `${homeHref}${hash}`
+  const toolHref = (path: string) => getPathname({ href: path, locale })
 
   useEffect(() => {
     if (isHome) return
@@ -95,8 +139,8 @@ export default function Nav() {
   function handleDepoimentosClick(e: React.MouseEvent) {
     e.preventDefault()
     setOpen(false)
-    if (pathname !== '/') {
-      window.location.href = '/#depoimentos'
+    if (!isHome) {
+      window.location.href = `${homeHref}#depoimentos`
       return
     }
     const dep = ScrollTrigger.getAll().find(
@@ -111,7 +155,7 @@ export default function Nav() {
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 h-16 transition-colors duration-300 ${textColor}`}
         style={glassStyle}
       >
-        <a href="/" className="flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
+        <a href={homeHref} className="flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
           <span className="font-light tracking-tight">dup</span>
           <span className="font-medium tracking-tight">.agency</span>
         </a>
@@ -123,12 +167,12 @@ export default function Nav() {
             return (
               <a
                 key={slug}
-                href={link.href}
+                href={sectionHref(link.hash)}
                 onClick={slug === 'depoimentos' ? handleDepoimentosClick : undefined}
                 className="font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
                 style={{ fontSize: '12px', textDecoration: 'none', color: 'inherit' }}
               >
-                {link.label}
+                {t(link.key)}
               </a>
             )
           })}
@@ -143,7 +187,7 @@ export default function Nav() {
             className="font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
             style={{ fontSize: '12px', background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', padding: '4px 0' }}
           >
-            FERRAMENTAS
+            {t('ferramentas')}
           </button>
 
           {/* wrapper transparente — preenche o gap pra não perder o hover */}
@@ -173,8 +217,8 @@ export default function Nav() {
           >
             {tools.map((tool, i) => (
               <a
-                key={tool.href}
-                href={tool.href}
+                key={tool.path}
+                href={toolHref(tool.path)}
                 className="font-synonym"
                 style={{
                   display:        'block',
@@ -188,7 +232,7 @@ export default function Nav() {
                 onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
               >
-                {tool.label}
+                {t(`tools.${tool.key}`)}
               </a>
             ))}
           </div>
@@ -197,22 +241,27 @@ export default function Nav() {
 
           {/* CONTATO */}
           <a
-            href={contatoLink.href}
+            href={sectionHref(contatoLink.hash)}
             className="font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
             style={{ fontSize: '12px', textDecoration: 'none', color: 'inherit' }}
           >
-            {contatoLink.label}
+            {t(contatoLink.key)}
           </a>
+
+          {/* Separador + seletor de idioma */}
+          <span style={{ width: 1, height: 14, background: 'currentColor', opacity: 0.25 }} />
+          <LangSwitcher />
         </div>
 
-        {/* Mobile: botão [ menu ] */}
+        {/* Mobile: só o botão [ menu ] — o seletor de idioma vive dentro do
+            menu (overlay), com bom alvo de toque e sem espremer a barra. */}
         <button
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-label={open ? t('close') : t('menu')}
           className="lg:hidden font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
           style={{ fontSize: '12px' }}
         >
-          {open ? '[ fechar ]' : '[ menu ]'}
+          {open ? t('close') : t('menu')}
         </button>
       </nav>
 
@@ -237,8 +286,8 @@ export default function Nav() {
           {/* Links principais (sem CONTATO) */}
           {mainLinks.map((link, i) => (
             <a
-              key={link.label}
-              href={link.href}
+              key={link.key}
+              href={sectionHref(link.hash)}
               onClick={link.slug === 'depoimentos' ? handleDepoimentosClick : () => setOpen(false)}
               onMouseEnter={(e) => handleMouseEnter(link.slug, e)}
               onMouseLeave={() => setHovered(null)}
@@ -253,7 +302,7 @@ export default function Nav() {
                 letterSpacing:  hovered === link.slug ? '0.05em' : '0em',
               }}
             >
-              {link.label}
+              {t(link.key)}
             </a>
           ))}
 
@@ -283,7 +332,7 @@ export default function Nav() {
                 textAlign:      'left',
               }}
             >
-              FERRAMENTAS
+              {t('ferramentas')}
               <ToolsChevron open={toolsOpen} />
             </button>
 
@@ -296,8 +345,8 @@ export default function Nav() {
             >
               {tools.map((tool) => (
                 <a
-                  key={tool.href}
-                  href={tool.href}
+                  key={tool.path}
+                  href={toolHref(tool.path)}
                   onClick={() => setOpen(false)}
                   className="font-synonym text-white"
                   style={{
@@ -310,7 +359,7 @@ export default function Nav() {
                     borderTop:      '1px solid rgba(255,255,255,0.06)',
                   }}
                 >
-                  {tool.label}
+                  {t(`tools.${tool.key}`)}
                 </a>
               ))}
             </div>
@@ -318,7 +367,7 @@ export default function Nav() {
 
           {/* CONTATO — último item */}
           <a
-            href={contatoLink.href}
+            href={sectionHref(contatoLink.hash)}
             onClick={() => setOpen(false)}
             onMouseEnter={(e) => handleMouseEnter(contatoLink.slug, e)}
             onMouseLeave={() => setHovered(null)}
@@ -333,8 +382,21 @@ export default function Nav() {
               letterSpacing:  hovered === contatoLink.slug ? '0.05em' : '0em',
             }}
           >
-            {contatoLink.label}
+            {t(contatoLink.key)}
           </a>
+
+          {/* Seletor de idioma — dentro do menu mobile, grande e tocável */}
+          <div
+            className="text-white"
+            style={{
+              paddingTop: '32px',
+              opacity:    open ? 1 : 0,
+              transform:  open ? 'translateY(0)' : 'translateY(20px)',
+              transition: `opacity 0.35s ease ${(mainLinks.length + 2) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 2) * 0.06}s`,
+            }}
+          >
+            <LangSwitcher large />
+          </div>
 
           {/* Imagem hover */}
           <div
@@ -363,7 +425,7 @@ export default function Nav() {
               >
                 <div className="w-full h-full flex items-center justify-center">
                   <span className="font-chillax text-white opacity-20 uppercase" style={{ fontSize: '11px', letterSpacing: '0.15em' }}>
-                    {link.label}
+                    {t(link.key)}
                   </span>
                 </div>
               </div>

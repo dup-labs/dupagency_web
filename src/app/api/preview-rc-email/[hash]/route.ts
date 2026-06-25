@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
-import { buildEmailHtml } from '@/app/ferramentas/redirect-checker/lib/emailTemplate'
+import { buildEmailHtml } from '@/app/[locale]/ferramentas/redirect-checker/lib/emailTemplate'
 
 export const dynamic = 'force-dynamic'
 

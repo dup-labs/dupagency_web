@@ -1,30 +1,20 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
+import { richTags } from '@/i18n/rich'
 import { gsap } from '@/lib/gsap'
 
+// Número + chave de tradução (home.porqueFunciona.itemN). Títulos carregam \n
+// no message file e são renderizados com whiteSpace: pre-line.
 const ITEMS = [
-  {
-    num: '01',
-    titulo: 'Paz operacional\nde verdade',
-    texto:
-      'O sentimento de preocupação com quebras e bugs vai embora. A tecnologia da loja deixa de ocupar espaço na sua cabeça — e começa a ser o que deveria ser desde o início: algo que simplesmente funciona.',
-  },
-  {
-    num: '02',
-    titulo: 'Alinhamento, explicação e\ndecisão em equipe.',
-    texto:
-      'Tudo que vai pra loja passa por você antes. A gente apresenta o caminho, explica o raciocínio, e só avança quando você concorda. Você sabe o que vem por aí antes de acontecer.',
-  },
-  {
-    num: '03',
-    titulo: 'A qualidade de sempre, com\na tranquilidade de sempre.',
-    texto:
-      'Nossa operação sempre seremos nós — estejamos em Buenos Aires, João Pessoa ou na Tailândia. Os mesmos dois sêniores que você já conhece, já confia, e que conhecem cada detalhe do seu projeto.',
-  },
+  { num: '01', key: 'item1' },
+  { num: '02', key: 'item2' },
+  { num: '03', key: 'item3' },
 ]
 
 export default function PorQueFunciona() {
+  const t = useTranslations('home.porqueFunciona')
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef  = useRef<HTMLDivElement>(null)
   const itemsRef   = useRef<(HTMLDivElement | null)[]>([])
@@ -67,18 +57,15 @@ export default function PorQueFunciona() {
       <div ref={headerRef} className="flex flex-col md:flex-row items-start md:justify-between mb-16 gap-4 md:gap-8">
         <h2
           className="font-chillax font-bold text-white uppercase shrink-0"
-          style={{ fontSize: 'clamp(40px, 6.5vw, 80px)', lineHeight: 'var(--leading-display)' }}
+          style={{ fontSize: 'calc(clamp(40px, 6.5vw, 80px) * var(--font-scale))', lineHeight: 'var(--leading-display)' }}
         >
-          Porque
-          <br />
-          funciona
+          {t.rich('headline', richTags)}
         </h2>
         <p
           className="font-synonym text-body-md text-white opacity-60 md:text-right max-w-xs md:self-center"
           style={{ lineHeight: 'var(--leading-body)' }}
         >
-          A gente entra pra organizar, planejar e executar evoluções com
-          clareza, explicando prós, contras, e riscos antes de qualquer decisão
+          {t('subheadline')}
         </p>
       </div>
 
@@ -97,13 +84,13 @@ export default function PorQueFunciona() {
               className="font-chillax font-bold text-white uppercase flex-1"
               style={{ fontSize: 'clamp(18px, 2.2vw, 28px)', lineHeight: 'var(--leading-heading)', whiteSpace: 'pre-line' }}
             >
-              {item.titulo}
+              {t(`${item.key}.title`)}
             </h3>
             <p
               className="font-synonym text-body-md text-white opacity-70 md:w-[38%] md:shrink-0"
               style={{ lineHeight: 'var(--leading-body)' }}
             >
-              {item.texto}
+              {t(`${item.key}.body`)}
             </p>
           </div>
         ))}

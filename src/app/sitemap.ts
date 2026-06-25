@@ -1,26 +1,52 @@
 import type { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
+import { getPathname } from '@/i18n/navigation'
+import { routing, htmlLang } from '@/i18n/routing'
+
+const baseUrl = 'https://dup.agency'
+
+// hreflang alternates de um href em todos os idiomas. getPathname respeita o
+// localePrefix 'as-needed' (pt sem prefixo, en/es com).
+function languageAlternates(href: string) {
+  return {
+    languages: Object.fromEntries(
+      routing.locales.map((l) => [htmlLang[l], `${baseUrl}${getPathname({ href, locale: l })}`]),
+    ),
+  }
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://dup.agency'
+  const ferramentasDir = path.join(process.cwd(), 'src/app/[locale]/ferramentas')
+  const ferramentas = fs
+    .readdirSync(ferramentasDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
+    .map((d) => d.name)
 
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    { url: `${baseUrl}/#parceiros`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/#servicos`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/#como-trabalhamos`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-  ]
+  const entries: MetadataRoute.Sitemap = []
 
-  const ferramentasDir = path.join(process.cwd(), 'src/app/ferramentas')
-  const ferramentas = fs.readdirSync(ferramentasDir, { withFileTypes: true })
-    .filter(d => d.isDirectory() && !d.name.startsWith('_'))
-    .map(d => ({
-      url: `${baseUrl}/ferramentas/${d.name}`,
+  // Uma entrada por idioma × página, cada uma carregando os alternates de
+  // todos os idiomas. Mantém os 3 locales indexáveis separadamente.
+  for (const locale of routing.locales) {
+    entries.push({
+      url: `${baseUrl}${getPathname({ href: '/', locale })}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    }))
+      changeFrequency: 'monthly',
+      priority: 1,
+      alternates: languageAlternates('/'),
+    })
 
-  return [...staticPages, ...ferramentas]
+    for (const tool of ferramentas) {
+      const href = `/ferramentas/${tool}`
+      entries.push({
+        url: `${baseUrl}${getPathname({ href, locale })}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.9,
+        alternates: languageAlternates(href),
+      })
+    }
+  }
+
+  return entries
 }

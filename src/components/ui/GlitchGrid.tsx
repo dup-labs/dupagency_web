@@ -13,6 +13,7 @@ interface Props {
   texts: Record<string, string>      // texto do hover por key
   slotsCount?: number                // qtd de slots no grid (default 4)
   className?: string
+  closeLabel?: string                // aria-label do botão de fechar do BottomSheet
 }
 
 interface SlotState {
@@ -88,6 +89,7 @@ export default function GlitchGrid({
   texts,
   slotsCount = 4,
   className = '',
+  closeLabel = 'Fechar',
 }: Props) {
   const initialAssignments = useMemo(
     () => buildInitialAssignments(photos, slotsCount),
@@ -346,6 +348,7 @@ export default function GlitchGrid({
         <BottomSheet
           text={openSheetText}
           onClose={() => setOpenSheetIdx(null)}
+          closeLabel={closeLabel}
         />
       )}
     </>
@@ -359,9 +362,11 @@ export default function GlitchGrid({
 function BottomSheet({
   text,
   onClose,
+  closeLabel = 'Fechar',
 }: {
   text: string
   onClose: () => void
+  closeLabel?: string
 }) {
   const sheetRef = useRef<HTMLDivElement>(null)
   const startY = useRef(0)
@@ -436,7 +441,7 @@ function BottomSheet({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Fechar"
+          aria-label={closeLabel}
           className="glitch-sheet__close"
         >
           ×

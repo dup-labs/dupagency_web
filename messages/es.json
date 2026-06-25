@@ -1,0 +1,779 @@
+{
+  "home": {
+    "meta": {
+      "title": "dup.agency — tech para e-commerce, evolución sin sobresaltos",
+      "description": "dup.agency se encarga de la tecnología de tu e-commerce para que puedas enfocarte en el crecimiento del negocio. Sin rotación y sin caída de calidad.",
+      "ogDescription": "Agencia boutique especializada en VTEX y Tiendanube. Un socio técnico senior que asume la tecnología de tu e-commerce sin rotación y sin pérdida de calidad.",
+      "twitterDescription": "Tu estrategia. Nuestra tech."
+    },
+    "nav": {
+      "parceiros": "SOCIOS",
+      "servicos": "SERVICIOS",
+      "depoimentos": "TESTIMONIOS",
+      "ferramentas": "HERRAMIENTAS",
+      "contato": "CONTACTO",
+      "manifesto": "MANIFIESTO",
+      "processo": "PROCESO",
+      "faq": "PREGUNTAS FRECUENTES",
+      "tools": {
+        "geoAudit": "GEO Audit",
+        "redirect": "Redirecciones para SEO"
+      },
+      "menu": "[ menú ]",
+      "close": "[ cerrar ]"
+    },
+    "hero": {
+      "headline": "<g>Claridad</g> y <g>seguridad</g><br></br>para quienes necesitan<br></br><g>paz operacional</g>",
+      "subheadline": "Para quienes quieren hacer crecer su e-commerce en VTEX o Tiendanube sin sobrecargarse con ruidos tecnológicos. La operación es nuestra, el negocio es tuyo.",
+      "clientsLabel": "Algunas marcas que confían en nuestro trabajo"
+    },
+    "manifesto": {
+      "sectionLabel": "MANIFIESTO",
+      "headline": "<g>socio técnico</g> para<br></br>e-commerces que toman la tecnología en <g>serio.</g>",
+      "line1": "soporte continuo, ejecución senior,<br></br><g>calidad</g> que no depende de la escala.",
+      "line2": "<g>sin rotación</g>. <g>sin sorpresas.</g>",
+      "about": {
+        "dup": "Reglas y disciplina — horarios de entrenamiento, de dormir, de despertar — son lo que le libera la cabeza para crear. Diseñador de formación, entró en la tecnología para ampliar su abanico y encontró en el e-commerce un mercado de aprendizaje infinito. Conoce el ecosistema de punta a punta. Es él quien garantiza que lo acordado se cumpla, siempre. **Dup**",
+        "lari": "Entró en el e-commerce a los 17 años y nunca más se fue. En su tiempo libre es lectora voraz — libros, booktube, todo lo que alimenta la curiosidad. Ese placer de aprender se desborda al trabajo: estudia tecnología como hobby. Dev senior y responsable de toda la estructura técnica de dup. Si está funcionando, tiene su mano. **Lari**"
+      },
+      "closeLabel": "Cerrar"
+    },
+    "parceiros": {
+      "sectionLabel": "SOCIOS",
+      "headline": "socios que<br></br><g>confían</g>",
+      "subheadline": "Nos integramos para organizar, planificar y ejecutar evoluciones con claridad, explicando pros, contras y riesgos antes de cualquier decisión",
+      "desde": "desde",
+      "tipo": {
+        "projetoEvolucao": "Proyecto + Evolución",
+        "evolucao": "Evolución"
+      }
+    },
+    "porqueFunciona": {
+      "sectionLabel": "POR QUÉ",
+      "headline": "Por qué<br></br>funciona",
+      "subheadline": "Nos integramos para organizar, planificar y ejecutar con claridad total — pros, contras y riesgos sobre la mesa antes de cualquier decisión",
+      "item1": {
+        "title": "Paz operacional de verdad",
+        "body": "La preocupación por errores y caídas desaparece. La tecnología de tu tienda deja de ocupar espacio en tu cabeza — y empieza a ser lo que siempre debió ser: algo que simplemente funciona."
+      },
+      "item2": {
+        "title": "Alineación, explicación y decisiones en equipo.",
+        "body": "Todo lo que va a la tienda pasa por ti primero. Presentamos el camino, explicamos el razonamiento y solo avanzamos cuando estás de acuerdo. Siempre sabes lo que viene antes de que ocurra."
+      },
+      "item3": {
+        "title": "La misma calidad, con la misma tranquilidad, siempre.",
+        "body": "Nuestra operación siempre somos nosotros — estemos en Buenos Aires, João Pessoa o Tailandia. Los mismos dos seniors que ya conoces, en quienes ya confías, y que conocen cada detalle de tu proyecto."
+      }
+    },
+    "processo": {
+      "sectionLabel": "PROCESO",
+      "headline": "cómo <g>trabajamos</g>",
+      "subheadline": "Procesos bien construidos para darte claridad en cada etapa y que podamos aprovechar nuestro tiempo para evolucionar y pensar en cosas nuevas.",
+      "step1": {
+        "title": "Primero, entendemos",
+        "body": "Nos sumergimos en lo que está ocurriendo — la tienda, la operación, los cuellos de botella y las oportunidades. Solo con ese contexto podemos estar seguros del mejor camino."
+      },
+      "step2": {
+        "title": "El camino queda claro antes de empezar",
+        "body": "Con todo mapeado, queda claro dónde están las mayores ganancias. Organizamos las prioridades junto a ti para que cada paso tenga sentido antes de que empiece cualquier cosa."
+      },
+      "step3": {
+        "title": "Ritmo constante, entrega en lo acordado",
+        "body": "Aquí todo avanza. Ritmo constante, entregas en lo acordado y la conversación siempre abierta."
+      },
+      "step4": {
+        "title": "Nada sale sin un ok claro",
+        "body": "Revisión continua de lo realizado, garantizando calidad y alineación en cada entrega."
+      }
+    },
+    "servicos": {
+      "sectionLabel": "SERVICIOS",
+      "blueprint": {
+        "title": "Blueprint de\nProyecto",
+        "body": "Inmersión completa, entrega de un documento estratégico: qué resuelve VTEX de forma nativa, qué necesita personalización, los riesgos y los puntos de atención. Para quienes quieren hacerlo bien sin tener presupuesto de proyecto completo."
+      },
+      "consultoria": {
+        "title": "Consultoría\nEstratégica",
+        "body": "Sigues con tu agencia. Nosotros entramos como el cerebro estratégico de la operación — decidiendo qué ejecutar, en qué orden y con qué riesgos. Un encuentro semanal, entregables claros, presencia cercana."
+      },
+      "implantacao": {
+        "title": "Proyecto de\nImplantación",
+        "body": "Construcción desde cero, migración de plataforma o reestructuración completa. Arquitectura pensada, alcance cerrado, ejecución senior de principio a fin. Sin sorpresas en el camino."
+      },
+      "evolucao": {
+        "title": "Evolución\nContinua",
+        "body": "Socio técnico mes a mes. Agenda garantizada, enfoque en lo que importa y un senior ejecutando con calidad cada mes. La tienda avanza sin que tengas que empujar — con planes Base, Growth y Premium según el ritmo de tu operación."
+      }
+    },
+    "depoimentos": {
+      "sectionLabel": "TESTIMONIOS",
+      "headline": "lo que dicen quienes<br></br><g>confían en nosotros</g>",
+      "subheadline": "Le preguntamos a nuestros socios qué los hace seguir confiando en nuestro trabajo. Aquí están algunas respuestas.",
+      "parceiroLabel": "años de alianza",
+      "audioFallback": "Tu navegador no soporta audio."
+    },
+    "faq": {
+      "sectionLabel": "PREGUNTAS FRECUENTES",
+      "q1": {
+        "question": "¿Hay contrato mínimo?",
+        "answer": "El primer ciclo es de 6 meses. Es el tiempo que necesitamos para calibrar la alianza, entender el ritmo de tu operación y entregar valor real. Después de eso, sin fidelidad — solo necesitamos 30 días de anticipación para organizar la transición."
+      },
+      "q2": {
+        "question": "¿Qué pasa con las horas no utilizadas en el mes?",
+        "answer": "Las horas no se acumulan. Trabajamos con capacidad limitada y controlada — si se acumularan, perderíamos el control de calidad que es exactamente lo que estás contratando. En la última semana del mes recibimos como máximo el 25% del total del paquete, precisamente para evitar la urgencia de fin de mes."
+      },
+      "q3": {
+        "question": "¿Y si tengo una urgencia fuera del horario?",
+        "answer": "Una urgencia es una urgencia — puedes contactarnos a cualquier hora. Pero es bueno saber que nuestro proceso está pensado para minimizar las urgencias: no hacemos cambios en la tienda después de las 15h en días hábiles ni en ningún horario los viernes, precisamente para proteger el fin de semana. Si ocurre algo fuera de eso, estaremos en línea tan pronto como sea posible."
+      },
+      "q4": {
+        "question": "La agencia anterior no me entregó el código. ¿Pueden asumir el proyecto?",
+        "answer": "Para Evolución Continua, preferimos no entrar en proyectos sin historial de código — en algunos casos, como VTEX IO, ni siquiera es técnicamente posible. Pero si esa es tu situación, podemos desarrollar un proyecto nuevo desde cero. Con una ventaja: el código desarrollado es tuyo, garantizado en el contrato. Si algún día decides cambiar de socio — aunque dudamos que quieras — te llevas todo."
+      },
+      "q5": {
+        "question": "¿Cómo solicito un trabajo?",
+        "answer": "Trabajamos con Monday.com. Cada socio tiene su propio tablero, con acceso para hasta 3 personas de tu equipo — para crear, priorizar y validar las actividades a ejecutar."
+      },
+      "q6": {
+        "question": "¿Cómo me comunico con ustedes para una duda rápida?",
+        "answer": "Cada socio tiene un grupo de WhatsApp con nosotros — canal para asuntos urgentes y dudas puntuales. Lo que tenga sentido convertirse en tarea, lo movemos a Monday."
+      },
+      "q7": {
+        "question": "¿Hacen carga de productos?",
+        "answer": "No ejecutamos el registro directamente — los detalles de la operación quedan contigo, y no queremos arriesgar inconsistencias en la información de tus productos. Pero damos todo el soporte: orientación, documentación y cuando sea necesario hasta una llamada para hacer el registro asistido junto a tu equipo."
+      },
+      "q8": {
+        "question": "Si tengo más de una tienda, ¿necesito dos contratos?",
+        "answer": "No. Firmas un contrato con nosotros y podemos contemplar todas tus tiendas — siempre que estén en las plataformas con las que trabajamos. Tú decides cómo distribuir mejor las horas entre ellas."
+      },
+      "q9": {
+        "question": "¿SEO y performance están incluidos en el plan o requieren contrato aparte?",
+        "answer": "SEO técnico y performance forman parte del flujo estándar — están incluidos en el plan normal. GEO es un producto aparte, ya que requiere análisis, documentación y seguimiento que van más allá del día a día de la tienda."
+      },
+      "q10": {
+        "question": "¿Hacen reuniones presenciales?",
+        "answer": "Somos nómades, así que tenemos libertad de estar en muchos lugares. Si estamos en tu ciudad en el momento justo, será un placer. Si no, podemos coordinar los costos de desplazamiento y agendar — libertad nunca nos falta."
+      },
+      "q11": {
+        "question": "¿Solo ejecutan o también analizan y sugieren?",
+        "answer": "Preferimos hacer el trabajo completo — analizar, traer ideas, pensar juntos, identificar oportunidades. Pero respetamos el ritmo de cada socio. Si tu equipo estratégico ya pauta todo, ejecutamos con calidad. Si quieres involucrarnos en las decisiones y tener la mirada técnica en las estrategias, mejor aún."
+      },
+      "q12": {
+        "question": "¿Hay reunión de alineación cada mes?",
+        "answer": "Sí. En la primera semana de cada mes tenemos una reunión fija con cada socio — definida desde el kick off — para hablar del momento de la tienda, acciones previstas y hacer brainstorm para el próximo ciclo."
+      },
+      "q13": {
+        "question": "¿Cómo hago seguimiento del saldo de horas?",
+        "answer": "Dentro de Monday tienes acceso a un panel personalizado con todas las actividades, horas y estado de todo lo ejecutado en el año — mes a mes, en tiempo real."
+      },
+      "q14": {
+        "question": "¿Con qué plataformas trabajan?",
+        "answer": "Trabajamos con VTEX y Tiendanube. La elección de la plataforma depende del momento, el volumen y la estrategia de la marca — y es parte de lo que evaluamos junto al cliente cuando es necesario."
+      }
+    },
+    "ctaFinal": {
+      "headline1": "La agenda es limitada.",
+      "rotatorPrefix": "Pero una",
+      "rotatorMid": "",
+      "rotatorTail": "es irresistible.",
+      "frases": [
+        "conversación productiva",
+        "conversación creativa",
+        "conversación estratégica",
+        "conversación ligera",
+        "conversación eficiente",
+        "conversación honesta"
+      ],
+      "subheadline": "Agenda una charla con nosotros y construyamos juntos una alianza que valga la pena.",
+      "button": "¡QUIERO CONVERSAR!"
+    },
+    "footer": {
+      "copyright": "dup.agency — 2026"
+    }
+  },
+  "ferramentas": {
+    "common": {
+      "popup": {
+        "question": "¿Quieres que dup<b>.agency</b> resuelva esto por ti?",
+        "button": "Habla con nosotros"
+      }
+    },
+    "geoAudit": {
+      "meta": {
+        "title": "GEO Audit Gratuito — ¿Tu sitio está preparado para las IAs? | dup.agency",
+        "description": "Descubre si tu e-commerce está optimizado para aparecer en ChatGPT, Gemini y Perplexity. Auditoría gratuita de GEO y SEO técnico en segundos.",
+        "ogDescription": "Auditoría gratuita de GEO y SEO. Descubre si tu e-commerce aparece en ChatGPT, Gemini y Perplexity."
+      },
+      "hero": {
+        "label": "GEO — Generative Engine Optimization",
+        "headline": "¿Tu e-commerce aparece cuando <g>alguien le pregunta a una IA?</g>",
+        "subheadline": "ChatGPT, Gemini y Perplexity ya responden preguntas de compra. Descubre si tu sitio está estructurado para aparecer — y qué hacer cuando no lo está.",
+        "cta": "Analizar ahora",
+        "trust": "Gratuito · Resultado en menos de 60s · Sin compromiso",
+        "clientsLabel": "Algunas marcas que confían en nuestro trabajo"
+      },
+      "form": {
+        "urlPlaceholder": "URL de tu sitio (ej: mitienda.com)",
+        "emailPlaceholder": "Tu mejor email",
+        "submitting": "Enviando...",
+        "errorAnalise": "No pudimos analizar el sitio. Verifica la URL e inténtalo de nuevo.",
+        "errorGenerico": "Ocurrió un error. Inténtalo de nuevo.",
+        "errorInesperado": "Error inesperado. Inténtalo de nuevo.",
+        "errors": {
+          "emailInvalido": "Correo electrónico inválido.",
+          "emailProfissional": "Usa un correo profesional o personal.",
+          "urlInvalida": "URL inválida. Ej: misitio.com",
+          "urlProtocolo": "La URL debe comenzar con http:// o https://",
+          "urlPublica": "URL inválida. Usa un dominio público.",
+          "urlCompleta": "URL inválida. Incluye el dominio completo.",
+          "rateLimit": "Demasiadas solicitudes. Inténtalo de nuevo en 1 hora.",
+          "iniciar": "Error al iniciar el análisis. Inténtalo de nuevo."
+        }
+      },
+      "whatIsGeo": {
+        "sectionLabel": "¿Qué es GEO?",
+        "headline": "La búsqueda cambió. La mayoría de los e-commerces todavía no se dio cuenta.",
+        "body": "GEO es la práctica de optimizar tu contenido y estructura técnica para aparecer en las respuestas generadas por inteligencias artificiales — no solo en los resultados de Google.",
+        "pillar1": {
+          "title": "Contenido citable",
+          "body": "Las IAs buscan afirmaciones concretas, datos, definiciones claras y preguntas respondidas directamente. El contenido vago no es citado."
+        },
+        "pillar2": {
+          "title": "Estructura técnica",
+          "body": "Schema markup, headings jerárquicos, datos estructurados y performance son leídos por los crawlers de las IAs antes que cualquier contenido."
+        },
+        "pillar3": {
+          "title": "Autoridad de marca",
+          "body": "Las menciones externas, la consistencia de NAP, la presencia en directorios y los backlinks de calidad fortalecen la señal de autoridad para los modelos de lenguaje."
+        },
+        "pillar4": {
+          "title": "SEO como base",
+          "body": "GEO no reemplaza al SEO — lo amplifica. Un sitio técnicamente sólido en Google tiene muchas más chances de aparecer en las respuestas de las IAs."
+        }
+      },
+      "whatWeDo": {
+        "sectionLabel": "Lo que hace dup.agency",
+        "headline": "Código y contenido. Los dos pilares del GEO.",
+        "body": "De nada sirve tener contenido excelente en un sitio técnicamente roto — ni código impecable con texto vago que ninguna IA pueda citar. Nosotros resolvemos los dos lados.",
+        "step1": {
+          "title": "Reestructuración técnica",
+          "body": "VTEX IO y Tiendanube — schema markup, performance, estructura de headings y datos estructurados implementados correctamente."
+        },
+        "step2": {
+          "title": "Contenido que convierte y es citado",
+          "body": "Textos que responden preguntas reales de tu nicho, con afirmaciones concretas, datos y estructura que las IAs pueden extraer y citar."
+        },
+        "step3": {
+          "title": "Estrategia continua",
+          "body": "El ecosistema de IAs cambia rápido. Nosotros seguimos y ajustamos tu presencia de forma continua."
+        }
+      },
+      "howItWorks": {
+        "sectionLabel": "Cómo funciona",
+        "headline": "Tres pasos. Menos de 60 segundos.",
+        "step1": {
+          "title": "Ingresa la URL",
+          "body": "Pega el link de tu sitio y tu email. Sin instalar nada, sin dar acceso a nada."
+        },
+        "step2": {
+          "title": "La IA analiza",
+          "body": "Nuestra IA verifica automáticamente 17 puntos técnicos de SEO y 5 categorías de GEO Readiness."
+        },
+        "step3": {
+          "title": "Recibe el informe",
+          "body": "Score completo, gaps críticos y plan de acción priorizado — todo en el mismo lugar."
+        }
+      },
+      "auditVsChecker": {
+        "headline": "La auditoría prepara. El Checker confirma.",
+        "body": "El GEO Audit analiza si tu sitio está estructurado para ser citado. El GEO Checker verifica si ya eres citado — en la práctica, en las respuestas reales de las IAs.",
+        "auditIncludes": {
+          "label": "Este informe incluye",
+          "item1": "Score GEO Readiness (0–100)",
+          "item2": "Análisis técnico de SEO en 17 puntos",
+          "item3": "Gaps críticos identificados",
+          "item4": "Plan de acción priorizado"
+        },
+        "checkerCta": "Quiero el GEO Checker completo",
+        "eyebrow": "Audit gratuito × GEO Checker",
+        "reportLabel": "Informe completo",
+        "checkerCardQuestion": "¿Apareces?"
+      },
+      "faq": {
+        "q1": {
+          "question": "¿Qué es GEO (Generative Engine Optimization)?",
+          "answer": "GEO es la práctica de optimizar tu sitio y contenido para aparecer en las respuestas generadas por inteligencias artificiales como ChatGPT, Gemini y Perplexity. A diferencia del SEO tradicional, que se enfoca en posicionar páginas en buscadores, el GEO se enfoca en garantizar que las IAs conozcan, entiendan y citen tu marca en las respuestas que generan."
+        },
+        "q2": {
+          "question": "¿Cuál es la diferencia entre SEO y GEO?",
+          "answer": "SEO es la optimización para motores de búsqueda tradicionales como Google, que devuelven una lista de links. GEO es la optimización para motores de búsqueda generativos — IAs que devuelven respuestas directamente. Un buen SEO técnico es la base del GEO, pero GEO va más allá: exige contenido estructurado, afirmaciones citables, autoridad de marca y datos estructurados que los modelos de lenguaje puedan procesar."
+        },
+        "q3": {
+          "question": "¿La auditoría gratuita es realmente gratuita?",
+          "answer": "Sí, 100% gratuito y sin compromiso. Ingresas la URL de tu sitio y tu email, y recibes un informe completo con score GEO Readiness, score de SEO técnico, gaps identificados y plan de acción priorizado. No pedimos tarjeta de crédito ni datos sensibles."
+        },
+        "q4": {
+          "question": "¿Para qué plataformas funciona la auditoría?",
+          "answer": "El GEO Audit funciona para cualquier sitio web o e-commerce, independientemente de la plataforma — VTEX, Tiendanube, WooCommerce, Magento o cualquier otra. El análisis se realiza en la URL pública de tu sitio, verificando las señales técnicas y de contenido que utilizan los crawlers de las IAs."
+        },
+        "q5": {
+          "question": "¿En cuánto tiempo recibo el resultado?",
+          "answer": "El informe se genera en menos de 60 segundos y se envía al email que ingreses. También podrás acceder al resultado directamente en la página después del análisis."
+        },
+        "q6": {
+          "question": "¿Qué es el GEO Checker y cómo funciona?",
+          "answer": "El GEO Checker es el producto completo de dup.agency para el monitoreo de presencia en las IAs. A diferencia del Audit (que analiza el potencial técnico de tu sitio), el Checker verifica en la práctica si tu sitio ya está siendo mencionado en las respuestas de ChatGPT, Gemini y Perplexity para las preguntas de tu nicho. Es un servicio continuo de monitoreo e informes."
+        },
+        "sectionLabel": "Preguntas frecuentes"
+      },
+      "ctaFinal": {
+        "headline": "Empieza ahora. Es gratuito.",
+        "body": "Descubre en 60 segundos si tu e-commerce está preparado para el próximo ciclo de búsqueda.",
+        "cta": "Analizar ahora",
+        "footer": "Hecho por dup.agency · boutique de tecnología para e-commerce"
+      },
+      "mock": {
+        "previewTitle": "Vista previa del informe",
+        "status": {
+          "ok": "OK",
+          "warning": "Atención",
+          "critical": "Crítico"
+        },
+        "schemaMarkup": "Schema Markup",
+        "coreWebVitals": "Core Web Vitals",
+        "structuredContent": "Contenido estructurado",
+        "brandMentions": "Menciones de marca"
+      },
+      "analisando": {
+        "messages": [
+          "Accediendo a tu sitio...",
+          "Analizando meta tags y headings...",
+          "Verificando schema markup...",
+          "Evaluando SEO técnico...",
+          "Calculando GEO Readiness...",
+          "Identificando gaps críticos...",
+          "Generando plan de acción...",
+          "Casi listo..."
+        ],
+        "andamento": "análisis en curso"
+      },
+      "resultado": {
+        "breadcrumb": "GEO Audit › Resultado",
+        "scoreGeral": "Score general",
+        "seoTecnico": "SEO Técnico",
+        "geoReadiness": "GEO Readiness",
+        "tabs": {
+          "seo": "SEO Técnico",
+          "geo": "GEO Readiness",
+          "plano": "Plan de Acción"
+        },
+        "seoSection": {
+          "headline": "Análisis de la estructura",
+          "scoreLabel": "Score SEO:",
+          "metaTags": "Meta Tags",
+          "headings": "Headings",
+          "conteudo": "Contenido",
+          "imagens": "Imágenes",
+          "schemaMarkup": "Schema Markup"
+        },
+        "seoRows": {
+          "title": "Title",
+          "description": "Description",
+          "ogImage": "OG Image",
+          "canonical": "Canonical",
+          "h1": "H1",
+          "h2": "H2",
+          "estimatedWords": "Palabras estimadas",
+          "totalImages": "Total de imágenes",
+          "missingAlt": "Sin alt text",
+          "schemaTypes": "Tipos encontrados",
+          "organization": "Organization",
+          "faqSchema": "FAQ Schema",
+          "naoDefinido": "No definido",
+          "nenhum": "Ninguno",
+          "implementado": "Implementado",
+          "naoEncontrado": "No encontrado",
+          "multiplos": "Múltiples",
+          "poucos": "Pocos",
+          "chars": "{n} chars",
+          "found": "{n, plural, one {# encontrado} other {# encontrados}}",
+          "images": "{n, plural, one {# imagen} other {# imágenes}}"
+        },
+        "status": {
+          "ok": "OK",
+          "faltando": "Faltando",
+          "ausente": "Ausente",
+          "presente": "Presente",
+          "raso": "Escaso",
+          "critico": "Crítico",
+          "atencao": "Atención"
+        },
+        "geoSection": {
+          "headline": "5 categorías de presencia en las IAs",
+          "scoreLabel": "Score GEO:",
+          "scoreTitle": "GEO Readiness Score",
+          "categories": {
+            "clareza": "Claridad de Marca",
+            "citabilidade": "Citabilidad",
+            "respostas": "Respuestas Directas",
+            "autoridade": "Señales de Autoridad",
+            "estrutura": "Estructura Técnica GEO"
+          }
+        },
+        "planoSection": {
+          "headline": "Qué hacer ahora",
+          "subheadline": "Ordenado por impacto. Empieza por las prioridades altas.",
+          "recomendacoesLabel": "{n, plural, =0 {Ninguna recomendación} one {# recomendación} other {# recomendaciones}}",
+          "prioridadeAlta": "Prioridad Alta",
+          "prioridadeMedia": "Prioridad Media",
+          "prioridadeBaixa": "Prioridad Baja"
+        }
+      },
+      "mockDemo": {
+        "analiseConcluida": "Análisis completado",
+        "niche": "Moda femenina",
+        "keywords": [
+          "moda femenina",
+          "vestidos",
+          "ropa online",
+          "tienda de moda"
+        ],
+        "gapsLabel": "Gaps críticos identificados",
+        "overallDescription": "Score general de GEO + SEO técnico",
+        "scoreLabelBom": "Bueno",
+        "scoreLabelRegular": "Regular",
+        "topGaps": [
+          "3 H1 en la misma página — confunde a crawlers e IAs sobre el tema principal",
+          "Ningún Schema implementado — Organization, FAQ y BreadcrumbList ausentes",
+          "14 imágenes sin alt text — invisibles para las IAs y para la accesibilidad",
+          "Contenido con 280 palabras — por debajo del mínimo para citabilidad"
+        ],
+        "seoHeadline": "17 puntos técnicos analizados",
+        "seoGroups": {
+          "links": "Links"
+        },
+        "seoRowLabels": {
+          "titleTag": "Title Tag",
+          "metaDescription": "Meta Description",
+          "ogTitle": "OG Title",
+          "ogDescription": "OG Description",
+          "h1Unico": "H1 único",
+          "h1Length": "H1 Length",
+          "keywordH1": "Keyword en el H1",
+          "hierarquia": "Jerarquía",
+          "wordCount": "Word Count",
+          "paragrafos": "Párrafos",
+          "estruturaFaq": "Estructura FAQ",
+          "keywordDensity": "Keyword Density",
+          "altPresente": "Alt Text presente",
+          "altDescritivo": "Alt Text descriptivo",
+          "organization": "Organization",
+          "faqSchema": "FAQ Schema",
+          "breadcrumbList": "BreadcrumbList",
+          "linksInternos": "Links internos",
+          "linksExternos": "Links externos",
+          "linksQuebrados": "Links rotos"
+        },
+        "seoValues": {
+          "chars": "{n} chars",
+          "words": "{n} words",
+          "charsApprox": "~{n} chars",
+          "encontrados": "{n} encontrados",
+          "nao": "No",
+          "sim": "Sí",
+          "irregular": "Irregular",
+          "sequencial": "Secuencial",
+          "ausente": "Ausente",
+          "presente": "Presente"
+        },
+        "geoIntro": "El GEO Readiness evalúa el potencial de tu sitio de ser citado por modelos de lenguaje. Cada categoría vale hasta 10 puntos.",
+        "geoNote": "Este score evalúa el <em>potencial estructural</em> del sitio. El GEO Checker verifica si ya apareces de verdad en las respuestas reales de ChatGPT, Gemini y Perplexity.",
+        "geoObs": {
+          "clareza": "Propuesta de valor vaga, sin definición directa de lo que vende la marca",
+          "citabilidade": "Sin datos concretos, estadísticas o afirmaciones que las IAs puedan extraer",
+          "respostas": "Ninguna estructura de FAQ o Q&A detectada",
+          "autoridade": "Sin mención a clientes, casos, premios o credenciales",
+          "estrutura": "Schema ausente, meta tags genéricas, headings sin foco en respuesta"
+        },
+        "planCategories": {
+          "headings": "Headings",
+          "schema": "Schema",
+          "imagens": "Imágenes",
+          "conteudo": "Contenido",
+          "metaTags": "Meta Tags",
+          "faq": "FAQ",
+          "geo": "GEO",
+          "links": "Links"
+        },
+        "planActions": {
+          "headings": "Reduce a un único H1 por página con la keyword principal incluida",
+          "schema": "Implementa Organization, FAQ Schema y BreadcrumbList",
+          "imagens": "Agrega alt text descriptivo en las 14 imágenes sin descripción",
+          "conteudo": "Amplía el contenido de las páginas principales a un mínimo de 600 palabras",
+          "metaTags": "Reduce la meta description a 160 caracteres y el title a 50–60",
+          "faq": "Agrega una sección de FAQ con preguntas reales del nicho de moda femenina",
+          "geo": "Incluye datos concretos: años en el mercado, número de piezas, política de cambios",
+          "links": "Corrige los 3 links rotos identificados"
+        }
+      }
+    },
+    "redirectChecker": {
+      "meta": {
+        "title": "Redirect & Health Checker Gratuito — Analiza el sitemap de tu e-commerce | dup.agency",
+        "description": "Verifica todas las URLs de tu sitemap.xml gratis. Detecta redirects, errores 404, loops y páginas lentas. Ideal para e-commerces VTEX y Tiendanube.",
+        "ogDescription": "Analiza todas las URLs del sitemap.xml y detecta redirects innecesarios, errores 404, loops y mucho más."
+      },
+      "hero": {
+        "label": "Análisis de salud de URLs",
+        "headline": "¿Tu sitemap está saboteando <g>tu SEO?</g>",
+        "subheadline": "Analiza todas las URLs del sitemap.xml — detecta redirects innecesarios, errores 404, loops y páginas lentas.",
+        "cta": "Analizar ahora",
+        "trust": "Gratuito · Resultado en tiempo real · Sin compromiso"
+      },
+      "form": {
+        "urlPlaceholder": "URL de tu sitio (ej: mitienda.com)",
+        "emailPlaceholder": "Tu mejor email",
+        "submitting": "Iniciando...",
+        "errorInesperado": "Error inesperado. Inténtalo de nuevo.",
+        "errors": {
+          "dominioInvalido": "Dominio inválido. Ej: misitio.com",
+          "emailInvalido": "Correo electrónico inválido.",
+          "emailProfissional": "Usa un correo profesional."
+        }
+      },
+      "checking": {
+        "verificando": "Verificando {domain}",
+        "buscandoUrls": "Buscando URLs del sitemap...",
+        "progressoUrls": "{checked} de {total} URLs verificadas",
+        "progresso": "Progreso",
+        "total": "Total",
+        "ok": "OK",
+        "redirects": "Redirects",
+        "erros": "Errores",
+        "errorSitemap": "Error al buscar el sitemap.",
+        "errorRede": "Error de red al acceder al sitemap. Inténtalo de nuevo.",
+        "errorVazio": "El sitemap se encontró pero no contiene URLs."
+      },
+      "problems": {
+        "sectionLabel": "Salud del Sitemap",
+        "headline": "Tu sitemap tiene errores que Google ya está penalizando.",
+        "p1": {
+          "title": "Redirects innecesarios",
+          "body": "Cada redirect es una instrucción extra para Google. Las cadenas largas diluyen el PageRank y aumentan el tiempo de respuesta."
+        },
+        "p2": {
+          "title": "Errores 404",
+          "body": "Las URLs muertas en el sitemap confunden al crawler e indican descuido técnico a los buscadores."
+        },
+        "p3": {
+          "title": "Loops de redirección",
+          "body": "Cuando A apunta a B y B apunta a A, el crawler se rinde. Tu página desaparece del índice."
+        },
+        "p4": {
+          "title": "URLs lentas",
+          "body": "Las páginas con más de 3s de TTFB son despriorizadas en el crawl. La velocidad es un criterio de indexación."
+        },
+        "body": "Un sitemap con redirecciones innecesarias, URLs que devuelven 404, bucles de redirección o páginas lentas contamina el índice de Google y desperdicia crawl budget — sin que te des cuenta."
+      },
+      "whatWeDo": {
+        "sectionLabel": "Lo que hace dup.agency",
+        "headline": "Diagnóstico técnico. Plan de acción. Sin suposiciones.",
+        "body": "De nada sirve suponer que el sitemap está bien. Verificamos cada URL, clasificamos los problemas por impacto y entregamos el camino más corto hacia la corrección.",
+        "step1": {
+          "title": "Mapeo completo del sitemap",
+          "body": "Todas las URLs analizadas — estado HTTP, tiempo de respuesta, tipo de redirect y destino final."
+        },
+        "step2": {
+          "title": "Identificación de prioridades",
+          "body": "Los problemas clasificados por impacto en el crawl budget y la indexación. Sabes qué resolver primero."
+        },
+        "step3": {
+          "title": "Plan de corrección",
+          "body": "Para cada problema identificado, la acción recomendada — sin necesidad de saber qué es un 301 para entender qué hacer."
+        }
+      },
+      "howItWorks": {
+        "sectionLabel": "Cómo funciona",
+        "headline": "Tres pasos. Resultado en segundos.",
+        "step1": {
+          "title": "Ingresa el sitemap",
+          "body": "Pega el link de tu sitemap.xml o el dominio principal. La herramienta localiza el sitemap automáticamente."
+        },
+        "step2": {
+          "title": "La herramienta analiza",
+          "body": "Cada URL es verificada — estado HTTP, cadena de redirects, tiempo de respuesta y consistencia con el índice."
+        },
+        "step3": {
+          "title": "Recibe el diagnóstico",
+          "body": "Lista completa con estado por URL, prioridades de corrección y próximos pasos."
+        }
+      },
+      "faq": {
+        "q1": {
+          "question": "¿Qué es el crawl budget y por qué importa?",
+          "answer": "El crawl budget es la cantidad de páginas que Googlebot está dispuesto a rastrear en tu sitio en un período determinado. Los sitios con muchos redirects, 404s o URLs duplicadas desperdician ese presupuesto — y las páginas importantes pueden quedar sin rastrear."
+        },
+        "q2": {
+          "question": "¿Necesito instalar algo?",
+          "answer": "No. La herramienta accede a tu sitemap.xml públicamente, de la misma forma que lo hace Google. No se necesita ningún acceso, plugin ni credencial."
+        },
+        "q3": {
+          "question": "¿Para qué plataformas funciona?",
+          "answer": "Funciona para cualquier plataforma — VTEX, Tiendanube, WooCommerce o cualquier otro CMS que genere un sitemap.xml público."
+        },
+        "q4": {
+          "question": "¿Qué hago después de recibir el informe?",
+          "answer": "El informe ya viene con las acciones recomendadas por prioridad. Si quieres que dup.agency ejecute las correcciones, solo contáctanos — la mayoría de los problemas identificados se resuelven en un sprint."
+        },
+        "q5": {
+          "question": "¿Con qué frecuencia debo ejecutar la auditoría?",
+          "answer": "Recomendamos ejecutarla después de cualquier cambio importante de URLs (migración, reestructuración de categorías, nuevo sitemap) y al menos una vez por trimestre como verificación de rutina."
+        },
+        "sectionLabel": "Preguntas frecuentes"
+      },
+      "ctaFinal": {
+        "headline": "Empieza ahora. Es gratuito.",
+        "body": "Descubre en segundos si tu sitemap está limpio o está saboteando tu SEO.",
+        "cta": "Analizar ahora",
+        "footer": "Hecho por dup.agency · boutique de tecnología para e-commerce"
+      },
+      "mock": {
+        "previewTitle": "Vista previa del informe",
+        "status": {
+          "ok": "OK",
+          "warning": "Atención",
+          "critical": "Crítico"
+        },
+        "metrics": {
+          "redirects": {
+            "label": "Redirects 3xx",
+            "value": "12 encontrados"
+          },
+          "errors": {
+            "label": "Errores 404",
+            "value": "3 encontrados"
+          },
+          "loops": {
+            "label": "Loops detectados",
+            "value": "0"
+          },
+          "slow": {
+            "label": "URLs lentas (+3s)",
+            "value": "7 encontradas"
+          },
+          "sitemap": {
+            "label": "URLs en el sitemap",
+            "value": "847 analizadas"
+          }
+        },
+        "scores": {
+          "clean": "URLs sin problemas",
+          "health": "Salud general del sitemap"
+        }
+      },
+      "resultado": {
+        "breadcrumb": "Redirect Checker › Resultado",
+        "urlsVerificadas": "{n, plural, one {# URL verificada} other {# URLs verificadas}}",
+        "analisarOutro": "Analizar otro dominio",
+        "cards": {
+          "ok": {
+            "label": "OK",
+            "sublabel": "Estado 200 directo"
+          },
+          "redirects": {
+            "label": "Redirects",
+            "sublabel": "Con 1+ hop"
+          },
+          "erros": {
+            "label": "Errores",
+            "sublabel": "4xx / 5xx / timeout"
+          },
+          "loops": {
+            "label": "Loops",
+            "sublabel": "Loop detectado"
+          },
+          "crawlBudget": {
+            "label": "Crawl Budget",
+            "sublabel": "afectado"
+          }
+        },
+        "acoesPrioritarias": {
+          "title": "Acciones prioritarias",
+          "alta": "alta",
+          "media": "media",
+          "baixa": "baja",
+          "critica": "crítica"
+        },
+        "novoDominio": "Nuevo dominio",
+        "semProblemas": "No se detectaron problemas críticos. ¡Tu sitemap está sano!",
+        "exibindo": "{n, plural, one {Mostrando # URL} other {Mostrando # URLs}} · filtro: {filter}",
+        "problemas": {
+          "loop": "Loop de redirección",
+          "timeout": "Timeout (>5s)",
+          "noResponse": "Sin respuesta",
+          "notFound": "Página no encontrada (404)",
+          "serverError": "Error del servidor ({status})",
+          "clientError": "Error del cliente ({status})",
+          "tooManyHops": "Demasiados redirects ({hops} hops)"
+        },
+        "acoes": {
+          "loop": {
+            "category": "Loop",
+            "action": "{n, plural, one {# loop detectado} other {# loops detectados}}. Revisa las reglas de redirección — los loops bloquean al Googlebot por completo."
+          },
+          "notFound": {
+            "category": "404",
+            "action": "{n, plural, one {# URL devolviendo 404} other {# URLs devolviendo 404}}. Corrige o elimínalas del sitemap para no desperdiciar crawl budget."
+          },
+          "manyHops": {
+            "category": "Redirects",
+            "action": "{n, plural, one {# URL con más de 3 hops} other {# URLs con más de 3 hops}}. Acorta las cadenas de redirección para ahorrar crawl budget."
+          },
+          "slow": {
+            "category": "Performance",
+            "action": "{n, plural, one {# URL con respuesta por encima de 3s} other {# URLs con respuesta por encima de 3s}}. Optimiza el TTFB para mejorar la experiencia del Googlebot."
+          }
+        },
+        "emptyTable": {
+          "all": "No se encontraron resultados.",
+          "ok": "No se encontraron URLs OK.",
+          "redirect": "✅ Ningún redirect encontrado — ¡genial!",
+          "error": "✅ Ningún error encontrado — ¡genial!",
+          "loop": "✅ Ningún loop detectado — ¡genial!"
+        },
+        "tabela": {
+          "filtros": {
+            "todos": "Todos",
+            "ok": "OK",
+            "redirects": "Redirects",
+            "erros": "Errores",
+            "loops": "Loops"
+          },
+          "colunas": {
+            "urlOriginal": "URL Original",
+            "status": "Estado",
+            "chain": "Chain",
+            "hops": "Hops",
+            "tempo": "Tiempo",
+            "problema": "Problema"
+          },
+          "semProblema": "—"
+        },
+        "cta": {
+          "headline": "Resolverlo es solo<br></br>el comienzo.",
+          "body": "Además de corregir lo que apareció aquí, podemos ser el socio técnico de tu tienda — desarrollando nuevas funcionalidades, haciendo evolucionar la operación y garantizando que la tecnología nunca sea el motivo por el que no estás creciendo.",
+          "item1": "Corrección de redirects, loops y URLs 404 en el sitemap",
+          "item2": "Desarrollo de nuevas funcionalidades para la tienda",
+          "item3": "Evolución continua — agenda garantizada, ritmo constante",
+          "item4": "Monitoreo técnico y decisiones tomadas junto a ti",
+          "button": "Quiero resolverlo con dup.agency"
+        },
+        "indisponivel": {
+          "title": "Resultado no disponible",
+          "body": "Este enlace puede haber caducado o el procesamiento no se completó.",
+          "cta": "Ejecutar un nuevo análisis"
+        }
+      }
+    }
+  }
+}

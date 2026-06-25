@@ -91,6 +91,15 @@ html {
   /* scroll-behavior: smooth removido — conflita com GSAP ScrollTrigger */
 }
 
+/* ── Escala tipográfica por idioma ──────────────────────────────────────────
+   EN/ES costumam render mais longos que o PT. --font-scale ajusta os displays
+   grandes por idioma sem reescrever cada clamp — basta envolver o tamanho em
+   calc(clamp(...) * var(--font-scale)). Valores conservadores; afinar após QA
+   visual nos 3 idiomas. O html recebe lang dinâmico no layout por locale. */
+:root        { --font-scale: 1;    }
+html:lang(en){ --font-scale: 1;    }
+html:lang(es){ --font-scale: 0.97; }
+
 body {
   margin: 0;
   font-family: var(--font-body), sans-serif;

@@ -1,9 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Checks } from '@phosphor-icons/react'
+import { richTags } from '@/i18n/rich'
 
 export default function CtaPopup() {
+  const t = useTranslations('ferramentas.common.popup')
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -50,8 +53,7 @@ export default function CtaPopup() {
               textAlign:  'center',
             }}
           >
-            Quer que a dup<strong>.agency</strong>,{' '}
-            resolva isso pra você?
+            {t.rich('question', richTags)}
           </p>
         </div>
 
@@ -84,7 +86,7 @@ export default function CtaPopup() {
               textTransform: 'uppercase',
             }}
           >
-            Fale com a gente
+            {t('button')}
           </span>
         </a>
       </div>

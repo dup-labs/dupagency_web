@@ -2,6 +2,14 @@
 
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { richTags } from '@/i18n/rich'
+
+// Mapeia o `tipo` do dado (string PT) pra chave de tradução em home.parceiros.tipo.
+const TIPO_KEY: Record<string, string> = {
+  'Projeto + Evolução': 'projetoEvolucao',
+  'Evolução': 'evolucao',
+}
 
 interface Cliente {
   nome: string
@@ -19,7 +27,7 @@ interface Cliente {
 const CLIENTES: Cliente[] = [
   {
     nome: 'Bennemann',
-    periodo: 'desde 2021',
+    periodo: '2021 - 2026',
     tipo: 'Projeto + Evolução',
     slug: 'bennemann',
     href: 'https://www.bennemann.com.br',
@@ -159,6 +167,7 @@ const IMG_W = 200
 const IMG_H = 130
 
 export default function Parceiros() {
+  const t = useTranslations('home.parceiros')
   const [hovered, setHovered] = useState<string | null>(null)
   const listRef   = useRef<HTMLUListElement>(null)
   const imageRef  = useRef<HTMLDivElement>(null)
@@ -212,16 +221,13 @@ export default function Parceiros() {
             className="font-chillax font-bold text-white uppercase"
             style={{ fontSize: 'clamp(36px, 5vw, 48px)', lineHeight: 'var(--leading-display)' }}
           >
-            parceiros que
-            <br />
-            <span className="text-grad-01">confiam</span>
+            {t.rich('headline', richTags)}
           </h2>
           <p
             className="mt-5 font-synonym text-body-md text-neutral-600 max-w-md mx-auto"
             style={{ lineHeight: 'var(--leading-body)' }}
           >
-            A gente entra pra organizar, planejar e executar evoluções com
-            clareza, explicando prós, contras, e riscos antes de qualquer decisão
+            {t('subheadline')}
           </p>
         </div>
 
@@ -249,7 +255,9 @@ export default function Parceiros() {
                   onMouseEnter={() => setHovered(cliente.slug)}
                 >
                   <span className="font-synonym text-label-ui text-neutral-600 shrink-0 w-24 text-right text-grad-01 whitespace-nowrap">
-                    {cliente.periodo}
+                    {/desde/i.test(cliente.periodo)
+                      ? cliente.periodo.replace(/desde/i, t('desde'))
+                      : cliente.periodo}
                   </span>
                   <span
                     className="font-chillax font-bold text-white uppercase flex-1 transition-all duration-300"
@@ -261,7 +269,7 @@ export default function Parceiros() {
                     {cliente.nome}
                   </span>
                   <span className="font-synonym text-label-ui text-neutral-600 shrink-0 hidden md:block">
-                    {cliente.tipo}
+                    {t(`tipo.${TIPO_KEY[cliente.tipo] ?? 'evolucao'}`)}
                   </span>
 
                   {/* Imagem inline — mobile only */}

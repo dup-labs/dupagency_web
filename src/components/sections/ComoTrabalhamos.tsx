@@ -1,33 +1,16 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
+import { richTags } from '@/i18n/rich'
 import { gsap } from '@/lib/gsap'
 
+// Número + chave de tradução (home.processo.stepN.title/body).
 const CARDS = [
-  {
-    num: '01',
-    titulo: 'Antes de tudo a gente entende',
-    texto:
-      'A gente mergulha fundo no que tá acontecendo — entende a loja, a operação, os gargalos e as oportunidades. Só com esse contexto conseguimos ter certeza do melhor caminho.',
-  },
-  {
-    num: '02',
-    titulo: 'O caminho fica claro antes de começar',
-    texto:
-      'Com tudo mapeado, fica claro onde estão os maiores ganhos. A gente organiza as prioridades junto com você, pra que cada passo faça sentido antes de qualquer coisa começar.',
-  },
-  {
-    num: '03',
-    titulo: 'Ritmo constante, entrega no combinado',
-    texto:
-      'Aqui tudo anda. Ritmo constante, entregas no combinado, e a conversa sempre aberta.',
-  },
-  {
-    num: '04',
-    titulo: 'Nada sai sem um ok claro',
-    texto:
-      'Revisão contínua do que foi feito, garantindo qualidade e alinhamento em cada entrega.',
-  },
+  { num: '01', key: 'step1' },
+  { num: '02', key: 'step2' },
+  { num: '03', key: 'step3' },
+  { num: '04', key: 'step4' },
 ]
 
 const INITIAL = [
@@ -55,7 +38,13 @@ const STARTS = [0.15, 0.25, 0.35, 0.45]
 
 const N_CIRCLES = 7
 
+// Knobs de performance do blur.
+// STEP maior + MAX menor = mais barato. Calibra MAX antes de mexer no STEP.
+const BLUR_STEP = 2   // degraus de 2px — o pulo some no transform contínuo
+const MAX_BLUR  = 6   // teto do desfoque (era 8) — perspectiva carrega o "longe"
+
 export default function ComoTrabalhamos() {
+  const t = useTranslations('home.processo')
   const outerRef  = useRef<HTMLElement>(null)   // trigger do ScrollTrigger
   const innerRef  = useRef<HTMLDivElement>(null) // sticky div, scope do GSAP context
   const circleEls = useRef<(HTMLDivElement | null)[]>([])
@@ -66,6 +55,7 @@ export default function ComoTrabalhamos() {
     if (!outerRef.current || !innerRef.current) return
 
     const finals = window.innerWidth < 768 ? FINAL_MOBILE : FINAL
+    const snapBlur = gsap.utils.snap(BLUR_STEP)
 
     const ctx = gsap.context(() => {
       gsap.set(circleEls.current, { opacity: 0, scale: 0.8 })
@@ -74,8 +64,8 @@ export default function ComoTrabalhamos() {
       cardEls.current.forEach((el, i) => {
         if (!el) return
         const init = INITIAL[i]
-        // filter blur começa alto (longe = embaçado) e zera quando chega na frente.
-        gsap.set(el, { xPercent: -50, yPercent: -50, z: init.z, x: init.x, y: init.y, opacity: 0, filter: 'blur(8px)' })
+        // filter blur começa no teto (longe = embaçado) e zera quando chega na frente.
+        gsap.set(el, { xPercent: -50, yPercent: -50, z: init.z, x: init.x, y: init.y, opacity: 0, filter: `blur(${MAX_BLUR}px)` })
       })
 
       const tl = gsap.timeline({
@@ -111,22 +101,36 @@ export default function ComoTrabalhamos() {
         const s = STARTS[i]
         const dur = 0.44
 
-        // Movimento contínuo do longe pro perto.
+        // Movimento contínuo do longe pro perto — transform, de graça no compositor.
         tl.to(el, { z: f.z, x: f.x, y: f.y, duration: dur, ease: 'none' }, s)
-        // Blur foca em 50% (legível), mantém de 50→90%, embaça de novo no fim.
-        tl.to(el, {
-          keyframes: [
-            { filter: 'blur(0px)', duration: dur * 0.50, ease: 'power2.out' },
-            { filter: 'blur(0px)', duration: dur * 0.40, ease: 'none'       },
-            { filter: 'blur(8px)', duration: dur * 0.10, ease: 'power2.in'  },
-          ],
-        }, s)
+
+        // Opacity contínuo — também de graça no compositor.
         tl.to(el, {
           keyframes: [
             { opacity: 1, duration: dur * 0.35, ease: 'power1.out' },
             { opacity: 1, duration: dur * 0.50, ease: 'none'       },
             { opacity: 0, duration: dur * 0.15, ease: 'power1.in'  },
           ],
+        }, s)
+
+        // Blur QUANTIZADO — anima um proxy numérico e só escreve no DOM quando
+        // o degrau muda. onUpdate dispara todo frame, mas el.style.filter só é
+        // tocado nas trocas de degrau → re-rasterização despenca.
+        const blurState = { v: MAX_BLUR }
+        let lastBlur = -1
+        const applyBlur = () => {
+          const b = Math.min(snapBlur(blurState.v), MAX_BLUR)
+          if (b === lastBlur) return        // não escreve = não re-rasteriza
+          lastBlur = b
+          el.style.filter = b <= 0 ? 'none' : `blur(${b}px)`
+        }
+        tl.to(blurState, {
+          keyframes: [
+            { v: 0,        duration: dur * 0.50, ease: 'power2.out' }, // foca em 50%
+            { v: 0,        duration: dur * 0.40, ease: 'none'       }, // mantém legível 50→90%
+            { v: MAX_BLUR, duration: dur * 0.10, ease: 'power2.in'  }, // embaça de novo no fim
+          ],
+          onUpdate: applyBlur,
         }, s)
       })
     }, innerRef)
@@ -172,15 +176,13 @@ export default function ComoTrabalhamos() {
             className="font-chillax font-bold text-center uppercase text-black"
             style={{ fontSize: 'clamp(24px, 3.2vw, 44px)', lineHeight: 'var(--leading-display)' }}
           >
-            como <span className="text-grad-01">trabalhamos</span>
+            {t.rich('headline', richTags)}
           </h2>
           <p
             className="mt-2 font-synonym text-neutral-600 text-center max-w-sm"
             style={{ fontSize: '13px', lineHeight: 'var(--leading-body)' }}
           >
-            Processos bem construídos para te dar clareza em todas as etapas e
-            juntos podermos aproveitar nosso tempo para evoluir e pensar em
-            coisas novas.
+            {t('subheadline')}
           </p>
         </div>
 
@@ -198,16 +200,16 @@ export default function ComoTrabalhamos() {
                 top:        '50%',
                 left:       '50%',
                 zIndex:     i + 1,
-                willChange: 'transform, opacity, filter',
+                willChange: 'transform, opacity',
               }}
             >
               <div className="card-work-frame">
                 <div className="card-work">
                   <h3 className="card-work__title">
-                    <small className='text-sm text-white'>{card.num}.</small> {card.titulo}
+                    <small className='text-sm text-white'>{card.num}.</small> {t(`${card.key}.title`)}
                   </h3>
                   <p className="card-work__body">
-                    {card.texto}
+                    {t(`${card.key}.body`)}
                   </p>
                 </div>
               </div>

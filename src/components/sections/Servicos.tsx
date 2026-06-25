@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 // Custom service icons
 function IconBlueprint() {
   return (
@@ -40,35 +41,13 @@ import { gsap } from '@/lib/gsap'
 
 // ─── Dados ────────────────────────────────────────────────────────────────────
 
+// `tkey` mapeia pro namespace home.servicos.<tkey>.title/body. O id 'projeto'
+// usa a chave 'implantacao' (nome do serviço no conteúdo).
 const SERVICES = [
-  {
-    id: 'blueprint',
-    Icon: IconBlueprint,
-    titulo: 'Blueprint\nde Projeto',
-    texto:
-      'Imersão completa, entrega de um documento estratégico: o que a VTEX resolve nativamente, o que precisa de customização, os riscos e os pontos de atenção. Pro quem quer fazer certo sem ter orçamento de projeto completo',
-  },
-  {
-    id: 'consultoria',
-    Icon: IconConsultoria,
-    titulo: 'Consultoria\nEstratégica',
-    texto:
-      'Você continua com a sua agência. A gente entra como o cérebro estratégico da operação — decidindo o que executar, em que ordem e com quais riscos. Um encontro semanal, entregáveis claros, presença próxima.',
-  },
-  {
-    id: 'projeto',
-    Icon: IconProjeto,
-    titulo: 'Projeto de\nImplantação',
-    texto:
-      'Construção do zero, migração de plataforma ou reestruturação completa. Arquitetura pensada, escopo fechado, sênior tocando do início ao fim. Sem surpresa no meio do caminho.',
-  },
-  {
-    id: 'evolucao',
-    Icon: IconEvolucao,
-    titulo: 'Evolução\nContínua',
-    texto:
-      'Parceiro técnico mês a mês. Agenda garantida, foco no que importa, e um sênior executando com qualidade todo mês. A loja anda sem você precisar empurrar — com planos Base, Growth e Premium conforme o ritmo da sua operação.',
-  },
+  { id: 'blueprint',   Icon: IconBlueprint,   tkey: 'blueprint'   },
+  { id: 'consultoria', Icon: IconConsultoria, tkey: 'consultoria' },
+  { id: 'projeto',     Icon: IconProjeto,     tkey: 'implantacao' },
+  { id: 'evolucao',    Icon: IconEvolucao,    tkey: 'evolucao'    },
 ]
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
@@ -87,11 +66,11 @@ function isEdge(index: number) {
 
 function ServiceCard({
   Icon,
-  titulo,
-  texto,
+  tkey,
   blurred,
   ariaHidden,
 }: (typeof SERVICES)[number] & { blurred?: boolean; ariaHidden?: boolean }) {
+  const t = useTranslations('home.servicos')
   return (
     <div
       className="flex flex-col bg-neutral-900 rounded-xl"
@@ -112,13 +91,13 @@ function ServiceCard({
         className="font-chillax font-bold text-white uppercase"
         style={{ fontSize: '28px', lineHeight: 'var(--leading-heading)', whiteSpace: 'pre-line', marginTop: '32px' }}
       >
-        {titulo}
+        {t(`${tkey}.title`)}
       </h3>
       <p
         className="font-synonym text-white"
         style={{ fontSize: '15px', lineHeight: 1.6, opacity: 0.75, marginTop: '16px' }}
       >
-        {texto}
+        {t(`${tkey}.body`)}
       </p>
     </div>
   )

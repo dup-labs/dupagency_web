@@ -9,6 +9,7 @@ import {
 } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
 import { type Icon } from '@phosphor-icons/react'
+import { useTranslations } from 'next-intl'
 
 const SOCIAL: { icon: Icon; href: string; label: string }[] = [
   { icon: InstagramLogoIcon, href: 'https://www.instagram.com/dup.agency', label: 'Instagram' },
@@ -19,6 +20,7 @@ const SOCIAL: { icon: Icon; href: string; label: string }[] = [
 ]
 
 export default function Footer() {
+  const t = useTranslations('home.footer')
   return (
     <footer
       className="relative z-10 flex flex-col items-center justify-center gap-5 py-6 bg-black"
@@ -39,7 +41,7 @@ export default function Footer() {
         ))}
       </div>
       <p className="font-synonym text-label-ui text-neutral-400">
-        dup.agency — 2026
+        {t('copyright')}
       </p>
     </footer>
   )

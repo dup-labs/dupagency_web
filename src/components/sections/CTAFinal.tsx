@@ -1,20 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { ChecksIcon } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
 import { gsap } from '@/lib/gsap'
 
-const FRASES = [
-  'conversa produtiva',
-  'conversa criativa',
-  'conversa estratégica',
-  'conversa leve',
-  'conversa eficiente',
-  'conversa honesta',
-]
-
-function ConversaRotator() {
+function ConversaRotator({ frases }: { frases: string[] }) {
   const spanRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
@@ -22,10 +14,10 @@ function ConversaRotator() {
     if (!el) return
 
     let phraseIdx = 0
-    el.textContent = FRASES[0]
+    el.textContent = frases[0]
 
     const interval = setInterval(() => {
-      phraseIdx = (phraseIdx + 1) % FRASES.length
+      phraseIdx = (phraseIdx + 1) % frases.length
 
       gsap.to(el, {
         y: '-120%',
@@ -33,7 +25,7 @@ function ConversaRotator() {
         duration: 0.35,
         ease: 'power2.in',
         onComplete: () => {
-          el.textContent = FRASES[phraseIdx]
+          el.textContent = frases[phraseIdx]
           gsap.set(el, { y: '120%', opacity: 0 })
           gsap.to(el, { y: '0%', opacity: 1, duration: 0.5, ease: 'back.out(2)' })
         },
@@ -41,7 +33,7 @@ function ConversaRotator() {
     }, 2600)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [frases])
 
   return (
     <span className="relative inline-block overflow-hidden" style={{ verticalAlign: 'bottom' }}>
@@ -74,6 +66,8 @@ function GridLines() {
 }
 
 export default function CTAFinal() {
+  const t = useTranslations('home.ctaFinal')
+  const frases = t.raw('frases') as string[]
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -106,17 +100,16 @@ export default function CTAFinal() {
           className="font-chillax font-bold uppercase text-white"
           style={{ fontSize: 'clamp(26px, 5vw, 64px)', lineHeight: 'var(--leading-display)' }}
         >
-          A agenda é limitada.
+          {t('headline1')}
           <br />
-          Mas uma{' '}
-          <ConversaRotator />,
+          {t('rotatorPrefix')}{' '}
+          <ConversaRotator frases={frases} />{t('rotatorMid')}
           <br />
-          é irresistível.
+          {t('rotatorTail')}
         </h2>
 
         <p className="mt-8 font-synonym text-body-md text-white opacity-50 text-center" style={{ lineHeight: 'var(--leading-body)' }}>
-          Agende um papo com a gente e vamos juntos
-          <br />traçar uma parceria de sucesso
+          {t('subheadline')}
         </p>
 
         <a
@@ -128,7 +121,7 @@ export default function CTAFinal() {
           className="mt-10 inline-flex items-center gap-3 border border-white rounded-pill px-8 py-4 font-synonym text-label-ui tracking-micro text-white hover:bg-white hover:text-black transition-colors duration-300"
         >
           <PhosphorIcon icon={ChecksIcon} size={16} weight="regular" />
-          QUERO CONVERSAR!
+          {t('button')}
         </a>
       </div>
     </section>

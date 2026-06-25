@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { richTags } from '@/i18n/rich'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { PlayPauseIcon } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
@@ -9,7 +11,7 @@ import GlitchGrid from '@/components/ui/GlitchGrid'
 
 // 8 fotos (4 Dup + 4 Lari) circulam pelos 4 slots do GlitchGrid sem repetir
 // simultaneamente. Cada foto carrega uma `key` que identifica o dono
-// (dup/lari) — o hover-text correspondente é puxado de ABOUT_TEXTS.
+// (dup/lari) — o hover-text correspondente vem de home.manifesto.about.*.
 const ABOUT_PHOTOS = [
   { src: '/images/about-us/dup-front.webp',  key: 'dup'  },
   { src: '/images/about-us/dup-mid.webp',    key: 'dup'  },
@@ -21,10 +23,9 @@ const ABOUT_PHOTOS = [
   { src: '/images/about-us/lari-floor.webp', key: 'lari' },
 ]
 
-const ABOUT_TEXTS: Record<string, string> = {
-  dup: 'Regras e disciplina — horário de treino, de dormir, de acordar — são o que libera a cabeça pra criar. Designer de formação, entrou na tecnologia pra expandir o leque e encontrou no e-commerce um mercado de aprendizado infinito. Conhece o ecossistema de ponta a ponta. É ele quem garante que o combinado é cumprido, sempre. **Dup**',
-  lari: 'Entrou no e-commerce aos 17 anos e nunca mais saiu. Nas horas vagas é leitora voraz — livros, booktube, tudo que alimenta a curiosidade. Esse prazer de aprender transborda pro trabalho: estuda tecnologia como hobby. Dev sênior e responsável por toda a estrutura técnica da dup. Se tá funcionando, tem a mão dela. **Lari**',
-}
+// Bios sobre/Dup e Lari vêm dos message files (home.manifesto.about.*) — cada
+// manifesto monta o objeto via t e passa pro GlitchGrid. O **Nome** vira o
+// nome em negrito (parse no renderHoverText do GlitchGrid).
 
 function GridLines() {
   return (
@@ -57,22 +58,14 @@ const CLIENT_LOGOS = [
   { name: 'SharkNinja',       src: '/images/clients/sharkninja.png' },
 ]
 
-// Use **texto** para palavras com gradiente colorido
-const MANIFESTO_LINES = [
-  '**parceiro técnico** para\ne-commerces que levam tecnologia a **sério.**',
-  'suporte contínuo, sênior executando,\n**qualidade** que não depende de escala.',
-  '**sem turnover**. **sem surpresa.**',
-]
-
-function renderLine(text: string) {
-  return text.split(/\*\*(.*?)\*\*/g).map((part, i) =>
-    i % 2 === 1
-      ? <span key={i} className="text-grad-01">{part}</span>
-      : part
-  )
-}
+// Linhas do manifesto vêm dos message files (home.manifesto). Cada idioma
+// controla as palavras com gradiente (<g>) e as quebras (<br>) — ver pt/en/es.json.
+const MANIFESTO_KEYS = ['headline', 'line1', 'line2'] as const
 
 function ManifestoMobile() {
+  const t = useTranslations('home.manifesto')
+  const lines = MANIFESTO_KEYS.map((k) => t.rich(k, richTags))
+  const aboutTexts = { dup: t('about.dup'), lari: t('about.lari') }
   const lineRefs   = useRef<(HTMLDivElement | null)[]>([])
   const [active, setActive] = useState(0)
 
@@ -99,7 +92,7 @@ function ManifestoMobile() {
         className="relative flex flex-col justify-center gap-7.5"
         style={{ height: '20vh', marginTop: '10vh', marginBottom: '5vh' }}
       >
-        {MANIFESTO_LINES.map((line, i) => (
+        {lines.map((line, i) => (
           <div
             key={i}
             ref={(el) => { lineRefs.current[i] = el }}
@@ -113,25 +106,23 @@ function ManifestoMobile() {
                 transition: 'opacity 0.45s ease',
               }}
             >
-              {line.split('\n').map((l, j, arr) => (
-                <span key={j}>
-                  {renderLine(l)}
-                  {j < arr.length - 1 && <br />}
-                </span>
-              ))}
+              {line}
             </p>
           </div>
         ))}
       </div>
 
       <div className="relative mt-4" style={{ aspectRatio: '1/1' }}>
-        <GlitchGrid photos={ABOUT_PHOTOS} texts={ABOUT_TEXTS} />
+        <GlitchGrid photos={ABOUT_PHOTOS} texts={aboutTexts} closeLabel={t('closeLabel')} />
       </div>
     </div>
   )
 }
 
 function ManifestoDesktop() {
+  const t = useTranslations('home.manifesto')
+  const lines = MANIFESTO_KEYS.map((k) => t.rich(k, richTags))
+  const aboutTexts = { dup: t('about.dup'), lari: t('about.lari') }
   const containerRef  = useRef<HTMLDivElement>(null)
   const textBoxRef    = useRef<HTMLDivElement>(null)
   const wrapperRef    = useRef<HTMLDivElement>(null)
@@ -174,11 +165,11 @@ function ManifestoDesktop() {
         scrub: 1.5,
         onUpdate: (self) => {
           const progress   = self.progress
-          const floatIndex = progress * (MANIFESTO_LINES.length - 1)
+          const floatIndex = progress * (MANIFESTO_KEYS.length - 1)
           const wrapper    = wrapperRef.current
           const textBox    = textBoxRef.current
           const firstEl    = lineRefs.current[0]
-          const lastEl     = lineRefs.current[MANIFESTO_LINES.length - 1]
+          const lastEl     = lineRefs.current[MANIFESTO_KEYS.length - 1]
 
           // Y linear: progress=0 → primeira linha no topo, progress=1 → última linha no fundo
           if (wrapper && textBox && firstEl && lastEl) {
@@ -210,7 +201,7 @@ function ManifestoDesktop() {
   }
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: `${MANIFESTO_LINES.length * 100}vh` }}>
+    <div ref={containerRef} className="relative" style={{ height: `${MANIFESTO_KEYS.length * 100}vh` }}>
       <div className="sticky top-0 h-screen flex flex-col md:flex-row items-center px-8 gap-4 md:gap-0">
         <GridLines />
 
@@ -222,7 +213,7 @@ function ManifestoDesktop() {
             style={{ height: 'clamp(200px, 60vh, 72vh)' }}
           >
             <div ref={wrapperRef} className="w-full">
-              {MANIFESTO_LINES.map((line, i) => (
+              {lines.map((line, i) => (
                 <p
                   key={i}
                   ref={(el) => { lineRefs.current[i] = el }}
@@ -233,12 +224,7 @@ function ManifestoDesktop() {
                     marginBottom: 'clamp(10px, 1.2vw, 16px)',
                   }}
                 >
-                  {line.split('\n').map((l, j, arr) => (
-                    <span key={j}>
-                      {renderLine(l)}
-                      {j < arr.length - 1 && <br />}
-                    </span>
-                  ))}
+                  {line}
                 </p>
               ))}
             </div>
@@ -268,7 +254,7 @@ function ManifestoDesktop() {
           className="relative w-full md:w-[45%]"
           style={{ height: 'clamp(300px, 72vh, 80vh)' }}
         >
-          <GlitchGrid photos={ABOUT_PHOTOS} texts={ABOUT_TEXTS} />
+          <GlitchGrid photos={ABOUT_PHOTOS} texts={aboutTexts} closeLabel={t('closeLabel')} />
         </div>
       </div>
     </div>
@@ -289,6 +275,7 @@ function ManifestoScroll() {
 }
 
 export default function Hero() {
+  const t = useTranslations('home.hero')
   return (
     <section id="hero" className="relative z-10">
       <div className="relative min-h-screen flex flex-col items-center justify-start px-6 md:px-8 pt-32 md:pt-72 pb-12 md:pb-0">
@@ -297,23 +284,16 @@ export default function Hero() {
         <div className="relative flex flex-col items-center text-center">
           <h1
             className="font-chillax font-bold uppercase select-none text-black"
-            style={{ fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 'var(--leading-display)' }}
+            style={{ fontSize: 'calc(clamp(36px, 6vw, 64px) * var(--font-scale))', lineHeight: 'var(--leading-display)' }}
           >
-            <span className="text-grad-01">Clareza</span>
-            {' e '}
-            <span className="text-grad-01">segurança</span>
-            <br />
-            para quem precisa
-            <br />
-            de <span className="text-grad-01">paz operacional</span>
+            {t.rich('headline', richTags)}
           </h1>
 
           <p
             className="mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
             style={{ lineHeight: 'var(--leading-body)' }}
           >
-            Para quem quer evoluir o e-commerce vtex ou nuvemshop sem se sobrecarregar com ruídos
-            na tecnologia. A operação fica com a gente, você cuida do negócio.
+            {t('subheadline')}
           </p>
         </div>
 
@@ -321,7 +301,7 @@ export default function Hero() {
             Desktop: absolute bottom-15 (visual original). */}
         <div className="mt-auto pt-12 w-full md:absolute md:bottom-15 md:left-0 md:right-0 md:mt-0 md:pt-0 flex flex-col items-center px-6 md:px-8">
           <p className="text-center font-synonym text-label-ui text-neutral-600 tracking-caption mb-8">
-            Alguns clientes que confiam em nosso trabalho
+            {t('clientsLabel')}
           </p>
           <div className="flex flex-nowrap items-center justify-center gap-x-4 md:gap-x-8">
             {CLIENT_LOGOS.map(({ name, src }) => (

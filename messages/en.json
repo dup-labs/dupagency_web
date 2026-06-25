@@ -1,0 +1,779 @@
+{
+  "home": {
+    "meta": {
+      "title": "dup.agency — e-commerce tech, growth without surprises",
+      "description": "dup.agency handles the tech side of your e-commerce so you can focus on growing the business. No turnover, no drop in quality.",
+      "ogDescription": "Boutique agency specialized in VTEX and Nuvemshop. A senior technical partner that takes over your e-commerce tech — no turnover, no quality gaps.",
+      "twitterDescription": "Your strategy. Our tech."
+    },
+    "nav": {
+      "parceiros": "PARTNERS",
+      "servicos": "SERVICES",
+      "depoimentos": "TESTIMONIALS",
+      "ferramentas": "TOOLS",
+      "contato": "CONTACT",
+      "manifesto": "MANIFESTO",
+      "processo": "PROCESS",
+      "faq": "FAQ",
+      "tools": {
+        "geoAudit": "GEO Audit",
+        "redirect": "Redirects for SEO"
+      },
+      "menu": "[ menu ]",
+      "close": "[ close ]"
+    },
+    "hero": {
+      "headline": "<g>Clarity</g> and <g>confidence</g><br></br>for those who need<br></br><g>operational peace of mind</g>",
+      "subheadline": "For brands that want to grow their VTEX or Nuvemshop store without getting buried in tech noise. We handle the operation. You focus on the business.",
+      "clientsLabel": "Some of the brands that trust our work"
+    },
+    "manifesto": {
+      "sectionLabel": "MANIFESTO",
+      "headline": "<g>technical partner</g> for<br></br>e-commerce brands that take technology <g>seriously.</g>",
+      "line1": "continuous support, senior execution,<br></br><g>quality</g> that doesn't depend on headcount.",
+      "line2": "<g>no turnover</g>. <g>no surprises.</g>",
+      "about": {
+        "dup": "Rules and discipline — set times to train, to sleep, to wake up — are what free his mind to create. A designer by training, he moved into tech to broaden his range and found in e-commerce a market for endless learning. He knows the ecosystem end to end. He's the one who makes sure what's agreed gets delivered, always. **Dup**",
+        "lari": "She got into e-commerce at 17 and never left. In her free time she's a voracious reader — books, BookTube, anything that feeds her curiosity. That love of learning spills into her work: she studies technology as a hobby. Senior dev and the one responsible for dup's entire technical structure. If it's working, her hand is in it. **Lari**"
+      },
+      "closeLabel": "Close"
+    },
+    "parceiros": {
+      "sectionLabel": "PARTNERS",
+      "headline": "partners that<br></br><g>trust us</g>",
+      "subheadline": "We come in to organize, plan and execute improvements with full transparency — explaining the pros, cons and risks before any decision is made",
+      "desde": "since",
+      "tipo": {
+        "projetoEvolucao": "Project + Ongoing",
+        "evolucao": "Ongoing"
+      }
+    },
+    "porqueFunciona": {
+      "sectionLabel": "WHY IT WORKS",
+      "headline": "Why it<br></br>works",
+      "subheadline": "We come in to organize, plan and execute with full clarity — pros, cons, and risks on the table before anything moves forward",
+      "item1": {
+        "title": "Operational peace — for real",
+        "body": "The anxiety about bugs and broken pages disappears. Your store's tech stops taking up space in your head — and starts being what it always should have been: something that just works."
+      },
+      "item2": {
+        "title": "Alignment, transparency, and decisions made together.",
+        "body": "Everything that goes live passes through you first. We present the path, explain the reasoning, and only move forward when you're on board. No surprises — ever."
+      },
+      "item3": {
+        "title": "The same quality. Always. No matter where we are.",
+        "body": "Our operation is always us — whether we're in Buenos Aires, João Pessoa or Thailand. The same two seniors you already know, already trust, and who know every detail of your project."
+      }
+    },
+    "processo": {
+      "sectionLabel": "PROCESS",
+      "headline": "how we <g>work</g>",
+      "subheadline": "Well-built processes that give you full clarity at every step — so we can spend our time together actually moving forward and thinking about what's next.",
+      "step1": {
+        "title": "First, we understand",
+        "body": "We dive deep into what's actually happening — the store, the operation, the bottlenecks, the opportunities. Only with that context can we be sure we're taking the right path."
+      },
+      "step2": {
+        "title": "The path is clear before we start",
+        "body": "With everything mapped out, the biggest wins become obvious. We organize priorities together so every step makes sense before anything kicks off."
+      },
+      "step3": {
+        "title": "Steady pace, delivered as promised",
+        "body": "Things move here. Steady pace, delivered when we said we would, and the conversation always open."
+      },
+      "step4": {
+        "title": "Nothing ships without a clear sign-off",
+        "body": "Continuous review of everything delivered — quality and alignment guaranteed at every step."
+      }
+    },
+    "servicos": {
+      "sectionLabel": "SERVICES",
+      "blueprint": {
+        "title": "Project\nBlueprint",
+        "body": "Full immersion, strategic document delivered: what VTEX handles natively, what needs customization, the risks and the things to watch out for. For those who want to do it right without committing to a full project budget."
+      },
+      "consultoria": {
+        "title": "Strategic\nConsulting",
+        "body": "You keep your agency. We come in as the strategic brain of the operation — deciding what to execute, in what order, and with what risks. Weekly meeting, clear deliverables, a close working relationship."
+      },
+      "implantacao": {
+        "title": "Implementation\nProject",
+        "body": "Built from scratch, platform migration, or full restructuring. Thoughtful architecture, closed scope, senior execution from start to finish. No surprises along the way."
+      },
+      "evolucao": {
+        "title": "Continuous\nEvolution",
+        "body": "Month-to-month technical partner. Guaranteed availability, focus on what matters, and a senior executing with quality every single month. Your store moves forward without you having to push — with Base, Growth and Premium plans to match your operation's pace."
+      }
+    },
+    "depoimentos": {
+      "sectionLabel": "TESTIMONIALS",
+      "headline": "what those who<br></br><g>trust us</g> say",
+      "subheadline": "We asked our partners what keeps them trusting our work. Here are some of their answers.",
+      "parceiroLabel": "years of partnership",
+      "audioFallback": "Your browser does not support audio."
+    },
+    "faq": {
+      "sectionLabel": "FAQ",
+      "q1": {
+        "question": "Is there a minimum contract?",
+        "answer": "The first cycle is 6 months. That's the time we need to calibrate the partnership, understand your operation's rhythm and deliver real value. After that, no lock-in — just 30 days' notice to organize the transition."
+      },
+      "q2": {
+        "question": "What happens to unused hours at the end of the month?",
+        "answer": "Hours don't roll over. We work with limited, controlled capacity — if they did, we'd lose the quality control that's exactly what you're paying for. In the last week of the month we accept no more than 25% of the total package, precisely to avoid end-of-month rushes."
+      },
+      "q3": {
+        "question": "What if I have an urgent issue outside business hours?",
+        "answer": "An emergency is an emergency — reach out anytime. But it's worth knowing our process is designed to minimize emergencies: we don't make store changes after 3pm on weekdays or at any time on Fridays, to protect the weekend. If something happens outside that, we'll be online as soon as possible."
+      },
+      "q4": {
+        "question": "My previous agency didn't hand over the code. Can you take over?",
+        "answer": "For Continuous Evolution, we prefer not to take on projects without code history — in some cases, like VTEX IO, it's not even technically possible. But if that's your situation, we can build a new project from scratch. With one advantage: the code is yours, guaranteed in the contract. If you ever decide to move on — though we doubt you'll want to — you take everything with you."
+      },
+      "q5": {
+        "question": "How do I request work?",
+        "answer": "We work with Monday.com. Each partner has their own board, with access for up to 3 people from your team — to create, prioritize and validate the tasks to be executed."
+      },
+      "q6": {
+        "question": "How do I reach you for a quick question?",
+        "answer": "Each partner has a WhatsApp group with us — the channel for urgent matters and quick questions. Anything that makes sense as a task, we move to Monday."
+      },
+      "q7": {
+        "question": "Do you handle product registration?",
+        "answer": "We don't handle product registration directly — the operational details stay with you, and we don't want to risk inconsistencies in your product data. But we provide full support: guidance, documentation, and when needed, a call to do assisted registration with your team."
+      },
+      "q8": {
+        "question": "If I have more than one store, do I need two contracts?",
+        "answer": "No. You sign one contract with us and we can cover all your stores — as long as they're on the platforms we work with. You decide how to best distribute the hours between them."
+      },
+      "q9": {
+        "question": "Are SEO and performance included in the plan or billed separately?",
+        "answer": "Technical SEO and performance are part of the standard flow — included in the regular plan. GEO is a separate product, as it requires analysis, documentation and ongoing monitoring that goes beyond the day-to-day of the store."
+      },
+      "q10": {
+        "question": "Do you do in-person meetings?",
+        "answer": "We're nomadic, so we have the freedom to be in many places. If we're in your city at the right time, it'll be a pleasure. If not, we can align travel costs and schedule something — freedom is never in short supply."
+      },
+      "q11": {
+        "question": "Do you only execute, or do you also analyze and suggest?",
+        "answer": "We prefer doing the full work — analyzing, bringing ideas, thinking together, spotting opportunities. But we respect each partner's rhythm. If your strategy team already calls all the shots, we execute with quality. If you want us involved in the decisions and a technical eye on the strategy — even better."
+      },
+      "q12": {
+        "question": "Is there a monthly alignment meeting?",
+        "answer": "Yes. In the first week of every month we have a fixed meeting with each partner — set at kick-off — to talk about where the store stands, planned actions and brainstorm for the next cycle."
+      },
+      "q13": {
+        "question": "How do I track my hours balance?",
+        "answer": "Inside Monday you have access to a custom dashboard with all activities, hours and status of everything executed throughout the year — month by month, in real time."
+      },
+      "q14": {
+        "question": "What platforms do you work with?",
+        "answer": "We work with VTEX and Nuvemshop. The platform choice depends on the moment, the volume and the brand's strategy — and it's part of what we assess together with the client when needed."
+      }
+    },
+    "ctaFinal": {
+      "headline1": "Availability is limited.",
+      "rotatorPrefix": "But a",
+      "rotatorMid": "",
+      "rotatorTail": "is irresistible.",
+      "frases": [
+        "productive conversation",
+        "creative conversation",
+        "strategic conversation",
+        "light conversation",
+        "efficient conversation",
+        "honest conversation"
+      ],
+      "subheadline": "Schedule a call with us and let's build something worth building.",
+      "button": "LET'S TALK!"
+    },
+    "footer": {
+      "copyright": "dup.agency — 2026"
+    }
+  },
+  "ferramentas": {
+    "common": {
+      "popup": {
+        "question": "Want dup<b>.agency</b> to handle this for you?",
+        "button": "Talk to us"
+      }
+    },
+    "geoAudit": {
+      "meta": {
+        "title": "Free GEO Audit — Is your site ready for AI search? | dup.agency",
+        "description": "Find out if your e-commerce is optimized to appear on ChatGPT, Gemini and Perplexity. Free GEO and technical SEO audit in seconds.",
+        "ogDescription": "Free GEO and SEO audit. See if your e-commerce appears on ChatGPT, Gemini and Perplexity."
+      },
+      "hero": {
+        "label": "GEO — Generative Engine Optimization",
+        "headline": "Does your e-commerce show up when <g>someone asks an AI?</g>",
+        "subheadline": "ChatGPT, Gemini and Perplexity already answer buying questions. Find out if your site is structured to show up — and what to do when it isn't.",
+        "cta": "Analyze now",
+        "trust": "Free · Results in under 60s · No commitment",
+        "clientsLabel": "Some of the brands that trust our work"
+      },
+      "form": {
+        "urlPlaceholder": "Your site URL (e.g. mystore.com)",
+        "emailPlaceholder": "Your best email",
+        "submitting": "Sending...",
+        "errorAnalise": "We couldn't analyze the site. Check the URL and try again.",
+        "errorGenerico": "Something went wrong. Try again.",
+        "errorInesperado": "Unexpected error. Try again.",
+        "errors": {
+          "emailInvalido": "Invalid email.",
+          "emailProfissional": "Use a professional or personal email.",
+          "urlInvalida": "Invalid URL. E.g.: mysite.com",
+          "urlProtocolo": "URL must start with http:// or https://",
+          "urlPublica": "Invalid URL. Use a public domain.",
+          "urlCompleta": "Invalid URL. Include the full domain.",
+          "rateLimit": "Too many requests. Try again in 1 hour.",
+          "iniciar": "Error starting the analysis. Please try again."
+        }
+      },
+      "whatIsGeo": {
+        "sectionLabel": "What is GEO",
+        "headline": "Search has changed. Most e-commerce stores haven't noticed yet.",
+        "body": "GEO is the practice of optimizing your content and technical structure to appear in AI-generated responses — not just Google results.",
+        "pillar1": {
+          "title": "Citable content",
+          "body": "AIs look for concrete statements, data, clear definitions and directly answered questions. Vague content doesn't get cited."
+        },
+        "pillar2": {
+          "title": "Technical structure",
+          "body": "Schema markup, hierarchical headings, structured data and performance are read by AI crawlers before any content."
+        },
+        "pillar3": {
+          "title": "Brand authority",
+          "body": "External mentions, NAP consistency, directory presence and quality backlinks strengthen authority signals for language models."
+        },
+        "pillar4": {
+          "title": "SEO as the foundation",
+          "body": "GEO doesn't replace SEO — it amplifies it. A technically solid site on Google has a much better chance of appearing in AI responses."
+        }
+      },
+      "whatWeDo": {
+        "sectionLabel": "What dup.agency does",
+        "headline": "Code and content. The two pillars of GEO.",
+        "body": "Great content on a technically broken site won't cut it — and neither will flawless code with vague text no AI can cite. We solve both sides.",
+        "step1": {
+          "title": "Technical restructuring",
+          "body": "VTEX IO and Nuvemshop — schema markup, performance, heading structure and structured data implemented the right way."
+        },
+        "step2": {
+          "title": "Content that converts and gets cited",
+          "body": "Texts that answer real questions in your niche, with concrete statements, data and structure that AIs can extract and cite."
+        },
+        "step3": {
+          "title": "Ongoing strategy",
+          "body": "The AI ecosystem changes fast. We monitor and adjust your presence continuously."
+        }
+      },
+      "howItWorks": {
+        "sectionLabel": "How it works",
+        "headline": "Three steps. Under 60 seconds.",
+        "step1": {
+          "title": "Enter the URL",
+          "body": "Paste your site link and email. No installation, no access required."
+        },
+        "step2": {
+          "title": "AI analyzes",
+          "body": "Our AI automatically checks 17 technical SEO points and 5 GEO Readiness categories."
+        },
+        "step3": {
+          "title": "Get your report",
+          "body": "Full score, critical gaps and a prioritized action plan — all in one place."
+        }
+      },
+      "auditVsChecker": {
+        "headline": "The audit prepares. The Checker confirms.",
+        "body": "The GEO Audit analyzes whether your site is structured to be cited. The GEO Checker verifies whether you're already being cited — in practice, in real AI responses.",
+        "auditIncludes": {
+          "label": "This report includes",
+          "item1": "GEO Readiness Score (0–100)",
+          "item2": "Technical SEO analysis across 17 points",
+          "item3": "Critical gaps identified",
+          "item4": "Prioritized action plan"
+        },
+        "checkerCta": "I want the full GEO Checker",
+        "eyebrow": "Free audit × GEO Checker",
+        "reportLabel": "Full report",
+        "checkerCardQuestion": "Do you show up?"
+      },
+      "faq": {
+        "q1": {
+          "question": "What is GEO (Generative Engine Optimization)?",
+          "answer": "GEO is the practice of optimizing your site and content to appear in AI-generated responses from tools like ChatGPT, Gemini and Perplexity. Unlike traditional SEO, which focuses on ranking pages in search engines, GEO focuses on ensuring AIs know, understand and cite your brand in the responses they generate."
+        },
+        "q2": {
+          "question": "What's the difference between SEO and GEO?",
+          "answer": "SEO is optimization for traditional search engines like Google, which return a list of links. GEO is optimization for generative search engines — AIs that return answers directly. Good technical SEO is the foundation of GEO, but GEO goes further: it requires structured content, citable statements, brand authority and structured data that language models can process."
+        },
+        "q3": {
+          "question": "Is the free audit really free?",
+          "answer": "Yes, 100% free and no commitment. You provide your site URL and email, and receive a full report with GEO Readiness score, technical SEO score, identified gaps and prioritized action plan. No credit card or sensitive data required."
+        },
+        "q4": {
+          "question": "What platforms does the audit work for?",
+          "answer": "The GEO Audit works for any website or e-commerce, regardless of platform — VTEX, Nuvemshop, WooCommerce, Magento or any other. The analysis is done on your site's public URL, checking the technical and content signals used by AI crawlers."
+        },
+        "q5": {
+          "question": "How quickly will I get the results?",
+          "answer": "The report is generated in under 60 seconds and sent to the email you provide. You can also access the results directly on the page after analysis."
+        },
+        "q6": {
+          "question": "What is the GEO Checker and how does it work?",
+          "answer": "The GEO Checker is dup.agency's complete product for monitoring AI presence. Unlike the Audit (which analyzes your site's technical potential), the Checker verifies in practice whether your site is already being mentioned in ChatGPT, Gemini and Perplexity responses for questions in your niche. It's an ongoing monitoring and reporting service."
+        },
+        "sectionLabel": "Frequently asked questions"
+      },
+      "ctaFinal": {
+        "headline": "Start now. It's free.",
+        "body": "Find out in 60 seconds if your e-commerce is ready for the next search cycle.",
+        "cta": "Analyze now",
+        "footer": "Made by dup.agency · e-commerce technology boutique"
+      },
+      "mock": {
+        "previewTitle": "Report preview",
+        "status": {
+          "ok": "OK",
+          "warning": "Attention",
+          "critical": "Critical"
+        },
+        "schemaMarkup": "Schema Markup",
+        "coreWebVitals": "Core Web Vitals",
+        "structuredContent": "Structured Content",
+        "brandMentions": "Brand Mentions"
+      },
+      "analisando": {
+        "messages": [
+          "Accessing your site...",
+          "Analyzing meta tags and headings...",
+          "Checking schema markup...",
+          "Evaluating technical SEO...",
+          "Calculating GEO Readiness...",
+          "Identifying critical gaps...",
+          "Generating action plan...",
+          "Almost there..."
+        ],
+        "andamento": "analysis in progress"
+      },
+      "resultado": {
+        "breadcrumb": "GEO Audit › Result",
+        "scoreGeral": "Overall score",
+        "seoTecnico": "Technical SEO",
+        "geoReadiness": "GEO Readiness",
+        "tabs": {
+          "seo": "Technical SEO",
+          "geo": "GEO Readiness",
+          "plano": "Action Plan"
+        },
+        "seoSection": {
+          "headline": "Structure analysis",
+          "scoreLabel": "SEO Score:",
+          "metaTags": "Meta Tags",
+          "headings": "Headings",
+          "conteudo": "Content",
+          "imagens": "Images",
+          "schemaMarkup": "Schema Markup"
+        },
+        "seoRows": {
+          "title": "Title",
+          "description": "Description",
+          "ogImage": "OG Image",
+          "canonical": "Canonical",
+          "h1": "H1",
+          "h2": "H2",
+          "estimatedWords": "Estimated words",
+          "totalImages": "Total images",
+          "missingAlt": "Missing alt text",
+          "schemaTypes": "Types found",
+          "organization": "Organization",
+          "faqSchema": "FAQ Schema",
+          "naoDefinido": "Not set",
+          "nenhum": "None",
+          "implementado": "Implemented",
+          "naoEncontrado": "Not found",
+          "multiplos": "Multiple",
+          "poucos": "Too few",
+          "chars": "{n} chars",
+          "found": "{n, plural, one {# found} other {# found}}",
+          "images": "{n, plural, one {# image} other {# images}}"
+        },
+        "status": {
+          "ok": "OK",
+          "faltando": "Missing",
+          "ausente": "Absent",
+          "presente": "Present",
+          "raso": "Shallow",
+          "critico": "Critical",
+          "atencao": "Attention"
+        },
+        "geoSection": {
+          "headline": "5 AI presence categories",
+          "scoreLabel": "GEO Score:",
+          "scoreTitle": "GEO Readiness Score",
+          "categories": {
+            "clareza": "Brand Clarity",
+            "citabilidade": "Citability",
+            "respostas": "Direct Answers",
+            "autoridade": "Authority Signals",
+            "estrutura": "GEO Technical Structure"
+          }
+        },
+        "planoSection": {
+          "headline": "What to do now",
+          "subheadline": "Ordered by impact. Start with the high priorities.",
+          "recomendacoesLabel": "{n, plural, =0 {No recommendations} one {# recommendation} other {# recommendations}}",
+          "prioridadeAlta": "High Priority",
+          "prioridadeMedia": "Medium Priority",
+          "prioridadeBaixa": "Low Priority"
+        }
+      },
+      "mockDemo": {
+        "analiseConcluida": "Analysis complete",
+        "niche": "Women's fashion",
+        "keywords": [
+          "women's fashion",
+          "dresses",
+          "clothing online",
+          "fashion store"
+        ],
+        "gapsLabel": "Critical gaps found",
+        "overallDescription": "Overall GEO + technical SEO score",
+        "scoreLabelBom": "Good",
+        "scoreLabelRegular": "Fair",
+        "topGaps": [
+          "3 H1s on the same page — confuses crawlers and AIs about the main topic",
+          "No Schema implemented — Organization, FAQ and BreadcrumbList missing",
+          "14 images without alt text — invisible to AIs and to accessibility",
+          "Content with 280 words — below the minimum for citability"
+        ],
+        "seoHeadline": "17 technical points analyzed",
+        "seoGroups": {
+          "links": "Links"
+        },
+        "seoRowLabels": {
+          "titleTag": "Title Tag",
+          "metaDescription": "Meta Description",
+          "ogTitle": "OG Title",
+          "ogDescription": "OG Description",
+          "h1Unico": "Single H1",
+          "h1Length": "H1 Length",
+          "keywordH1": "Keyword in H1",
+          "hierarquia": "Hierarchy",
+          "wordCount": "Word Count",
+          "paragrafos": "Paragraphs",
+          "estruturaFaq": "FAQ Structure",
+          "keywordDensity": "Keyword Density",
+          "altPresente": "Alt Text present",
+          "altDescritivo": "Descriptive Alt Text",
+          "organization": "Organization",
+          "faqSchema": "FAQ Schema",
+          "breadcrumbList": "BreadcrumbList",
+          "linksInternos": "Internal links",
+          "linksExternos": "External links",
+          "linksQuebrados": "Broken links"
+        },
+        "seoValues": {
+          "chars": "{n} chars",
+          "words": "{n} words",
+          "charsApprox": "~{n} chars",
+          "encontrados": "{n} found",
+          "nao": "No",
+          "sim": "Yes",
+          "irregular": "Irregular",
+          "sequencial": "Sequential",
+          "ausente": "Absent",
+          "presente": "Present"
+        },
+        "geoIntro": "GEO Readiness measures your site's potential to be cited by language models. Each category is worth up to 10 points.",
+        "geoNote": "This score measures the site's <em>structural potential</em>. The GEO Checker verifies whether you already actually show up in real answers from ChatGPT, Gemini and Perplexity.",
+        "geoObs": {
+          "clareza": "Vague value proposition, with no direct definition of what the brand sells",
+          "citabilidade": "No concrete data, statistics or statements that AIs can extract",
+          "respostas": "No FAQ or Q&A structure detected",
+          "autoridade": "No mention of clients, cases, awards or credentials",
+          "estrutura": "Schema missing, generic meta tags, headings with no answer focus"
+        },
+        "planCategories": {
+          "headings": "Headings",
+          "schema": "Schema",
+          "imagens": "Images",
+          "conteudo": "Content",
+          "metaTags": "Meta Tags",
+          "faq": "FAQ",
+          "geo": "GEO",
+          "links": "Links"
+        },
+        "planActions": {
+          "headings": "Cut down to a single H1 per page with the main keyword included",
+          "schema": "Implement Organization, FAQ Schema and BreadcrumbList",
+          "imagens": "Add descriptive alt text to the 14 images without a description",
+          "conteudo": "Expand the content on key pages to at least 600 words",
+          "metaTags": "Trim the meta description to 160 characters and the title to 50–60",
+          "faq": "Add an FAQ section with real questions from the women's fashion niche",
+          "geo": "Include concrete data: years in business, number of items, return policy",
+          "links": "Fix the 3 broken links identified"
+        }
+      }
+    },
+    "redirectChecker": {
+      "meta": {
+        "title": "Free Redirect & Health Checker — Analyze your e-commerce sitemap | dup.agency",
+        "description": "Check all URLs in your sitemap.xml for free. Detects redirects, 404 errors, loops and slow pages. Ideal for VTEX and Nuvemshop e-commerce stores.",
+        "ogDescription": "Analyzes all sitemap.xml URLs and detects unnecessary redirects, 404 errors, loops and much more."
+      },
+      "hero": {
+        "label": "URL health analysis",
+        "headline": "Is your sitemap sabotaging <g>your SEO?</g>",
+        "subheadline": "Analyzes all sitemap.xml URLs — detects unnecessary redirects, 404 errors, loops and slow pages.",
+        "cta": "Analyze now",
+        "trust": "Free · Real-time results · No commitment"
+      },
+      "form": {
+        "urlPlaceholder": "Your site URL (e.g. mystore.com)",
+        "emailPlaceholder": "Your best email",
+        "submitting": "Starting...",
+        "errorInesperado": "Unexpected error. Try again.",
+        "errors": {
+          "dominioInvalido": "Invalid domain. E.g.: mysite.com",
+          "emailInvalido": "Invalid email.",
+          "emailProfissional": "Use a professional email."
+        }
+      },
+      "checking": {
+        "verificando": "Checking {domain}",
+        "buscandoUrls": "Fetching sitemap URLs...",
+        "progressoUrls": "{checked} of {total} URLs checked",
+        "progresso": "Progress",
+        "total": "Total",
+        "ok": "OK",
+        "redirects": "Redirects",
+        "erros": "Errors",
+        "errorSitemap": "Failed to fetch the sitemap.",
+        "errorRede": "Network error reaching the sitemap. Try again.",
+        "errorVazio": "The sitemap was found but contains no URLs."
+      },
+      "problems": {
+        "sectionLabel": "Sitemap Health",
+        "headline": "Your sitemap has errors Google is already penalizing you for.",
+        "p1": {
+          "title": "Unnecessary redirects",
+          "body": "Every redirect is an extra instruction for Google. Long chains dilute PageRank and increase response time."
+        },
+        "p2": {
+          "title": "404 errors",
+          "body": "Dead URLs in the sitemap confuse the crawler and signal technical negligence to search engines."
+        },
+        "p3": {
+          "title": "Redirect loops",
+          "body": "When A points to B and B points to A, the crawler gives up. Your page disappears from the index."
+        },
+        "p4": {
+          "title": "Slow URLs",
+          "body": "Pages above 3s TTFB are deprioritized in crawling. Speed is an indexing criterion."
+        },
+        "body": "A sitemap with unnecessary redirects, URLs returning 404, redirect loops or slow pages pollutes the Google index and wastes crawl budget — without you noticing."
+      },
+      "whatWeDo": {
+        "sectionLabel": "What dup.agency does",
+        "headline": "Technical diagnosis. Action plan. No guesswork.",
+        "body": "Assuming the sitemap is fine won't cut it. We check every URL, rank issues by impact and deliver the shortest path to fixing them.",
+        "step1": {
+          "title": "Full sitemap mapping",
+          "body": "All URLs analyzed — HTTP status, response time, redirect type and final destination."
+        },
+        "step2": {
+          "title": "Priority identification",
+          "body": "Issues ranked by impact on crawl budget and indexing. You know exactly what to fix first."
+        },
+        "step3": {
+          "title": "Fix plan",
+          "body": "For each issue found, the recommended action — no need to know what a 301 is to understand what to do."
+        }
+      },
+      "howItWorks": {
+        "sectionLabel": "How it works",
+        "headline": "Three steps. Results in seconds.",
+        "step1": {
+          "title": "Enter the sitemap",
+          "body": "Paste your sitemap.xml link or main domain. The tool finds the sitemap automatically."
+        },
+        "step2": {
+          "title": "The tool analyzes",
+          "body": "Each URL is checked — HTTP status, redirect chain, response time and index consistency."
+        },
+        "step3": {
+          "title": "Get the diagnosis",
+          "body": "Full list with per-URL status, fix priorities and next steps."
+        }
+      },
+      "faq": {
+        "q1": {
+          "question": "What is crawl budget and why does it matter?",
+          "answer": "Crawl budget is the number of pages Googlebot is willing to crawl on your site in a given period. Sites with many redirects, 404s or duplicate URLs waste this budget — and important pages may go uncrawled."
+        },
+        "q2": {
+          "question": "Do I need to install anything?",
+          "answer": "No. The tool accesses your sitemap.xml publicly, the same way Google does. No access, plugins or credentials required."
+        },
+        "q3": {
+          "question": "What platforms does it work for?",
+          "answer": "Works for any platform — VTEX, Nuvemshop, WooCommerce or any other CMS that generates a public sitemap.xml."
+        },
+        "q4": {
+          "question": "What do I do after receiving the report?",
+          "answer": "The report already comes with recommended actions by priority. If you want dup.agency to execute the fixes, just get in touch — most identified issues are resolved in a single sprint."
+        },
+        "q5": {
+          "question": "How often should I run the audit?",
+          "answer": "We recommend running it after any major URL change (migration, category restructuring, new sitemap) and at least once per quarter as a routine check."
+        },
+        "sectionLabel": "Frequently asked questions"
+      },
+      "ctaFinal": {
+        "headline": "Start now. It's free.",
+        "body": "Find out in seconds whether your sitemap is clean or sabotaging your SEO.",
+        "cta": "Analyze now",
+        "footer": "Made by dup.agency · e-commerce technology boutique"
+      },
+      "mock": {
+        "previewTitle": "Report preview",
+        "status": {
+          "ok": "OK",
+          "warning": "Attention",
+          "critical": "Critical"
+        },
+        "metrics": {
+          "redirects": {
+            "label": "Redirects 3xx",
+            "value": "12 found"
+          },
+          "errors": {
+            "label": "404 errors",
+            "value": "3 found"
+          },
+          "loops": {
+            "label": "Loops detected",
+            "value": "0"
+          },
+          "slow": {
+            "label": "Slow URLs (+3s)",
+            "value": "7 found"
+          },
+          "sitemap": {
+            "label": "Sitemap URLs",
+            "value": "847 analyzed"
+          }
+        },
+        "scores": {
+          "clean": "Clean URLs",
+          "health": "Overall sitemap health"
+        }
+      },
+      "resultado": {
+        "breadcrumb": "Redirect Checker › Result",
+        "urlsVerificadas": "{n, plural, one {# URL checked} other {# URLs checked}}",
+        "analisarOutro": "Analyze another domain",
+        "cards": {
+          "ok": {
+            "label": "OK",
+            "sublabel": "Direct 200 status"
+          },
+          "redirects": {
+            "label": "Redirects",
+            "sublabel": "With 1+ hop"
+          },
+          "erros": {
+            "label": "Errors",
+            "sublabel": "4xx / 5xx / timeout"
+          },
+          "loops": {
+            "label": "Loops",
+            "sublabel": "Loop detected"
+          },
+          "crawlBudget": {
+            "label": "Crawl Budget",
+            "sublabel": "affected"
+          }
+        },
+        "acoesPrioritarias": {
+          "title": "Priority actions",
+          "alta": "high",
+          "media": "medium",
+          "baixa": "low",
+          "critica": "critical"
+        },
+        "novoDominio": "New domain",
+        "semProblemas": "No critical issues detected. Your sitemap is healthy!",
+        "exibindo": "{n, plural, one {Showing # URL} other {Showing # URLs}} · filter: {filter}",
+        "problemas": {
+          "loop": "Redirect loop",
+          "timeout": "Timeout (>5s)",
+          "noResponse": "No response",
+          "notFound": "Page not found (404)",
+          "serverError": "Server error ({status})",
+          "clientError": "Client error ({status})",
+          "tooManyHops": "Too many redirects ({hops} hops)"
+        },
+        "acoes": {
+          "loop": {
+            "category": "Loop",
+            "action": "{n, plural, one {# loop detected} other {# loops detected}}. Review your redirect rules — loops block Googlebot entirely."
+          },
+          "notFound": {
+            "category": "404",
+            "action": "{n, plural, one {# URL returning 404} other {# URLs returning 404}}. Fix or remove them from the sitemap so you don't waste crawl budget."
+          },
+          "manyHops": {
+            "category": "Redirects",
+            "action": "{n, plural, one {# URL with more than 3 hops} other {# URLs with more than 3 hops}}. Shorten the redirect chains to save crawl budget."
+          },
+          "slow": {
+            "category": "Performance",
+            "action": "{n, plural, one {# URL responding above 3s} other {# URLs responding above 3s}}. Optimize TTFB to improve Googlebot's experience."
+          }
+        },
+        "emptyTable": {
+          "all": "No results found.",
+          "ok": "No OK URLs found.",
+          "redirect": "✅ No redirects found — great!",
+          "error": "✅ No errors found — great!",
+          "loop": "✅ No loops detected — great!"
+        },
+        "tabela": {
+          "filtros": {
+            "todos": "All",
+            "ok": "OK",
+            "redirects": "Redirects",
+            "erros": "Errors",
+            "loops": "Loops"
+          },
+          "colunas": {
+            "urlOriginal": "Original URL",
+            "status": "Status",
+            "chain": "Chain",
+            "hops": "Hops",
+            "tempo": "Time",
+            "problema": "Issue"
+          },
+          "semProblema": "—"
+        },
+        "cta": {
+          "headline": "Fixing it is just<br></br>the beginning.",
+          "body": "Beyond fixing what showed up here, we can be your store's technical partner — building new features, evolving the operation and making sure technology is never the reason you're not growing.",
+          "item1": "Fix redirects, loops and 404 URLs in the sitemap",
+          "item2": "Development of new store features",
+          "item3": "Continuous evolution — guaranteed availability, steady pace",
+          "item4": "Technical monitoring and decisions made together with you",
+          "button": "I want to solve this with dup.agency"
+        },
+        "indisponivel": {
+          "title": "Result not available",
+          "body": "This link may have expired or the processing was not completed.",
+          "cta": "Run a new analysis"
+        }
+      }
+    }
+  }
+}

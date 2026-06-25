@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
+import { richTags } from '@/i18n/rich'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 
 type CardContent =
@@ -127,7 +129,7 @@ const CARDS: CardDef[] = [
   }
 ]
 
-function CardMessage({ content }: { content: CardContent }) {
+function CardMessage({ content, audioFallback }: { content: CardContent; audioFallback: string }) {
   if (content.type === 'text') {
     return (
       <p
@@ -145,7 +147,7 @@ function CardMessage({ content }: { content: CardContent }) {
   if (content.type === 'audio') {
     return (
       <audio controls src={content.src} className="w-full h-12 mb-2">
-        Seu browser não suporta áudio.
+        {audioFallback}
       </audio>
     )
   }
@@ -163,6 +165,7 @@ function CardMessage({ content }: { content: CardContent }) {
 }
 
 export default function Depoimentos() {
+  const t = useTranslations('home.depoimentos')
   const sectionRef = useRef<HTMLElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -252,16 +255,13 @@ export default function Depoimentos() {
             lineHeight: 'var(--leading-display)',
           }}
         >
-          o que diz quem
-          <br />
-          <span className="text-grad-01">confia em nós</span>
+          {t.rich('headline', richTags)}
         </h2>
         <p
           className="mt-4 font-synonym text-neutral-600 max-w-xs"
           style={{ fontSize: '13px', lineHeight: 'var(--leading-body)' }}
         >
-          Perguntamos a nossos parceiros o que os faz continuar confiando
-          em nosso trabalho, aqui estão algumas respostas
+          {t('subheadline')}
         </p>
       </div>
 
@@ -286,7 +286,7 @@ export default function Depoimentos() {
                 WebkitBackdropFilter: 'blur(14px)',
               }}
             >
-              <CardMessage content={card.content} />
+              <CardMessage content={card.content} audioFallback={t('audioFallback')} />
               <div className="w-full flex flex-col gap-0">
                 <span
                   className="font-chillax font-bold text-black uppercase"
@@ -303,7 +303,7 @@ export default function Depoimentos() {
                 <small
                   className="font-synonym text-neutral-400"
                   style={{ fontSize: '10px' }}
-                >{card.tempo}</small>
+                >{card.tempo.replace(/\D+/g, '')} {t('parceiroLabel')}</small>
               </div>
             </article>
           </div>
@@ -325,7 +325,7 @@ export default function Depoimentos() {
             style={{ transitionDelay: `${i * 80}ms` }}
           >
             <article className="card-testimonial">
-              <CardMessage content={card.content} />
+              <CardMessage content={card.content} audioFallback={t('audioFallback')} />
               <div className="w-full flex flex-col gap-0">
                 <span
                   className="font-chillax font-bold text-black uppercase"
