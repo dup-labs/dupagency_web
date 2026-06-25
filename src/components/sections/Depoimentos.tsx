@@ -98,6 +98,32 @@ const CARDS: CardDef[] = [
     empresa: 'Agência Íonz',
     tempo: '4 anos de parceria',
     posClasses: 'bottom-[270px] left-[750px]',
+  },
+  {
+    slug: 'card-6',
+    content: {
+      type: 'text',
+      message:
+        'A Dup Agency é uma parceira indispensável para a evolução de todos os sites que operamos. Sempre atenta às novas tendências do mercado, se atualizando para trazer sugestões de melhorias, dispostos para discutir ideias que também sejam um desafio. \n A parceria de mais ou menos 8 anos com os responsáveis pela agência vem bem antes da sua criação. É um alívio encontrar profissionais assim, que entregam excelência no trabalho e honestidade nas tratativas, deixando nossa preocupação nos resultados, como deve ser. Por esse motivo a indico de olhos fechados!',
+    },
+    nome: 'Renan Lima',
+    cargo: 'Coordenador de Ecommerce',
+    empresa: 'Lego.com.br',
+    tempo: '6 anos de parceria',
+    posClasses: 'bottom-[209px] left-[1190px]',
+  },
+  {
+    slug: 'card-7',
+    content: {
+      type: 'text',
+      message:
+        'A relação de confiança construída ao longo do tempo é um dos grandes valores da parceria e flui de forma muito positiva e natural. Desde as demandas mais simples até grandes projetos, a troca constante de ideias nos ajuda a tomar decisões e nos deixa seguros sobre a entrega e a execução..',
+    },
+    nome: 'Gian Pedrosa',
+    cargo: 'Analista de Projetos E-commerce',
+    empresa: 'Spicy',
+    tempo: '4 anos de parceria',
+    posClasses: 'bottom-[70px] left-[320px]',
   }
 ]
 
