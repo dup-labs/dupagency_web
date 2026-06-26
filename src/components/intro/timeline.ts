@@ -1,51 +1,56 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// RELÓGIO DA INTRO DO HERO
+// RELÓGIO DA INTRO DO HERO — flow "logo central" (branch feat/hero-intro-logo)
 // ─────────────────────────────────────────────────────────────────────────────
-// Fonte única de verdade pro timing da animação de entrada (load-only, ~3,3s).
+// Fonte única de verdade pro timing da animação de entrada (load-only).
 // Cada beat tem um tempo ABSOLUTO `at` (segundos desde o play) — os componentes
-// (Nav, Hero) penduram seus tweens na master timeline nessas posições. Mexer no
-// relógio aqui reorquestra a cena inteira sem caçar número no meio do código.
+// (LogoIntro, Nav, Hero) penduram seus tweens na master timeline nessas posições.
 //
-// Decupagem aprovada com o Bruno (~3,9s):
-//   0.0─0.9  stroke-draw  Clareza · Segurança · Paz Operacional   (Fase 2, vetores)
-//   0.3─1.2  grid lines descem  (scaleY top→bottom)               (Fase 4)
-//   0.9─1.4  conectoras bounce  E · para quem precisa · de         (Fase 4)
-//   1.3─1.6  subtexto fade-up                                      (Fase 4)
-//   1.6─2.9  ⭐ 3 faixas descem cobrindo → palavras viram fill →   (Fase 3)
-//            faixas saem por baixo (stagger 80ms) revelando pintado
-//   2.9─3.3  logo + menu bounce (gap ~200ms)                       (Fase 4)
-//   3.2─3.5  "alguns clientes…" fade                               (Fase 4)
-//   3.4─3.9  logos dos clientes sobem em bounce (~180ms entre)     (Fase 4)
+// Decupagem do flow LOGO — versão CINEMATOGRÁFICA (reveal do hero ~2,7s):
+//   0.0       branco absoluto, SEM linhas, sem hero
+//   0.2─2.05  stroke-draw do LOGO dup.agency no centro (dasharray) + ponto
+//   2.2─2.6   ⭐ 3 faixas descem cobrindo o logo
+//   ~2.68     swap SOB a cobertura: logo/cover saem, hero assume
+//   2.8─3.6   faixas sobem revelando o HERO inteiro
+//   3.6─4.0   logo + menu do header + scrollspy da direita em bounce/fade
+//   3.9─4.9   "alguns clientes…" + logos dos clientes
+//
+// ⚡ PERF: o ganho de Lighthouse (LCP/TBT/CLS) veio do COVER-OVERLAY (IntroCover),
+// NÃO do tempo da intro. Encurtar rende só ~2pts de Speed Index. Se um dia quiser
+// a versão CURTA (reveal ~1,3s): logo { at:0.1, dur:0.9, stagger:0.045 } + PATH_DUR
+// 0.45 no LogoIntro · tinta { at:0.95, enter:0.3, enterStagger:0.05, coverHold:0.06,
+// exit:0.45, stagger:0.06, revealAt:0.95+0.3+0.04 } · navLogo 1.8 · navMenu 1.95 ·
+// scrollspy 1.95 · clientsLabel 2.05 · clientsLogos { at:2.2, dur:0.45, stagger:0.14 }
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const INTRO = {
-  stroke:       { at: 0.0, dur: 0.9, stagger: 0.12 },
-  grid:         { at: 0.3, dur: 0.4, stagger: 0.06 },
-  conectoras:   { at: 0.9, dur: 0.5, stagger: 0.10 },
-  subtexto:     { at: 1.3, dur: 0.4 },
-  // Faixas de tinta (poetic.com): entram cobrindo (enter), seguram (coverHold)
-  // — é durante o hold que as palavras viram preenchido —, saem por baixo (exit)
-  // com stagger de 80ms e o easing exato da referência.
+  // Stroke-draw do logo dup.agency no centro (fundo branco). PATH_DUR no LogoIntro.
+  logo: { at: 0.2, dur: 1.9, stagger: 0.13 },
+  // Faixas de tinta: entram cobrindo (enter), seguram (coverHold), saem por baixo
+  // (exit). No hold acontece o swap (logo/cover saem, hero entra sob a cobertura).
   tinta: {
-    at: 1.6,
+    at: 2.2,
     enter: 0.42,
     enterStagger: 0.06,
-    coverHold: 0.12,
+    coverHold: 0.18,
     exit: 0.6,
     stagger: 0.08,
-    paintAt: 1.6 + 0.42 + 0.04, // pintura das palavras: logo após cobrir
+    revealAt: 2.2 + 0.42 + 0.06,
   },
-  navLogo:      { at: 2.9, dur: 0.4 },
-  navMenu:      { at: 3.1, dur: 0.4 },
-  clientsLabel: { at: 3.2, dur: 0.3 },
-  clientsLogos: { at: 3.4, dur: 0.5, stagger: 0.18 },
+  navLogo:      { at: 3.6, dur: 0.4 },
+  navMenu:      { at: 3.8, dur: 0.4 },
+  // Scrollspy fixa da direita: aparece junto com o menu do header (após o wipe).
+  scrollspy:    { at: 3.8, dur: 0.5 },
+  clientsLabel: { at: 3.9, dur: 0.3 },
+  clientsLogos: { at: 4.1, dur: 0.5, stagger: 0.18 },
 } as const
 
-// Cores das 3 faixas (referência poetic.com). z maior sai primeiro.
+// As 3 faixas. Ordem/z (Bruno): roxo na frente, verde no meio, rosa no fundo.
+// z maior sai primeiro. Sem rotação (wipe reto).
 export const PAINT_BANDS = [
-  { color: 'var(--purple-vivid)', z: 30 }, // #AD61C2
-  { color: 'var(--purple-mid)',   z: 20 }, // #897BBC
-  { color: 'var(--teal-mint)',    z: 10 }, // #AFD7D0
+  { color: 'var(--purple-mid)', z: 30 }, // roxo (#897BBC) — frente
+  { color: 'var(--teal-mint)',  z: 20 }, // verde (#AFD7D0) — meio
+  // periwinkle: ponto médio teal↔roxo (meio do grad-01) — costura as 3, suave.
+  { color: '#9CA9C6',           z: 10 }, // fundo
 ] as const
 
 // Easing exato da referência: cubic-bezier(0.76, 0, 0.24, 1).

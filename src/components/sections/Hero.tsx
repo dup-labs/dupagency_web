@@ -8,6 +8,8 @@ import { useIntro } from '@/components/intro/IntroProvider'
 import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
 import HeroHeadline from '@/components/intro/HeroHeadline'
 import PaintPanels from '@/components/intro/PaintPanels'
+import LogoIntro from '@/components/intro/LogoIntro'
+import IntroCover from '@/components/intro/IntroCover'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { useMouseParallax } from '@/hooks/useMouseParallax'
 import GridLinesInteractive from '@/components/ui/GridLinesInteractive'
@@ -304,12 +306,9 @@ export default function Hero() {
   useEffect(() => {
     if (!shouldPlay || !tl || !heroRef.current) return
     const ctx = gsap.context(() => {
-      // O headline (stroke-draw das palavras + fade das conectoras) é gerido
-      // dentro do HeroHeadline; aqui cuidamos só do subtexto e da faixa.
-      tl.fromTo('[data-intro="subtexto"]',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: INTRO.subtexto.dur, ease: 'power2.out' },
-        INTRO.subtexto.at)
+      // PERF: headline, grid e subtexto ficam SEMPRE visíveis (pintam no 1º frame
+      // → LCP rápido) e são cobertos pela IntroCover; quem os "revela" é a SUBIDA
+      // das paredes. Aqui só o chrome de baixo (clients), que entra após o wipe.
       tl.fromTo('[data-intro="clients-label"]',
         { opacity: 0 },
         { opacity: 1, duration: INTRO.clientsLabel.dur, ease: 'power1.out' },
@@ -320,17 +319,29 @@ export default function Hero() {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: INTRO.clientsLogos.dur, ease: INTRO_BOUNCE },
         INTRO.clientsLogos.at)
+      // Scroll indicator: fade-in logo após os logos dos clientes.
+      tl.fromTo('[data-intro="scroll-cue"]',
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: 'power1.out' },
+        INTRO.clientsLogos.at + 0.25)
     }, heroRef)
     return () => ctx.revert()
   }, [shouldPlay, tl])
 
   return (
     <section ref={heroRef} id="hero" className="relative z-10">
-      {/* Faixas de tinta da intro (Fase 3) — fixed, cobrem a viewport. */}
+      {/* PERF: hero pinta visível embaixo; a IntroCover (branca, z-20) o esconde
+          durante o branco+logo e some no revealAt. */}
+      <IntroCover />
+      {/* Logo central que desenha no início (flow "logo central"). */}
+      <LogoIntro />
+      {/* Faixas de tinta da intro — fixed, cobrem a viewport. */}
       <PaintPanels />
 
       <div className="relative min-h-screen flex flex-col items-center justify-start px-6 md:px-8 pt-32 md:pt-72 pb-12 md:pb-0">
-        <GridLinesInteractive />
+        <div className="absolute inset-0 pointer-events-none">
+          <GridLinesInteractive />
+        </div>
 
         <div className="relative flex flex-col items-center text-center">
           <div ref={headlineParallaxRef} className="will-change-transform">
@@ -343,8 +354,7 @@ export default function Hero() {
 
           <div ref={subtextParallaxRef} className="will-change-transform">
             <p
-              data-intro="subtexto"
-              className="intro-hide mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
+              className="mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
               style={{ lineHeight: 'var(--leading-body)' }}
             >
               {t('subheadline')}
@@ -385,6 +395,20 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          {/* Scroll indicator — chevron duplo pulsando pra baixo, rola pro manifesto.
+              Cor sólida roxo (--purple-mid) por pedido do Bruno, não o gradiente padrão. */}
+          <button
+            type="button"
+            data-intro="scroll-cue"
+            onClick={() => document.getElementById('manifesto')?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label="Rolar para baixo"
+            className="intro-hide mt-8 relative top-5 cursor-pointer"
+          >
+            <svg className="scroll-cue-bob block" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.7075 16.2924C26.8005 16.3853 26.8742 16.4956 26.9246 16.617C26.9749 16.7384 27.0008 16.8685 27.0008 16.9999C27.0008 17.1314 26.9749 17.2615 26.9246 17.3829C26.8742 17.5043 26.8005 17.6146 26.7075 17.7074L16.7075 27.7074C16.6146 27.8004 16.5043 27.8742 16.3829 27.9245C16.2615 27.9748 16.1314 28.0007 16 28.0007C15.8686 28.0007 15.7385 27.9748 15.6171 27.9245C15.4957 27.8742 15.3854 27.8004 15.2925 27.7074L5.29251 17.7074C5.10487 17.5198 4.99945 17.2653 4.99945 16.9999C4.99945 16.7346 5.10487 16.4801 5.29251 16.2924C5.48015 16.1048 5.73464 15.9994 6.00001 15.9994C6.26537 15.9994 6.51987 16.1048 6.70751 16.2924L16 25.5862L25.2925 16.2924C25.3854 16.1995 25.4957 16.1257 25.6171 16.0754C25.7385 16.0251 25.8686 15.9992 26 15.9992C26.1314 15.9992 26.2615 16.0251 26.3829 16.0754C26.5043 16.1257 26.6146 16.1995 26.7075 16.2924ZM15.2925 17.7074C15.3854 17.8004 15.4957 17.8742 15.6171 17.9245C15.7385 17.9748 15.8686 18.0007 16 18.0007C16.1314 18.0007 16.2615 17.9748 16.3829 17.9245C16.5043 17.8742 16.6146 17.8004 16.7075 17.7074L26.7075 7.70745C26.8951 7.5198 27.0006 7.26531 27.0006 6.99995C27.0006 6.73458 26.8951 6.48009 26.7075 6.29245C26.5199 6.1048 26.2654 5.99939 26 5.99939C25.7346 5.99939 25.4801 6.10481 25.2925 6.29245L16 15.5862L6.70751 6.29245C6.51987 6.1048 6.26537 5.99939 6.00001 5.99939C5.73464 5.99939 5.48015 6.1048 5.29251 6.29245C5.10487 6.48009 4.99945 6.73458 4.99945 6.99995C4.99945 7.26531 5.10487 7.5198 5.29251 7.70745L15.2925 17.7074Z" fill="var(--purple-mid)" />
+            </svg>
+          </button>
         </div>
       </div>
 

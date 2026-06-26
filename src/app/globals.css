@@ -122,6 +122,52 @@ html[data-intro="play"] .intro-hide {
   opacity: 0;
 }
 
+/* Logo da intro (flow "logo central") — só visível enquanto a intro roda. É
+   SEMPRE renderizado (mesmo server/client → sem mismatch de hidratação); fica
+   escondido por padrão e só aparece com data-intro="play". O GSAP cuida do
+   stroke-draw e do hide no revealAt. Ver LogoIntro.tsx. */
+.logo-intro {
+  opacity: 0;
+  visibility: hidden;
+}
+html[data-intro="play"] .logo-intro {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cobertura branca da intro — PERF: o hero é renderizado VISÍVEL (pinta no 1º
+   frame → LCP rápido) e esta camada opaca o esconde durante o branco+logo; some
+   no revealAt (sob as paredes). Antes o hero nascia opacity:0 até ~2,7s e o
+   Lighthouse media o LCP só nessa hora. Sempre renderizada (sem mismatch de
+   hidratação); só aparece com data-intro="play". Ver IntroCover.tsx. */
+.hero-cover {
+  opacity: 0;
+  visibility: hidden;
+}
+html[data-intro="play"] .hero-cover {
+  opacity: 1;
+  visibility: visible;
+}
+/* Traços do logo nascem escondidos (no HTML do servidor também) — senão o logo
+   inteiro pisca antes da hidratação, já que o servidor renderiza os paths cheios.
+   O GSAP revela cada traço (autoAlpha) no instante em que ele começa a desenhar. */
+.logo-intro path {
+  visibility: hidden;
+}
+
+/* Scroll indicator do hero — chevron pulsando pra baixo. A animação fica num
+   FILHO (.scroll-cue-bob) pra não brigar com o reveal (opacity) do GSAP no pai. */
+@keyframes scroll-cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(7px); }
+}
+.scroll-cue-bob {
+  animation: scroll-cue-bob 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-bob { animation: none; }
+}
+
 /* Faixas de tinta da intro (Fase 3). Estado inicial (fora da tela, em cima) vem
    do CSS — NÃO do inline do React — pra não brigar com o transform do GSAP, que
    assume o controle total via yPercent. Ver PaintPanels.tsx. */

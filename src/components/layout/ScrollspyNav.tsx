@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useBackgroundContext } from '@/components/layout/BackgroundLayer'
+import { useIntro } from '@/components/intro/IntroProvider'
+import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
+import { gsap } from '@/lib/gsap'
 
 const SECTIONS = [
   { id: 'hero',             label: 'Início' },
@@ -23,6 +26,25 @@ export default function ScrollspyNav() {
   const pathname = usePathname()
   const { navTheme } = useBackgroundContext()
   const isLight = navTheme === 'light'
+
+  // Intro: a scrollspy fixa da direita só aparece DEPOIS do wipe, junto com o
+  // menu do header. Nasce .intro-hide; o GSAP esconde inline no build e revela no
+  // beat scrollspy (immediateRender:false p/ não vazar o estado final).
+  const { shouldPlay, tl } = useIntro()
+  const navRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    if (!shouldPlay || !tl || !navRef.current) return
+    const ctx = gsap.context(() => {
+      gsap.set(navRef.current, { opacity: 0 })
+      tl.fromTo(
+        navRef.current,
+        { opacity: 0, x: 12 },
+        { opacity: 1, x: 0, duration: INTRO.scrollspy.dur, ease: INTRO_BOUNCE, immediateRender: false },
+        INTRO.scrollspy.at,
+      )
+    })
+    return () => ctx.revert()
+  }, [shouldPlay, tl])
 
   if (pathname.startsWith('/ferramentas')) return null
 
@@ -96,8 +118,9 @@ export default function ScrollspyNav() {
 
   return (
     <nav
+      ref={navRef}
       aria-label="Navegação por seção"
-      className="hidden lg:flex fixed right-8 z-40 flex-col pointer-events-none"
+      className="intro-hide hidden lg:flex fixed right-8 z-40 flex-col pointer-events-none"
       style={{ bottom: 40 }}
     >
       {/* Trilho + linha de progresso — vão do centro do 1º dot ao centro do último */}
