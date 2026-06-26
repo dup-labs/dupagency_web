@@ -112,6 +112,24 @@ body {
   a, button, [role="button"], [tabindex] { cursor: none; }
 }
 
+/* ── Intro do hero — estados iniciais ───────────────────────────────────────
+   Os alvos da animação de entrada carregam .intro-hide sempre; ela só esconde
+   quando o script inline (layout) decidiu rodar a intro (html[data-intro="play"]).
+   Sem flash: o conteúdo nasce invisível no 1º paint e o GSAP (IntroProvider)
+   revela cada beat no seu tempo. Intro terminada ou pulada → data-intro="done"
+   e tudo visível. Ver IntroProvider.tsx / timeline.ts. */
+html[data-intro="play"] .intro-hide {
+  opacity: 0;
+}
+
+/* Faixas de tinta da intro (Fase 3). Estado inicial (fora da tela, em cima) vem
+   do CSS — NÃO do inline do React — pra não brigar com o transform do GSAP, que
+   assume o controle total via yPercent. Ver PaintPanels.tsx. */
+.paint-panel {
+  transform: translateY(-100%);
+  will-change: transform;
+}
+
 /* ── Card "como trabalhamos" — glass + noise ────────────────────────────── */
 
 .card-work {

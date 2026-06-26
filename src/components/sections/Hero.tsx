@@ -4,7 +4,13 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { richTags } from '@/i18n/rich'
+import { useIntro } from '@/components/intro/IntroProvider'
+import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
+import HeroHeadline from '@/components/intro/HeroHeadline'
+import PaintPanels from '@/components/intro/PaintPanels'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { useMouseParallax } from '@/hooks/useMouseParallax'
+import GridLinesInteractive from '@/components/ui/GridLinesInteractive'
 import { PlayPauseIcon } from '@phosphor-icons/react'
 import { PhosphorIcon } from '@/components/ui/PhosphorIcon'
 import GlitchGrid from '@/components/ui/GlitchGrid'
@@ -276,34 +282,83 @@ function ManifestoScroll() {
 
 export default function Hero() {
   const t = useTranslations('home.hero')
+
+  // ── Intro do hero (load-only) ──────────────────────────────────────────────
+  // Penduramos os reveals dos elementos do topo na master timeline, nos tempos
+  // do relógio (timeline.ts). Por ora são placeholders de fade/slide: o
+  // stroke-draw do headline (Fase 2), a pintura (Fase 3) e os bounces de
+  // grid/conectoras/logos (Fase 4) substituem cada beat no lugar.
+  const { shouldPlay, tl } = useIntro()
+  const heroRef = useRef<HTMLElement>(null)
+
+  // Mouse parallax: headline e subtexto reagem ao mouse indo pro lado oposto.
+  // Forças/durações distintas → o subtexto arrasta mais e mais devagar que o
+  // título, dando o efeito desencontrado.
+  const headlineParallaxRef = useRef<HTMLDivElement>(null)
+  const subtextParallaxRef = useRef<HTMLDivElement>(null)
+  useMouseParallax([
+    { ref: headlineParallaxRef, strength: 18, duration: 0.45 },
+    { ref: subtextParallaxRef, strength: 34, duration: 0.85 },
+  ])
+
+  useEffect(() => {
+    if (!shouldPlay || !tl || !heroRef.current) return
+    const ctx = gsap.context(() => {
+      // O headline (stroke-draw das palavras + fade das conectoras) é gerido
+      // dentro do HeroHeadline; aqui cuidamos só do subtexto e da faixa.
+      tl.fromTo('[data-intro="subtexto"]',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: INTRO.subtexto.dur, ease: 'power2.out' },
+        INTRO.subtexto.at)
+      tl.fromTo('[data-intro="clients-label"]',
+        { opacity: 0 },
+        { opacity: 1, duration: INTRO.clientsLabel.dur, ease: 'power1.out' },
+        INTRO.clientsLabel.at)
+      // Faixa de logos: animamos só o CONTAINER (opacity 0→1); os filhos mantêm
+      // seu opacity-40 + hover via CSS, sem inline que travasse o estado.
+      tl.fromTo('[data-intro="clients-row"]',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: INTRO.clientsLogos.dur, ease: INTRO_BOUNCE },
+        INTRO.clientsLogos.at)
+    }, heroRef)
+    return () => ctx.revert()
+  }, [shouldPlay, tl])
+
   return (
-    <section id="hero" className="relative z-10">
+    <section ref={heroRef} id="hero" className="relative z-10">
+      {/* Faixas de tinta da intro (Fase 3) — fixed, cobrem a viewport. */}
+      <PaintPanels />
+
       <div className="relative min-h-screen flex flex-col items-center justify-start px-6 md:px-8 pt-32 md:pt-72 pb-12 md:pb-0">
-        <GridLines />
+        <GridLinesInteractive />
 
         <div className="relative flex flex-col items-center text-center">
-          <h1
-            className="font-chillax font-bold uppercase select-none text-black"
-            style={{ fontSize: 'calc(clamp(36px, 6vw, 64px) * var(--font-scale))', lineHeight: 'var(--leading-display)' }}
-          >
-            {t.rich('headline', richTags)}
-          </h1>
+          <div ref={headlineParallaxRef} className="will-change-transform">
+            <HeroHeadline
+              raw={t.raw('headline')}
+              className="font-chillax font-bold uppercase select-none text-black"
+              style={{ fontSize: 'calc(clamp(36px, 6vw, 64px) * var(--font-scale))', lineHeight: 'var(--leading-display)' }}
+            />
+          </div>
 
-          <p
-            className="mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
-            style={{ lineHeight: 'var(--leading-body)' }}
-          >
-            {t('subheadline')}
-          </p>
+          <div ref={subtextParallaxRef} className="will-change-transform">
+            <p
+              data-intro="subtexto"
+              className="intro-hide mt-6 md:mt-8 font-synonym text-body-md md:text-body-lg text-neutral-600 max-w-lg text-center"
+              style={{ lineHeight: 'var(--leading-body)' }}
+            >
+              {t('subheadline')}
+            </p>
+          </div>
         </div>
 
         {/* Mobile: empurra pra base via mt-auto (flex column natural).
             Desktop: absolute bottom-15 (visual original). */}
         <div className="mt-auto pt-12 w-full md:absolute md:bottom-15 md:left-0 md:right-0 md:mt-0 md:pt-0 flex flex-col items-center px-6 md:px-8">
-          <p className="text-center font-synonym text-label-ui text-neutral-600 tracking-caption mb-8">
+          <p data-intro="clients-label" className="intro-hide text-center font-synonym text-label-ui text-neutral-600 tracking-caption mb-8">
             {t('clientsLabel')}
           </p>
-          <div className="flex flex-nowrap items-center justify-center gap-x-4 md:gap-x-8">
+          <div data-intro="clients-row" className="intro-hide flex flex-nowrap items-center justify-center gap-x-4 md:gap-x-8">
             {CLIENT_LOGOS.map(({ name, src }) => (
               <div
                 key={name}

@@ -5,7 +5,9 @@ import { useLocale, useTranslations } from 'next-intl'
 import { Link, usePathname, getPathname } from '@/i18n/navigation'
 import { routing, localeLabel } from '@/i18n/routing'
 import { useBackgroundContext } from './BackgroundLayer'
-import { ScrollTrigger } from '@/lib/gsap'
+import { useIntro } from '@/components/intro/IntroProvider'
+import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 
 // Links de seção da home. `key` → home.nav.<key> (label); `hash` → âncora na
 // home; `slug` → usado na lógica de hover. O href final recebe o prefixo do
@@ -93,6 +95,34 @@ export default function Nav() {
   const [toolsDropdown, setToolsDropdown] = useState(false)
   const listRef                       = useRef<HTMLDivElement>(null)
 
+  // Intro do hero — logo e menu caem do topo em bounce (beat ~2,3s). shouldPlay
+  // só é true na home; fora dela o CSS não esconde e este effect não roda.
+  const { shouldPlay, tl }  = useIntro()
+  const logoRef             = useRef<HTMLAnchorElement>(null)
+  const desktopMenuRef      = useRef<HTMLDivElement>(null)
+  const mobileMenuRef       = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!shouldPlay || !tl || !logoRef.current) return
+    const menu = [desktopMenuRef.current, mobileMenuRef.current].filter(Boolean) as HTMLElement[]
+    tl.fromTo(
+      logoRef.current,
+      { y: -24, opacity: 0 },
+      { y: 0, opacity: 1, duration: INTRO.navLogo.dur, ease: INTRO_BOUNCE },
+      INTRO.navLogo.at,
+    )
+    if (menu.length) {
+      tl.fromTo(
+        menu,
+        { y: -24, opacity: 0 },
+        { y: 0, opacity: 1, duration: INTRO.navMenu.dur, ease: INTRO_BOUNCE },
+        INTRO.navMenu.at,
+      )
+    }
+    // Sem cleanup que reverta: a master timeline é dona dos tweens e é morta no
+    // unmount do IntroProvider. Reverter aqui (re-render) reesconderia o Nav.
+  }, [shouldPlay, tl])
+
   // pathname (next-intl) já vem sem o prefixo de idioma — '/' é a home.
   const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
@@ -155,13 +185,13 @@ export default function Nav() {
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 h-16 transition-colors duration-300 ${textColor}`}
         style={glassStyle}
       >
-        <a href={homeHref} className="flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
+        <a ref={logoRef} href={homeHref} className="intro-hide flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
           <span className="font-light tracking-tight">dup</span>
           <span className="font-medium tracking-tight">.agency</span>
         </a>
 
         {/* Desktop: links + dropdown — visíveis só em lg+ */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div ref={desktopMenuRef} className="intro-hide hidden lg:flex items-center gap-8">
           {(['parceiros', 'servicos', 'depoimentos'] as const).map((slug) => {
             const link = links.find((l) => l.slug === slug)!
             return (
@@ -256,9 +286,10 @@ export default function Nav() {
         {/* Mobile: só o botão [ menu ] — o seletor de idioma vive dentro do
             menu (overlay), com bom alvo de toque e sem espremer a barra. */}
         <button
+          ref={mobileMenuRef}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? t('close') : t('menu')}
-          className="lg:hidden font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
+          className="intro-hide lg:hidden font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
           style={{ fontSize: '12px' }}
         >
           {open ? t('close') : t('menu')}

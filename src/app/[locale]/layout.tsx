@@ -10,9 +10,28 @@ import BackgroundLayer from '@/components/layout/BackgroundLayer'
 import Nav from '@/components/layout/Nav'
 import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
+import IntroProvider from '@/components/intro/IntroProvider'
 import { GTMScript, GTMNoScript } from '@/components/analytics/gtm'
 
 const BASE_URL = 'https://dup.agency'
+
+// Decide ANTES da pintura se a intro do hero roda, setando html[data-intro].
+// O CSS (globals) usa esse atributo pra esconder os alvos .intro-hide sem flash;
+// o IntroProvider lê o atributo no client. Critérios:
+//   · DEV: roda sempre na home (F5 basta — sem limpar sessão nem usar ?intro=1).
+//   · PROD: só na home, respeita prefers-reduced-motion, 1×/sessão
+//     (sessionStorage 'dup-hero-intro' — ver INTRO_SESSION_KEY).
+//   · ?intro=1: override total, força em qualquer caso.
+const introAlwaysInDev = process.env.NODE_ENV !== 'production'
+const introDecisionScript = `(function(){try{
+var p=location.pathname.replace(/\\/+$/,'');
+var home=p===''||p==='/en'||p==='/es';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var forced=location.search.indexOf('intro=1')!==-1;
+var played=false;try{played=sessionStorage.getItem('dup-hero-intro')==='1'}catch(e){}
+var play=forced||(home&&(${introAlwaysInDev}||(!reduce&&!played)));
+document.documentElement.setAttribute('data-intro',play?'play':'done');
+}catch(e){document.documentElement.setAttribute('data-intro','done')}})();`
 
 // Pré-gera as 3 rotas de locale em build time (SSG por idioma).
 export function generateStaticParams() {
@@ -192,8 +211,15 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={htmlLang[locale]} className={`${chillax.variable} ${synonym.variable}`}>
+    <html
+      lang={htmlLang[locale]}
+      className={`${chillax.variable} ${synonym.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Decisão da intro do hero — roda síncrono, antes da pintura, pra
+            travar o estado inicial (data-intro) sem flash de conteúdo. */}
+        <script dangerouslySetInnerHTML={{ __html: introDecisionScript }} />
         {/* Reforço do theme-color pra Safari iOS — explícito pelos dois
             schemes pra cobrir tinting dinâmico do URL bar. */}
         <meta name="theme-color" content="#0d0d0d" />
@@ -213,9 +239,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <BackgroundLayer>
             <CustomCursor />
-            <Nav />
-            <ScrollspyNav />
-            <main className="relative z-10">{children}</main>
+            <IntroProvider>
+              <Nav />
+              <ScrollspyNav />
+              <main className="relative z-10">{children}</main>
+            </IntroProvider>
           </BackgroundLayer>
         </NextIntlClientProvider>
       </body>
