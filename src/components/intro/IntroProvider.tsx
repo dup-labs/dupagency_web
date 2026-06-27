@@ -45,6 +45,35 @@ export function useIntro() {
   return useContext(IntroContext)
 }
 
+// Tolerância (px) pra considerar a página "no topo" = no hero. Cobre sub-pixel /
+// arredondamento; scroll restaurado pra outra seção é centenas de px, longe disso.
+const HERO_TOP_THRESHOLD = 2
+
+// Marca que a intro já rodou nesta sessão (roda 1×). sessionStorage pode estar
+// indisponível (modo privado/embed) — segue sem marcar.
+function markIntroPlayed() {
+  try {
+    sessionStorage.setItem(INTRO_SESSION_KEY, '1')
+  } catch {
+    // ignore
+  }
+}
+
+// Encerra a intro: libera o estado final (remove o gate do CSS, conteúdo visível)
+// e devolve a restauração de scroll pro navegador (o <head> a deixou em 'manual'
+// pra garantir que o reload começasse no topo). Chamado no fim da timeline OU
+// quando a validação aborta a intro por não estarmos no hero.
+function resolveIntro() {
+  document.documentElement.setAttribute('data-intro', 'done')
+  if ('scrollRestoration' in history) {
+    try {
+      history.scrollRestoration = 'auto'
+    } catch {
+      // ignore
+    }
+  }
+}
+
 export default function IntroProvider({ children }: { children: ReactNode }) {
   // Lê a decisão tomada pelo script inline (data-intro). Lazy initializer roda
   // de forma síncrona no 1º render do client (o provider é pai, renderiza antes
@@ -62,8 +91,8 @@ export default function IntroProvider({ children }: { children: ReactNode }) {
     return gsap.timeline({
       paused: true,
       onComplete() {
-        // Libera o estado final: remove o gate do CSS e marca a sessão.
-        document.documentElement.setAttribute('data-intro', 'done')
+        // Libera o estado final: remove o gate do CSS e devolve o scroll restore.
+        resolveIntro()
       },
     })
   })
@@ -84,11 +113,18 @@ export default function IntroProvider({ children }: { children: ReactNode }) {
       if (cancelled) return
       requestAnimationFrame(() => {
         if (cancelled) return
-        try {
-          sessionStorage.setItem(INTRO_SESSION_KEY, '1')
-        } catch {
-          // sessionStorage indisponível (modo privado/embed) — segue sem marcar.
+
+        // ⭐ Validação "estamos no hero?": a intro é uma cena do TOPO. O <head> já
+        // travou scrollRestoration='manual' quando decidiu rodar, então no fluxo
+        // normal a página carrega no topo e scrollY ≈ 0 aqui. Mas se a restauração
+        // escapou (browser sem suporte, deep-link forçado), não rodamos o wipe no
+        // meio do conteúdo — encerramos revelando a página onde ela está.
+        markIntroPlayed()
+        if (window.scrollY > HERO_TOP_THRESHOLD) {
+          resolveIntro()
+          return
         }
+
         tl.play(0)
       })
     })
