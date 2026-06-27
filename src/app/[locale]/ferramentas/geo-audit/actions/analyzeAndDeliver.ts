@@ -39,6 +39,7 @@ interface DomMetrics {
   schema_types: string[]
   has_organization_schema: boolean
   has_faq_schema: boolean
+  has_hreflang: boolean
   word_count: number
   body_text: string
 }
@@ -118,11 +119,18 @@ async function extractDomMetrics(url: string): Promise<DomMetrics> {
         .filter(Boolean)
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const schemaTypes: string[] = schemas.flatMap((s: any) =>
-        s['@type']
-          ? Array.isArray(s['@type']) ? s['@type'] : [s['@type']]
-          : [],
-      )
+      const schemaTypes: string[] = schemas.flatMap((s: any) => {
+        const top: string[] = s['@type']
+          ? (Array.isArray(s['@type']) ? s['@type'] : [s['@type']])
+          : []
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const graph: string[] = Array.isArray(s['@graph'])
+          ? (s['@graph'] as any[]).flatMap((n: any) =>
+              n['@type'] ? (Array.isArray(n['@type']) ? n['@type'] : [n['@type']]) : []
+            )
+          : []
+        return [...top, ...graph]
+      })
 
       const imgs = Array.from(document.querySelectorAll('img'))
       const bodyText = document.body.innerText ?? ''
@@ -151,6 +159,7 @@ async function extractDomMetrics(url: string): Promise<DomMetrics> {
           ['Organization', 'LocalBusiness', 'Corporation', 'Store'].includes(t),
         ),
         has_faq_schema: schemaTypes.some((t) => t === 'FAQPage'),
+        has_hreflang: document.querySelectorAll('link[rel="alternate"][hreflang]').length > 0,
         word_count: words.length,
         body_text: bodyText.slice(0, 6000),
       }
@@ -195,6 +204,29 @@ async function extractDomMetricsFallback(url: string): Promise<DomMetrics> {
   const imgs = (html.match(/<img /gi) ?? []).length
   const imgsWithAlt = (html.match(/<img[^>]+alt=["'][^"']+["']/gi) ?? []).length
 
+  // Extrai schema types do HTML cru (Next.js JSON-LD é SSR — está no HTML)
+  const schemaMatches = Array.from(
+    html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+  )
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fbSchemas: any[] = schemaMatches
+    .map((m) => { try { return JSON.parse(m[1]) } catch { return null } })
+    .filter(Boolean)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fbTypes: string[] = fbSchemas.flatMap((s: any) => {
+    const top: string[] = s['@type']
+      ? (Array.isArray(s['@type']) ? s['@type'] : [s['@type']])
+      : []
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const graph: string[] = Array.isArray(s['@graph'])
+      ? (s['@graph'] as any[]).flatMap((n: any) =>
+          n['@type'] ? (Array.isArray(n['@type']) ? n['@type'] : [n['@type']]) : []
+        )
+      : []
+    return [...top, ...graph]
+  })
+  const fbHasHreflang = /<link[^>]+hreflang=["'][^"']+["']/i.test(html)
+
   return {
     title, description,
     og_title: null, og_description: null,
@@ -203,9 +235,12 @@ async function extractDomMetricsFallback(url: string): Promise<DomMetrics> {
     h1s, h2s,
     images_total: imgs,
     images_missing_alt: imgs - imgsWithAlt,
-    schema_types: [],
-    has_organization_schema: false,
-    has_faq_schema: false,
+    schema_types: fbTypes,
+    has_organization_schema: fbTypes.some((t) =>
+      ['Organization', 'LocalBusiness', 'Corporation', 'Store'].includes(t),
+    ),
+    has_faq_schema: fbTypes.some((t) => t === 'FAQPage'),
+    has_hreflang: fbHasHreflang,
     word_count: 0,
     body_text: '',
   }
@@ -278,6 +313,7 @@ Canonical: ${dom.canonical || '(ausente)'}
 H1s (${dom.h1s.length}): ${dom.h1s.slice(0, 5).join(' | ') || '(nenhum)'}
 H2s (${dom.h2s.length}): ${dom.h2s.slice(0, 10).join(' | ') || '(nenhum)'}
 Schema types: ${dom.schema_types.join(', ') || '(nenhum)'}
+Hreflang alternates: ${dom.has_hreflang ? 'presente' : '(ausente)'}
 Imagens: ${dom.images_total} total, ${dom.images_missing_alt} sem alt text
 Palavras estimadas: ${dom.word_count}
 
@@ -311,7 +347,8 @@ Regras:
 - action_plan: 8-12 itens ordenados por impacto, ações concretas e específicas (não genéricas)
 - obs: descreva o problema real encontrado nos dados, não apenas o que está faltando
 - company_name: use o nome real da empresa (ex: "OneUp", "FOM", "Bennemann") — não traduza nomes próprios
-- priority: use EXATAMENTE um destes códigos internos, sem traduzir e sem acento diferente: "alta", "média" ou "baixa"`
+- priority: use EXATAMENTE um destes códigos internos, sem traduzir e sem acento diferente: "alta", "média" ou "baixa"
+- Se um sinal constar nos dados como "(ausente)", mencione a ausência; se um campo simplesmente não aparecer nos dados acima, não afirme que está faltando`
 
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
@@ -422,6 +459,7 @@ export async function analyzeAndDeliver(hash: string, url: string, email: string
         schema_types: dom.schema_types,
         has_organization_schema: dom.has_organization_schema,
         has_faq_schema: dom.has_faq_schema,
+        has_hreflang: dom.has_hreflang,
         score_breakdown,
       },
       geo,

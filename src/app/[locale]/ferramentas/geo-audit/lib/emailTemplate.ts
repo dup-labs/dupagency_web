@@ -21,6 +21,7 @@ export interface GeoAuditResult {
     schema_types: string[]
     has_organization_schema: boolean
     has_faq_schema: boolean
+    has_hreflang: boolean
     score_breakdown: {
       meta_tags: number
       headings: number
