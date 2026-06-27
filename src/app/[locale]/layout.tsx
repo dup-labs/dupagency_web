@@ -121,7 +121,7 @@ const jsonLd = {
       '@id': 'https://dup.agency/#organization',
       name: 'dup.agency',
       url: 'https://dup.agency/',
-      logo: 'https://dup.agency/logo.svg',
+      logo: 'https://dup.agency/images/android-chrome-512x512.png',
       foundingDate: '2021',
       description:
         'Agência boutique de tecnologia para e-commerce. Especialistas em VTEX e Nuvemshop — assumindo a responsabilidade pela tech do cliente, sem turnover, com a mesma qualidade sempre.',
@@ -136,7 +136,7 @@ const jsonLd = {
           name: 'Bruno Dup',
           jobTitle:
             'Fundador, criativo de formação e desenvolvedor sênior. Especialista em e-commerce',
-          url: 'https://dup.agency/sobre',
+          url: 'https://www.linkedin.com/in/brunodup/',
           sameAs: ['https://www.linkedin.com/in/brunodup/'],
         },
         {
@@ -145,7 +145,7 @@ const jsonLd = {
           name: 'Larissa Carvalho',
           jobTitle:
             'Co-fundadora, especialista VTEX e desenvolvedora front-end e responsável pela tecnologia e processos da operação',
-          url: 'https://dup.agency/sobre',
+          url: 'https://www.linkedin.com/in/larissa-de-carvalho-silva-584382109/',
           sameAs: ['https://www.linkedin.com/in/larissa-de-carvalho-silva-584382109/'],
         },
       ],
