@@ -12,6 +12,7 @@ import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
 import IntroProvider from '@/components/intro/IntroProvider'
 import { GTMScript, GTMNoScript } from '@/components/analytics/gtm'
+import { publicRobots } from '@/lib/robotsMeta'
 
 const BASE_URL = 'https://dup.agency'
 
@@ -93,7 +94,7 @@ export async function generateMetadata({
     // alternates (canonical + hreflang) NÃO ficam aqui de propósito: o layout
     // é compartilhado por todas as páginas, e um canonical da home vazaria pras
     // ferramentas. Cada página define o seu próprio (ver page.tsx de cada rota).
-    robots: { index: true, follow: true },
+    robots: publicRobots,
     // Ícones via convenção do App Router: src/app/icon.png (gera favicon) e
     // src/app/apple-icon.png (gera apple-touch-icon). Next.js injeta as <link>
     // tags automaticamente — sem precisar declarar aqui.
@@ -224,7 +225,12 @@ export default async function LocaleLayout({
     >
       <head>
         {/* Decisão da intro do hero — roda síncrono, antes da pintura, pra
-            travar o estado inicial (data-intro) sem flash de conteúdo. */}
+            travar o estado inicial (data-intro) sem flash de conteúdo.
+            Precisa ser <script> crua no head: só assim executa antes do 1º paint.
+            Por isso o seletor de idioma navega com <a> (hard nav) e não com
+            <Link> — client-side nav re-renderizaria este root layout, e o React
+            não executa script em render de cliente (ele só grita no console).
+            Ver LangSwitcher em Nav.tsx. */}
         <script dangerouslySetInnerHTML={{ __html: introDecisionScript }} />
         {/* Reforço do theme-color pra Safari iOS — explícito pelos dois
             schemes pra cobrir tinting dinâmico do URL bar. */}

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
-import { Link, usePathname, getPathname } from '@/i18n/navigation'
+import { usePathname, getPathname } from '@/i18n/navigation'
 import { routing, localeLabel } from '@/i18n/routing'
 import { useBackgroundContext } from './BackgroundLayer'
 import { useIntro } from '@/components/intro/IntroProvider'
@@ -53,7 +53,13 @@ function ToolsChevron({ open }: { open: boolean }) {
 }
 
 // Troca de idioma preservando a página atual. usePathname (next-intl) já vem
-// sem o prefixo de locale; o <Link locale> reconstrói com o idioma escolhido.
+// sem o prefixo de locale; getPathname reconstrói com o idioma escolhido.
+//
+// <a> e não <Link> de propósito: trocar de idioma muda o segmento [locale], e a
+// navegação client-side re-renderizaria o root layout no cliente — onde o React
+// encontra a <script> do gate da intro (que ele nunca executa nesse caminho) e
+// joga um erro no console. Recarregar o documento é o comportamento correto de
+// qualquer forma: o idioma troca html[lang], as mensagens e o gate da intro.
 function LangSwitcher({ className = '', large = false }: { className?: string; large?: boolean }) {
   const pathname = usePathname()
   const active   = useLocale()
@@ -63,9 +69,9 @@ function LangSwitcher({ className = '', large = false }: { className?: string; l
       {routing.locales.map((l, i) => (
         <span key={l} className="flex items-center gap-2">
           {i > 0 && <span style={{ opacity: 0.3, fontSize }}>/</span>}
-          <Link
-            href={pathname}
-            locale={l}
+          <a
+            href={getPathname({ href: pathname, locale: l })}
+            hrefLang={l}
             className="font-synonym tracking-widest transition-opacity duration-200 hover:opacity-100"
             style={{
               fontSize,
@@ -75,7 +81,7 @@ function LangSwitcher({ className = '', large = false }: { className?: string; l
             }}
           >
             {localeLabel[l]}
-          </Link>
+          </a>
         </span>
       ))}
     </div>
@@ -148,12 +154,24 @@ export default function Nav() {
   const isDark    = navTheme === 'dark'
   const textColor = open || !isDark ? 'text-white' : 'text-black'
 
-  const glassStyle: React.CSSProperties = (!isHome && scrolled) ? {
-    background:           'rgba(255,255,255,0.85)',
-    backdropFilter:       'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
-    borderBottom:         '1px solid rgba(0,0,0,0.06)',
-  } : {}
+  // Glass da barra em páginas internas. Precisa acompanhar o tema da seção: as
+  // ferramentas são sempre claras, mas a página de case alterna claro/escuro —
+  // e um glass branco fixo deixaria o texto branco (tema escuro) ilegível.
+  const glassStyle: React.CSSProperties = (!isHome && scrolled)
+    ? isDark
+      ? {
+          background:           'rgba(255,255,255,0.85)',
+          backdropFilter:       'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom:         '1px solid rgba(0,0,0,0.06)',
+        }
+      : {
+          background:           'rgba(13,13,13,0.75)',
+          backdropFilter:       'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom:         '1px solid rgba(255,255,255,0.08)',
+        }
+    : {}
 
   function handleMouseEnter(slug: string, e: React.MouseEvent<HTMLAnchorElement>) {
     setHovered(slug)

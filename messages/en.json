@@ -775,5 +775,21 @@
         }
       }
     }
+  },
+  "cases": {
+    "ui": {
+      "eyebrowClient": "the client",
+      "eyebrowStart": "how it started",
+      "eyebrowHistory": "partnership history",
+      "eyebrowGallery": "gallery",
+      "eyebrowVoice": "in the client's words",
+      "eyebrowNext": "what's next",
+      "historyTitle": "What we built<br></br><g>together</g>",
+      "historySub": "Every milestone is a delivery. The page grows with the relationship.",
+      "galleryTitle": "The store<br></br>as it is today",
+      "nextTitle": "The partnership<br></br>keeps <g>evolving</g>",
+      "resultLabel": "Result.",
+      "liveBadge": "live"
+    }
   }
 }

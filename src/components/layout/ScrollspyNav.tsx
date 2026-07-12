@@ -46,7 +46,9 @@ export default function ScrollspyNav() {
     return () => ctx.revert()
   }, [shouldPlay, tl])
 
-  if (pathname.startsWith('/ferramentas')) return null
+  // O scrollspy indexa as seções da HOME (SECTIONS). Em qualquer outra rota ele
+  // apontaria pra âncoras que não existem ali — então só a home o renderiza.
+  if (pathname !== '/') return null
 
   const [activeId,  setActiveId]  = useState<string>(SECTIONS[0].id)
   const [hoveredId, setHoveredId] = useState<string | null>(null)

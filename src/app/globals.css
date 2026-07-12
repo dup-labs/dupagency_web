@@ -32,6 +32,8 @@
   --color-neutral-600:    #676767;
   --color-neutral-800:    #3D3D3D;
   --color-neutral-900:    #0D0D0D;
+  --color-lilac-50:       #F7F6F9;
+  --color-lilac-100:      #F1F0F4;
 
   /* Tamanhos de texto */
   --font-size-display-2xl: 4rem;
@@ -539,4 +541,62 @@ html[data-intro="play"] .hero-cover {
 @keyframes glitch-sheet-slide-up {
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
+}
+
+/* ── Página de case (/cases/[slug]) ─────────────────────────────────────────
+   Reveals, hover dos cards e as duas animações decorativas do hero. Tudo em CSS:
+   são efeitos one-shot ou loops — GSAP aqui só entraria como peso morto (o único
+   efeito scroll-driven da página, a spine da timeline, esse sim usa ScrollTrigger). */
+
+.case-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* Cards da timeline entram com um leve zoom-in junto da subida. */
+.case-reveal--card {
+  transform: translateY(40px) scale(0.97);
+}
+
+.case-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.case-hovercard {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+
+.case-hovercard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(13, 13, 13, 0.1);
+}
+
+/* Blobs do hero — flutuação lenta e infinita. */
+@keyframes case-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes case-live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(40, 200, 64, 0.6); }
+  100% { box-shadow: 0 0 0 7px rgba(40, 200, 64, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .case-float,
+  .case-live-dot {
+    animation: none !important;
+  }
 }

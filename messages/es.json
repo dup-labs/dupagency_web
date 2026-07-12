@@ -775,5 +775,21 @@
         }
       }
     }
+  },
+  "cases": {
+    "ui": {
+      "eyebrowClient": "el cliente",
+      "eyebrowStart": "cómo empezó",
+      "eyebrowHistory": "historial de la alianza",
+      "eyebrowGallery": "galería",
+      "eyebrowVoice": "en voz del cliente",
+      "eyebrowNext": "lo que viene",
+      "historyTitle": "Lo que construimos<br></br><g>juntos</g>",
+      "historySub": "Cada hito es una entrega. La página crece con la relación.",
+      "galleryTitle": "La tienda<br></br>hoy en línea",
+      "nextTitle": "La relación<br></br>sigue <g>evolucionando</g>",
+      "resultLabel": "Resultado.",
+      "liveBadge": "en vivo"
+    }
   }
 }

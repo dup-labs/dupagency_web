@@ -9,6 +9,7 @@ import DiagnosticoServices from './components/DiagnosticoServices'
 import HowItWorks from './components/HowItWorks'
 import Faq from './components/Faq'
 import FinalCta from './components/FinalCta'
+import { publicRobots } from '@/lib/robotsMeta'
 
 export async function generateMetadata({
   params,
@@ -30,7 +31,7 @@ export async function generateMetadata({
       type: 'website',
     },
     alternates: localizedAlternates('/ferramentas/redirect-checker', locale),
-    robots: { index: true, follow: true },
+    robots: publicRobots,
   }
 }
 

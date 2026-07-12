@@ -27,6 +27,14 @@ export type SectionId =
   | 'rc-how-it-works'
   | 'rc-faq'
   | 'rc-final-cta'
+  // cases (/cases/[slug]) — o CTA final da página reusa o id 'cta-final'
+  | 'case-hero'
+  | 'case-resumo'
+  | 'case-inicio'
+  | 'case-historico'
+  | 'case-galeria'
+  | 'case-depoimento'
+  | 'case-next'
 
 export type NavTheme = 'dark' | 'light'
 
@@ -129,6 +137,36 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
   'rc-final-cta': {
     background: 'var(--grad-site-01)',
     navTheme: 'light',
+  },
+  // cases — alternam claro/escuro; nenhuma usa fundo gradiente, então o
+  // BackgroundLayer não precisou de camada nova.
+  'case-hero': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'case-resumo': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'case-inicio': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  'case-historico': {
+    background: 'var(--lilac-50)',
+    navTheme: 'dark',
+  },
+  'case-galeria': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'case-depoimento': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  'case-next': {
+    background: 'var(--white)',
+    navTheme: 'dark',
   },
 }
 

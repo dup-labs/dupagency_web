@@ -25,6 +25,12 @@
   --neutral-800: #3D3D3D;
   --neutral-900: #0D0D0D;
 
+  /* ── SUPERFÍCIES LILÁS (páginas de case) ────────────────────
+     Off-white com tint lilás — não é o --neutral-50, que é cinza puro.
+     Andam em par: 50 nas superfícies grandes, 100 em chips e placeholders. */
+  --lilac-50:  #F7F6F9;
+  --lilac-100: #F1F0F4;
+
   /* ── ESCALA PINK-ROSE ───────────────────────────────────── */
   --pink-rose-50:  #E9E4E7;
   --pink-rose-100: #D9CBD3;

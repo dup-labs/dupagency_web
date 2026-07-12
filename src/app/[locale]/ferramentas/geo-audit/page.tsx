@@ -11,6 +11,7 @@ import CheckerUpsell from './components/CheckerUpsell'
 import Faq from './components/Faq'
 import FinalCta from './components/FinalCta'
 import Footer from '@/components/sections/Footer'
+import { publicRobots } from '@/lib/robotsMeta'
 
 export const maxDuration = 300
 
@@ -34,7 +35,7 @@ export async function generateMetadata({
       type: 'website',
     },
     alternates: localizedAlternates('/ferramentas/geo-audit', locale as Locale),
-    robots: { index: true, follow: true },
+    robots: publicRobots,
   }
 }
 
