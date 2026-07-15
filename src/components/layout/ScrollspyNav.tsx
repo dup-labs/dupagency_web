@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { useBackgroundContext } from '@/components/layout/BackgroundLayer'
 import { useIntro } from '@/components/intro/IntroProvider'
 import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
@@ -45,10 +45,6 @@ export default function ScrollspyNav() {
     })
     return () => ctx.revert()
   }, [shouldPlay, tl])
-
-  // O scrollspy indexa as seções da HOME (SECTIONS). Em qualquer outra rota ele
-  // apontaria pra âncoras que não existem ali — então só a home o renderiza.
-  if (pathname !== '/') return null
 
   const [activeId,  setActiveId]  = useState<string>(SECTIONS[0].id)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
@@ -111,6 +107,15 @@ export default function ScrollspyNav() {
       cancelAnimationFrame(raf)
     }
   }, [])
+
+  // O scrollspy indexa as seções da HOME (SECTIONS). Em qualquer outra rota ele
+  // apontaria pra âncoras que não existem ali — então só a home o renderiza.
+  // usePathname do next-intl de propósito: devolve o path SEM prefixo de locale
+  // ('/' nas três homes) tanto no prerender (SSG gera /pt) quanto no client (/).
+  // Com o usePathname do next/navigation o server via '/pt' e o client '/', o
+  // HTML divergia e a home pt caía em hydration mismatch (React #418) — que
+  // derrubava a intro e o GSAP inteiro. Hooks ficam TODOS acima deste return.
+  if (pathname !== '/') return null
 
   const activeIndex    = Math.max(0, SECTIONS.findIndex((s) => s.id === activeId))
   const trackColor     = isLight ? 'rgba(255,255,255,0.22)' : 'rgba(13,13,13,0.18)'
