@@ -13,7 +13,9 @@ export default function robots(): MetadataRoute.Robots {
   }
 
   return {
-    rules: { userAgent: '*', allow: '/' },
+    // /card = cartão de visita digital (networking pessoal) — nunca indexa.
+    // As páginas também mandam meta noindex (ver src/app/card/layout.tsx).
+    rules: { userAgent: '*', allow: '/', disallow: '/card/' },
     sitemap: 'https://dup.agency/sitemap.xml',
   }
 }
