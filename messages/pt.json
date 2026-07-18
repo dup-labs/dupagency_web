@@ -820,7 +820,7 @@
     },
     "manifesto": {
       "label": "01 — o que é o lab",
-      "title": "a gente passa o dia resolvendo e-commerce dos outros.",
+      "title": "a gente passa o dia resolvendo <nb>e-commerce</nb> dos outros.",
       "titleMuted": "o lab é onde a gente constrói o que quer.",
       "p1": "Sem briefing, sem prazo de cliente, sem escopo fechado. O lab é o lugar onde a curiosidade vira commit e a gente descobre no que dá.",
       "p2": "A regra é uma só: <b>tratar tudo como rascunho</b>. Enquanto é rabisco, dá pra apagar, virar do avesso e recomeçar sem dó.",

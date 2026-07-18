@@ -21,14 +21,18 @@ export default function LabManifesto() {
 
         <Reveal delay={80}>
           <h2
-            className="font-chillax font-bold uppercase m-0 max-w-[20ch]"
+            className="font-chillax font-bold uppercase m-0 max-w-[22ch]"
             style={{
-              fontSize: 'calc(clamp(28px, 4.4vw, 58px) * var(--font-scale))',
+              fontSize: 'calc(clamp(28px, 4.3vw, 56px) * var(--font-scale))',
               lineHeight: 1.02,
               letterSpacing: '-0.01em',
             }}
           >
-            {t('title')} <span className="text-neutral-400">{t('titleMuted')}</span>
+            {/* <nb> segura "e-commerce" inteiro na mesma linha (sem quebra no hífen) */}
+            {t.rich('title', {
+              nb: (chunks) => <span className="whitespace-nowrap">{chunks}</span>,
+            })}{' '}
+            <span className="text-neutral-400">{t('titleMuted')}</span>
           </h2>
         </Reveal>
 

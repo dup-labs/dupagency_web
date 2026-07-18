@@ -820,7 +820,7 @@
     },
     "manifesto": {
       "label": "01 — what the lab is",
-      "title": "we spend all day solving other people's e-commerce.",
+      "title": "we spend all day solving other people's <nb>e-commerce</nb>.",
       "titleMuted": "the lab is where we build what we want.",
       "p1": "No briefing, no client deadlines, no locked scope. The lab is where curiosity becomes a commit and we find out where it leads.",
       "p2": "There's only one rule: <b>treat everything as a draft</b>. While it's a scribble, you can erase it, flip it inside out and start over — no regrets.",

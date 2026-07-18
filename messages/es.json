@@ -820,7 +820,7 @@
     },
     "manifesto": {
       "label": "01 — qué es el lab",
-      "title": "nos pasamos el día resolviendo el e-commerce de otros.",
+      "title": "nos pasamos el día resolviendo el <nb>e-commerce</nb> de otros.",
       "titleMuted": "el lab es donde construimos lo que queremos.",
       "p1": "Sin briefing, sin plazos de cliente, sin alcance cerrado. El lab es el lugar donde la curiosidad se vuelve commit y descubrimos en qué termina.",
       "p2": "La regla es una sola: <b>tratar todo como borrador</b>. Mientras es garabato, se puede borrar, dar vuelta y empezar de nuevo sin remordimientos.",
