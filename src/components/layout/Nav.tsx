@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, getPathname } from '@/i18n/navigation'
 import { routing, localeLabel } from '@/i18n/routing'
 import { useBackgroundContext } from './BackgroundLayer'
+import LabLogo from '@/components/ui/LabLogo'
 import { useIntro } from '@/components/intro/IntroProvider'
 import { INTRO, INTRO_BOUNCE } from '@/components/intro/timeline'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
@@ -131,13 +132,22 @@ export default function Nav() {
 
   // pathname (next-intl) já vem sem o prefixo de idioma — '/' é a home.
   const isHome = pathname === '/'
+  // No dup.lab o Nav é o mesmo do site, mas com o wordmark do lab no lugar do
+  // logo e o item de menu invertido: aqui entra DUP.AGENCY, lá entra DUP.LAB.
+  const isLab  = pathname === '/lab'
   const [scrolled, setScrolled] = useState(false)
 
   // Helpers de href com o prefixo do locale ativo.
   // getPathname respeita o localePrefix: pt sem prefixo, en/es com.
   const homeHref = getPathname({ href: '/', locale })
+  const labHref  = getPathname({ href: '/lab', locale })
   const sectionHref = (hash: string) => `${homeHref}${hash}`
   const toolHref = (path: string) => getPathname({ href: path, locale })
+
+  // Link cruzado dup.agency ↔ dup.lab (desktop e mobile).
+  const crossLink = isLab
+    ? { key: 'agency' as const, href: homeHref }
+    : { key: 'lab' as const,    href: labHref  }
 
   useEffect(() => {
     if (isHome) return
@@ -203,9 +213,20 @@ export default function Nav() {
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 h-16 transition-colors duration-300 ${textColor}`}
         style={glassStyle}
       >
-        <a ref={logoRef} href={homeHref} className="intro-hide flex items-center font-chillax" style={{ fontSize: '24px', lineHeight: 1 }}>
-          <span className="font-light tracking-tight">dup</span>
-          <span className="font-medium tracking-tight">.agency</span>
+        <a
+          ref={logoRef}
+          href={isLab ? labHref : homeHref}
+          className="intro-hide flex items-center font-chillax"
+          style={{ fontSize: '24px', lineHeight: 1 }}
+        >
+          {isLab ? (
+            <LabLogo height={24} />
+          ) : (
+            <>
+              <span className="font-light tracking-tight">dup</span>
+              <span className="font-medium tracking-tight">.agency</span>
+            </>
+          )}
         </a>
 
         {/* Desktop: links + dropdown — visíveis só em lg+ */}
@@ -224,6 +245,15 @@ export default function Nav() {
               </a>
             )
           })}
+
+          {/* Link cruzado dup.agency ↔ dup.lab */}
+          <a
+            href={crossLink.href}
+            className="font-synonym font-normal tracking-widest transition-opacity duration-200 opacity-70 hover:opacity-100"
+            style={{ fontSize: '12px', textDecoration: 'none', color: 'inherit' }}
+          >
+            {t(crossLink.key)}
+          </a>
 
           {/* Ferramentas dropdown */}
           <div
@@ -355,12 +385,29 @@ export default function Nav() {
             </a>
           ))}
 
+          {/* Link cruzado dup.agency ↔ dup.lab */}
+          <a
+            href={crossLink.href}
+            onClick={() => setOpen(false)}
+            className="flex items-center font-chillax font-bold text-white uppercase py-2"
+            style={{
+              fontSize:       'clamp(28px, 5vw, 56px)',
+              borderBottom:   '1px solid rgba(255,255,255,0.10)',
+              opacity:        open ? 1 : 0,
+              transform:      open ? 'translateY(0)' : 'translateY(20px)',
+              transition:     `opacity 0.35s ease ${mainLinks.length * 0.06}s, transform 0.35s ease ${mainLinks.length * 0.06}s`,
+              textDecoration: 'none',
+            }}
+          >
+            {t(crossLink.key)}
+          </a>
+
           {/* Ferramentas — accordion (antes do CONTATO) */}
           <div
             style={{
               opacity:      open ? 1 : 0,
               transform:    open ? 'translateY(0)' : 'translateY(20px)',
-              transition:   `opacity 0.35s ease ${mainLinks.length * 0.06}s, transform 0.35s ease ${mainLinks.length * 0.06}s`,
+              transition:   `opacity 0.35s ease ${(mainLinks.length + 1) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 1) * 0.06}s`,
               borderBottom: '1px solid rgba(255,255,255,0.10)',
             }}
           >
@@ -426,7 +473,7 @@ export default function Nav() {
               borderBottom:   '1px solid rgba(255,255,255,0.10)',
               opacity:        open ? 1 : 0,
               transform:      open ? 'translateY(0)' : 'translateY(20px)',
-              transition:     `opacity 0.35s ease ${(mainLinks.length + 1) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 1) * 0.06}s, letter-spacing 0.3s ease`,
+              transition:     `opacity 0.35s ease ${(mainLinks.length + 2) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 2) * 0.06}s, letter-spacing 0.3s ease`,
               textDecoration: 'none',
               letterSpacing:  hovered === contatoLink.slug ? '0.05em' : '0em',
             }}
@@ -441,7 +488,7 @@ export default function Nav() {
               paddingTop: '32px',
               opacity:    open ? 1 : 0,
               transform:  open ? 'translateY(0)' : 'translateY(20px)',
-              transition: `opacity 0.35s ease ${(mainLinks.length + 2) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 2) * 0.06}s`,
+              transition: `opacity 0.35s ease ${(mainLinks.length + 3) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 3) * 0.06}s`,
             }}
           >
             <LangSwitcher large />

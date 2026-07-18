@@ -20,7 +20,9 @@
         "redirect": "Redirects for SEO"
       },
       "menu": "[ menu ]",
-      "close": "[ close ]"
+      "close": "[ close ]",
+      "lab": "DUP.LAB",
+      "agency": "DUP.AGENCY"
     },
     "hero": {
       "headline": "<g>Clarity</g> and <g>confidence</g><br></br>for those who need<br></br><g>operational peace of mind</g>",
@@ -790,6 +792,125 @@
       "nextTitle": "The partnership<br></br>keeps <g>evolving</g>",
       "resultLabel": "Result.",
       "liveBadge": "live"
+    }
+  },
+  "lab": {
+    "meta": {
+      "title": "dup.lab — creative experimentation lab",
+      "description": "dup.lab is dup.agency's creative experimentation lab: where out-of-the-box ideas become sketches, prototypes and — sometimes — products. Meet swtchr, nutrk and polr.",
+      "ogDescription": "dup.agency's backyard: where we fail fast, test without clients and turn loose ideas into products."
+    },
+    "hero": {
+      "tagline": "dup.lab — creative experimentation lab · fig.01",
+      "annotation": "scribbling is how it starts ↴",
+      "title1": "every good idea",
+      "title2": "starts as a",
+      "titleWord": "scribble",
+      "lead": "dup.lab is <b>dup.agency</b>'s backyard — where we fail fast, test without clients and turn loose ideas into products. Some became <b>nutrk</b>, <b>swtchr</b>, <b>polr</b>. Others became lessons.",
+      "scroll": "scroll ↓",
+      "rev": "— rev. 2026 —"
+    },
+    "marquee": {
+      "w1": "sketch",
+      "w2": "prototype",
+      "w3": "break fast",
+      "w4": "iteration",
+      "w5": "error is data",
+      "w6": "beta"
+    },
+    "manifesto": {
+      "label": "01 — what the lab is",
+      "title": "we spend all day solving other people's e-commerce.",
+      "titleMuted": "the lab is where we build what we want.",
+      "p1": "No briefing, no client deadlines, no locked scope. The lab is where curiosity becomes a commit and we find out where it leads.",
+      "p2": "There's only one rule: <b>treat everything as a draft</b>. While it's a scribble, you can erase it, flip it inside out and start over — no regrets.",
+      "p3": "What works earns its color and becomes a product. What doesn't becomes a lesson —",
+      "p3Hand": "and never an excuse."
+    },
+    "produtos": {
+      "label": "02 — what made it out of the sketchbook",
+      "title1": "products",
+      "title2": "that earned their color",
+      "hint": "hover over them — the sketch fills in. ✐",
+      "hoverHint": "hover to color",
+      "placeholder": "image coming soon",
+      "status": {
+        "live": "● live",
+        "beta": "◐ beta",
+        "soon": "○ soon"
+      },
+      "swtchr": {
+        "tagline": "// e-commerce in blocks",
+        "desc": "A superset of ready-made components and customizable blocks to build and run a store without reinventing the wheel every time."
+      },
+      "nutrk": {
+        "tagline": "// your health, side by side",
+        "desc": "Diet, training, water and headspace in one place. Duolingo-style daily streaks, friendly competition, and your trainer and nutritionist tracking your protocols up close."
+      },
+      "polr": {
+        "tagline": "// wishlists with strategy",
+        "desc": "Save products from any store, organize them by category, simulate your cart and buy at the right moment. App + Chrome extension."
+      }
+    },
+    "processo": {
+      "label": "03 — how products are born",
+      "title1": "from scribble",
+      "title2": "to product",
+      "step1": {
+        "title": "scribble",
+        "text": "Every idea starts on a napkin — or a messy Figma at 2am. If it survives breakfast, it moves forward."
+      },
+      "step2": {
+        "title": "prototype",
+        "text": "Build fast, break fast, learn fast. Ugly and working beats pretty and on paper."
+      },
+      "step3": {
+        "title": "beta",
+        "text": "Ship it before it feels ready. The people using it decide what stays, what changes and what dies."
+      },
+      "step4": {
+        "title": "product",
+        "titleNote": "(or drawer)",
+        "text": "What works earns its color and becomes a real product. What doesn't becomes a lesson saved for the next one."
+      }
+    },
+    "bastidores": {
+      "label": "04 — in the oven",
+      "title": "behind the scenes",
+      "hint": "sketches that might become products. or not. 🤷",
+      "card1": {
+        "id": "exp_047",
+        "rev": "rev. 0.1",
+        "name": "codename: dashboard",
+        "status": "status: scribble",
+        "secret": "lab secret 🤫"
+      },
+      "card2": {
+        "id": "exp_052",
+        "rev": "rev. 0.3",
+        "name": "codename: creative hub",
+        "status": "status: prototype",
+        "secret": "still raw 🔬"
+      }
+    },
+    "cta": {
+      "hand": "got a weird idea? ↓",
+      "title1": "is the idea out",
+      "title2": "of the ordinary?",
+      "title3": "better to",
+      "words": {
+        "w1": "experiment",
+        "w2": "prototype",
+        "w3": "break things",
+        "w4": "invent",
+        "w5": "test",
+        "w6": "scribble"
+      },
+      "text": "An unconventional project, an out-of-the-box idea, a crazy experiment nobody else would take on — that's exactly where the conversation gets good. Let's prototype together.",
+      "button": "let's scribble!"
+    },
+    "footer": {
+      "blurb": "dup.agency's creative experimentation lab. Where out-of-the-box ideas become sketches — and, sometimes, products."
     }
   }
 }

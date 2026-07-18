@@ -34,6 +34,13 @@
   --color-neutral-900:    #0D0D0D;
   --color-lilac-50:       #F7F6F9;
   --color-lilac-100:      #F1F0F4;
+  --color-paper:          #FBFBFA;
+  --color-paper-2:        #F2F2F0;
+
+  /* Fontes-anexo do dup.lab — as vars *-loaded só existem dentro do wrapper
+     de /lab (ver lab-fonts.ts); fora dele o fallback genérico segura. */
+  --font-caveat:      var(--font-caveat-loaded), cursive;
+  --font-spline-mono: var(--font-spline-mono-loaded), ui-monospace, monospace;
 
   /* Tamanhos de texto */
   --font-size-display-2xl: 4rem;
@@ -597,6 +604,120 @@ html[data-intro="play"] .hero-cover {
   }
   .case-float,
   .case-live-dot {
+    animation: none !important;
+  }
+}
+
+/* ── dup.lab (/lab) ──────────────────────────────────────────────────────────
+   Linguagem "tudo é rascunho" do DS anexo: grid de blueprint, traço que se
+   desenha, monocromático por padrão — cor só nos produtos (e só no hover).
+   One-shot/loop em CSS puro (mesma lógica da página de case): os reveals
+   reusam .case-reveal via <Reveal>; os scribbles desenham quando o Reveal
+   pai ganha .is-visible, ou imediatamente sob .lab-draw-now (hero). */
+
+.lab-draft-grid {
+  background-image:
+    linear-gradient(rgba(13, 13, 13, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 13, 13, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.lab-draft-grid--dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+@keyframes lab-draw { to { stroke-dashoffset: 0; } }
+
+.lab-scribble path,
+.lab-scribble line,
+.lab-scribble rect,
+.lab-scribble circle,
+.lab-scribble ellipse,
+.lab-scribble polyline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.case-reveal.is-visible .lab-scribble path,
+.case-reveal.is-visible .lab-scribble line,
+.case-reveal.is-visible .lab-scribble rect,
+.case-reveal.is-visible .lab-scribble circle,
+.case-reveal.is-visible .lab-scribble ellipse,
+.case-reveal.is-visible .lab-scribble polyline,
+.lab-draw-now .lab-scribble path,
+.lab-draw-now .lab-scribble line,
+.lab-draw-now .lab-scribble rect,
+.lab-draw-now .lab-scribble circle,
+.lab-draw-now .lab-scribble ellipse,
+.lab-draw-now .lab-scribble polyline {
+  animation: lab-draw 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes lab-marq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes lab-floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--lab-r, 0deg)); }
+  50%      { transform: translateY(-7px) rotate(var(--lab-r, 0deg)); }
+}
+
+@keyframes lab-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes lab-word-up {
+  from { opacity: 0; transform: translateY(0.7em); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Vitrine: o produto nasce lápis (grayscale) e ganha cor no hover. */
+.lab-prod-card { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0, 1); }
+.lab-prod-card:hover { transform: translateY(-2px); }
+
+.lab-prod-mock {
+  filter: grayscale(0.92) contrast(1.03) brightness(1.03);
+  opacity: 0.82;
+  transition:
+    filter 0.55s ease,
+    opacity 0.55s ease;
+}
+
+/* Sem translateY aqui: o shot é full-bleed no painel — subir 4px abriria uma
+   fresta de fundo na borda do card. O lift fica no card inteiro (:hover). */
+.lab-prod-card:hover .lab-prod-mock {
+  filter: none;
+  opacity: 1;
+}
+
+.lab-prod-hint { transition: opacity 0.4s ease; }
+.lab-prod-card:hover .lab-prod-hint { opacity: 0; }
+
+/* Bastidores: hover revela o "segredo" por cima do wireframe. */
+.lab-wip-hover { opacity: 0; transition: opacity 0.3s ease; }
+.lab-wip-card:hover .lab-wip-hover { opacity: 1; }
+
+.lab-cta-btn { transition: background 0.25s ease, color 0.25s ease; }
+.lab-cta-btn:hover { background: var(--paper); color: var(--black); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-scribble path,
+  .lab-scribble line,
+  .lab-scribble rect,
+  .lab-scribble circle,
+  .lab-scribble ellipse,
+  .lab-scribble polyline {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+  .lab-marq-track,
+  .lab-floaty,
+  .lab-blink-dot {
     animation: none !important;
   }
 }

@@ -31,6 +31,13 @@
   --lilac-50:  #F7F6F9;
   --lilac-100: #F1F0F4;
 
+  /* ── PAPÉIS DO DUP.LAB (/lab) ───────────────────────────────
+     "Neutros de rascunho" do DS anexo do lab. O resto da paleta do lab
+     reusa a escala neutra acima (pencil-lt=200 · pencil=400 · graphite=600
+     · slate=800 · ink=black). Warm off-white — não é o neutral-50. */
+  --paper:   #FBFBFA;
+  --paper-2: #F2F2F0;
+
   /* ── ESCALA PINK-ROSE ───────────────────────────────────── */
   --pink-rose-50:  #E9E4E7;
   --pink-rose-100: #D9CBD3;

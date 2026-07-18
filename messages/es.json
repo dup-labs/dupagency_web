@@ -20,7 +20,9 @@
         "redirect": "Redirecciones para SEO"
       },
       "menu": "[ menú ]",
-      "close": "[ cerrar ]"
+      "close": "[ cerrar ]",
+      "lab": "DUP.LAB",
+      "agency": "DUP.AGENCY"
     },
     "hero": {
       "headline": "<g>Claridad</g> y <g>seguridad</g><br></br>para quienes necesitan<br></br><g>paz operacional</g>",
@@ -790,6 +792,125 @@
       "nextTitle": "La relación<br></br>sigue <g>evolucionando</g>",
       "resultLabel": "Resultado.",
       "liveBadge": "en vivo"
+    }
+  },
+  "lab": {
+    "meta": {
+      "title": "dup.lab — laboratorio de experimentación creativa",
+      "description": "dup.lab es el laboratorio de experimentación creativa de dup.agency: donde las ideas fuera de lo común se vuelven boceto, prototipo y — a veces — producto. Conoce swtchr, nutrk y polr.",
+      "ogDescription": "El patio de la dup.agency: donde erramos rápido, probamos sin clientes y convertimos ideas sueltas en producto."
+    },
+    "hero": {
+      "tagline": "dup.lab — laboratorio de experimentación creativa · fig.01",
+      "annotation": "garabatear es empezar ↴",
+      "title1": "toda buena idea",
+      "title2": "empieza como un",
+      "titleWord": "garabato",
+      "lead": "El dup.lab es el patio de la <b>dup.agency</b> — donde erramos rápido, probamos sin clientes y convertimos ideas sueltas en producto. Algunas se volvieron <b>nutrk</b>, <b>swtchr</b>, <b>polr</b>. Otras se volvieron aprendizaje.",
+      "scroll": "scroll ↓",
+      "rev": "— rev. 2026 —"
+    },
+    "marquee": {
+      "w1": "boceto",
+      "w2": "prototipo",
+      "w3": "romper rápido",
+      "w4": "iteración",
+      "w5": "el error es dato",
+      "w6": "beta"
+    },
+    "manifesto": {
+      "label": "01 — qué es el lab",
+      "title": "nos pasamos el día resolviendo el e-commerce de otros.",
+      "titleMuted": "el lab es donde construimos lo que queremos.",
+      "p1": "Sin briefing, sin plazos de cliente, sin alcance cerrado. El lab es el lugar donde la curiosidad se vuelve commit y descubrimos en qué termina.",
+      "p2": "La regla es una sola: <b>tratar todo como borrador</b>. Mientras es garabato, se puede borrar, dar vuelta y empezar de nuevo sin remordimientos.",
+      "p3": "Lo que funciona gana color y se vuelve producto. Lo que no funciona se vuelve aprendizaje —",
+      "p3Hand": "y nunca excusa."
+    },
+    "produtos": {
+      "label": "02 — lo que salió del boceto",
+      "title1": "productos",
+      "title2": "que ganaron color",
+      "hint": "pasa el mouse — el boceto se colorea. ✐",
+      "hoverHint": "hover para colorear",
+      "placeholder": "imagen muy pronto",
+      "status": {
+        "live": "● en vivo",
+        "beta": "◐ beta",
+        "soon": "○ muy pronto"
+      },
+      "swtchr": {
+        "tagline": "// e-commerce en bloques",
+        "desc": "Un superset de componentes listos y bloques personalizables para montar y gestionar una tienda sin reinventar la rueda cada vez."
+      },
+      "nutrk": {
+        "tagline": "// tu salud, en dupla",
+        "desc": "Dieta, entrenamiento, agua y cabeza en un mismo lugar. Racha diaria estilo Duolingo, competencia con amigos y tu personal trainer y nutri siguiendo los protocolos de cerca."
+      },
+      "polr": {
+        "tagline": "// favoritos con estrategia",
+        "desc": "Guarda productos de cualquier tienda, organízalos por categoría, simula el carrito y compra en el momento justo. App + extensión de Chrome."
+      }
+    },
+    "processo": {
+      "label": "03 — cómo nacen los productos",
+      "title1": "del garabato",
+      "title2": "al producto",
+      "step1": {
+        "title": "garabato",
+        "text": "Toda idea empieza en una servilleta — o en un Figma desprolijo a las 2 am. Si sobrevive al desayuno, sigue."
+      },
+      "step2": {
+        "title": "prototipo",
+        "text": "Se monta rápido, se rompe rápido, se aprende rápido. Feo y funcionando vale más que lindo y en papel."
+      },
+      "step3": {
+        "title": "beta",
+        "text": "Sale al mundo antes de estar listo. Quien lo usa decide qué se queda, qué cambia y qué muere."
+      },
+      "step4": {
+        "title": "producto",
+        "titleNote": "(o cajón)",
+        "text": "Lo que funciona gana color y se vuelve producto de verdad. Lo que no, se vuelve aprendizaje guardado para la próxima."
+      }
+    },
+    "bastidores": {
+      "label": "04 — en el horno",
+      "title": "detrás de escena",
+      "hint": "bocetos que quizás se vuelvan producto. o no. 🤷",
+      "card1": {
+        "id": "exp_047",
+        "rev": "rev. 0.1",
+        "name": "nombre clave: dashboard",
+        "status": "status: garabato",
+        "secret": "secreto del lab 🤫"
+      },
+      "card2": {
+        "id": "exp_052",
+        "rev": "rev. 0.3",
+        "name": "nombre clave: creative hub",
+        "status": "status: prototipo",
+        "secret": "todavía crudo 🔬"
+      }
+    },
+    "cta": {
+      "hand": "¿tienes una idea rara? ↓",
+      "title1": "¿la idea se sale",
+      "title2": "de lo común?",
+      "title3": "mejor",
+      "words": {
+        "w1": "experimentar",
+        "w2": "prototipar",
+        "w3": "romper",
+        "w4": "inventar",
+        "w5": "probar",
+        "w6": "garabatear"
+      },
+      "text": "Un proyecto no convencional, una idea fuera de la caja, un experimento loco que nadie quiso hacer — justo ahí la conversación se pone buena. Vamos a prototipar juntos.",
+      "button": "¡a garabatear!"
+    },
+    "footer": {
+      "blurb": "El laboratorio de experimentación creativa de la dup.agency. Donde las ideas fuera de lo común se vuelven boceto — y, a veces, producto."
     }
   }
 }

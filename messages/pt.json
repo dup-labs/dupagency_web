@@ -20,7 +20,9 @@
         "redirect": "Redirecionamentos para SEO"
       },
       "menu": "[ menu ]",
-      "close": "[ fechar ]"
+      "close": "[ fechar ]",
+      "lab": "DUP.LAB",
+      "agency": "DUP.AGENCY"
     },
     "hero": {
       "headline": "<g>Clareza</g> e <g>segurança</g><br></br>para quem precisa<br></br>de <g>paz operacional</g>",
@@ -790,6 +792,125 @@
       "nextTitle": "A relação<br></br>continua <g>evoluindo</g>",
       "resultLabel": "Resultado.",
       "liveBadge": "no ar"
+    }
+  },
+  "lab": {
+    "meta": {
+      "title": "dup.lab — laboratório de experimentação criativa",
+      "description": "O dup.lab é o laboratório de experimentação criativa da dup.agency: onde ideia fora do padrão vira rascunho, protótipo e — às vezes — produto. Conheça swtchr, nutrk e polr.",
+      "ogDescription": "O quintal da dup.agency: onde a gente erra rápido, testa sem cliente e transforma ideia solta em produto."
+    },
+    "hero": {
+      "tagline": "dup.lab — laboratório de experimentação criativa · fig.01",
+      "annotation": "rabiscar é começar ↴",
+      "title1": "toda ideia boa",
+      "title2": "começa como um",
+      "titleWord": "rabisco",
+      "lead": "O dup.lab é o quintal da <b>dup.agency</b> — onde a gente erra rápido, testa sem cliente e transforma ideia solta em produto. Alguns viram <b>nutrk</b>, <b>swtchr</b>, <b>polr</b>. Outros viram aprendizado.",
+      "scroll": "scroll ↓",
+      "rev": "— rev. 2026 —"
+    },
+    "marquee": {
+      "w1": "rascunho",
+      "w2": "protótipo",
+      "w3": "quebra rápido",
+      "w4": "iteração",
+      "w5": "erro é dado",
+      "w6": "beta"
+    },
+    "manifesto": {
+      "label": "01 — o que é o lab",
+      "title": "a gente passa o dia resolvendo e-commerce dos outros.",
+      "titleMuted": "o lab é onde a gente constrói o que quer.",
+      "p1": "Sem briefing, sem prazo de cliente, sem escopo fechado. O lab é o lugar onde a curiosidade vira commit e a gente descobre no que dá.",
+      "p2": "A regra é uma só: <b>tratar tudo como rascunho</b>. Enquanto é rabisco, dá pra apagar, virar do avesso e recomeçar sem dó.",
+      "p3": "O que funciona ganha cor e vira produto. O que não funciona vira aprendizado —",
+      "p3Hand": "e nunca vira desculpa."
+    },
+    "produtos": {
+      "label": "02 — o que saiu do rascunho",
+      "title1": "produtos",
+      "title2": "que ganharam cor",
+      "hint": "passa o mouse — o rascunho colore. ✐",
+      "hoverHint": "hover p/ colorir",
+      "placeholder": "imagem em breve",
+      "status": {
+        "live": "● no ar",
+        "beta": "◐ beta",
+        "soon": "○ em breve"
+      },
+      "swtchr": {
+        "tagline": "// e-commerce em blocos",
+        "desc": "Um superset de componentes prontos e blocos personalizáveis pra montar e gerir loja sem reinventar a roda toda vez."
+      },
+      "nutrk": {
+        "tagline": "// sua saúde, em par",
+        "desc": "Dieta, treino, água e cabeça no mesmo lugar. Ofensiva diária estilo Duolingo, competição com os amigos e seu personal e nutri acompanhando os protocolos de perto."
+      },
+      "polr": {
+        "tagline": "// favoritos com estratégia",
+        "desc": "Salve produtos de qualquer loja, organize por categoria, simule o carrinho e compre na hora certa. App + extensão do Chrome."
+      }
+    },
+    "processo": {
+      "label": "03 — como nascem os produtos",
+      "title1": "do rabisco",
+      "title2": "ao produto",
+      "step1": {
+        "title": "rabisco",
+        "text": "Toda ideia começa num guardanapo — ou num Figma zoado às 2h. Se sobreviver ao café da manhã, segue."
+      },
+      "step2": {
+        "title": "protótipo",
+        "text": "Monta rápido, quebra rápido, aprende rápido. Feio e funcionando vale mais que bonito e no papel."
+      },
+      "step3": {
+        "title": "beta",
+        "text": "Solta pro mundo antes de estar pronto. Quem usa é quem diz o que fica, o que muda e o que morre."
+      },
+      "step4": {
+        "title": "produto",
+        "titleNote": "(ou gaveta)",
+        "text": "O que funciona ganha cor e vira produto de verdade. O que não, vira aprendizado guardado pra próxima."
+      }
+    },
+    "bastidores": {
+      "label": "04 — no forno",
+      "title": "bastidores",
+      "hint": "rascunhos que talvez virem produto. ou não. 🤷",
+      "card1": {
+        "id": "exp_047",
+        "rev": "rev. 0.1",
+        "name": "codinome: dashboard",
+        "status": "status: rabisco",
+        "secret": "segredo do lab 🤫"
+      },
+      "card2": {
+        "id": "exp_052",
+        "rev": "rev. 0.3",
+        "name": "codinome: creative hub",
+        "status": "status: protótipo",
+        "secret": "ainda cru 🔬"
+      }
+    },
+    "cta": {
+      "hand": "tem uma ideia estranha? ↓",
+      "title1": "a ideia é fora",
+      "title2": "do padrão?",
+      "title3": "melhor",
+      "words": {
+        "w1": "experimentar",
+        "w2": "prototipar",
+        "w3": "quebrar",
+        "w4": "inventar",
+        "w5": "testar",
+        "w6": "rabiscar"
+      },
+      "text": "Projeto não convencional, ideia fora da caixa, experimento maluco que ninguém topou fazer — é exatamente aqui que a conversa fica boa. Bora prototipar junto.",
+      "button": "bora rabiscar!"
+    },
+    "footer": {
+      "blurb": "O laboratório de experimentação criativa da dup.agency. Onde ideia fora do padrão vira rascunho — e, às vezes, produto."
     }
   }
 }

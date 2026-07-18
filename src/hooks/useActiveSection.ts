@@ -35,6 +35,14 @@ export type SectionId =
   | 'case-galeria'
   | 'case-depoimento'
   | 'case-next'
+  // dup.lab (/lab) — fundo "paper" (#FBFBFA) nas seções de rascunho; processo
+  // e CTA são ink (preto), como no DS anexo do lab
+  | 'lab-hero'
+  | 'lab-manifesto'
+  | 'lab-produtos'
+  | 'lab-processo'
+  | 'lab-bastidores'
+  | 'lab-cta'
 
 export type NavTheme = 'dark' | 'light'
 
@@ -167,6 +175,31 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
   'case-next': {
     background: 'var(--white)',
     navTheme: 'dark',
+  },
+  // dup.lab
+  'lab-hero': {
+    background: 'var(--paper)',
+    navTheme: 'dark',
+  },
+  'lab-manifesto': {
+    background: 'var(--paper)',
+    navTheme: 'dark',
+  },
+  'lab-produtos': {
+    background: 'var(--paper)',
+    navTheme: 'dark',
+  },
+  'lab-processo': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  'lab-bastidores': {
+    background: 'var(--paper)',
+    navTheme: 'dark',
+  },
+  'lab-cta': {
+    background: 'var(--black)',
+    navTheme: 'light',
   },
 }
 
