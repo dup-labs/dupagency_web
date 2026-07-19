@@ -22,7 +22,8 @@
       "menu": "[ menu ]",
       "close": "[ fechar ]",
       "lab": "DUP.LAB",
-      "agency": "DUP.AGENCY"
+      "agency": "DUP.AGENCY",
+      "portal": "PORTAL"
     },
     "hero": {
       "headline": "<g>Clareza</g> e <g>segurança</g><br></br>para quem precisa<br></br>de <g>paz operacional</g>",

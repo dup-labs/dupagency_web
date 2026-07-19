@@ -15,7 +15,6 @@ import { gsap, ScrollTrigger } from '@/lib/gsap'
 // locale ativo em runtime (localePrefix: 'always').
 const links = [
   { key: 'manifesto',   hash: '#manifesto',        slug: 'manifesto'   },
-  { key: 'parceiros',   hash: '#parceiros',        slug: 'parceiros'   },
   { key: 'processo',    hash: '#como-trabalhamos', slug: 'processo'    },
   { key: 'servicos',    hash: '#servicos',         slug: 'servicos'    },
   { key: 'depoimentos', hash: '#depoimentos',      slug: 'depoimentos' },
@@ -231,7 +230,7 @@ export default function Nav() {
 
         {/* Desktop: links + dropdown — visíveis só em lg+ */}
         <div ref={desktopMenuRef} className="intro-hide hidden lg:flex items-center gap-8">
-          {(['parceiros', 'servicos', 'depoimentos'] as const).map((slug) => {
+          {(['servicos', 'depoimentos'] as const).map((slug) => {
             const link = links.find((l) => l.slug === slug)!
             return (
               <a
@@ -324,6 +323,21 @@ export default function Nav() {
             style={{ fontSize: '12px', textDecoration: 'none', color: 'inherit' }}
           >
             {t(contatoLink.key)}
+          </a>
+
+          {/* PORTAL — botão pill com o gradiente principal, sempre texto branco */}
+          <a
+            href="https://portal.dup.agency"
+            className="font-synonym font-normal tracking-widest text-white transition-opacity duration-200 hover:opacity-85"
+            style={{
+              fontSize:       '12px',
+              textDecoration: 'none',
+              background:     'var(--grad-01)',
+              borderRadius:   'var(--radius-pill)',
+              padding:        '8px 18px',
+            }}
+          >
+            {t('portal')}
           </a>
 
           {/* Separador + seletor de idioma */}
@@ -481,6 +495,31 @@ export default function Nav() {
             {t(contatoLink.key)}
           </a>
 
+          {/* PORTAL — botão pill com o gradiente principal */}
+          <div
+            style={{
+              paddingTop: '28px',
+              opacity:    open ? 1 : 0,
+              transform:  open ? 'translateY(0)' : 'translateY(20px)',
+              transition: `opacity 0.35s ease ${(mainLinks.length + 3) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 3) * 0.06}s`,
+            }}
+          >
+            <a
+              href="https://portal.dup.agency"
+              onClick={() => setOpen(false)}
+              className="inline-flex font-synonym tracking-widest text-white"
+              style={{
+                fontSize:       '14px',
+                textDecoration: 'none',
+                background:     'var(--grad-01)',
+                borderRadius:   'var(--radius-pill)',
+                padding:        '14px 32px',
+              }}
+            >
+              {t('portal')}
+            </a>
+          </div>
+
           {/* Seletor de idioma — dentro do menu mobile, grande e tocável */}
           <div
             className="text-white"
@@ -488,7 +527,7 @@ export default function Nav() {
               paddingTop: '32px',
               opacity:    open ? 1 : 0,
               transform:  open ? 'translateY(0)' : 'translateY(20px)',
-              transition: `opacity 0.35s ease ${(mainLinks.length + 3) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 3) * 0.06}s`,
+              transition: `opacity 0.35s ease ${(mainLinks.length + 4) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 4) * 0.06}s`,
             }}
           >
             <LangSwitcher large />
