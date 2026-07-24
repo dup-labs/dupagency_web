@@ -1,0 +1,241 @@
+/* ============================================================
+   dup.agency — Design Tokens 2026
+   Stack: Next.js + Tailwind + GSAP
+   Fontes: Chillax (display) · Synonym (body/UI) via Fontshare
+   Mirrors src/app/tokens.css from dup-labs/dupagency_web
+   ============================================================ */
+
+/* ── @font-face — fontes locais (Fontshare) ─────────────────────── */
+
+@font-face {
+  font-family: "Chillax";
+  src: url("./fonts/Chillax-Variable.woff2") format("woff2-variations");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Synonym";
+  src: url("./fonts/Synonym-Variable.woff2") format("woff2-variations");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+
+  /* ── PRIMITIVOS ─────────────────────────────────────────── */
+  --black:        #0D0D0D;
+  --white:        #FFFFFF;
+  --pink-rose:    #B792A8;
+  --purple-vivid: #AD61C2;
+  --purple-mid:   #897BBC;
+  --teal-light:   #86C8D4;
+  --teal-mint:    #AFD7D0;
+  --blue-soft:    #7FABED;
+
+  /* ── ESCALA NEUTRA ──────────────────────────────────────── */
+  --neutral-50:  #F9F9F9;
+  --neutral-100: #E1E1E1;
+  --neutral-200: #C8C7C7;
+  --neutral-400: #999999;
+  --neutral-600: #676767;
+  --neutral-800: #3D3D3D;
+  --neutral-900: #0D0D0D;
+
+  /* ── ESCALA PINK-ROSE ───────────────────────────────────── */
+  --pink-rose-50:  #E9E4E7;
+  --pink-rose-100: #D9CBD3;
+  --pink-rose-200: #C3B1BC;
+  --pink-rose-400: #B792A8;
+  --pink-rose-600: #835570;
+  --pink-rose-800: #4B3542;
+  --pink-rose-900: #21191D;
+
+  /* ── ESCALA PURPLE-VIVID ────────────────────────────────── */
+  --purple-vivid-50:  #E6E0E7;
+  --purple-vivid-100: #D2C2D6;
+  --purple-vivid-200: #BE9BC8;
+  --purple-vivid-400: #AD61C2;
+  --purple-vivid-600: #7B348E;
+  --purple-vivid-800: #462450;
+  --purple-vivid-900: #1F1322;
+
+  /* ── ESCALA PURPLE-MID ──────────────────────────────────── */
+  --purple-mid-50:  #E4E3E8;
+  --purple-mid-100: #CBC8D6;
+  --purple-mid-200: #ADA7C6;
+  --purple-mid-400: #897BBC;
+  --purple-mid-600: #53448A;
+  --purple-mid-800: #332C4E;
+  --purple-mid-900: #181622;
+
+  /* ── ESCALA TEAL-LIGHT ──────────────────────────────────── */
+  --teal-light-50:  #E5EAEB;
+  --teal-light-100: #CBDBDE;
+  --teal-light-200: #AACCD2;
+  --teal-light-400: #86C8D4;
+  --teal-light-600: #3897A8;
+  --teal-light-800: #27555D;
+  --teal-light-900: #152427;
+
+  /* ── ESCALA TEAL-MINT ───────────────────────────────────── */
+  --teal-mint-50:  #E9EDEC;
+  --teal-mint-100: #D6E1DF;
+  --teal-mint-200: #BCD4D0;
+  --teal-mint-400: #AFD7D0;
+  --teal-mint-600: #51A899;
+  --teal-mint-800: #345D56;
+  --teal-mint-900: #192725;
+
+  /* ── ESCALA BLUE-SOFT ───────────────────────────────────── */
+  --blue-soft-50:  #E4E8EE;
+  --blue-soft-100: #CAD5E5;
+  --blue-soft-200: #A4BCE0;
+  --blue-soft-400: #7FABED;
+  --blue-soft-600: #1963D2;
+  --blue-soft-800: #193C71;
+  --blue-soft-900: #101C2E;
+
+  /* ── BRAND / SURFACE / TEXT / ACTIONS ───────────────────── */
+  --color-brand-primary:   var(--teal-mint);
+  --color-brand-secondary: var(--purple-mid);
+  --color-brand-accent:    var(--purple-vivid);
+
+  --surface-page-dark:          var(--black);
+  --surface-page-light:         var(--white);
+  --surface-card:               var(--white);
+  --surface-glass-dark-bg:      rgba(255, 255, 255, 0.10);
+  --surface-glass-dark-border:  rgba(255, 255, 255, 0.20);
+  --surface-glass-light-bg:     rgba(255, 255, 255, 0.55);
+  --surface-glass-light-border: rgba(255, 255, 255, 0.70);
+
+  --text-on-dark:     #FFFFFF;
+  --text-on-light:    #0D0D0D;
+  --text-muted-dark:  rgba(255, 255, 255, 0.60);
+  --text-muted-light: #666666;
+
+  --action-primary-bg:     var(--purple-mid);
+  --action-primary-text:   #FFFFFF;
+  --action-outline-border: var(--purple-mid);
+  --action-outline-text:   var(--purple-mid);
+
+  /* ── GRADIENTES PRIMITIVOS ──────────────────────────────── */
+  --grad-01: linear-gradient(135deg, #AFD7D0 0%, #897BBC 100%); /* @kind color */ /* ★ PRINCIPAL */
+  --grad-02: linear-gradient(135deg, #86C8D4 0%, #7FABED 100%); /* @kind color */
+  --grad-03: linear-gradient(135deg, #AD61C2 0%, #AFD7D0 100%); /* @kind color */
+  --grad-04: linear-gradient(135deg, #B792A8 0%, #AD61C2 100%); /* @kind color */
+  --grad-05: linear-gradient(135deg, #897BBC 0%, #AD61C2 100%); /* @kind color */
+  --grad-06: linear-gradient(135deg, #897BBC 0%, #7FABED 100%); /* @kind color */
+  --grad-07: linear-gradient(135deg, #7FABED 0%, #B792A8 100%); /* @kind color */
+  --grad-08: linear-gradient(135deg, #897BBC 0%, #B792A8 100%); /* @kind color */
+  --grad-09: linear-gradient(135deg, #AFD7D0 0%, #B792A8 100%); /* @kind color */
+
+  /* ── GRADIENTES SEMÂNTICOS ──────────────────────────────── */
+  --gradient-brand-text:          linear-gradient(135deg, #AFD7D0 0%, #897BBC 50%, #AD61C2 100%); /* @kind color */
+  --gradient-atmosphere-colorful: linear-gradient(135deg, #86C8D4 0%, #897BBC 35%, #B792A8 70%, #F4C9A0 100%); /* @kind color */
+  --gradient-overlay-dark:        linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(13,13,13,0.9) 100%); /* @kind color */
+
+  --gradient-angular-brand: conic-gradient(
+    from 0deg,
+    #B792A8 0%, #AD61C2 23%, #897BBC 50%, #86C8D4 76%, #AFD7D0 100%
+  ); /* @kind color */
+
+  /* ── GRADIENTES DO SITE (ângulos exatos do Figma) ───────── */
+  --grad-site-01: linear-gradient(165.59deg, var(--teal-mint)  14.645%, var(--purple-mid)   85.355%);
+  --grad-site-02: linear-gradient(167.27deg, var(--pink-rose)  14.645%, var(--purple-vivid) 85.355%);
+  --grad-site-03: linear-gradient(174.05deg, var(--teal-light) 14.645%, var(--blue-soft)    85.355%);
+  --grad-site-04: linear-gradient(155.52deg, var(--teal-mint)  14.645%, var(--purple-mid)   85.355%);
+
+  /* ── TIPOGRAFIA ─────────────────────────────────────────── */
+  --font-display: "Chillax", "Inter", sans-serif;
+  --font-body:    "Synonym", "Inter", sans-serif;
+
+  --text-display-2xl: 4rem;      /* 64px */
+  --text-display-xl:  3rem;      /* 48px */
+  --text-display-lg:  2.25rem;   /* 36px */
+  --text-heading-01:  1.5rem;    /* 24px */
+  --text-heading-02:  1.125rem;  /* 18px */
+  --text-body-lg:     1rem;      /* 16px */
+  --text-body-md:     0.875rem;  /* 14px */
+  --text-label-ui:    0.75rem;   /* 12px */
+  --text-caption:     0.6875rem; /* 11px */
+  --text-micro:       0.625rem;  /* 10px */
+
+  --leading-display: 1.05;
+  --leading-heading: 1.25;
+  --leading-body:    1.60;
+  --leading-label:   1.20;
+
+  --tracking-default: 0em;
+  --tracking-caption: 0.06em;
+  --tracking-micro:   0.10em;
+
+  /* ── SPACING ────────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ── BORDER RADIUS ──────────────────────────────────────── */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-pill: 9999px;
+
+  /* ── GRID / LAYOUT ──────────────────────────────────────── */
+  --grid-columns:   12; /* @kind other */
+  --grid-gutter:    1.5rem;
+  --grid-margin:    4rem;
+  --grid-max-width: 90rem;
+
+  /* ── SHADOWS ────────────────────────────────────────────── */
+  --shadow-sm:    0 1px 3px rgba(13,13,13,0.08), 0 1px 2px rgba(13,13,13,0.04);
+  --shadow-md:    0 4px 16px rgba(13,13,13,0.10), 0 2px 6px rgba(13,13,13,0.06);
+  --shadow-lg:    0 8px 32px rgba(13,13,13,0.14), 0 4px 12px rgba(13,13,13,0.08);
+  --shadow-brand: 0 4px 24px rgba(137,123,188,0.25);
+}
+
+/* ── SEMANTIC TYPE STYLES ─────────────────────────────────────────── */
+
+body { font-family: var(--font-body); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+.t-display-2xl { font-family: var(--font-display); font-weight: 700; font-size: var(--text-display-2xl); line-height: var(--leading-display); text-transform: uppercase; }
+.t-display-xl  { font-family: var(--font-display); font-weight: 700; font-size: var(--text-display-xl);  line-height: var(--leading-display); text-transform: uppercase; }
+.t-display-lg  { font-family: var(--font-display); font-weight: 600; font-size: var(--text-display-lg);  line-height: var(--leading-heading); text-transform: uppercase; }
+.t-heading-01  { font-family: var(--font-display); font-weight: 600; font-size: var(--text-heading-01);  line-height: var(--leading-heading); }
+.t-heading-02  { font-family: var(--font-body);    font-weight: 700; font-size: var(--text-heading-02);  line-height: var(--leading-heading); }
+.t-body-lg     { font-family: var(--font-body);    font-weight: 400; font-size: var(--text-body-lg);     line-height: var(--leading-body); }
+.t-body-md     { font-family: var(--font-body);    font-weight: 400; font-size: var(--text-body-md);     line-height: var(--leading-body); }
+.t-label-ui    { font-family: var(--font-body);    font-weight: 400; font-size: var(--text-label-ui);    line-height: var(--leading-label); letter-spacing: var(--tracking-caption); text-transform: uppercase; }
+.t-caption     { font-family: var(--font-body);    font-weight: 400; font-size: var(--text-caption);     line-height: var(--leading-label); letter-spacing: var(--tracking-caption); }
+.t-micro       { font-family: var(--font-body);    font-weight: 400; font-size: var(--text-micro);       line-height: var(--leading-label); letter-spacing: var(--tracking-micro); text-transform: uppercase; }
+
+/* ── GRADIENT TEXT UTILITIES ─────────────────────────────────────── */
+
+.text-grad-01,
+.text-grad-brand,
+.text-grad-site-01 {
+  background: var(--grad-site-01);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.text-grad-site-02 { background: var(--grad-site-02); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+.text-grad-site-03 { background: var(--grad-site-03); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+.text-grad-site-04 { background: var(--grad-site-04); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+/* ── GLASS UTILITIES ─────────────────────────────────────────────── */
+
+.glass-dark  { background: var(--surface-glass-dark-bg);  border: 1px solid var(--surface-glass-dark-border);  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.glass-light { background: var(--surface-glass-light-bg); border: 1px solid var(--surface-glass-light-border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.glass-card-dark { background: rgba(0,0,0,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Papo 01 — Apresentação</title>
+<style>
+  html, body { margin:0; height:100%; background:#000; overflow:hidden; }
+  iframe { position:fixed; inset:0; width:100%; height:100%; border:0; }
+  /* Zonas de toque/clique: metade esquerda volta, metade direita avança. */
+  .zone { position:fixed; top:0; bottom:0; width:50%; z-index:10; -webkit-tap-highlight-color:transparent; cursor:pointer; }
+  .zone.prev { left:0; }
+  .zone.next { right:0; }
+  /* Botão de tela cheia, some sozinho depois de 3s parado. */
+  #fs {
+    position:fixed; z-index:20; right:16px; bottom:16px;
+    width:44px; height:44px; border:0; border-radius:12px;
+    background:rgba(255,255,255,.14); color:#fff; font-size:18px; line-height:1;
+    backdrop-filter:blur(8px); cursor:pointer; transition:opacity .35s;
+  }
+  body.idle #fs { opacity:0; pointer-events:none; }
+</style>
+</head>
+<body>
+<iframe id="deck" src="/emcj/papo-01/deck.html"></iframe>
+<div class="zone prev" data-dir="-1"></div>
+<div class="zone next" data-dir="1"></div>
+<button id="fs" title="Tela cheia (F)">⛶</button>
+
+<script>
+  const deck = document.getElementById('deck');
+
+  // O deck esconde a trilha de miniaturas quando o host avisa que está apresentando.
+  function announcePresenting() {
+    try { deck.contentWindow.postMessage({ __omelette_presenting: true }, '*'); } catch (e) {}
+  }
+  deck.addEventListener('load', () => {
+    announcePresenting();
+    setTimeout(announcePresenting, 400);
+  });
+
+  // O deck-stage escuta keydown na window dele — mesma origem, então dá pra
+  // sintetizar a tecla em vez de mexer no componente.
+  //
+  // Despacha no <html> do iframe, NÃO na window: o <intro-wall> intercepta a
+  // navegação em CAPTURE na window pra rodar a transição de tinta, e um evento
+  // disparado direto NA window chega como "at target" — aí capture e bubble
+  // rodam por ordem de registro e a interceptação vira sorteio.
+  function sendKey(w, key) {
+    w.document.documentElement.dispatchEvent(
+      new w.KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }),
+    );
+  }
+
+  function advance(dir) {
+    const w = deck.contentWindow;
+    if (!w) return;
+    sendKey(w, dir > 0 ? 'ArrowRight' : 'ArrowLeft');
+  }
+
+  for (const z of document.querySelectorAll('.zone')) {
+    z.addEventListener('click', () => advance(Number(z.dataset.dir)));
+  }
+
+  // Teclado na página de fora também funciona (repassa pro deck).
+  const fsBtn = document.getElementById('fs');
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  };
+  fsBtn.addEventListener('click', toggleFullscreen);
+
+  addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); return; }
+    const w = deck.contentWindow;
+    if (w) sendKey(w, e.key);
+  });
+
+  // Some com o botão quando ninguém mexe.
+  let idle;
+  const wake = () => {
+    document.body.classList.remove('idle');
+    clearTimeout(idle);
+    idle = setTimeout(() => document.body.classList.add('idle'), 3000);
+  };
+  ['pointermove', 'pointerdown', 'keydown'].forEach((ev) => addEventListener(ev, wake));
+  wake();
+</script>
+</body>
+</html>

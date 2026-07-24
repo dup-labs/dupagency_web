@@ -15,7 +15,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     // /card = cartão de visita digital (networking pessoal) — nunca indexa.
     // As páginas também mandam meta noindex (ver src/app/card/layout.tsx).
-    rules: { userAgent: '*', allow: '/', disallow: '/card/' },
+    // /emcj = decks das aulas (material de turma) — nunca indexa. Os HTMLs
+    // mandam <meta robots> e o next.config manda X-Robots-Tag no path todo.
+    rules: { userAgent: '*', allow: '/', disallow: ['/card/', '/emcj/'] },
     sitemap: 'https://dup.agency/sitemap.xml',
   }
 }

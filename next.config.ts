@@ -28,6 +28,22 @@ const nextConfig: NextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
+      {
+        // Decks de aula (/emcj) — material de turma, nunca indexa. Cinto além
+        // do suspensório junto com o <meta robots> nos HTMLs e o Disallow em
+        // src/app/robots.ts. O header vale mesmo se alguém linkar direto um
+        // arquivo interno do deck (deck.html, support.js...).
+        source: '/emcj/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ]
+  },
+  async rewrites() {
+    return [
+      // URL limpa pro deck: /emcj/papo-01 serve o index.html estático que vive
+      // em public/emcj/papo-01/. O Next não faz directory-index sozinho em
+      // public/, daí o rewrite explícito.
+      { source: '/emcj/papo-01', destination: '/emcj/papo-01/index.html' },
     ]
   },
 }
