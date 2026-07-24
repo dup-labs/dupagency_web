@@ -35,7 +35,10 @@ export default function EmcjLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={`${chillax.variable} ${synonym.variable}`}>
-      <body className="min-h-screen bg-white text-black">
+      {/* native-cursor: esta rota não monta o <CustomCursor /> (ele vive só no
+          [locale]), então sem isso o `cursor: none` do globals.css deixaria o
+          mouse invisível. Ver o bloco do cursor em src/app/globals.css. */}
+      <body className="native-cursor min-h-screen bg-white text-black">
         <main className="relative z-10">{children}</main>
       </body>
     </html>

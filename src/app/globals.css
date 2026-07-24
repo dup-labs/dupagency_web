@@ -121,6 +121,25 @@ body {
   a, button, [role="button"], [tabindex] { cursor: none; }
 }
 
+/* ── Cursor nativo de volta fora do [locale] ────────────────────────────────
+   O `cursor: none` acima existe porque o site desenha o próprio ponteiro — mas
+   o <CustomCursor /> só é montado em src/app/[locale]/layout.tsx. Qualquer rota
+   fora do [locale] herda o `none` sem ganhar o cursor custom em troca, e o
+   mouse some.
+   `.native-cursor` (aplicado no <body> desses layouts) devolve o ponteiro do
+   sistema. Especificidade maior que as regras acima, então ordem não importa. */
+@media (hover: hover) {
+  body.native-cursor,
+  body.native-cursor [tabindex] {
+    cursor: auto;
+  }
+  body.native-cursor a,
+  body.native-cursor button,
+  body.native-cursor [role="button"] {
+    cursor: pointer;
+  }
+}
+
 /* ── Intro do hero — estados iniciais ───────────────────────────────────────
    Os alvos da animação de entrada carregam .intro-hide sempre; ela só esconde
    quando o script inline (layout) decidiu rodar a intro (html[data-intro="play"]).
