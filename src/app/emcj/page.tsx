@@ -87,7 +87,7 @@ export default function EmcjPage() {
 
       <header className="mt-14 sm:mt-20">
         <p className="font-synonym text-[0.95rem] uppercase tracking-[0.16em] text-neutral-400">
-          Encontros quinzenais
+          Lista de encontros
         </p>
         <h1 className="mt-5 font-chillax text-[2.75rem] font-bold uppercase leading-[0.98] tracking-tight sm:text-[3.5rem]">
           Os <span className="text-grad-01">papos</span>
@@ -106,7 +106,7 @@ export default function EmcjPage() {
 
       <footer className="mt-auto pt-20">
         <p className="font-synonym text-[0.95rem] leading-relaxed text-neutral-400">
-          Dúvida, ideia ou projeto:{' '}
+          Dúvida ou ideia:{' '}
           <a
             href="mailto:dup@dup.agency"
             className="text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition-colors hover:text-black hover:decoration-black"
