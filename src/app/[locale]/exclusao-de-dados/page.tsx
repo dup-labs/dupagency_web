@@ -57,7 +57,7 @@ export default async function ExclusaoDeDadosPage({
 
         <Bloco titulo="Como pedir">
           <p>
-            Envie um e-mail para <a href="mailto:hi@brunodup.com">hi@brunodup.com</a> com o
+            Envie um e-mail para <a href="mailto:dup@dup.agency">dup@dup.agency</a> com o
             assunto <strong>“Exclusão de dados”</strong>, informando:
           </p>
           <ul>

@@ -67,7 +67,7 @@ export default async function PrivacidadePage({
           </p>
           <p>
             Contato para qualquer assunto de privacidade:{' '}
-            <a href="mailto:hi@brunodup.com">hi@brunodup.com</a>.
+            <a href="mailto:dup@dup.agency">dup@dup.agency</a>.
           </p>
         </Bloco>
 
@@ -155,7 +155,7 @@ export default async function PrivacidadePage({
           </ul>
           <p>
             Para exercer qualquer um deles, escreva para{' '}
-            <a href="mailto:hi@brunodup.com">hi@brunodup.com</a>. Respondemos em até 15 dias.
+            <a href="mailto:dup@dup.agency">dup@dup.agency</a>. Respondemos em até 15 dias.
             Para exclusão, o passo a passo está em{' '}
             <a href="/exclusao-de-dados">/exclusao-de-dados</a>.
           </p>
