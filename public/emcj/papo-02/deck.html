@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/dup-agency-design-system-019deeee-f16d-7129-841c-c34ad1e36555/colors_and_type.css">
+  <style>
+    * { text-wrap: pretty; }
+    a { color: #897BBC; text-decoration: none; }
+    a:hover { color: #AD61C2; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
+
+  <!-- 01 · CAPA -->
+  <section data-label="Capa" data-speaker-notes="Retomar rapidinho o papo 01 e o que ficou de resposta da roda.
+Hoje é mais mão na massa: design system no Figma, design system no Claude Code, e o fluxo que liga os dois.
+Avisar já no começo: no final tem uma atividade pro próximo encontro." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:space-between;padding:90px 110px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right, rgba(13,13,13,0.05) 0 1px, transparent 1px calc(100%/12));pointer-events:none;"></div>
+    <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-family:var(--font-display);font-size:30px;letter-spacing:-0.01em;"><span style="font-weight:300;">dup</span><span style="font-weight:500;">.agency</span></div>
+      <div style="font-family:var(--font-body);font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#666666;">PAPO 02 — DESIGN SYSTEM</div>
+    </div>
+    <div style="position:relative;display:flex;flex-direction:column;gap:38px;">
+      <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">O segundo papo</div>
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:120px;line-height:0.98;letter-spacing:-0.01em;">Um <span class="text-grad-site-01">design system</span> <br>que o Figma entende <br>e a IA também</h1>
+    </div>
+    <div style="position:relative;font-family:var(--font-body);font-size:26px;line-height:1.5;color:#666666;max-width:900px;">Como a gente organiza o sistema, como ele vira código legível pra IA, e o fluxo de trabalho que nasce disso.</div>
+  </section>
+
+  <!-- 02 · AGENDA -->
+  <section data-label="Roteiro de hoje" data-speaker-notes="Deixar o mapa claro. Três blocos + atividade.
+Falar que é papo aberto: podem interromper em qualquer ponto." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:64px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:26px;letter-spacing:0.02em;color:#666666;">O caminho de hoje</div>
+    <div style="display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;align-items:baseline;gap:40px;"><span style="font-family:var(--font-body);font-size:30px;color:#666666;">01</span><span style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:76px;line-height:1.0;letter-spacing:-0.01em;">Design system no <span class="text-grad-site-01">Figma</span></span></div>
+      <div style="display:flex;align-items:baseline;gap:40px;"><span style="font-family:var(--font-body);font-size:30px;color:#666666;">02</span><span style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:76px;line-height:1.0;letter-spacing:-0.01em;">Design system no <span class="text-grad-site-01">Claude Code</span></span></div>
+      <div style="display:flex;align-items:baseline;gap:40px;"><span style="font-family:var(--font-body);font-size:30px;color:#666666;">03</span><span style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:76px;line-height:1.0;letter-spacing:-0.01em;">O fluxo entre os dois</span></div>
+      <div style="display:flex;align-items:baseline;gap:40px;"><span style="font-family:var(--font-body);font-size:30px;color:#666666;">04</span><span style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:76px;line-height:1.0;letter-spacing:-0.01em;">Atividade pro próximo papo</span></div>
+    </div>
+  </section>
+
+  <!-- 03 · PERGUNTA DE ABERTURA -->
+  <section data-label="Pergunta de abertura" data-speaker-notes="Roda rápida, 1 minuto por pessoa. Serve pra calibrar o nível do papo.
+Anotar quem já mantém um DS de verdade e quem só tem um arquivo bagunçado." style="position:relative;height:100%;box-sizing:border-box;background:#0D0D0D;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:56px;padding:110px 130px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right, rgba(255,255,255,0.06) 0 1px, transparent 1px calc(100%/12));pointer-events:none;"></div>
+    <div style="position:relative;font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.60);">Antes de começar</div>
+    <div style="position:relative;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:92px;line-height:1.02;letter-spacing:-0.01em;max-width:1500px;">Quem aqui já tem um design system <span class="text-grad-site-01">vivo</span>? <br>E quem tem um <span class="text-grad-site-01">arquivo</span> chamado design system?</div>
+    <div style="position:relative;font-family:var(--font-body);font-size:26px;line-height:1.5;color:rgba(255,255,255,0.60);max-width:1000px;">Não tem resposta errada. A gente já passou pelos dois.</div>
+  </section>
+
+  <!-- 04 · BLOCO 01 -->
+  <section data-label="Bloco 01 — Figma" data-speaker-notes="Divisória. Entrar no bloco do Figma." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">Bloco 01</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:150px;line-height:0.94;letter-spacing:-0.02em;">Design system <br>no <span class="text-grad-site-01">Figma</span></div>
+  </section>
+
+  <!-- 05 · O QUE É -->
+  <section data-label="O que é, pra gente" data-speaker-notes="Definição curta e prática. Design system não é biblioteca de componente bonito, é acordo.
+Contar o caso: quando o token não existe, cada tela inventa um cinza novo." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:60px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">Antes da ferramenta</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:96px;line-height:1.0;letter-spacing:-0.01em;max-width:1500px;">Design system é <span class="text-grad-site-01">decisão</span> tomada uma vez, <br>usada mil vezes</div>
+    <div style="font-family:var(--font-body);font-size:28px;line-height:1.5;color:#666666;max-width:1100px;">Se a decisão não tá escrita em algum lugar, ela vai ser tomada de novo em cada tela. E aí cada tela tem um cinza diferente.</div>
+  </section>
+
+  <!-- 06 · PASSOS FIGMA -->
+  <section data-label="Como montamos no Figma" data-speaker-notes="Ordem importa: token antes de componente. Variável antes de estilo.
+Mostrar no arquivo real da dup enquanto fala.
+Insistir no naming — é o que a IA vai ler depois." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:56px;padding:100px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">A ordem que funciona pra gente</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px 80px;">
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">01</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Variáveis primeiro</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Cor, espaçamento, raio, tipografia. Nome semântico, não nome de cor.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">02</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Escala de tipo</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Poucos tamanhos, muito uso. Display, corpo, label. Fim.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">03</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Componentes com props</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Variante e estado como propriedade. Nada de sete cópias do botão.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">04</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Nome que se lê</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">O naming é a documentação. É por ele que a IA vai entender o sistema depois.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · ARMADILHAS -->
+  <section data-label="Onde costuma travar" data-speaker-notes="Papo aberto aqui. Perguntar qual dessas dói mais no dia a dia deles.
+Segurar o tempo — dá pra ficar 10 min só nesse slide se a turma engajar." style="position:relative;height:100%;box-sizing:border-box;background:#0D0D0D;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:52px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.60);">Onde costuma travar</div>
+    <div style="display:flex;flex-direction:column;gap:32px;">
+      <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:68px;line-height:1.05;border-bottom:1px solid rgba(255,255,255,0.10);padding-bottom:28px;">Sistema que ninguém mantém</div>
+      <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:68px;line-height:1.05;border-bottom:1px solid rgba(255,255,255,0.10);padding-bottom:28px;">Componente sem regra de uso</div>
+      <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:68px;line-height:1.05;">Figma e código contando <span class="text-grad-site-01">histórias diferentes</span></div>
+    </div>
+  </section>
+
+  <!-- 08 · BLOCO 02 -->
+  <section data-label="Bloco 02 — Claude Code" data-speaker-notes="Divisória. Virar a chave pro código." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">Bloco 02</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:150px;line-height:0.94;letter-spacing:-0.02em;">Design system <br>no <span class="text-grad-site-01">Claude Code</span></div>
+  </section>
+
+  <!-- 09 · A VIRADA -->
+  <section data-label="A virada de chave" data-speaker-notes="Ponto central da aula. O DS deixa de ser referência visual e vira contexto executável.
+Analogia: não é mandar a IA 'fazer bonito', é dar o manual da casa." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:56px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">A virada de chave</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:100px;line-height:1.0;letter-spacing:-0.01em;max-width:1500px;">A IA não precisa de <span class="text-grad-site-01">inspiração</span>. <br>Precisa de <span class="text-grad-site-01">contexto</span>.</div>
+    <div style="font-family:var(--font-body);font-size:28px;line-height:1.5;color:#666666;max-width:1150px;">Enquanto o sistema mora só no Figma, ele é referência. Quando ele vira arquivo — tokens, regras, exemplos — ele vira instrução que roda.</div>
+  </section>
+
+  <!-- 10 · O QUE ENTREGAR PRA IA -->
+  <section data-label="O que vira arquivo" data-speaker-notes="Mostrar a pasta real do DS da dup: colors_and_type.css, fonts, guia em markdown, componentes.
+Explicar a skill: é o manual que o agente lê antes de desenhar qualquer coisa." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:56px;padding:100px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">O que a gente entrega pro agente</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px 80px;">
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">01</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Tokens em CSS</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Exportados do Figma, um arquivo só, nome igual ao do design.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">02</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Guia escrito</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Voz, tom, o que nunca fazer. Isso vale mais que a paleta.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">03</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Componentes reais</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">Código que já roda. O agente compõe, não recria.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(13,13,13,0.12);padding-top:26px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">04</div>
+        <div style="font-family:var(--font-display);font-weight:600;text-transform:uppercase;font-size:44px;line-height:1.05;">Uma skill</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.5;color:#666666;">O manual da casa: quando usar cada peça e como pedir.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · DEMO -->
+  <section data-label="Demo ao vivo" data-speaker-notes="DEMO. Abrir o Claude Code com o DS da dup e pedir uma tela.
+Mostrar o erro também — pedir algo fora do sistema e ver o agente puxar pro padrão.
+Se der ruim, seguir e comentar por que deu ruim." style="position:relative;height:100%;box-sizing:border-box;background:#0D0D0D;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:44px;padding:110px 130px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right, rgba(255,255,255,0.06) 0 1px, transparent 1px calc(100%/12));pointer-events:none;"></div>
+    <div style="position:relative;font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.60);">Ao vivo</div>
+    <div style="position:relative;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:132px;line-height:0.98;letter-spacing:-0.01em;">Vamos <span class="text-grad-site-01">rodar</span> <br>agora</div>
+    <div style="position:relative;font-family:var(--font-body);font-size:28px;line-height:1.5;color:rgba(255,255,255,0.60);max-width:1000px;">Mesmo pedido, dois contextos: sem o sistema e com o sistema.</div>
+  </section>
+
+  <!-- 12 · BLOCO 03 -->
+  <section data-label="Bloco 03 — O fluxo" data-speaker-notes="Divisória. Amarrar as duas pontas." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">Bloco 03</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:150px;line-height:0.94;letter-spacing:-0.02em;">O <span class="text-grad-site-01">fluxo</span> <br>entre os dois</div>
+  </section>
+
+  <!-- 13 · O CICLO -->
+  <section data-label="O ciclo" data-speaker-notes="Desenhar o ciclo na fala: Figma decide, código executa, o que nasce bom volta pro Figma.
+O ponto que trava todo mundo é o último: sem retorno, o sistema desatualiza em duas semanas." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:64px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">O ciclo</div>
+    <div style="display:flex;align-items:stretch;gap:40px;">
+      <div style="flex:1;display:flex;flex-direction:column;gap:18px;border-left:1px solid rgba(13,13,13,0.14);padding-left:32px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">01</div>
+        <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:52px;line-height:1.02;">Decidir <br>no Figma</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:#666666;">Aqui mora o critério visual e a conversa com o cliente.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:18px;border-left:1px solid rgba(13,13,13,0.14);padding-left:32px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">02</div>
+        <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:52px;line-height:1.02;">Exportar <br>o sistema</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:#666666;">Tokens, fontes, guia e componentes numa pasta versionada.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:18px;border-left:1px solid rgba(13,13,13,0.14);padding-left:32px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">03</div>
+        <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:52px;line-height:1.02;">Gerar <br>com a IA</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:#666666;">Telas, páginas e variações compostas com as peças que já existem.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:18px;border-left:1px solid rgba(13,13,13,0.14);padding-left:32px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:#666666;">04</div>
+        <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:52px;line-height:1.02;">Devolver <br>pro sistema</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:#666666;">O que provou que funciona vira componente. O resto morre.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · O QUE MUDA -->
+  <section data-label="O que muda na prática" data-speaker-notes="Trazer números da dup se couber: quanto tempo levava uma landing antes e depois.
+Fechar o bloco: o ganho não é fazer mais rápido, é decidir menos vezes." style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:56px;padding:110px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:#666666;">O que muda na prática</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:100px;line-height:1.0;letter-spacing:-0.01em;max-width:1500px;">O ganho não é desenhar mais rápido. <br>É <span class="text-grad-site-01">decidir menos vezes</span>.</div>
+    <div style="font-family:var(--font-body);font-size:28px;line-height:1.5;color:#666666;max-width:1100px;">Com o sistema no lugar, o tempo vai pra onde importa: entender o problema do cliente e revisar o que a máquina produziu.</div>
+  </section>
+
+  <!-- 15 · ATIVIDADE -->
+  <section data-label="Atividade" data-speaker-notes="Explicar bem devagar. Deixar claro que pode ser cliente real OU projeto pessoal.
+Não precisa estar pronto — a graça é avaliar junto o que tá faltando.
+Combinar formato de entrega e prazo antes de encerrar." style="position:relative;height:100%;box-sizing:border-box;background:var(--grad-site-01);color:#0D0D0D;display:flex;flex-direction:column;justify-content:center;gap:52px;padding:100px 130px;">
+    <div style="font-family:var(--font-body);font-size:24px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,13,13,0.65);">Pro próximo papo</div>
+    <div style="font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:104px;line-height:0.98;letter-spacing:-0.01em;max-width:1450px;">Traga um design system <br>pra gente olhar junto</div>
+    <div style="display:flex;gap:70px;max-width:1500px;">
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(13,13,13,0.25);padding-top:22px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:rgba(13,13,13,0.65);">01</div>
+        <div style="font-family:var(--font-body);font-weight:700;font-size:30px;line-height:1.3;">De um cliente ou de um projeto seu</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:rgba(13,13,13,0.7);">Vale um sistema em uso, um começo de arquivo ou um rascunho.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(13,13,13,0.25);padding-top:22px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:rgba(13,13,13,0.65);">02</div>
+        <div style="font-family:var(--font-body);font-weight:700;font-size:30px;line-height:1.3;">Cores, tipo e três componentes</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:rgba(13,13,13,0.7);">O mínimo pra conversar. Se tiver mais, melhor.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(13,13,13,0.25);padding-top:22px;">
+        <div style="font-family:var(--font-body);font-size:22px;color:rgba(13,13,13,0.65);">03</div>
+        <div style="font-family:var(--font-body);font-weight:700;font-size:30px;line-height:1.3;">Não precisa estar pronto</div>
+        <div style="font-family:var(--font-body);font-size:23px;line-height:1.5;color:rgba(13,13,13,0.7);">A gente vai avaliar junto e apontar o que falta pra virar contexto de IA.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · FECHO -->
+  <section data-label="Fecho" data-speaker-notes="Abrir pra perguntas. Recolher dúvidas que viram assunto do papo 03." style="position:relative;height:100%;box-sizing:border-box;background:#0D0D0D;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:90px 110px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right, rgba(255,255,255,0.06) 0 1px, transparent 1px calc(100%/12));pointer-events:none;"></div>
+    <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-family:var(--font-display);font-size:30px;letter-spacing:-0.01em;"><span style="font-weight:300;">dup</span><span style="font-weight:500;">.agency</span></div>
+      <div style="font-family:var(--font-body);font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.60);">PAPO 02 — DESIGN SYSTEM</div>
+    </div>
+    <div style="position:relative;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:132px;line-height:0.98;letter-spacing:-0.01em;">O que <br>ficou de <span class="text-grad-site-01">dúvida</span>?</div>
+    <div style="position:relative;font-family:var(--font-body);font-size:26px;line-height:1.5;color:rgba(255,255,255,0.60);max-width:900px;">O que sobrar daqui a gente transforma no roteiro do próximo encontro.</div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

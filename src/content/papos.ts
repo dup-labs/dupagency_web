@@ -41,6 +41,15 @@ export const PAPOS: Papo[] = [
     data: '2026-07-24',
     status: 'publicado',
   },
+  {
+    slug: 'papo-02',
+    numero: '02',
+    titulo: 'Design System',
+    descricao:
+      'Um design system que o Figma entende e a IA também. Como a gente organiza o sistema, como ele vira código legível pra IA, e o fluxo de trabalho que nasce disso.',
+    data: '2026-08-07',
+    status: 'publicado',
+  },
 ]
 
 /** URL do deck de um papo. */

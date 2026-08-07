@@ -43,7 +43,11 @@ const nextConfig: NextConfig = {
       // URL limpa pro deck: /emcj/papo-01 serve o index.html estático que vive
       // em public/emcj/papo-01/. O Next não faz directory-index sozinho em
       // public/, daí o rewrite explícito.
+      //
+      // ⚠️ Papo novo = uma linha nova aqui. Só adicionar a entrada em
+      // src/content/papos.ts cria o card, mas o link cai em 404.
       { source: '/emcj/papo-01', destination: '/emcj/papo-01/index.html' },
+      { source: '/emcj/papo-02', destination: '/emcj/papo-02/index.html' },
     ]
   },
 }
