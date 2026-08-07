@@ -43,12 +43,10 @@
   // O deck-stage escuta keydown na window dele — mesma origem, então dá pra
   // sintetizar a tecla em vez de mexer no componente.
   //
-  // Despacha no <html> do iframe, NÃO na window. Este deck não tem o
-  // <intro-wall> do papo 01, então hoje tanto faz — mas um listener registrado
-  // em CAPTURE na window (foi o caso lá) não vê evento disparado direto NA
-  // window: ele chega como "at target", e aí capture e bubble rodam por ordem
-  // de registro. Disparar no <html> mantém a fase de captura previsível se
-  // algum componente desses voltar.
+  // Despacha no <html> do iframe, NÃO na window: o <intro-wall> intercepta a
+  // navegação em CAPTURE na window pra rodar a transição de tinta, e um evento
+  // disparado direto NA window chega como "at target" — aí capture e bubble
+  // rodam por ordem de registro e a interceptação vira sorteio.
   function sendKey(w, key) {
     w.document.documentElement.dispatchEvent(
       new w.KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }),

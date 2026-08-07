@@ -239,6 +239,53 @@ Combinar formato de entrega e prazo antes de encerrar." style="position:relative
     <div style="position:relative;font-family:var(--font-body);font-size:26px;line-height:1.5;color:rgba(255,255,255,0.60);max-width:900px;">O que sobrar daqui a gente transforma no roteiro do próximo encontro.</div>
   </section>
 
+  <!-- 17 · CONTATO (o loader do site entra por cima e revela) -->
+  <section data-label="Contato" data-speaker-notes="* Slide de fecho — a wall do site cobre e revela os contatos
+* A transição é curta (~1,5s) — já entra falando, não precisa esperar
+* QR é o do cartão digital (dup.agency/card/dup): salvar contato, WhatsApp, Instagram
+* Convida a turma a apontar a câmera ainda na sala, antes de todo mundo levantar" style="position:relative;height:100%;box-sizing:border-box;background:#fff;color:#0D0D0D;display:flex;flex-direction:column;justify-content:space-between;padding:90px 110px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right, rgba(13,13,13,0.05) 0 1px, transparent 1px calc(100%/12));pointer-events:none;"></div>
+
+    <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-family:var(--font-display);font-size:30px;letter-spacing:-0.01em;"><span style="font-weight:300;">dup</span><span style="font-weight:500;">.agency</span></div>
+      <div style="font-family:var(--font-body);font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#666666;">PAPO 02 — DESIGN SYSTEM</div>
+    </div>
+
+    <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:90px;">
+      <div style="display:flex;flex-direction:column;gap:52px;flex:1;">
+        <h2 style="margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:96px;line-height:0.98;letter-spacing:-0.01em;">A conversa <br> <span class="text-grad-site-01">continua</span> <br></h2>
+        <div style="display:flex;gap:90px;font-family:var(--font-body);font-size:26px;line-height:1.55;">
+          <div>
+            <div style="font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#666666;margin-bottom:14px;">Bruno Dup</div>
+            <div>dup@dup.agency</div>
+            <div style="color:#666666;">@obrunodup</div>
+          </div>
+          <div>
+            <div style="font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#666666;margin-bottom:14px;">Lari Carvalho</div>
+            <div>lari@dup.agency</div>
+            <div style="color:#666666;">@lari.gif</div>
+          </div>
+          <div>
+            <div style="font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#666666;margin-bottom:14px;">Onde estamos</div>
+            <div>www.dup.agency</div>
+            <div style="color:#666666;">@dup.agency</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:26px;flex:0 0 auto;">
+        <div style="padding:22px;border-radius:28px;background:var(--grad-site-01);">
+          <img src="./qr-cartao.svg" alt="QR code do cartão digital do Bruno Dup — dup.agency/card/dup" width="300" height="300" style="display:block;width:300px;height:300px;border-radius:14px;background:#fff;">
+        </div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:1.4;text-align:center;color:#666666;max-width:340px;">Aponta a câmera — <br>e pode me chamar</div>
+      </div>
+    </div>
+
+    <div style="position:relative;font-family:var(--font-body);font-size:26px;line-height:1.5;color:#666666;max-width:900px;">Dúvida, ideia ou só pra continuar o papo: Pode chamar :)</div>
+
+    <x-import component-from-global-scope="intro-wall" from="./intro-wall.js" data-uneditable=""></x-import>
+  </section>
+
 </x-import>
 </x-dc>
 </body>
