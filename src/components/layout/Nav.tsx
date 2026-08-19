@@ -99,6 +99,7 @@ export default function Nav() {
   const [imageY, setImageY]           = useState(0)
   const [toolsOpen, setToolsOpen]     = useState(false)
   const [toolsDropdown, setToolsDropdown] = useState(false)
+  const [portalDropdown, setPortalDropdown] = useState(false)
   const listRef                       = useRef<HTMLDivElement>(null)
 
   // Intro do hero — logo e menu caem do topo em bounce (beat ~2,3s). shouldPlay
@@ -325,20 +326,78 @@ export default function Nav() {
             {t(contatoLink.key)}
           </a>
 
-          {/* PORTAL — botão pill com o gradiente principal, sempre texto branco */}
-          <a
-            href="https://portal.dup.agency"
-            className="font-synonym font-normal tracking-widest text-white transition-opacity duration-200 hover:opacity-85"
-            style={{
-              fontSize:       '12px',
-              textDecoration: 'none',
-              background:     'var(--grad-01)',
-              borderRadius:   'var(--radius-pill)',
-              padding:        '8px 18px',
-            }}
+          {/* PORTAL — pill com dropdown: parceiro entra, curioso conhece */}
+          <div
+            className="relative"
+            onMouseEnter={() => setPortalDropdown(true)}
+            onMouseLeave={() => setPortalDropdown(false)}
           >
-            {t('portal')}
-          </a>
+            <button
+              className="font-synonym font-normal tracking-widest text-white transition-opacity duration-200 hover:opacity-85"
+              style={{
+                fontSize:     '12px',
+                background:   'var(--grad-01)',
+                border:       'none',
+                cursor:       'pointer',
+                borderRadius: 'var(--radius-pill)',
+                padding:      '8px 18px',
+              }}
+            >
+              {t('portal')}
+            </button>
+
+            {/* wrapper transparente — preenche o gap pra não perder o hover */}
+            <div
+              style={{
+                position:      'absolute',
+                top:           '100%',
+                right:         0,
+                paddingTop:    '10px',
+                minWidth:      '200px',
+                opacity:       portalDropdown ? 1 : 0,
+                transform:     portalDropdown ? 'translateY(0)' : 'translateY(-6px)',
+                pointerEvents: portalDropdown ? 'auto' : 'none',
+                transition:    'opacity 0.18s ease, transform 0.18s ease',
+              }}
+            >
+              <div
+                style={{
+                  background:           'rgba(255,255,255,0.96)',
+                  backdropFilter:       'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  borderRadius:         '12px',
+                  border:               '1px solid rgba(0,0,0,0.08)',
+                  boxShadow:            '0 8px 32px rgba(0,0,0,0.12)',
+                  overflow:             'hidden',
+                }}
+              >
+                {[
+                  { href: 'https://portal.dup.agency/login', label: t('portalParceiro'), border: true },
+                  { href: 'https://portal.dup.agency',       label: t('portalConhecer'), border: false },
+                ].map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="font-synonym"
+                    style={{
+                      display:        'block',
+                      padding:        '13px 18px',
+                      fontSize:       '13px',
+                      letterSpacing:  '0.02em',
+                      color:          '#0d0d0d',
+                      textDecoration: 'none',
+                      borderBottom:   item.border ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                      transition:     'background 0.15s ease',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* Separador + seletor de idioma */}
           <span style={{ width: 1, height: 14, background: 'currentColor', opacity: 0.25 }} />
@@ -504,20 +563,36 @@ export default function Nav() {
               transition: `opacity 0.35s ease ${(mainLinks.length + 3) * 0.06}s, transform 0.35s ease ${(mainLinks.length + 3) * 0.06}s`,
             }}
           >
-            <a
-              href="https://portal.dup.agency"
-              onClick={() => setOpen(false)}
-              className="inline-flex font-synonym tracking-widest text-white"
-              style={{
-                fontSize:       '14px',
-                textDecoration: 'none',
-                background:     'var(--grad-01)',
-                borderRadius:   'var(--radius-pill)',
-                padding:        '14px 32px',
-              }}
-            >
-              {t('portal')}
-            </a>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              <a
+                href="https://portal.dup.agency/login"
+                onClick={() => setOpen(false)}
+                className="inline-flex font-synonym tracking-widest text-white"
+                style={{
+                  fontSize:       '14px',
+                  textDecoration: 'none',
+                  background:     'var(--grad-01)',
+                  borderRadius:   'var(--radius-pill)',
+                  padding:        '14px 32px',
+                }}
+              >
+                {t('portalParceiro')}
+              </a>
+              <a
+                href="https://portal.dup.agency"
+                onClick={() => setOpen(false)}
+                className="inline-flex font-synonym tracking-widest text-white"
+                style={{
+                  fontSize:       '14px',
+                  textDecoration: 'none',
+                  border:         '1px solid rgba(255,255,255,0.4)',
+                  borderRadius:   'var(--radius-pill)',
+                  padding:        '14px 32px',
+                }}
+              >
+                {t('portalConhecer')}
+              </a>
+            </div>
           </div>
 
           {/* Seletor de idioma — dentro do menu mobile, grande e tocável */}

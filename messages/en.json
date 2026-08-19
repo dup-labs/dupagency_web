@@ -23,7 +23,9 @@
       "close": "[ close ]",
       "lab": "DUP.LAB",
       "agency": "DUP.AGENCY",
-      "portal": "PORTAL"
+      "portal": "PORTAL",
+      "portalParceiro": "Already a partner",
+      "portalConhecer": "Get to know it"
     },
     "hero": {
       "headline": "<g>Clarity</g> and <g>confidence</g><br></br>for those who need<br></br><g>operational peace of mind</g>",

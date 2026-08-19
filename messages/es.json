@@ -23,7 +23,9 @@
       "close": "[ cerrar ]",
       "lab": "DUP.LAB",
       "agency": "DUP.AGENCY",
-      "portal": "PORTAL"
+      "portal": "PORTAL",
+      "portalParceiro": "Ya soy socio",
+      "portalConhecer": "Quiero conocerlo"
     },
     "hero": {
       "headline": "<g>Claridad</g> y <g>seguridad</g><br></br>para quienes necesitan<br></br><g>paz operacional</g>",
