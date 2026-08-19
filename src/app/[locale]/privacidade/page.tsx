@@ -17,7 +17,7 @@ import LegalLayout, { Bloco } from '../_legal/LegalLayout'
 // brasileira, e traduzir sem revisão jurídica cria risco em vez de resolver.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ATUALIZADO = '5 de agosto de 2026'
+const ATUALIZADO = '19 de agosto de 2026'
 
 export async function generateMetadata({
   params,
@@ -133,6 +133,54 @@ export default async function PrivacidadePage({
           <p>
             As imagens enviadas nessas publicações ficam hospedadas de forma temporária apenas
             durante o envio e são apagadas em seguida.
+          </p>
+        </Bloco>
+
+        <Bloco titulo="Dados do Google (Analytics e Search Console)">
+          <p>
+            No portal do cliente, você pode conectar sua conta Google pra visualizar métricas
+            do Google Analytics e do Google Search Console da sua loja. Sobre esses dados:
+          </p>
+          <ul>
+            <li>
+              <strong>Acesso somente leitura.</strong> Lemos sessões, receita, cliques e
+              consultas de busca pra exibir no seu painel — nunca alteramos nada nas suas
+              contas Google.
+            </li>
+            <li>
+              <strong>Guardamos só o agregado.</strong> Armazenamos métricas diárias agregadas
+              pra montar seus gráficos e históricos. A credencial de acesso fica criptografada
+              e nunca é exposta — nem pro nosso time.
+            </li>
+            <li>
+              <strong>Sem venda, sem publicidade.</strong> Esses dados não são vendidos,
+              compartilhados com terceiros nem usados pra publicidade. Servem exclusivamente
+              pra exibir o desempenho da sua loja pra você, dentro do portal.
+            </li>
+            <li>
+              <strong>Você desconecta quando quiser.</strong> Em Configurações no portal (o
+              acesso é revogado na hora e apagamos a credencial e o cache de métricas) ou
+              direto na sua conta Google, em{' '}
+              <a
+                href="https://myaccount.google.com/permissions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                myaccount.google.com/permissions
+              </a>
+              .
+            </li>
+          </ul>
+          <p>
+            O uso das informações recebidas das APIs do Google segue a{' '}
+            <a
+              href="https://developers.google.com/terms/api-services-user-data-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Política de Dados do Usuário dos Serviços de API do Google
+            </a>
+            , incluindo os requisitos de Uso Limitado (Limited Use).
           </p>
         </Bloco>
 
