@@ -915,5 +915,132 @@
     "footer": {
       "blurb": "dup.agency's creative experimentation lab. Where out-of-the-box ideas become sketches — and, sometimes, products."
     }
+  },
+  "portal": {
+    "meta": {
+      "title": "Client Portal — dup.agency",
+      "description": "A portal built for you to track hours, activities, deliveries and documentation for your store in real time. You ask, we organize it — and everything gets logged, with transparency from start to finish.",
+      "ogDescription": "Hours, activities, deliveries and documentation for your store, all in one portal. You ask, we organize it — transparent from start to finish."
+    },
+    "hero": {
+      "badge": "Client portal · dup exclusive",
+      "headline": "Your whole operation, with <g>clarity</g> in <g>one place</g>",
+      "subheadline": "A portal built for you to track hours, activities, deliveries and documentation for your store in real time. You ask, we organize it — and everything gets logged, with transparency from start to finish.",
+      "ctaPrimary": "Let's talk!",
+      "ctaSecondary": "See the features",
+      "screenshotAlt": "Client portal — overview",
+      "browserUrl": "portal.dup.agency"
+    },
+    "manifesto": {
+      "eyebrow": "Why it exists",
+      "headline": "More than a dashboard. A way to work with <g>peace of mind</g>.",
+      "body": "We step in to organize, plan and execute your store's evolution with clarity. The portal is where all of that stays visible to you — we run the operation, you run the business.",
+      "card1": {
+        "title": "Real transparency",
+        "body": "Hours, deadlines and status in plain sight, in real time. You always know where things stand."
+      },
+      "card2": {
+        "title": "Everything on record",
+        "body": "Conversations, decisions, reports and meeting notes, all saved. Look them up whenever you want — no need to rely on memory."
+      },
+      "card3": {
+        "title": "A senior by your side",
+        "body": "Whoever does the work is who talks to you. No turnover, same duo from start to finish."
+      }
+    },
+    "recursos": {
+      "eyebrow": "What's inside",
+      "headline": "Everything you need, <g>no noise</g>",
+      "feature1": {
+        "num": "01",
+        "title": "A transparent hours package",
+        "body": "See exactly how many hours have run this month, what's left in the package and when it renews. No black box: every hour shows up by brand and by activity, updated in real time.",
+        "bullet1": "Consumption by brand, updated live",
+        "bullet2": "We let you know when there's room to use more",
+        "imgAlt": "A transparent hours package"
+      },
+      "feature2": {
+        "num": "02",
+        "title": "Ask however's easiest for you",
+        "body": "Write it out, record an audio or attach a file. We transcribe it, organize it on the board, and you follow each card from To do to Done — with deadline and owner always clear.",
+        "chipTexto": "Text",
+        "chipAudio": "Audio",
+        "chipAnexo": "Attachment",
+        "imgAlt1": "Activity board",
+        "imgAlt2": "Send an activity by audio"
+      },
+      "feature3": {
+        "num": "03",
+        "title": "A documentation base at hand",
+        "body": "Learn your way around your store at your own pace. Straight-to-the-point guides on VTEX, processes and SEO, written by us and organized by category — always there when you need them.",
+        "tagVtex": "VTEX",
+        "tagProcessos": "Processes",
+        "tagSeo": "SEO",
+        "imgAlt": "Documentation base"
+      },
+      "feature4": {
+        "num": "04",
+        "title": "Schedule a call without the email back-and-forth",
+        "body": "Pick the time right in the portal and you're set. The check-in call is clear for both sides, with the invite and agenda already in place. Easy to book, easy to remember.",
+        "bullet1": "A fixed monthly check-in call",
+        "bullet2": "Meeting notes recorded and saved in the portal",
+        "mockMonth": "July 2026",
+        "mockLabel": "Upcoming times with Bruno",
+        "mockDay1": "Tue · Jul 14",
+        "mockTime1": "10:00 AM",
+        "mockDay2": "Thu · Jul 16",
+        "mockTime2": "3:30 PM",
+        "mockDay3": "Fri · Jul 17",
+        "mockTime3": "9:00 AM",
+        "mockConfirm": "Confirm time"
+      },
+      "feature5": {
+        "num": "05",
+        "title": "Tools exclusive to our partners",
+        "body": "Tools we built to solve e-commerce's annoying pain points — with a focus on VTEX. Open only to our partners, right inside the portal.",
+        "chipGeo": "Geo-Audit",
+        "chipRedirect": "Redirect Checker",
+        "chipSpeed": "PageSpeed VTEX",
+        "chipCupons": "Bulk coupons",
+        "imgAlt": "Exclusive tools"
+      }
+    },
+    "comoFunciona": {
+      "eyebrow": "The flow",
+      "headline": "How it <g>works</g>",
+      "subheadline": "From request to delivery, it all runs through the portal — simple for you, organized for us.",
+      "step1": {
+        "title": "You ask",
+        "body": "Text, audio or attachment — whatever's fastest for you, any time."
+      },
+      "step2": {
+        "title": "We organize it",
+        "body": "It becomes an activity on the board, with a clear deadline and owner, prioritized together with you."
+      },
+      "step3": {
+        "title": "You track it",
+        "body": "Status, hours and deliveries in real time. Check in whenever you want and you're always up to speed."
+      },
+      "step4": {
+        "title": "It's on record",
+        "body": "Reports, meeting notes and docs always saved in the portal, ready whenever you need to check them."
+      }
+    },
+    "ctaFinal": {
+      "headline1": "The calendar is limited.",
+      "rotatorPrefix": "But a",
+      "rotatorMid": "conversation,",
+      "rotatorTail": "is irresistible.",
+      "frases": [
+        "productive",
+        "clear",
+        "easy",
+        "honest",
+        "strategic",
+        "efficient"
+      ],
+      "subheadline": "We'll show you the portal from the inside and map out\na successful partnership for your store.",
+      "button": "Let's talk!"
+    }
   }
 }

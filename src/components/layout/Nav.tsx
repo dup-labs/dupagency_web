@@ -143,6 +143,9 @@ export default function Nav() {
   const labHref  = getPathname({ href: '/lab', locale })
   const sectionHref = (hash: string) => `${homeHref}${hash}`
   const toolHref = (path: string) => getPathname({ href: path, locale })
+  // "Quero conhecer" do dropdown PORTAL — landing pública em /portal, no
+  // próprio site (deixou de apontar pro domínio externo portal.dup.agency).
+  const portalHref = getPathname({ href: '/portal', locale })
 
   // Link cruzado dup.agency ↔ dup.lab (desktop e mobile).
   const crossLink = isLab
@@ -373,7 +376,7 @@ export default function Nav() {
               >
                 {[
                   { href: 'https://portal.dup.agency/login', label: t('portalParceiro'), border: true },
-                  { href: 'https://portal.dup.agency',       label: t('portalConhecer'), border: false },
+                  { href: portalHref,                        label: t('portalConhecer'), border: false },
                 ].map((item) => (
                   <a
                     key={item.href}
@@ -579,7 +582,7 @@ export default function Nav() {
                 {t('portalParceiro')}
               </a>
               <a
-                href="https://portal.dup.agency"
+                href={portalHref}
                 onClick={() => setOpen(false)}
                 className="inline-flex font-synonym tracking-widest text-white"
                 style={{

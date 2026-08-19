@@ -915,5 +915,132 @@
     "footer": {
       "blurb": "El laboratorio de experimentación creativa de la dup.agency. Donde las ideas fuera de lo común se vuelven boceto — y, a veces, producto."
     }
+  },
+  "portal": {
+    "meta": {
+      "title": "Portal del Cliente — dup.agency",
+      "description": "Un portal creado para que sigas horas, actividades, entregas y documentación de tu tienda en tiempo real. Vos pedís, nosotros organizamos — y todo queda registrado, con transparencia de principio a fin.",
+      "ogDescription": "Horas, actividades, entregas y documentación de tu tienda, todo en un solo portal. Vos pedís, nosotros organizamos — transparencia de principio a fin."
+    },
+    "hero": {
+      "badge": "Portal del cliente · exclusivo dup",
+      "headline": "Toda tu operación, con <g>claridad</g> en <g>un solo lugar</g>",
+      "subheadline": "Un portal creado para que sigas horas, actividades, entregas y documentación de tu tienda en tiempo real. Vos pedís, nosotros organizamos — y todo queda registrado, con transparencia de principio a fin.",
+      "ctaPrimary": "¡Quiero hablar!",
+      "ctaSecondary": "Ver los recursos",
+      "screenshotAlt": "Portal del cliente — vista general",
+      "browserUrl": "portal.dup.agency"
+    },
+    "manifesto": {
+      "eyebrow": "Por qué existe",
+      "headline": "Más que un panel. Una forma de trabajar con <g>tranquilidad</g>.",
+      "body": "Entramos para organizar, planificar y ejecutar la evolución de tu tienda con claridad. El portal es donde todo eso queda visible para vos — la operación es nuestra, el negocio es tuyo.",
+      "card1": {
+        "title": "Transparencia real",
+        "body": "Horas, plazos y estado a la vista en tiempo real. Siempre sabés dónde está cada cosa."
+      },
+      "card2": {
+        "title": "Todo registrado",
+        "body": "Conversaciones, decisiones, informes y actas guardados. Para consultar cuando quieras, sin depender de la memoria."
+      },
+      "card3": {
+        "title": "Un senior de tu lado",
+        "body": "Quien ejecuta es quien habla con vos. Sin rotación, con el mismo dúo de principio a fin."
+      }
+    },
+    "recursos": {
+      "eyebrow": "Qué hay adentro",
+      "headline": "Todo lo que necesitás, <g>sin ruido</g>",
+      "feature1": {
+        "num": "01",
+        "title": "Paquete de horas transparente",
+        "body": "Ves exactamente cuántas horas corrieron en el mes, qué queda en el paquete y cuándo se renueva. Sin caja negra: cada hora aparece por marca y por actividad, actualizada en tiempo real.",
+        "bullet1": "Consumo por marca, actualizado en vivo",
+        "bullet2": "Te avisamos cuando podés aprovechar más",
+        "imgAlt": "Paquete de horas transparente"
+      },
+      "feature2": {
+        "num": "02",
+        "title": "Pedí de la forma más fácil para vos",
+        "body": "Escribís un texto, grabás un audio o adjuntás un archivo. Nosotros transcribimos, organizamos en el tablero y vos seguís cada tarjeta de Por hacer hasta Terminado — con plazo y responsable siempre claros.",
+        "chipTexto": "Texto",
+        "chipAudio": "Audio",
+        "chipAnexo": "Adjunto",
+        "imgAlt1": "Tablero de actividades",
+        "imgAlt2": "Enviar actividad por audio"
+      },
+      "feature3": {
+        "num": "03",
+        "title": "Base de documentación a mano",
+        "body": "Aprendé a manejar tu tienda a tu ritmo. Guías directas de VTEX, procesos y SEO, escritas por nosotros y organizadas por categoría — siempre ahí cuando las necesites.",
+        "tagVtex": "VTEX",
+        "tagProcessos": "Procesos",
+        "tagSeo": "SEO",
+        "imgAlt": "Base de documentación"
+      },
+      "feature4": {
+        "num": "04",
+        "title": "Agendá una charla sin ida y vuelta de e-mails",
+        "body": "Elegís el horario directo en el portal y listo. La reunión de alineación queda clara para los dos lados, con la invitación y la agenda ya definidas. Fácil de agendar, fácil de recordar.",
+        "bullet1": "Reunión fija de alineación todos los meses",
+        "bullet2": "Acta registrada y guardada en el portal",
+        "mockMonth": "Julio 2026",
+        "mockLabel": "Próximos horarios con Bruno",
+        "mockDay1": "Mar · 14 jul",
+        "mockTime1": "10:00",
+        "mockDay2": "Jue · 16 jul",
+        "mockTime2": "15:30",
+        "mockDay3": "Vie · 17 jul",
+        "mockTime3": "09:00",
+        "mockConfirm": "Confirmar horario"
+      },
+      "feature5": {
+        "num": "05",
+        "title": "Herramientas exclusivas para socios",
+        "body": "Herramientas que construimos para resolver los dolores molestos del e-commerce — con foco en VTEX. Disponibles solo para nuestros socios, directo desde el portal.",
+        "chipGeo": "Geo-Audit",
+        "chipRedirect": "Redirect Checker",
+        "chipSpeed": "PageSpeed VTEX",
+        "chipCupons": "Cupones masivos",
+        "imgAlt": "Herramientas exclusivas"
+      }
+    },
+    "comoFunciona": {
+      "eyebrow": "El flujo",
+      "headline": "Cómo <g>funciona</g>",
+      "subheadline": "Del pedido a la entrega, todo pasa por el portal — simple para vos, organizado para nosotros.",
+      "step1": {
+        "title": "Vos pedís",
+        "body": "Texto, audio o adjunto — como te resulte más rápido, a cualquier hora."
+      },
+      "step2": {
+        "title": "Nosotros organizamos",
+        "body": "Se convierte en actividad en el tablero, con plazo y responsable definidos y priorizada junto con vos."
+      },
+      "step3": {
+        "title": "Vos hacés seguimiento",
+        "body": "Estado, horas y entregas en tiempo real. Mirás cuando quieras y ya sabés todo."
+      },
+      "step4": {
+        "title": "Queda registrado",
+        "body": "Informes, actas y documentos siempre guardados en el portal, listos para consultar cuando los necesites."
+      }
+    },
+    "ctaFinal": {
+      "headline1": "La agenda es limitada.",
+      "rotatorPrefix": "Pero una conversación",
+      "rotatorMid": ",",
+      "rotatorTail": "es irresistible.",
+      "frases": [
+        "productiva",
+        "clara",
+        "fácil",
+        "honesta",
+        "estratégica",
+        "eficiente"
+      ],
+      "subheadline": "Te mostramos el portal por dentro y trazamos\nuna alianza exitosa para tu tienda.",
+      "button": "¡Quiero hablar!"
+    }
   }
 }

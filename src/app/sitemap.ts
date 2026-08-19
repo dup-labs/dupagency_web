@@ -45,6 +45,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: languageAlternates('/lab'),
     })
 
+    entries.push({
+      url: `${baseUrl}${getPathname({ href: '/portal', locale })}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+      alternates: languageAlternates('/portal'),
+    })
+
     for (const tool of ferramentas) {
       const href = `/ferramentas/${tool}`
       entries.push({

@@ -43,6 +43,13 @@ export type SectionId =
   | 'lab-processo'
   | 'lab-bastidores'
   | 'lab-cta'
+  // /portal — landing pública do portal do cliente (conteúdo real portado
+  // de portal.dup.agency). Alterna claro/escuro como a home.
+  | 'portal-hero'
+  | 'portal-manifesto'
+  | 'portal-recursos'
+  | 'portal-como-funciona'
+  | 'portal-cta'
 
 export type NavTheme = 'dark' | 'light'
 
@@ -198,6 +205,27 @@ export const SECTION_CONFIGS: Record<SectionId, SectionConfig> = {
     navTheme: 'dark',
   },
   'lab-cta': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  // /portal
+  'portal-hero': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'portal-manifesto': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  'portal-recursos': {
+    background: 'var(--white)',
+    navTheme: 'dark',
+  },
+  'portal-como-funciona': {
+    background: 'var(--black)',
+    navTheme: 'light',
+  },
+  'portal-cta': {
     background: 'var(--black)',
     navTheme: 'light',
   },
