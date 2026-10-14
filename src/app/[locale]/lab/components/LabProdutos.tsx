@@ -45,7 +45,7 @@ const PRODUCTS: Product[] = [
   {
     slug: 'polr',
     order: 'produto_03',
-    status: 'soon',
+    status: 'live',
     url: 'https://polrfy.co',
     urlLabel: 'polrfy.co',
     image: '/images/lab/polr-site.png',
