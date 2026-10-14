@@ -57,7 +57,7 @@ const PRODUCTS: Product[] = [
     status: 'beta',
     url: 'https://publshr.app',
     urlLabel: 'publshr.app',
-    image: null,
+    image: '/images/lab/publshr-site.png',
     gradient: 'linear-gradient(150deg, #86C8D4, #897BBC)',
     flip: true,
   },
