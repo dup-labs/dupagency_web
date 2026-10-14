@@ -6,7 +6,7 @@ import { ScribblePlaceholder } from './LabScribbles'
 // hover (.lab-prod-card / .lab-prod-mock em globals.css). Cor SÓ aqui — regra
 // de ouro do DS do lab — e sempre via gradiente-assinatura de cada produto.
 
-type ProductSlug = 'swtchr' | 'nutrk' | 'polr'
+type ProductSlug = 'swtchr' | 'nutrk' | 'polr' | 'publshr'
 
 interface Product {
   slug: ProductSlug
@@ -50,6 +50,16 @@ const PRODUCTS: Product[] = [
     urlLabel: 'polrfy.co',
     image: '/images/lab/polr-site.png',
     gradient: 'linear-gradient(150deg, #7FABED, #B792A8)',
+  },
+  {
+    slug: 'publshr',
+    order: 'produto_04',
+    status: 'beta',
+    url: 'https://publshr.app',
+    urlLabel: 'publshr.app',
+    image: null,
+    gradient: 'linear-gradient(150deg, #86C8D4, #897BBC)',
+    flip: true,
   },
 ]
 

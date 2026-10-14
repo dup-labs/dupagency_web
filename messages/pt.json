@@ -853,6 +853,10 @@
       "polr": {
         "tagline": "// favoritos com estratégia",
         "desc": "Salve produtos de qualquer loja, organize por categoria, simule o carrinho e compre na hora certa. App + extensão do Chrome."
+      },
+      "publshr": {
+        "tagline": "// conteúdo de marca, do rascunho ao post",
+        "desc": "Conta a ideia e o publshr escreve, desenha e publica carrosséis, artes e stories no Instagram na voz e no visual da sua marca. Com agenda e métricas de cada post."
       }
     },
     "processo": {

@@ -48,6 +48,7 @@ const SCHEMA_PRODUCTS = [
   { slug: 'swtchr', url: 'https://swtchr.io',    category: 'BusinessApplication' },
   { slug: 'nutrk',  url: 'https://www.nutrk.io', category: 'HealthApplication' },
   { slug: 'polr',   url: 'https://polrfy.co',    category: 'ShoppingApplication' },
+  { slug: 'publshr', url: 'https://publshr.app', category: 'BusinessApplication' },
 ] as const
 
 export default async function LabPage({
@@ -61,7 +62,7 @@ export default async function LabPage({
 
   // JSON-LD da página: WebPage + os produtos como SoftwareApplication, cada um
   // com creator apontando pro @id da Organization (definida no layout) — amarra
-  // swtchr/nutrk/polr à dup.agency no grafo. O schema institucional
+  // swtchr/nutrk/polr/publshr à dup.agency no grafo. O schema institucional
   // (Organization/Service) já vem herdado do layout de [locale].
   const pagePath = localizedPath('/lab', locale as Locale)
   const jsonLd = {
