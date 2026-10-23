@@ -3,6 +3,8 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { Resend } from 'resend'
 import { supabase } from '@/lib/supabase'
+import { registrarLead } from '@/lib/monday'
+import type { LeadOrigin } from '@/lib/origin'
 import { buildEmailHtml } from '../lib/emailTemplate'
 export type { GeoAuditResult } from '../lib/emailTemplate'
 import type { GeoAuditResult } from '../lib/emailTemplate'
@@ -363,59 +365,9 @@ Regras:
   return JSON.parse(jsonMatch[0])
 }
 
-// ---------- Attio ----------
-
-async function upsertAttio(result: GeoAuditResult, email: string): Promise<void> {
-  const apiKey = process.env.ATTIO_API_KEY
-  if (!apiKey) return
-
-  const headers = { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' }
-
-  let companyId: string | null = null
-  try {
-    const res = await fetch('https://api.attio.com/v2/objects/companies/records', {
-      method: 'PUT', headers,
-      body: JSON.stringify({ data: { values: { domains: [{ domain: result.domain }], name: [{ value: result.company_name }] } }, matching_attribute: 'domains' }),
-    })
-    companyId = (await res.json())?.data?.id?.record_id ?? null
-  } catch { /* ignora */ }
-
-  let personId: string | null = null
-  try {
-    const res = await fetch('https://api.attio.com/v2/objects/people/records', {
-      method: 'PUT', headers,
-      body: JSON.stringify({ data: { values: { email_addresses: [{ email_address: email }] } }, matching_attribute: 'email_addresses' }),
-    })
-    personId = (await res.json())?.data?.id?.record_id ?? null
-  } catch { /* ignora */ }
-
-  if (personId && companyId) {
-    try {
-      await fetch(`https://api.attio.com/v2/objects/people/records/${personId}`, {
-        method: 'PATCH', headers,
-        body: JSON.stringify({ data: { values: { company: [{ target_object: 'companies', target_record_id: companyId }] } } }),
-      })
-    } catch { /* ignora */ }
-  }
-
-  if (personId) {
-    try {
-      await fetch('https://api.attio.com/v2/notes', {
-        method: 'POST', headers,
-        body: JSON.stringify({ data: {
-          parent_object: 'people', parent_record_id: personId,
-          title: `GEO Audit — ${result.domain} — Score ${result.overall_score}/100`,
-          format: 'plaintext',
-          content: `URL: ${result.url}\nScore: ${result.overall_score}/100 | SEO: ${result.seo_score} | GEO: ${result.geo_score}\n\nPrioridades altas:\n${result.action_plan.filter((a) => a.priority === 'alta').map((a) => `• [${a.category}] ${a.action}`).join('\n')}`,
-        } }),
-      })
-    } catch { /* ignora */ }
-  }
-}
-
 // ---------- entry point ----------
 
-export async function analyzeAndDeliver(hash: string, url: string, email: string, locale: string = 'pt'): Promise<void> {
+export async function analyzeAndDeliver(hash: string, url: string, email: string, locale: string = 'pt', origem: LeadOrigin | null = null): Promise<void> {
   try {
     await supabase.from('geo_audits').update({ status: 'analyzing' }).eq('hash', hash)
 
@@ -483,7 +435,13 @@ export async function analyzeAndDeliver(hash: string, url: string, email: string
       html: buildEmailHtml(result, resultUrl, locale),
     }).catch(() => {})
 
-    upsertAttio(result, email).catch(() => {})
+    // Falha no Monday nunca quebra a entrega (registrarLead não lança).
+    await registrarLead({
+      email: email.toLowerCase().trim(),
+      nome: result.company_name || domain,
+      leadSource: 'geo_audit',
+      detalhe: `GEO Audit de ${domain} | score ${result.overall_score}/100`,
+    }, origem)
   } catch (err) {
     await supabase.from('geo_audits').update({
       status: 'error',

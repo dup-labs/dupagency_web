@@ -17,46 +17,9 @@
 import { headers } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
+import { registrarLead } from '@/lib/monday'
 
 export type LeadResult = { ok: true } | { ok: false; error: string }
-
-async function upsertAttio(domain: string, email: string): Promise<void> {
-  const apiKey = process.env.ATTIO_API_KEY
-  if (!apiKey) return
-
-  const hdrs = { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' }
-
-  let personId: string | null = null
-  try {
-    const res = await fetch('https://api.attio.com/v2/objects/people/records', {
-      method: 'PUT',
-      headers: hdrs,
-      body: JSON.stringify({
-        data: { values: { email_addresses: [{ email_address: email }] } },
-        matching_attribute: 'email_addresses',
-      }),
-    })
-    personId = (await res.json())?.data?.id?.record_id ?? null
-  } catch { /* ignora */ }
-
-  if (personId) {
-    try {
-      await fetch('https://api.attio.com/v2/notes', {
-        method: 'POST',
-        headers: hdrs,
-        body: JSON.stringify({
-          data: {
-            parent_object: 'people',
-            parent_record_id: personId,
-            title: `Redirect & Health Checker — ${domain}`,
-            format: 'plaintext',
-            content: `Domínio: ${domain}\nE-mail: ${email}\nFerramenta: redirect-checker\nFonte: dup.agency/ferramentas/redirect-checker`,
-          },
-        }),
-      })
-    } catch { /* ignora */ }
-  }
-}
 
 export async function submitLead(domain: string, email: string, locale: string = 'pt'): Promise<LeadResult> {
   const t = await getTranslations({ locale, namespace: 'ferramentas.redirectChecker.form.errors' })
@@ -88,7 +51,13 @@ export async function submitLead(domain: string, email: string, locale: string =
 
   if (error) console.error('[submitLead] Supabase error:', error.message)
 
-  upsertAttio(rawDomain, email).catch(console.error)
+  // Falha no Monday nunca quebra a ferramenta (registrarLead não lança).
+  await registrarLead({
+    email: email.toLowerCase().trim(),
+    nome: rawDomain,
+    leadSource: 'redirect_checker',
+    detalhe: `Redirect & Health Checker de ${rawDomain}`,
+  })
 
   return { ok: true }
 }
