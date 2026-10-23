@@ -67,6 +67,8 @@ export default function Hero() {
           <div className="mt-1.5 flex flex-wrap items-center justify-center gap-3.5">
             <a
               href={CALENDLY_URL}
+              data-cta="schedule"
+              data-cta-location="portal-hero"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-[52px] items-center gap-2.5 rounded-pill bg-black px-7 font-synonym text-[12px] font-semibold tracking-micro text-white uppercase transition-colors hover:bg-purple-dark"

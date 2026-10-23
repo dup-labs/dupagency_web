@@ -100,6 +100,7 @@ export default function RedirectUpsell() {
           rel="noopener noreferrer"
           id="cta-whatsapp-redirect"
           data-cta="whatsapp"
+          data-cta-location="redirect-checker-upsell"
           className="font-synonym"
           style={{
             display: 'block',

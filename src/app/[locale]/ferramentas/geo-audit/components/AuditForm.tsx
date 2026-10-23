@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { useRouter } from '@/i18n/navigation'
 import { submitAudit } from '../actions/submitAudit'
+import { track } from '@/lib/tracking'
 
 interface Props {
   variant: 'hero' | 'cta'
@@ -67,6 +68,8 @@ function AuditFormInner({ variant }: Props) {
         setLoading(false)
         return
       }
+      track('tool_use', { tool: 'geo_audit', page_type: 'ferramenta' })
+      track('generate_lead', { lead_source: 'geo_audit', page_type: 'ferramenta' })
       router.push(`/ferramentas/geo-audit/analisando/${result.hash}`)
     } catch {
       setError(t('form.errorInesperado'))

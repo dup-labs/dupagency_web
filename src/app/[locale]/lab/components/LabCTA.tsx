@@ -48,6 +48,8 @@ export default function LabCTA() {
         </p>
         <a
           href={CALENDLY_URL}
+          data-cta="schedule"
+          data-cta-location="lab-cta"
           target="_blank"
           rel="noopener noreferrer"
           id="lab-cta-button"

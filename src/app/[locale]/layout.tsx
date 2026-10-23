@@ -12,6 +12,8 @@ import ScrollspyNav from '@/components/layout/ScrollspyNav'
 import CustomCursor from '@/components/ui/CustomCursor'
 import IntroProvider from '@/components/intro/IntroProvider'
 import { GTMScript, GTMNoScript } from '@/components/analytics/gtm'
+import TrackingListener from '@/components/analytics/TrackingListener'
+import { trackingBootstrapScript } from '@/lib/origin'
 import { publicRobots } from '@/lib/robotsMeta'
 
 const BASE_URL = 'https://dup.agency'
@@ -232,6 +234,8 @@ export default async function LocaleLayout({
             não executa script em render de cliente (ele só grita no console).
             Ver LangSwitcher em Nav.tsx. */}
         <script dangerouslySetInnerHTML={{ __html: introDecisionScript }} />
+        {/* Medição: tráfego interno (?interno=1) e origem do lead. Síncrono, antes do GTM. */}
+        <script dangerouslySetInnerHTML={{ __html: trackingBootstrapScript }} />
         {/* Reforço do theme-color pra Safari iOS — explícito pelos dois
             schemes pra cobrir tinting dinâmico do URL bar. */}
         <meta name="theme-color" content="#0d0d0d" />
@@ -248,6 +252,7 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-screen">
         <GTMNoScript />
+        <TrackingListener />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <BackgroundLayer>
             <CustomCursor />
