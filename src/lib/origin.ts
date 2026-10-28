@@ -91,9 +91,9 @@ if(rc('${INTERNAL_COOKIE}')==='1'&&i!=='0')W.dataLayer.push({traffic_type:'inter
 var t={},has=false;
 ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var v=q.get(k);if(v){t[k]=v.slice(0,100);has=true}});
 var rh='';try{if(D.referrer){var u=new URL(D.referrer);if(u.host!==L.host)rh=u.host}}catch(e){}
-if(rh)t.referrer=rh;
+if(rh)t.referrer=rh.slice(0,100);
 if(has||rh){
- t.landing=L.pathname;t.ts=new Date().toISOString();
+ t.landing=L.pathname.slice(0,100);t.ts=new Date().toISOString();
  var o={};try{o=JSON.parse(decodeURIComponent(rc('${ORIGIN_COOKIE}')))||{}}catch(e){}
  if(!o.first)o.first=t;
  o.last=t;

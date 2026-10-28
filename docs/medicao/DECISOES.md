@@ -15,3 +15,10 @@
 13. **`page_type`/`lp_slug` pelo path**, não por prop, para páginas novas já nascerem medidas. Convenção: landings em `/[locale]/lp/<slug>`.
 14. **Nenhuma landing, rota ou template foi criado** (conforme o prompt).
 15. **Cookies novos (`dup_origin`, `dup_interno`) e a página de privacidade:** não alterei o texto legal. Pendência para o Bruno avaliar (LGPD).
+
+
+## 28/10 — correções pós-revisão
+
+- **Calendly com um só endereço:** "Novos projetos" virou "Primeira conversa" no Calendly (mesmo tipo de evento). O link antigo `novos-projetos-agenda-de-30-minutos` dá 404, então portal e lab passaram a usar `primeira-conversa`.
+- **Timeout no Monday:** `registrarLead` agora tem limite de 5 s, pra lentidão do Monday não travar a ferramenta.
+- **Cookie `dup_origin` limitado:** `referrer` e `landing` são cortados em 100 caracteres, como as UTMs, pra o cookie não passar de 4 KB e ser descartado.

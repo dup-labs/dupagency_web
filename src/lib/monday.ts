@@ -90,6 +90,7 @@ export async function registrarLead(dados: DadosLead, origem?: LeadOrigin | null
     const itemName = (dados.nome || dados.email).slice(0, 255)
     const res = await fetch('https://api.monday.com/v2', {
       method: 'POST',
+      signal: AbortSignal.timeout(5000),
       headers: { 'Content-Type': 'application/json', Authorization: token, 'API-Version': '2025-04' },
       body: JSON.stringify({
         query: `mutation ($board: ID!, $name: String!, $values: JSON!) {

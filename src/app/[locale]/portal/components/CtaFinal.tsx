@@ -6,7 +6,7 @@ import { CheckIcon } from '@phosphor-icons/react'
 import GridLines from '@/components/ui/GridLines'
 import { gsap } from '@/lib/gsap'
 
-const CALENDLY_URL = 'https://calendly.com/dupagency/novos-projetos-agenda-de-30-minutos?back=1'
+const CALENDLY_URL = 'https://calendly.com/dupagency/primeira-conversa'
 
 // Palavra que roda no meio da frase — mesmo padrão do ConversaRotator da
 // home (src/components/sections/CTAFinal.tsx), com as frases da landing

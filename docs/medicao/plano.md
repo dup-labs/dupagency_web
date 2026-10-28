@@ -8,7 +8,7 @@ Documento que vale durante o estudo. Depois do congelamento (ver checklist), nad
 |---|---|---|---|
 | Acessos válidos | Sessões do GA4 menos (a) sessões cujo `session source` está na lista de exclusão e (b) eventos com `traffic_type = internal` | GA4 (property do site) | Exploração/relatório com filtro "source não contém" cada item da lista + o filtro de tráfego interno do GA4 ligado |
 | Leads | Itens criados no board **Leads** do Monday (ID `18435549873`), com "Pré (antes do workflow)" desmarcado | Monday | Contagem de itens por "Data de entrada". Fonte oficial; o evento `generate_lead` do GA4 é só conferência |
-| Calls agendadas | Agendamentos concluídos no Calendly (`dupagency/novos-projetos-agenda-de-30-minutos` e `dupagency/primeira-conversa`) | Calendly (oficial) e GA4 `schedule_call` (conferência) | Contagem de eventos agendados no Calendly por período; origem via UTMs gravadas no agendamento |
+| Calls agendadas | Agendamentos concluídos no Calendly (`dupagency/primeira-conversa`, evento único; o slug antigo `novos-projetos-agenda-de-30-minutos` foi renomeado no Calendly e dá 404) | Calendly (oficial) e GA4 `schedule_call` (conferência) | Contagem de eventos agendados no Calendly por período; origem via UTMs gravadas no agendamento |
 
 **Efeito da carga do GTM (régua do estudo, igual antes e depois).** O GTM carrega na primeira interação (scroll, mousemove, touch, tecla, clique) ou após 5 s. Visita que sai em menos de 5 s sem interagir não é contada no GA4. Isso subconta sessões de forma constante; por isso comparações valem só dentro do mesmo regime. Não mudar `src/components/analytics/gtm.tsx`.
 

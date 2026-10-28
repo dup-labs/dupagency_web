@@ -4,7 +4,7 @@ import RotatingWord from './RotatingWord'
 import { ScribbleUnderlineShort } from './LabScribbles'
 
 const CALENDLY_URL =
-  'https://calendly.com/dupagency/novos-projetos-agenda-de-30-minutos?back=1'
+  'https://calendly.com/dupagency/primeira-conversa'
 
 const WORD_KEYS = ['w1', 'w2', 'w3', 'w4', 'w5', 'w6'] as const
 
