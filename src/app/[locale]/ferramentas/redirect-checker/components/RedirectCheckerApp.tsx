@@ -6,6 +6,7 @@ import { getPathname } from '@/i18n/navigation'
 import { richTags } from '@/i18n/rich'
 import GridLines from '@/components/ui/GridLines'
 import { submitLead } from '../actions/submitLead'
+import { track } from '@/lib/tracking'
 import { saveResult } from '../actions/saveResult'
 import ResultView, { categorize } from './ResultView'
 import type { UrlResult } from './ResultView'
@@ -55,6 +56,8 @@ function StageForm({ onStart }: { onStart: (domain: string, email: string) => vo
     try {
       const result = await submitLead(domain.trim(), email.trim(), locale)
       if (!result.ok) { setError(result.error); setLoading(false); return }
+      track('tool_use', { tool: 'redirect_checker', page_type: 'ferramenta' })
+      track('generate_lead', { lead_source: 'redirect_checker', page_type: 'ferramenta' })
       onStart(domain.trim(), email.trim())
     } catch {
       setError(t('form.errorInesperado'))

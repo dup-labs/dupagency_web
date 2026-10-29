@@ -7,6 +7,7 @@ import { headers } from 'next/headers'
 import { supabase } from '@/lib/supabase'
 import { runSecurityChecks } from './security'
 import { analyzeAndDeliver } from './analyzeAndDeliver'
+import { lerOrigemDaRequisicao } from '@/lib/monday'
 
 export type SubmitResult =
   | { ok: true; hash: string }
@@ -29,6 +30,9 @@ export async function submitAudit(url: string, email: string, locale: string = '
     return { ok: false, error: security.error }
   }
 
+  // after() roda sem acesso garantido ao cookie: lê a origem agora.
+  const origem = await lerOrigemDaRequisicao()
+
   const hash = randomBytes(16).toString('hex')
 
   const { error: dbError } = await supabase.from('geo_audits').insert({
@@ -47,7 +51,7 @@ export async function submitAudit(url: string, email: string, locale: string = '
   // Processa em background após resposta ser enviada. O locale vem da página
   // onde o form foi submetido — define o idioma em que a IA gera o resultado.
   after(async () => {
-    await analyzeAndDeliver(hash, security.normalizedUrl, email, locale)
+    await analyzeAndDeliver(hash, security.normalizedUrl, email, locale, origem)
   })
 
   return { ok: true, hash }

@@ -6,7 +6,7 @@ import { CheckIcon } from '@phosphor-icons/react'
 import GridLines from '@/components/ui/GridLines'
 import { gsap } from '@/lib/gsap'
 
-const CALENDLY_URL = 'https://calendly.com/dupagency/novos-projetos-agenda-de-30-minutos?back=1'
+const CALENDLY_URL = 'https://calendly.com/dupagency/primeira-conversa'
 
 // Palavra que roda no meio da frase — mesmo padrão do ConversaRotator da
 // home (src/components/sections/CTAFinal.tsx), com as frases da landing
@@ -79,6 +79,8 @@ export default function CtaFinal() {
 
         <a
           href={CALENDLY_URL}
+          data-cta="schedule"
+          data-cta-location="portal-cta-final"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-[34px] inline-flex items-center gap-3 rounded-pill border border-white px-[34px] py-4 font-synonym text-[12px] font-semibold tracking-micro text-white uppercase transition-colors hover:bg-white hover:text-black"

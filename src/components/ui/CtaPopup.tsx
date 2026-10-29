@@ -64,6 +64,7 @@ export default function CtaPopup() {
           rel="noopener noreferrer"
           id="cta-popup-whatsapp"
           data-cta="whatsapp"
+          data-cta-location="cta-popup"
           style={{
             display:         'flex',
             alignItems:      'center',

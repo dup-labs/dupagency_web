@@ -197,6 +197,7 @@ export default function CheckerUpsell() {
               rel="noopener noreferrer"
               id="cta-whatsapp-geo-checker"
               data-cta="whatsapp"
+              data-cta-location="geo-audit-upsell"
               style={{
                 display: 'block',
                 width: '100%',
