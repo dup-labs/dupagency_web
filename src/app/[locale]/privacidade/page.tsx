@@ -17,7 +17,7 @@ import LegalLayout, { Bloco } from '../_legal/LegalLayout'
 // brasileira, e traduzir sem revisão jurídica cria risco em vez de resolver.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ATUALIZADO = '19 de agosto de 2026'
+const ATUALIZADO = '30 de outubro de 2026'
 
 export async function generateMetadata({
   params,
@@ -104,6 +104,43 @@ export default async function PrivacidadePage({
           <p>
             Não vendemos dados pessoais. Não repassamos sua informação para terceiros usarem em
             publicidade própria.
+          </p>
+        </Bloco>
+
+        <Bloco titulo="Cookies">
+          <p>
+            O site usa poucos cookies, e nenhum deles guarda nome, e-mail ou telefone:
+          </p>
+          <ul>
+            <li>
+              <strong>
+                <code>dup_origin</code> (nosso, 90 dias).
+              </strong>{' '}
+              Guarda de onde veio a sua visita: os parâmetros de campanha da URL (utm_source,
+              utm_medium, utm_campaign, utm_content e utm_term), o endereço do site que te
+              trouxe (só o domínio, nunca a página completa) e a página pela qual você entrou,
+              com data e hora. Guardamos a primeira origem e a mais recente. Se você preencher
+              um formulário ou usar uma das nossas ferramentas, esse resumo vai junto com o seu
+              contato pro nosso controle de leads, pra sabermos qual canal funcionou.
+            </li>
+            <li>
+              <strong>
+                <code>dup_interno</code> (nosso, 400 dias).
+              </strong>{' '}
+              Um marcador que a nossa equipe liga no próprio navegador pra tirar as visitas
+              internas das estatísticas. Só existe nos navegadores da equipe.
+            </li>
+            <li>
+              <strong>Google Analytics (via Google Tag Manager).</strong> Cookies do Google que
+              medem, de forma agregada, as páginas visitadas e os cliques em botões,
+              agendamentos e ferramentas.
+            </li>
+          </ul>
+          <p>
+            Nenhum desses cookies é usado pra publicidade. Ao agendar uma conversa, o
+            agendamento abre o Calendly, que segue a política de privacidade dele. Você pode
+            apagar os cookies a qualquer momento nas configurações do navegador, e o site
+            continua funcionando normalmente sem eles.
           </p>
         </Bloco>
 
